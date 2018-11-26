@@ -1,0 +1,85 @@
+@charset "uff-8";
+@import url("./circular-font/circular.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css");
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
+/* @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700"); */
+
+/*========= 
+ 스타일 초기화 
+==========*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+/*fieldset,*/ form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1em; /*=100%;*/
+    font: inherit;
+    font-weight: normal;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}/* Js를 통해 태그를 추가할 수 있다. */
+
+ul {
+	list-style-type: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* CSS 모듈 */
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.readable-hidden, legend { 
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: -1px;
+    clip: rect(0,0,0,0);
+    z-index: 10;
+}
+
+/* 본문 스타일 */
+html {
+    font-size: 10px;
+}
+
+body {
+    color: #181818;    
+    font-family: "Circular Book", "Spoqa Han Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+/* 하이퍼링크 스타일 */
+a {
+    color: inherit;
+    text-decoration: none;
+    /* cursor: crosshair; */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
