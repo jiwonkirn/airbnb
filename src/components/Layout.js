@@ -1,19 +1,10 @@
-import React, { Component } from 'react'
-import logo from '../svg/logo.svg';
+import React, { Component } from 'react';
+import style from './Layout.module.scss';
+import { ReactComponent as Logo } from '../svg/logo.svg';
+import classNames from 'classnames';
 
 export default class extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
   render() {
-    return (
-      <header className="header">
-          <img src={logo} className="logo" alt="logo" />
-        </header>
-    )
+    return <Logo className={style.logo} />;
   }
 }
