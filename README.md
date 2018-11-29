@@ -10,7 +10,7 @@
 
 - 개인 개발은 개인 `feature 브랜치`를 만들어 개발해주세요.
 - 기능개발이 끝나면 `develop 브랜치`에 merge 후 push 해주세요.
-- push하기 전에는 `conflict`를 해결학 위해 merge를 하시고 push 해주세요.
+- push하기 전에는 `conflict`를 해결하기 위해 pull를 하시고 push 해주세요.
 - `master 브랜치`에서는 작업하지 말아주세요.
 
 목차입니다. 필요한 부분을 링크 타고 들어가서 읽어주세요.
