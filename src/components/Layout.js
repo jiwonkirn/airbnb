@@ -10,7 +10,7 @@ export default class extends React.Component {
   render() {
     return (
       <header className="header">
-        <Logo style={{ width: '50px' }} />
+        <Logo style={{ width: '40px' }} />
       </header>
     );
   }
