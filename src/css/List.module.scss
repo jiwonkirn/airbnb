@@ -1,0 +1,44 @@
+/* 숙소 리스트 */
+.listTitle {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: 1vh;
+}
+.listWrapper {
+  margin: 0 auto;
+
+  width: 90vw;
+}
+/* 숙소 아이템 */
+.roomInfoWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.roomImg {
+  margin-bottom: 1vh;
+  /* width: 22vw; */
+  height: 200px;
+  background-color: #aaaaaa;
+}
+.roomLocation {
+  color: rgb(166, 29, 85);
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
+.roomInfo {
+  margin-bottom: 5vh;
+
+  width: 22vw;
+}
+.roomTitle {
+  font-weight: 700;
+  margin-top: 4px;
+}
+.roomPrice {
+  margin-top: 2px;
+}
+.starWrapper {
+  margin-top: 2px;
+}
