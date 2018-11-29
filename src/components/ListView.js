@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { ReactComponent as Star } from "../svg/star.svg";
-import style from "../css/List.module.scss";
-import style2 from "../css/Star.module.scss";
+import React, { Component } from 'react';
+import { ReactComponent as Star } from '../svg/star.svg';
+import style from '../css/List.module.scss';
+import style2 from '../css/Star.module.scss';
 
 export default class ListView extends Component {
   render() {
