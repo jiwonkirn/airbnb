@@ -1,0 +1,44 @@
+// 이미지
+.imgWrapper {
+  display: flex;
+}
+
+.mainImg {
+  height: 400px;
+  width: 100%;
+  background-color: #aaaaaa;
+}
+
+.subImg {
+  height: 200px;
+  width: 20vw;
+  background-color: #aaaaaa;
+}
+
+// 숙소정보
+.contentsWrapper {
+  padding: 20px 100px;
+}
+.roomInfo {
+  width: 60%;
+  height: 500px;
+  border: 1px solid red;
+}
+
+// 예약폼
+.reservationFrom {
+  width: 376px;
+  position: fixed;
+  right: 180px;
+  top: 480px;
+  z-index: 10000;
+  border: 1px solid red;
+  padding: 24px;
+}
+.reserveBtn {
+  display: block;
+  background-color: rgb(255, 90, 95);
+  border: none;
+  width: 100%;
+  height: 22px;
+}

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import Detail from '../containers/Detail';
 
-export default class Detail extends Component {
+export default class DetailPage extends Component {
   render() {
-    return <div>상세 페이지</div>;
+    const { match } = this.props;
+    const roomId = match.params.roomId;
+    console.log(roomId);
+    return <Detail roomId={roomId} />;
   }
 }
