@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import style from '../css/RecommandedCity.module.scss';
+import style from './RecommandedCity.module.scss';
 import { ReactComponent as AllowRight } from '../svg/nextAllow.svg';
 import { ReactComponent as AllowLeft } from '../svg/prevAllow.svg';
 

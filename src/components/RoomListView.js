@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
-import style from '../css/List.module.scss';
-import style2 from '../css/Star.module.scss';
+import style from './RoomList.module.scss';
 
 export default class ListView extends Component {
   render() {
@@ -17,11 +16,11 @@ export default class ListView extends Component {
               <p className={style.roomTitle}>{room.title}</p>
               <p className={style.roomPrice}>{room.price}</p>
               <div className={style.starwrapper}>
-                <Star className={style2.star} />
-                <Star className={style2.star} />
-                <Star className={style2.star} />
-                <Star className={style2.star} />
-                <Star className={style2.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
               </div>
             </div>
           ))}
