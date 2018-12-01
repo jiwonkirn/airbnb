@@ -14,6 +14,7 @@ export default class Home extends Component {
   componentDidMount() {
     const { cities } = this.state;
     let randomIndex = Math.floor(Math.random() * cities.length);
+    //? 왜 이렇게 쓰나요
     this.setState({
       selected: cities[randomIndex],
     });

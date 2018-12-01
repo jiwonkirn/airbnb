@@ -16,7 +16,7 @@ export default class Layout extends Component {
           type="search"
           className="search"
           required
-          placeholder="홍콩에 가보는건 어떠세요?"
+          placeholder="제주도에 가보는건 어떠세요?"
         />
         <nav className="navbar">
           <p className="navbar_likelist">저장목록</p>
