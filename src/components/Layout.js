@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import style from './Layout.module.scss';
 import { ReactComponent as Logo } from '../svg/logo.svg';
-import { withSearch } from '../contexts/SearchContext';
 import { withUser } from '../contexts/UserContext';
+import { withSearch } from '../contexts/SearchContext';
+import { withRouter } from 'react-router-dom';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Layout extends React.Component {
           style={{ width: '40px', height: '50px' }}
         />
         <input
+          onKeyPress={() => {}}
           type="search"
           className={style.search}
           required
@@ -39,4 +41,4 @@ class Layout extends React.Component {
   }
 }
 
-export default withUser(withSearch(Layout));
+export default withRouter(withSearch(withUser(Layout)));

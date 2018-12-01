@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 const { Provider, Consumer } = React.createContext();
 
-export default class SearchProvider extends Component {
+class SearchProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,9 @@ export default class SearchProvider extends Component {
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    console.log(this.props.location);
+  }
 
   handleSearch(cityName) {
     this.setState({ cityName });
@@ -23,6 +25,8 @@ export default class SearchProvider extends Component {
   }
 }
 
+const RouterSearchProvider = withRouter(SearchProvider);
+
 function withSearch(WrappedComponent) {
   return function(props) {
     return (
@@ -31,4 +35,4 @@ function withSearch(WrappedComponent) {
   };
 }
 
-export { SearchProvider, Consumer as UserConsumer, withSearch };
+export { RouterSearchProvider, Consumer as UserConsumer, withSearch };

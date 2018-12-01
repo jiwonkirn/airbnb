@@ -11,6 +11,7 @@
 /* 숙소 아이템 */
 .roomInfoWrapper {
   margin: 10px -7.5px 20px -7.5px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -19,8 +20,9 @@
   margin: 0 7.5px 20px 7.5px;
 }
 .roomImg {
+  width: 100%;
   margin-bottom: 10px;
-  height: 200px;
+  height: auto;
   background-color: #aaaaaa;
 }
 .roomLocation {
