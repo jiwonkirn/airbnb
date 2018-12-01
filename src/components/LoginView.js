@@ -5,12 +5,16 @@ import { withUser } from '../contexts/UserContext';
 
 class LoginView extends Component {
   render() {
+    //페이스북 로그인
     console.log(process.env.REACT_APP_FACEBOOKID);
     const { setProfile, appId } = this.props;
     console.log(appId);
+
+    //구글로그인
     const responseGoogle = response => {
       console.log(response);
     };
+
     document.getElementById('googleButton');
     return (
       <div>
@@ -23,7 +27,8 @@ class LoginView extends Component {
         <GoogleLogin
           clientId="492203123541-mv2nrcvptponmmqbaka554a06p7qjilc.apps.googleusercontent.com"
           buttonText="Login"
-          onSuccess={responseGoogle}
+          // onSuccess={this.props.setGoogleProfile}
+          onSuccess={this.props.setGoogleProfile}
           onFailure={responseGoogle}
         />
       </div>
