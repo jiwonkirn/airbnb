@@ -22,15 +22,16 @@ export default class Detail extends Component {
       lng: '',
       created_at: '',
       amenities: [],
-      room_info: {},
-      host_images: {},
+      roominfo: {},
+      hostimages: {},
     };
   }
 
   async componentDidMount() {
     const { roomId } = this.props;
     console.log(roomId);
-    const { data: roomdetail } = await api.get(`/home/listings/${roomId}/`);
+    const { data: roomdetail } = await api.get(`/api/home/listings/1/`);
+    console.log(roomdetail);
     this.setState({
       ...roomdetail,
     });
