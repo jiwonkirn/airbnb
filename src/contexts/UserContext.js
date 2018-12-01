@@ -8,8 +8,7 @@ export default class UserProvider extends Component {
     super(props);
 
     this.state = {
-      appId: process.env.REACT_APP_API_FACEBOOKID,
-      // appId: '576870092752054',
+      appId: '576870092752054',
       id: null,
       username: null,
       setProfile: this.setProfile.bind(this),
@@ -18,17 +17,40 @@ export default class UserProvider extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.refreshUser();
+  }
+
+  async setProfile(res) {
+    if (!localStorage.getItem('token')) {
+      const { email, id, name } = res;
+      const first_name = name.split(' ')[0];
+      const last_name = name.split(' ')[1];
+      const user_id = id;
+      const {
+        data: { token },
+      } = await api.post('/api/user/auth-token/', {
+        email,
+        first_name,
+        last_name,
+        user_id,
+      });
+      localStorage.setItem('token', token);
+      await this.refreshUser();
+    }
+  }
+
+  refreshUser = () => {
     if (localStorage.getItem('token')) {
       this.setState({
         logined: true,
       });
+    } else {
+      this.setState({
+        logined: false,
+      });
     }
-  }
-
-  setProfile(res) {
-    console.log(res);
-  }
+  };
 
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
