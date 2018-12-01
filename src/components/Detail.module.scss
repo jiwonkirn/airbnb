@@ -1,0 +1,124 @@
+// 이미지
+.imgWrapper {
+  display: flex;
+}
+.subWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mainImg {
+  height: 400px;
+  width: 100%;
+  background-color: #aaaaaa;
+}
+.roomType {
+  color: rgb(166, 29, 85);
+}
+.city {
+  color: #484848;
+}
+.subImg {
+  height: 200px;
+  width: 20vw;
+  background-color: #aaaaaa;
+}
+//기본 레이아웃
+
+.category {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+// 숙소정보
+.contentsWrapper {
+  padding: 20px 100px;
+}
+.roomName {
+  font-size: 2.5rem;
+}
+.hostImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  top: 1.4rem;
+  right: 0;
+}
+.roomInfo {
+  width: 60%;
+  height: 1000px;
+
+  display: inline-block;
+  position: relative;
+}
+.roomProperty {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  color: #484848;
+}
+.devider {
+  margin: 20px 0;
+  border: 1px solid #ebebeb;
+}
+.transe {
+  border: #101010 1px solid;
+  border-radius: 5px;
+  background-color: transparent;
+  width: 100%;
+  height: 3rem;
+  margin: 10px 0;
+}
+
+// 예약폼
+.formWrapper {
+  display: inline-block;
+  width: 37%;
+}
+.reservationFrom {
+  width: 376px;
+  position: fixed;
+  right: 180px;
+  top: 300px;
+  z-index: 10000;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 0 24px;
+  background: #ffffff;
+}
+.price {
+  font-size: 2rem;
+  font-family: 700;
+  margin: 20px 0;
+}
+.star {
+  display: inline;
+  height: 1em;
+  width: 1em;
+  fill: rgb(166, 29, 85);
+}
+
+.date {
+  margin-top: 10px;
+}
+.person {
+  margin-top: 10px;
+}
+.dateInput,
+.personInput {
+  width: 100%;
+  height: 3rem;
+  border: #ebebeb 1px solid;
+  border-radius: 5px;
+}
+.reserveBtn {
+  border-radius: 5px;
+  margin: 20px 0 24px 0;
+  display: block;
+  background-color: rgb(255, 90, 95);
+  border: none;
+  width: 100%;
+  height: 4rem;
+  color: #ffffff;
+}
