@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 const { Provider, Consumer } = React.createContext();
 
 class SearchProvider extends Component {
@@ -9,13 +9,18 @@ class SearchProvider extends Component {
       cityName: '',
       rooms: [],
       theme: '',
+      handleSearch: this.handleSearch.bind(this),
     };
   }
 
   async componentDidMount() {}
 
   handleSearch(cityName) {
-    this.setState({ cityName });
+    this.setState({
+      cityName,
+      key: cityName,
+    });
+    this.props.history.push(`/search-list/?city__contains=${cityName}`);
   }
 
   render() {

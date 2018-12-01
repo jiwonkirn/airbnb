@@ -12,9 +12,11 @@ class Layout extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const cityName = e.target.value;
-    this.props.handleSearch(cityName);
+    if (e.keyCode === 13) {
+      this.props.handleSearch(cityName);
+    }
   }
 
   render() {
@@ -25,7 +27,7 @@ class Layout extends React.Component {
           style={{ width: '40px', height: '50px' }}
         />
         <input
-          onKeyPress={() => {}}
+          onKeyDown={e => this.handleSubmit(e)}
           type="search"
           className={style.search}
           required
@@ -41,4 +43,4 @@ class Layout extends React.Component {
   }
 }
 
-export default withRouter(withSearch(withUser(Layout)));
+export default withSearch(withUser(Layout));

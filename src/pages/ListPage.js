@@ -13,12 +13,12 @@ class ListPage extends Component {
   render() {
     const { theme } = this.state;
     return (
-      <>
+      <section key={this.props.key}>
         <RoomList theme={theme[0]} />
         <RoomList />
-      </>
+      </section>
     );
   }
 }
 
-export default ListPage;
+export default withSearch(ListPage);
