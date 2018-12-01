@@ -1,0 +1,116 @@
+import React, { Component } from 'react';
+import style from './Detail.module.scss';
+import { ReactComponent as Star } from '../svg/star.svg';
+export default class DetailView extends Component {
+  render() {
+    const {
+      room_name,
+      room_type,
+      city,
+      room_and_property_type,
+      person_capacity,
+      bedrooms,
+      beds,
+      bathrooms,
+      roominfo,
+      hostimages,
+    } = this.props;
+    return (
+      <div>
+        <div className={style.imgWrapper}>
+          <img src={roominfo.room_photo_1} className={style.mainImg} />
+          <div className={style.subWrapper}>
+            <img src={roominfo.room_photo_2} className={style.subImg} />
+            <img src={roominfo.room_photo_3} className={style.subImg} />
+            <img src={roominfo.room_photo_4} className={style.subImg} />
+            <img src={roominfo.room_photo_5} className={style.subImg} />
+          </div>
+        </div>
+
+        <div className={style.contentsWrapper}>
+          <div className={style.roomInfo}>
+            <p className={style.roomType}>{room_type}</p>
+            <h2 className={style.roomName}>{room_name}</h2>
+            <p className={style.city}>{city}</p>
+            <img
+              className={style.hostImg}
+              src={hostimages.host_thumbnail_url}
+              alt="host_thumbnail"
+            />
+            <div>
+              <h3 className={style.category}>{room_and_property_type}</h3>
+              <ul className={style.roomProperty}>
+                <li>인원 {person_capacity}개</li>
+                <li>침실 {bedrooms}개</li>
+                <li>침대 {beds}개</li>
+                <li>욕실 {bathrooms}개</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className={style.category}>{room_and_property_type}</h3>
+              <ul className={style.roomProperty}>
+                <li>인원 {person_capacity}개</li>
+                <li>침실 {bedrooms}개</li>
+                <li>침대 {beds}개</li>
+                <li>욕실 {bathrooms}개</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className={style.category}>{room_and_property_type}</h3>
+              <ul className={style.roomProperty}>
+                <li>인원 {person_capacity}개</li>
+                <li>침실 {bedrooms}개</li>
+                <li>침대 {beds}개</li>
+                <li>욕실 {bathrooms}개</li>
+              </ul>
+            </div>
+            <div className={style.devider} />
+            <button className={style.transe}>
+              이 설명을 한국어로 번역하기
+            </button>
+            <div>
+              <h3 className={style.category}>숙소</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quibusdam nam est voluptates velit fugiat recusandae a ipsum aut
+                saepe earum provident possimus error reiciendis, tenetur
+                exercitationem, incidunt minima fugit itaque.
+              </p>
+            </div>
+            <div className={style.devider} />
+            <div>
+              <h3 className={style.category}>편의시설</h3>
+              <ul className={style.roomProperty}>
+                <li>케이블 TV</li>
+                <li>WIFI</li>
+                <li>주차장</li>
+                <li>난방</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className={style.formWrapper}>
+            <div className={style.reservationFrom}>
+              <p className={style.price}>
+                ₩198,821 /<span className={style.park}>박</span>
+              </p>
+              <div className={style.starwrapper}>
+                <Star className={style.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
+                <Star className={style.star} />
+              </div>
+              <div className={style.devider} />
+              <p className={style.date}>날짜</p>
+              <input className={style.dateInput} type="text" />
+              <p className={style.person}>인원</p>
+              <input className={style.personInput} type="text" />
+              <button className={style.reserveBtn}>예약요청</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
