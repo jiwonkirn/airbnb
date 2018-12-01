@@ -12,9 +12,7 @@ class SearchProvider extends Component {
     };
   }
 
-  async componentDidMount() {
-    console.log(this.props.location);
-  }
+  async componentDidMount() {}
 
   handleSearch(cityName) {
     this.setState({ cityName });
