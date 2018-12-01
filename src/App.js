@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Layout from './components/Layout';
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
+import ListPage from './pages/ListPage';
+import DetailPage from './pages/DetailPage';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import './css/module.scss';
 
@@ -12,7 +14,9 @@ class App extends Component {
         <main className="mainSection">
           <BrowserRouter>
             <Switch>
-              <Route path="/" component={Home} />
+              <Route path="/search-list" component={ListPage} />
+              <Route path="/room-detail/:roomId" component={DetailPage} />
+              <Route exact path="/" component={HomePage} />
             </Switch>
           </BrowserRouter>
         </main>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListView from '../components/ListView';
+import RoomListView from '../components/RoomListView';
 
 export default class List extends Component {
   constructor(props) {
@@ -52,7 +52,7 @@ export default class List extends Component {
   render() {
     return (
       <div>
-        <ListView {...this.state} />
+        <RoomListView {...this.state} />
       </div>
     );
   }

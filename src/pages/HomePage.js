@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RecommandedCity from '../containers/RecommandedCity';
-import List from '../containers/List';
+import RoomList from '../containers/RoomList';
 
 export default class Home extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Home extends Component {
     return (
       <section>
         <RecommandedCity />
-        <List />
+        <RoomList />
       </section>
     );
   }
