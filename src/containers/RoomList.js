@@ -1,59 +1,50 @@
 import React, { Component } from 'react';
 import RoomListView from '../components/RoomListView';
+import api from '../api';
+import { Redirect, withRouter } from 'react-router-dom';
 
-export default class List extends Component {
+class RoomList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: [
-        {
-          location: '개인실 바르셀로나',
-          title: 'SUNSET CAVE HOUSE IN BARSELONA',
-          price: 62770,
-        },
-        {
-          location: '개인실 제주시',
-          title: 'SOMETIMES JEJU 201호',
-          price: 62770,
-        },
-        {
-          location: '개인실 서울',
-          title: 'Myeong Dong Portabl Wifi #1',
-          price: 62770,
-        },
-        {
-          location: '아파트 전체 레체',
-          title: 'In the historical center in Lecce',
-          price: 62770,
-        },
-        {
-          location: '개인실 바르셀로나',
-          title: 'SUNSET CAVE HOUSE IN BARSELONA',
-          price: 62770,
-        },
-        {
-          location: '개인실 제주시',
-          title: 'SOMETIMES JEJU 201호',
-          price: 62770,
-        },
-        {
-          location: '개인실 서울',
-          title: 'Myeong Dong Portabl Wifi #1',
-          price: 62770,
-        },
-        {
-          location: '아파트 전체 레체',
-          title: 'In the historical center in Lecce',
-          price: 62770,
-        },
-      ],
+      cityName: '',
+      rooms: [],
+      theme: '',
     };
   }
+
+  async componentDidMount() {
+    const { theme } = this.props;
+    const params = new URLSearchParams(decodeURI(this.props.location.search));
+    const { data } = await api.get('/api/home/listings/', {
+      params,
+    });
+    if (data.length === 0) console.log('자료가 없습니다.');
+    if (theme === 'price') {
+      const filteredData = data
+        .sort((x, y) => x.price - y.price)
+        .filter((item, index) => index < 8);
+      this.setState({
+        cityName: params.get('city__contains'),
+        rooms: filteredData,
+        themeName: '경제적으로 다녀오세요!',
+      });
+    } else {
+      const filteredData = data.filter((item, index) => index < 8);
+      this.setState({
+        cityName: params.get('city__contains'),
+        rooms: filteredData,
+        themeName: params.get('city__contains')
+          ? params.get('city__contains') + '의 추천 숙소'
+          : '추천 숙소',
+      });
+    }
+  }
+
   render() {
-    return (
-      <div>
-        <RoomListView {...this.state} />
-      </div>
-    );
+    const { theme } = this.props;
+    return <RoomListView {...this.state} {...this.props} />;
   }
 }
+
+export default withRouter(RoomList);
