@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import style from './Layout.module.scss';
 import { ReactComponent as Logo } from '../svg/logo.svg';
-import { withSearch } from '../contexts/SearchContext';
 import { withUser } from '../contexts/UserContext';
+import { withSearch } from '../contexts/SearchContext';
+import { withRouter } from 'react-router-dom';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class Layout extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const cityName = e.target.value;
-    this.props.handleSearch(cityName);
+    if (e.keyCode === 13) {
+      this.props.handleSearch(cityName);
+    }
   }
 
   render() {
@@ -24,6 +27,7 @@ class Layout extends React.Component {
           style={{ width: '40px', height: '50px' }}
         />
         <input
+          onKeyDown={e => this.handleSubmit(e)}
           type="search"
           className={style.search}
           required
@@ -39,4 +43,4 @@ class Layout extends React.Component {
   }
 }
 
-export default withUser(withSearch(Layout));
+export default withSearch(withUser(Layout));

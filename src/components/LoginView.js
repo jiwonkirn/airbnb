@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { withUser } from '../contexts/UserContext';
+import { Redirect, withRouter } from 'react-router-dom';
 
 class LoginView extends Component {
   render() {
     //페이스북 로그인
     console.log(process.env.REACT_APP_FACEBOOKID);
-    const { setProfile, appId } = this.props;
+    const { setProfile, appId, logined } = this.props;
     console.log(appId);
 
     //구글로그인
@@ -16,6 +17,7 @@ class LoginView extends Component {
     };
 
     document.getElementById('googleButton');
+
     return (
       <div>
         <FacebookLogin

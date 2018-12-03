@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Main from '../containers/Main';
 import RecommandedCity from '../containers/RecommandedCity';
 import RoomList from '../containers/RoomList';
 
@@ -23,6 +24,7 @@ export default class Home extends Component {
   render() {
     return (
       <section>
+        <Main />
         <RecommandedCity />
         <RoomList />
       </section>
