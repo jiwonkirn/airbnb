@@ -36,7 +36,7 @@ export default class MainView extends Component {
             </div>
             <div className={style.magicsearch}>
               <div className={style.Destination}>
-                <p>목적지</p>
+                <label for={style.destinationlabel}>목적지</label>
                 <input
                   type="search"
                   className={style.dessear}
@@ -45,7 +45,7 @@ export default class MainView extends Component {
                 />
               </div>
               <div className={style.checkin}>
-                <p>체크인</p>
+                <label for={style.checkinlabel}>체크인</label>
                 <input
                   type="search"
                   className={style.checkin_sear}
@@ -54,7 +54,7 @@ export default class MainView extends Component {
                 />
               </div>
               <div className={style.checkout}>
-                <p>체크아웃</p>
+                <label for={style.checkoutlabel}>체크아웃</label>
                 <input
                   type="search"
                   className={style.checkout_sear}
@@ -63,26 +63,28 @@ export default class MainView extends Component {
                 />
               </div>
               <div className={style.adult}>
-                <p>어른</p>
+                <label for={style.adultlabel}>어른</label>
                 <input
                   type="number"
                   className={style.numadult}
                   min="1"
                   max="20"
+                  placeholder="인원"
                   onChange={e => this.handleQuantityChange(e)}
                 />
               </div>
               <div className={style.child}>
-                <p>어린이</p>
+                <label for={style.childlabel}>어린이</label>
                 <input
                   type="number"
                   className={style.numchild}
                   min="1"
                   max="5"
+                  placeholder="인원"
                   onChange={e => this.handleQuantityChange(e)}
                 />
               </div>
-              <button>검색</button>
+              <button className={style.searchbtn}>검색</button>
             </div>
           </div>
         </div>
