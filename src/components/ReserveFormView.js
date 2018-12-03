@@ -3,12 +3,33 @@ import { ReactComponent as Star } from '../svg/star.svg';
 import { ReactComponent as Arrow } from '../svg/arrow.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import style from './Detail.module.scss';
+import classNames from 'classnames';
 
 export default class ReserveFormView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      guest: 1,
+      adult: 1,
+      children: 1,
+      infant: 1,
+      selected: false,
+    };
+  }
+
   handleSelect(e) {
     e.preventDefault();
+    this.setState({
+      selected: this.state.selected === true ? false : true,
+    });
   }
   render() {
+    const { selected } = this.state;
+    const buttonClass = classNames(style.optionBox, {
+      [style.active]: selected,
+    });
+    console.log(selected);
     return (
       <div className={style.formWrapper}>
         <form className={style.reservationFrom}>
@@ -52,13 +73,16 @@ export default class ReserveFormView extends Component {
               <button
                 onClick={e => this.handleSelect(e)}
                 className={style.personInput}
-                type="text"
+                type="button"
               >
-                <div>
+                <div className={style.capicity}>{`게스트 ${
+                  this.state.guest
+                }명`}</div>
+                <div className={style.arrowDownBox}>
                   <ArrowDown className={style.arrowDown} />
                 </div>
               </button>
-              <div className={style.optionBox}>
+              <div className={buttonClass}>
                 <div className={style.optionType}>
                   <label htmlFor="">성인</label>
                   <select name="" id="" />

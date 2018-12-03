@@ -80,7 +80,7 @@
   width: 376px;
   position: fixed;
   right: 180px;
-  top: 200px;
+  top: 100px;
   z-index: 10000;
   border: 1px solid #ebebeb;
   border-radius: 5px;
@@ -114,15 +114,17 @@
 .checkOutInput {
   width: 45%;
   height: 4rem;
-  padding: 5px;
+  padding: 10px;
 }
 .personInput {
   width: 100%;
   height: 4rem;
-  padding: 5px;
+  padding: 10px;
   border: #ebebeb 1px solid;
   border-radius: 5px;
   background: transparent;
+  display: flex;
+  justify-content: space-between;
 }
 .arrow {
   height: 24px;
@@ -152,10 +154,17 @@
   border-radius: 0 5px 5px 0;
 }
 .optionBox {
+  display: none;
+}
+.optionBox.active {
+  display: inline-block;
   border: #ebebeb 1px solid;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
+}
+.optionType {
+  margin-top: 20px;
 }
 .reserveBtn {
   border-radius: 5px;
@@ -174,10 +183,12 @@
 }
 .arrowDownBox {
 }
+.capicity {
+  color: #484848;
+}
 .arrowDown {
-  margin-left: 90%;
   height: 16px;
   width: 16px;
-  display: block;
+  display: inline;
   fill: currentcolor;
 }
