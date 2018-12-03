@@ -80,7 +80,7 @@
   width: 376px;
   position: fixed;
   right: 180px;
-  top: 300px;
+  top: 200px;
   z-index: 10000;
   border: 1px solid #ebebeb;
   border-radius: 5px;
@@ -122,6 +122,7 @@
   padding: 5px;
   border: #ebebeb 1px solid;
   border-radius: 5px;
+  background: transparent;
 }
 .arrow {
   height: 24px;
@@ -150,6 +151,12 @@
   border-left: none;
   border-radius: 0 5px 5px 0;
 }
+.optionBox {
+  border: #ebebeb 1px solid;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+}
 .reserveBtn {
   border-radius: 5px;
   margin: 20px 0 24px 0;
@@ -163,4 +170,14 @@
 .notice {
   text-align: center;
   font-weight: 400;
+  margin-bottom: 20px;
+}
+.arrowDownBox {
+}
+.arrowDown {
+  margin-left: 90%;
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: currentcolor;
 }

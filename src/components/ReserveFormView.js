@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import { ReactComponent as Arrow } from '../svg/arrow.svg';
+import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import style from './Detail.module.scss';
 
 export default class ReserveFormView extends Component {
+  handleSelect(e) {
+    e.preventDefault();
+  }
   render() {
     return (
       <div className={style.formWrapper}>
@@ -45,10 +49,30 @@ export default class ReserveFormView extends Component {
               <small>인원</small>
             </label>
             <div className={style.personInputWrapper}>
-              <div className={style.personInput} type="text" />
-              <div>
-                <label htmlFor="">성인</label>
-                <select name="" id="" />
+              <button
+                onClick={e => this.handleSelect(e)}
+                className={style.personInput}
+                type="text"
+              >
+                <div>
+                  <ArrowDown className={style.arrowDown} />
+                </div>
+              </button>
+              <div className={style.optionBox}>
+                <div className={style.optionType}>
+                  <label htmlFor="">성인</label>
+                  <select name="" id="" />
+                </div>
+                <div className={style.optionType}>
+                  <label htmlFor="">
+                    어린이 <span>2~12세</span>
+                  </label>
+                  <select value="" name="" id="" />
+                </div>
+                <div className={style.optionType}>
+                  <label htmlFor="">유아</label>
+                  <select name="" id="" />
+                </div>
               </div>
             </div>
           </div>
