@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import style from './RoomList.module.scss';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class ListView extends Component {
+class ListView extends Component {
   render() {
     const { rooms } = this.props;
     const { themeName } = this.props;
@@ -11,7 +12,7 @@ export default class ListView extends Component {
         <h1 className={style.listTitle}>{themeName}</h1>
         <div className={style.roomInfoWrapper}>
           {rooms.map(room => (
-            <div className={style.roomInfo}>
+            <Link className={style.roomInfo} to={`/room-detail/${room.pk}`}>
               <img className={style.roomImg} src={room.roominfo.room_photo_1} />
               <p className={style.roomLocation}>{room.city}</p>
               <p className={style.roomTitle}>{room.room_name}</p>
@@ -23,10 +24,12 @@ export default class ListView extends Component {
                 <Star className={style.star} />
                 <Star className={style.star} />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
     );
   }
 }
+
+export default withRouter(ListView);

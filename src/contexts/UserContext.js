@@ -9,20 +9,22 @@ export default class UserProvider extends Component {
     super(props);
 
     this.state = {
-      appId: '576870092752054',
-      id: null,
-      username: null,
+      appId: '576870092752054', // 페이스북 앱 아이디
+      id: null, // 유저 아이디
+      username: null, // 유저 이름
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
       // logout: this.logout.bind(this),
-      logined: false,
+      logined: false, // 로그인 여부
     };
   }
 
+  // 컴포넌트가 마운트 되면 로그인 여부를 확인한다.
   async componentDidMount() {
     await this.refreshUser();
   }
 
+  // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setProfile(res) {
     if (!localStorage.getItem('token')) {
       const { email, id, name } = res;
@@ -42,6 +44,7 @@ export default class UserProvider extends Component {
     }
   }
 
+  // 토큰이 있으면 로그인 된 상태로 여긴다.
   refreshUser = () => {
     if (localStorage.getItem('token')) {
       this.setState({
@@ -54,6 +57,7 @@ export default class UserProvider extends Component {
     }
   };
 
+  // 구글 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setGoogleProfile(res) {
     //구글에서 사용자 정보를 가져오는 코드
     const { profileObj } = res;

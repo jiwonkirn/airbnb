@@ -3,16 +3,9 @@ import style from './Layout.module.scss';
 import { ReactComponent as Logo } from '../svg/logo.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
-import { withRouter } from 'react-router-dom';
 
 class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   handleSubmit(e) {
-    // e.preventDefault();
     const cityName = e.target.value;
     if (e.keyCode === 13) {
       this.props.handleSearch(cityName);
@@ -21,16 +14,18 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <header className={style.header}>
+      <header key={this.props.cityName} className={style.header}>
         <Logo
           className={style.logo}
           style={{ width: '40px', height: '50px' }}
+          onClick={this.props.handleLinkToHome}
         />
         <input
           onKeyDown={e => this.handleSubmit(e)}
           type="search"
           className={style.search}
           required
+          defaultValue={this.props.cityName}
           placeholder="제주도에 가보는건 어떠세요?"
         />
         <nav className={style.navbar}>
