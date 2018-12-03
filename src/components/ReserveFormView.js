@@ -160,7 +160,7 @@ export default class ReserveFormView extends Component {
                   <div>유아 <span>2세 미만</span></div>
                   <div className={style.number}>
                     <button
-                      onclick={e => this.handleMinusInfant(e)}
+                      onClick={e => this.handleMinusInfant(e)}
                       className={style.minus}
                     >
                       <Minus className={style.minusCompo} />
