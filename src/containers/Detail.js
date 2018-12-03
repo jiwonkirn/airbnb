@@ -30,7 +30,7 @@ export default class Detail extends Component {
   async componentDidMount() {
     const { roomId } = this.props;
     console.log(roomId);
-    const { data: roomdetail } = await api.get(`/api/home/listings/1/`);
+    const { data: roomdetail } = await api.get(`/api/home/listings/${roomId}/`);
     console.log(roomdetail);
     this.setState({
       ...roomdetail,
