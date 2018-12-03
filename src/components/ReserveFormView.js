@@ -18,49 +18,42 @@ export default class ReserveFormView extends Component {
       selected: false,
     };
   }
-  handleSubmit(e){
-      e.preventDefault(e)
+  handleSubmit(e) {
+    e.preventDefault();
   }
   handleSelect(e) {
-    e.preventDefault();
     this.setState({
       selected: this.state.selected === true ? false : true,
     });
   }
   handlePlusAdult(e) {
-    e.preventDefault();
     this.setState({
       adult: this.state.adult + 1,
     });
   }
   handlePlusChildren(e) {
-    e.preventDefault();
     this.setState({
-      adult: this.state.children + 1,
+      children: this.state.children + 1,
     });
   }
   handlePlusInfant(e) {
-    e.preventDefault();
     this.setState({
-      adult: this.state.infant + 1,
+      infant: this.state.infant + 1,
     });
   }
   handleMinusAdult(e) {
-    e.preventDefault();
     this.setState({
       adult: this.state.adult - 1,
     });
   }
   handleMinusChildren(e) {
-    e.preventDefault();
     this.setState({
-      adult: this.state.children - 1,
+      children: this.state.children - 1,
     });
   }
   handleMinusInfant(e) {
-    e.preventDefault();
     this.setState({
-      adult: this.state.infant - 1,
+      infant: this.state.infant - 1,
     });
   }
   render() {
@@ -71,7 +64,10 @@ export default class ReserveFormView extends Component {
     console.log(selected);
     return (
       <div className={style.formWrapper}>
-        <form onSubmit={e=>this.handleSubmit(e)} className={style.reservationFrom}>
+        <form
+          onSubmit={e => this.handleSubmit(e)}
+          className={style.reservationFrom}
+        >
           <p className={style.price}>
             ₩198,821 /<span className={style.park}>박</span>
           </p>
@@ -145,23 +141,35 @@ export default class ReserveFormView extends Component {
                     어린이 <span>2~12세</span>
                   </div>
                   <div className={style.number}>
-                    <button onClick={e=>this.handleMinusChildren(e)} className={style.minus}>
+                    <button
+                      onClick={e => this.handleMinusChildren(e)}
+                      className={style.minus}
+                    >
                       <Minus className={style.minusCompo} />
                     </button>
                     <div className={style.result}>{children}</div>
-                    <button className={e=>this.handlePlusChildren(e)} className={style.plus}>
+                    <button
+                      onClick={e => this.handlePlusChildren(e)}
+                      className={style.plus}
+                    >
                       <Plus className={style.plusCompo} />
                     </button>
                   </div>
                 </div>
                 <div className={style.optionType}>
-                  <div>유아</div>
+                  <div>유아 <span>2세 미만</span></div>
                   <div className={style.number}>
-                    <button onclick={e=>this.handleMinusInfant(e)} className={style.minus}>
+                    <button
+                      onclick={e => this.handleMinusInfant(e)}
+                      className={style.minus}
+                    >
                       <Minus className={style.minusCompo} />
                     </button>
                     <div className={style.result}>{infant}</div>
-                    <button onClick={e=>this.handlePlusInfant(e)} className={style.plus}>
+                    <button
+                      onClick={e => this.handlePlusInfant(e)}
+                      className={style.plus}
+                    >
                       <Plus className={style.plusCompo} />
                     </button>
                   </div>
