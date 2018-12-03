@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import { ReactComponent as Arrow } from '../svg/arrow.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import { ReactComponent as Minus } from '../svg/minus.svg';
+import { ReactComponent as Plus } from '../svg/plus.svg';
 import style from './Detail.module.scss';
 import classNames from 'classnames';
 
@@ -10,29 +12,66 @@ export default class ReserveFormView extends Component {
     super(props);
 
     this.state = {
-      guest: 1,
-      adult: 1,
-      children: 1,
-      infant: 1,
+      adult: 0,
+      children: 0,
+      infant: 0,
       selected: false,
     };
   }
-
+  handleSubmit(e){
+      e.preventDefault(e)
+  }
   handleSelect(e) {
     e.preventDefault();
     this.setState({
       selected: this.state.selected === true ? false : true,
     });
   }
+  handlePlusAdult(e) {
+    e.preventDefault();
+    this.setState({
+      adult: this.state.adult + 1,
+    });
+  }
+  handlePlusChildren(e) {
+    e.preventDefault();
+    this.setState({
+      adult: this.state.children + 1,
+    });
+  }
+  handlePlusInfant(e) {
+    e.preventDefault();
+    this.setState({
+      adult: this.state.infant + 1,
+    });
+  }
+  handleMinusAdult(e) {
+    e.preventDefault();
+    this.setState({
+      adult: this.state.adult - 1,
+    });
+  }
+  handleMinusChildren(e) {
+    e.preventDefault();
+    this.setState({
+      adult: this.state.children - 1,
+    });
+  }
+  handleMinusInfant(e) {
+    e.preventDefault();
+    this.setState({
+      adult: this.state.infant - 1,
+    });
+  }
   render() {
-    const { selected } = this.state;
+    const { adult, children, infant, selected } = this.state;
     const buttonClass = classNames(style.optionBox, {
       [style.active]: selected,
     });
     console.log(selected);
     return (
       <div className={style.formWrapper}>
-        <form className={style.reservationFrom}>
+        <form onSubmit={e=>this.handleSubmit(e)} className={style.reservationFrom}>
           <p className={style.price}>
             ₩198,821 /<span className={style.park}>박</span>
           </p>
@@ -75,27 +114,57 @@ export default class ReserveFormView extends Component {
                 className={style.personInput}
                 type="button"
               >
-                <div className={style.capicity}>{`게스트 ${
-                  this.state.guest
-                }명`}</div>
+                <div className={style.capicity}>{`게스트 ${adult +
+                  children}명`}</div>
+                <div>{`유아${infant}`}</div>
                 <div className={style.arrowDownBox}>
                   <ArrowDown className={style.arrowDown} />
                 </div>
               </button>
               <div className={buttonClass}>
                 <div className={style.optionType}>
-                  <label htmlFor="">성인</label>
-                  <select name="" id="" />
+                  <div className={style.type}>성인</div>
+                  <div className={style.number}>
+                    <button className={style.minus}>
+                      <Minus
+                        onClick={e => this.handleMinusAdult(e)}
+                        className={style.minusCompo}
+                      />
+                    </button>
+                    <div className={style.result}>{adult}</div>
+                    <button className={style.plus}>
+                      <Plus
+                        onClick={e => this.handlePlusAdult(e)}
+                        className={style.plusCompo}
+                      />
+                    </button>
+                  </div>
                 </div>
                 <div className={style.optionType}>
-                  <label htmlFor="">
+                  <div>
                     어린이 <span>2~12세</span>
-                  </label>
-                  <select value="" name="" id="" />
+                  </div>
+                  <div className={style.number}>
+                    <button onClick={e=>this.handleMinusChildren(e)} className={style.minus}>
+                      <Minus className={style.minusCompo} />
+                    </button>
+                    <div className={style.result}>{children}</div>
+                    <button className={e=>this.handlePlusChildren(e)} className={style.plus}>
+                      <Plus className={style.plusCompo} />
+                    </button>
+                  </div>
                 </div>
                 <div className={style.optionType}>
-                  <label htmlFor="">유아</label>
-                  <select name="" id="" />
+                  <div>유아</div>
+                  <div className={style.number}>
+                    <button onclick={e=>this.handleMinusInfant(e)} className={style.minus}>
+                      <Minus className={style.minusCompo} />
+                    </button>
+                    <div className={style.result}>{infant}</div>
+                    <button onClick={e=>this.handlePlusInfant(e)} className={style.plus}>
+                      <Plus className={style.plusCompo} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
