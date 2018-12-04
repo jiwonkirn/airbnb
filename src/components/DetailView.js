@@ -17,7 +17,6 @@ export default class DetailView extends Component {
       hostimages,
       roomId,
     } = this.props;
-    console.log(roomId);
     return (
       <div>
         <div className={style.imgWrapper}>

@@ -45,8 +45,17 @@ class RoomList extends Component {
   }
 
   render() {
+    const params = new URLSearchParams(decodeURI(this.props.location.search));
+    const adult = params.get('adult');
+    const children = params.get('children');
+    const infant = params.get('infant');
+    const value = {
+      adult,
+      children,
+      infant,
+    };
     const { theme } = this.props;
-    return <RoomListView {...this.state} {...this.props} />;
+    return <RoomListView {...this.state} {...this.props} {...value} />;
   }
 }
 
