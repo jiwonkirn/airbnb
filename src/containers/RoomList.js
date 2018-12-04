@@ -16,6 +16,9 @@ class RoomList extends Component {
   async componentDidMount() {
     const { theme } = this.props;
     const params = new URLSearchParams(decodeURI(this.props.location.search));
+    params.delete('adult');
+    params.delete('children');
+    params.delete('infant');
     const { data } = await api.get('/api/home/listings/', {
       params,
     });

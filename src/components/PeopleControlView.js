@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import style from './PeopleControl.module.scss';
-import classNames from 'classnames';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Minus } from '../svg/minus.svg';
-import { ReactComponent as Plus } from '../svg/plus.svg';
 import PeopleControlForm from './PeopleControlForm';
 import { withRouter } from 'react-router-dom';
+import { withSearch } from '../contexts/SearchContext';
 
 class PeopleControlView extends Component {
   constructor(props) {
@@ -13,20 +11,17 @@ class PeopleControlView extends Component {
 
     this.state = {
       selected: false,
-      adult: 0,
-      children: 0,
-      infant: 0,
       location: '',
     };
   }
 
   componentDidMount() {
+    const { adult, children, infant } = this.props;
     if (this.props.match.path === '/search-list') {
       this.setState({
         location: 'list',
       });
     }
-    console.log(this.props.match);
   }
 
   handleSelect = () => {
@@ -35,23 +30,10 @@ class PeopleControlView extends Component {
     });
   };
 
-  handleChange = (name, value) => {
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleInitialize = () => {
-    this.setState({
-      adult: 0,
-      children: 0,
-      infant: 0,
-    });
-  };
-
   render() {
-    const { adult, children, infant, selected, location } = this.state;
-
+    const { location } = this.state;
+    const { adult, children, infant } = this.props;
+    console.log(adult, children, infant);
     return (
       <div
         className={style.personInputWrapper}
@@ -76,7 +58,9 @@ class PeopleControlView extends Component {
             </button>
             <PeopleControlForm
               {...this.state}
-              onHandleChange={this.handleChange}
+              onHandleChange={(name, value) =>
+                this.props.handleChange(name, value)
+              }
               onHandleSelect={this.handleSelect}
             />
           </div>
@@ -102,10 +86,14 @@ class PeopleControlView extends Component {
             </li>
             <PeopleControlForm
               {...this.state}
-              onHandleChange={this.handleChange}
+              onHandleChange={(name, value) =>
+                this.props.handleChange(name, value)
+              }
               onHandleSelect={this.handleSelect}
-              onHandleInitialize={this.handleInitialize}
+              onHandleInitialize={this.props.handleInitialize}
+              onHandlePeopleSearch={this.props.handlePeopleSearch}
               theme={'list'}
+              {...this.props}
             />
           </div>
         )}
@@ -114,4 +102,4 @@ class PeopleControlView extends Component {
   }
 }
 
-export default withRouter(PeopleControlView);
+export default withSearch(withRouter(PeopleControlView));

@@ -21,11 +21,16 @@ export default class DetailView extends Component {
     return (
       <div>
         <div className={style.imgWrapper}>
-          <img src={roominfo.room_photo_1} className={style.mainImg} />
+          <div className={style.responsive1}>
+            <img src={roominfo.room_photo_1} className={style.mainImg} />
+          </div>
           <div className={style.subWrapper}>
             <img src={roominfo.room_photo_2} className={style.subImg} />
+
             <img src={roominfo.room_photo_3} className={style.subImg} />
+
             <img src={roominfo.room_photo_4} className={style.subImg} />
+
             <img src={roominfo.room_photo_5} className={style.subImg} />
           </div>
         </div>
@@ -90,8 +95,8 @@ export default class DetailView extends Component {
               </ul>
             </div>
           </div>
+          <ReserveForm roomId={roomId} />
         </div>
-        <ReserveForm roomId={roomId} />
       </div>
     );
   }

@@ -23,7 +23,7 @@ export default class PeopleControlForm extends Component {
   }
 
   render() {
-    const { adult, children, infant } = this.props;
+    const { adult, children, infant, location } = this.props;
     const { theme } = this.props;
     const buttonClass = classNames(style.optionBox, {
       [style.active]: this.props.selected,
@@ -89,13 +89,22 @@ export default class PeopleControlForm extends Component {
             </button>
           </div>
         </div>
-        <span
-          className={style.deleteButton}
-          onClick={this.props.onHandleInitialize}
-        >
-          삭제
-        </span>
-        <span className={style.addButton}>적용</span>
+        {location !== '' ? (
+          <div>
+            <span
+              className={style.deleteButton}
+              onClick={this.props.onHandleInitialize}
+            >
+              삭제
+            </span>
+            <span
+              className={style.addButton}
+              onClick={this.props.onHandlePeopleSearch}
+            >
+              적용
+            </span>
+          </div>
+        ) : null}
       </div>
     );
   }
