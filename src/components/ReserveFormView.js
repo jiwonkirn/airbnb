@@ -11,12 +11,20 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 
 export default class ReserveFormView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      startDate: '',
+      endDate: '',
+    };
+  }
+
   handleSubmit(e) {
     e.preventDefault();
   }
   async handleReserve() {
-    this.props.onChangeCheckin(this.state.startDate);
-    this.props.onChangeCheckout(this.state.endDate);
+    //Todo: 서버측에 체크인, 체크아웃, 룸아이디, 인원 정보를 전달하는 코드
   }
 
   render() {
@@ -32,12 +40,18 @@ export default class ReserveFormView extends Component {
       onPlusChildren,
       onMinusInfant,
       onPlusInfant,
+      check_out_date,
+      check_in_date,
+      onChangeCheckin,
+      onChangeCheckout,
     } = this.props;
 
+    console.log(check_out_date, check_in_date);
+    console.log(this.state.startDate, this.state.endDate);
     const buttonClass = classNames(style.optionBox, {
       [style.active]: selected,
     });
-
+    console.log(this.state.guest);
     return (
       <div className={style.formWrapper}>
         <form
@@ -66,9 +80,11 @@ export default class ReserveFormView extends Component {
               startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
               endDate={this.state.endDate} // momentPropTypes.momentObj or null,
               endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-              onDatesChange={({ startDate, endDate }) =>
-                this.setState({ startDate, endDate })
-              } // PropTypes.func.isRequired,
+              onDatesChange={({ startDate, endDate }) => {
+                this.setState({ startDate, endDate });
+                onChangeCheckin(this.state.startDate);
+                onChangeCheckout(this.state.endDate);
+              }} // PropTypes.func.isRequired,
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
             />
@@ -79,7 +95,7 @@ export default class ReserveFormView extends Component {
             </label>
             <div className={style.personInputWrapper}>
               <button
-                onClick={onSelect}
+                onClick={e => onSelect(e)}
                 className={style.personInput}
                 type="button"
               >
@@ -111,12 +127,18 @@ export default class ReserveFormView extends Component {
                     어린이 <span>2~12세</span>
                   </div>
                   <div className={style.number}>
-                    <button onClick={onMinusChildren} className={style.minus}>
-                      <Minus className={style.minusCompo} />
+                    <button className={style.minus}>
+                      <Minus
+                        className={style.minusCompo}
+                        onClick={onMinusChildren}
+                      />
                     </button>
                     <div className={style.result}>{children}</div>
-                    <button onClick={onPlusChildren} className={style.plus}>
-                      <Plus className={style.plusCompo} />
+                    <button className={style.plus}>
+                      <Plus
+                        className={style.plusCompo}
+                        onClick={onPlusChildren}
+                      />
                     </button>
                   </div>
                 </div>
@@ -125,12 +147,18 @@ export default class ReserveFormView extends Component {
                     유아 <span>2세 미만</span>
                   </div>
                   <div className={style.number}>
-                    <button onClick={onMinusInfant} className={style.minus}>
-                      <Minus className={style.minusCompo} />
+                    <button className={style.minus}>
+                      <Minus
+                        className={style.minusCompo}
+                        onClick={onMinusInfant}
+                      />
                     </button>
                     <div className={style.result}>{infant}</div>
-                    <button onClick={onPlusInfant} className={style.plus}>
-                      <Plus className={style.plusCompo} />
+                    <button className={style.plus}>
+                      <Plus
+                        className={style.plusCompo}
+                        onClick={onPlusInfant}
+                      />
                     </button>
                   </div>
                 </div>

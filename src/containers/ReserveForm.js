@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReserveFormView from '../components/ReserveFormView';
+import api from '../api';
 
 export default class ReserveForm extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ export default class ReserveForm extends Component {
       selected: false,
       check_out_date: '',
       check_in_date: '',
+      num_guest: '',
+      room: this.props.roomId,
     };
   }
   handleChangeCheckin(checkin) {
@@ -24,6 +27,15 @@ export default class ReserveForm extends Component {
       check_out_date: checkout,
     });
   }
+  // async handleBook() {
+  //   const { heck_out_date, check_in_date, num_guest, room } = this.state;
+  //   await api.post('/api/home/booking/', {
+  //     heck_out_date,
+  //     check_in_date,
+  //     num_guest,
+  //     room,
+  //   });
+  // }
   handlePlusAdult() {
     this.setState({
       adult: this.state.adult + 1,
@@ -60,6 +72,7 @@ export default class ReserveForm extends Component {
     });
   }
   render() {
+    console.log(this.state);
     return (
       <ReserveFormView
         {...this.state}
@@ -69,9 +82,9 @@ export default class ReserveForm extends Component {
         onPlusChildren={() => this.handlePlusChildren()}
         onMinusInfant={() => this.handleMinusInfant()}
         onPlusInfant={() => this.handlePlusInfant()}
-        onSelect={() => this.handleSelect()}
-        onChangeCheckin={() => this.handleChangeCheckin()}
-        onChangeCheckout={() => this.handleChangeCheckout()}
+        onSelect={e => this.handleSelect(e)}
+        onChangeCheckin={checkin => this.handleChangeCheckin(checkin)}
+        onChangeCheckout={checkout => this.handleChangeCheckout(checkout)}
       />
     );
   }
