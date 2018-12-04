@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './Detail.module.scss';
-import ReserveFormView from './ReserveFormView';
+import ReserveForm from '../containers/ReserveForm';
 
 export default class DetailView extends Component {
   render() {
@@ -90,7 +90,7 @@ export default class DetailView extends Component {
             </div>
           </div>
         </div>
-        <ReserveFormView />
+        <ReserveForm />
       </div>
     );
   }
