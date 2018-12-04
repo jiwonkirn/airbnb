@@ -93,7 +93,6 @@ export default class MainView extends Component {
     const optionBtn = classNames(style.optionBox, {
       [style.active]: selected,
     });
-    console.log(selected);
     const personInput = classNames(style.personInput, {
       [style.active]: selected,
     });

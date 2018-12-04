@@ -40,7 +40,6 @@ class ReserveForm extends Component {
     });
   }
   render() {
-    console.log(this.state);
     return (
       <ReserveFormView
         {...this.state}

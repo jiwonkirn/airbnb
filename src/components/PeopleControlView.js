@@ -16,7 +16,6 @@ class PeopleControlView extends Component {
   }
 
   componentDidMount() {
-    const { adult, children, infant } = this.props;
     if (this.props.match.path === '/search-list') {
       this.setState({
         location: 'list',
@@ -33,7 +32,7 @@ class PeopleControlView extends Component {
   render() {
     const { location } = this.state;
     const { adult, children, infant } = this.props;
-    console.log(adult, children, infant);
+    console.log(adult, children, infant, 'hello');
     return (
       <div
         className={style.personInputWrapper}
@@ -62,6 +61,7 @@ class PeopleControlView extends Component {
                 this.props.handleChange(name, value)
               }
               onHandleSelect={this.handleSelect}
+              {...this.props}
             />
           </div>
         ) : (

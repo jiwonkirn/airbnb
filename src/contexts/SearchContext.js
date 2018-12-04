@@ -95,6 +95,7 @@ class SearchProvider extends Component {
     this.setState({
       cityName: '',
     });
+    this.props.history.push(`/`);
   }
 
   render() {

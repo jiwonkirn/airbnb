@@ -5,7 +5,6 @@ export default class DetailPage extends Component {
   render() {
     const { match } = this.props;
     const roomId = match.params.roomId;
-    console.log(roomId);
     return <Detail roomId={roomId} />;
   }
 }

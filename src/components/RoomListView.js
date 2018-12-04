@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import style from './RoomList.module.scss';
 import { Link, withRouter } from 'react-router-dom';
+import { withSearch } from '../contexts/SearchContext';
 
 class ListView extends Component {
   render() {
     const { rooms } = this.props;
     const { themeName } = this.props;
+    const { adult, infant, children } = this.props;
     return (
       <div className={style.listWrapper}>
         <h1 className={style.listTitle}>{themeName}</h1>
         <div className={style.roomInfoWrapper}>
           {rooms.map(room => (
-            <Link className={style.roomInfo} to={`/room-detail/${room.pk}`}>
+            <Link
+              className={style.roomInfo}
+              to={
+                `/room-detail/${room.pk}` +
+                (adult || infant || children
+                  ? `/?adult=${parseInt(adult)}&children=${parseInt(
+                      children
+                    )}&infant=${parseInt(infant)}`
+                  : '')
+              }
+            >
               <img className={style.roomImg} src={room.roominfo.room_photo_1} />
               <p className={style.roomLocation}>{room.city}</p>
               <p className={style.roomTitle}>{room.room_name}</p>
@@ -32,4 +44,4 @@ class ListView extends Component {
   }
 }
 
-export default withRouter(ListView);
+export default withSearch(withRouter(ListView));
