@@ -30,21 +30,13 @@ export default class ReserveFormView extends Component {
 
   render() {
     const {
-      adult,
-      children,
-      infant,
       selected,
-      onSelect,
-      onMinusAdult,
-      onPlusAdult,
-      onMinusChildren,
-      onPlusChildren,
-      onMinusInfant,
-      onPlusInfant,
+
       check_out_date,
       check_in_date,
       onChangeCheckin,
       onChangeCheckout,
+      onBook,
     } = this.props;
 
     console.log(check_out_date, check_in_date);
@@ -91,7 +83,9 @@ export default class ReserveFormView extends Component {
             />
           </div>
           <PeopleControlView />
-          <button className={style.reserveBtn}>예약요청</button>
+          <button className={style.reserveBtn} onClick={onBook}>
+            예약요청
+          </button>
           <div className={style.notice}>
             <small>예약 확정 전에는 요금이 청구되지 않습니다</small>
           </div>
