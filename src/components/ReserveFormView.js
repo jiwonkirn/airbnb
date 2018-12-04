@@ -6,6 +6,13 @@ import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
 import style from './Detail.module.scss';
 import classNames from 'classnames';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import {
+  DateRangePicker,
+  SingleDatePicker,
+  DayPickerRangeController,
+} from 'react-dates';
 
 export default class ReserveFormView extends Component {
   handleSubmit(e) {
@@ -48,7 +55,7 @@ export default class ReserveFormView extends Component {
           </div>
           <div className={style.devider} />
           <div>
-            <label className={style.dateLabel} for={style.dateInputWrapper}>
+            <label className={style.dateLabel} htmlFor={style.dateInputWrapper}>
               {' '}
               <small>날짜</small>{' '}
             </label>
@@ -67,9 +74,10 @@ export default class ReserveFormView extends Component {
                 placeholder="체크아웃"
               />
             </div>
+            <DayPickerRangeController />
           </div>
           <div>
-            <label for={style.personInputWrapper}>
+            <label htmlFor={style.personInputWrapper}>
               <small>인원</small>
             </label>
             <div className={style.personInputWrapper}>
