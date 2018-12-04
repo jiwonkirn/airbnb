@@ -60,6 +60,12 @@ export default class MainView extends Component {
     });
   }
 
+  handleCloseBtn(e) {
+    this.setState({
+      selected: false,
+    });
+  }
+
   render() {
     const { adult, children, infant, selected } = this.state;
     const optionBtn = classNames(style.optionBox, {
@@ -183,6 +189,12 @@ export default class MainView extends Component {
                       </button>
                     </div>
                   </div>
+                  <button
+                    className={style.close}
+                    onClick={e => this.handleCloseBtn(e)}
+                  >
+                    닫기
+                  </button>
                 </div>
               </div>
               <button className={style.searchbtn}>검색</button>
