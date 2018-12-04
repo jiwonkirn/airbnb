@@ -5,10 +5,98 @@ import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
 import classNames from 'classnames';
-import PeopleControlView from './PeopleControlView';
+import 'react-dates/initialize';
+import {
+  DateRangePicker,
+  SingleDatePicker,
+  DayPickerRangeController,
+} from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 export default class MainView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      adult: 1,
+      children: 1,
+      infant: 1,
+      selected: false,
+      desselected: false,
+    };
+  }
+
+  handleSelect(e) {
+    this.setState({
+      selected: this.state.selected === true ? false : true,
+    });
+  }
+
+  handleFocus(e) {
+    e.preventDefault();
+    this.setState({
+      desselected: true,
+    });
+  }
+
+  handleBlur(e) {
+    e.preventDefault();
+    this.setState({
+      desselected: false,
+    });
+  }
+
+  handleMinusAdult(e) {
+    this.setState({
+      adult: this.state.adult - 1,
+    });
+  }
+
+  handlePlusAult(e) {
+    this.setState({
+      adult: this.state.adult + 1,
+    });
+  }
+
+  handleMinuschildren(e) {
+    this.setState({
+      children: this.state.children - 1,
+    });
+  }
+
+  handlePlusChildren(e) {
+    this.setState({
+      children: this.state.children + 1,
+    });
+  }
+
+  handleMinusInfant(e) {
+    this.setState({
+      infant: this.state.infant - 1,
+    });
+  }
+
+  handlePlusInfant(e) {
+    this.setState({
+      infant: this.state.infant + 1,
+    });
+  }
+
+  handleCloseBtn(e) {
+    this.setState({
+      selected: false,
+    });
+  }
+
   render() {
+    const { adult, children, infant, selected } = this.state;
+    const optionBtn = classNames(style.optionBox, {
+      [style.active]: selected,
+    });
+    console.log(selected);
+    const personInput = classNames(style.personInput, {
+      [style.active]: selected,
+    });
     return (
       <div className="MainView">
         <div
@@ -29,6 +117,13 @@ export default class MainView extends Component {
               <div className={style.Destination}>
                 <label for={style.destinationlabel}>목적지</label>
                 <input
+                  style={
+                    this.state.desselected === true
+                      ? { borderColor: '#008489' }
+                      : { borderColor: '#ebebeb' }
+                  }
+                  onFocus={e => this.handleFocus(e)}
+                  onBlur={e => this.handleBlur(e)}
                   type="search"
                   className={style.desSear}
                   required
@@ -37,23 +132,101 @@ export default class MainView extends Component {
               </div>
               <div className={style.checkin}>
                 <label for={style.checkinlabel}>체크인</label>
-                <input
-                  type="search"
-                  className={style.checkin_sear}
-                  required
-                  placeholder="년/월/일"
-                />
               </div>
               <div className={style.checkout}>
                 <label for={style.checkoutlabel}>체크아웃</label>
-                <input
-                  type="search"
-                  className={style.checkout_sear}
-                  required
-                  placeholder="년/월/일"
-                />
               </div>
-              <PeopleControlView />
+              <DateRangePicker
+                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                onDatesChange={({ startDate, endDate }) =>
+                  this.setState({ startDate, endDate })
+                } // PropTypes.func.isRequired,
+                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+              />
+              <label class={style.personWrapper} for={style.personWrapper}>
+                인원
+              </label>
+              <div className={style.personInputWrapper}>
+                <button
+                  type="button"
+                  className={personInput}
+                  onClick={e => this.handleSelect(e)}
+                >
+                  <div className={style.capacity}>
+                    {`게스트 ${adult + children}명`}
+                  </div>
+                  <div>{`유아${infant}`}</div>
+                  <div className={style.arrowBox}>
+                    <ArrowDown className={style.arrowDown} />
+                  </div>
+                </button>
+                <div className={optionBtn}>
+                  <div className={style.optionType}>
+                    <label for={style.personType}>성인</label>
+                    <div className={style.numberOfPerson}>
+                      <button className={style.minus}>
+                        <Minus
+                          onClick={e => this.handleMinusAdult(e)}
+                          className={style.minuscompo}
+                        />
+                      </button>
+                      <div className={style.result}>{adult}</div>
+                      <button className={style.plus}>
+                        <Plus
+                          onClick={e => this.handlePlusAult(e)}
+                          className={style.pluscompo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={style.optionType}>
+                    <label for={style.personType}>어린이</label>
+                    <div className={style.numberOfPerson}>
+                      <button className={style.minus}>
+                        <Minus
+                          onClick={e => this.handleMinuschildren(e)}
+                          className={style.minuscompo}
+                        />
+                      </button>
+                      <div className={style.result}>{children}</div>
+                      <button className={style.plus}>
+                        <Plus
+                          onClick={e => this.handlePlusChildren(e)}
+                          className={style.pluscompo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={style.optionType}>
+                    <label for={style.personType}>유아</label>
+                    <div className={style.numberOfPerson}>
+                      <button className={style.minus}>
+                        <Minus
+                          onClick={e => this.handleMinusInfant(e)}
+                          className={style.minuscompo}
+                        />
+                      </button>
+                      <div className={style.result}>{infant}</div>
+                      <button className={style.plus}>
+                        <Plus
+                          onClick={e => this.handlePlusInfant(e)}
+                          className={style.pluscompo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    className={style.close}
+                    onClick={e => this.handleCloseBtn(e)}
+                  >
+                    닫기
+                  </button>
+                </div>
+              </div>
               <button className={style.searchbtn}>검색</button>
             </div>
           </div>
