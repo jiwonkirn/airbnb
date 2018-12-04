@@ -15,12 +15,27 @@ export default class MainView extends Component {
       children: 1,
       infant: 1,
       selected: false,
+      desselected: false,
     };
   }
 
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
+    });
+  }
+
+  handleFocus(e) {
+    e.preventDefault();
+    this.setState({
+      desselected: true,
+    });
+  }
+
+  handleBlur(e) {
+    e.preventDefault();
+    this.setState({
+      desselected: false,
     });
   }
 
@@ -95,6 +110,13 @@ export default class MainView extends Component {
               <div className={style.Destination}>
                 <label for={style.destinationlabel}>목적지</label>
                 <input
+                  style={
+                    this.state.desselected === true
+                      ? { borderColor: '#008489' }
+                      : { borderColor: '#ebebeb' }
+                  }
+                  onFocus={e => this.handleFocus(e)}
+                  onBlur={e => this.handleBlur(e)}
                   type="search"
                   className={style.desSear}
                   required

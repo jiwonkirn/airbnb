@@ -5,11 +5,31 @@ import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 
 class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: false,
+    };
+  }
+
   handleSubmit(e) {
     const cityName = e.target.value;
     if (e.keyCode === 13) {
       this.props.handleSearch(cityName);
     }
+  }
+
+  handleFocus(e) {
+    this.setState({
+      selected: true,
+    });
+  }
+
+  handleBlur(e) {
+    this.setState({
+      selected: false,
+    });
   }
 
   render() {
@@ -21,6 +41,11 @@ class Layout extends React.Component {
           onClick={this.props.handleLinkToHome}
         />
         <input
+          style={
+            this.state.selected === true ? { width: '45%' } : { width: '35%' }
+          }
+          onFocus={e => this.handleFocus(e)}
+          onBlur={e => this.handleBlur(e)}
           onKeyDown={e => this.handleSubmit(e)}
           type="search"
           className={style.search}
