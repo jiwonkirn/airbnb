@@ -33,7 +33,7 @@ class ListView extends Component {
                 <Star className={style.star} />
                 <Star className={style.star} />
                 <Star className={style.star} />
-                <Star className={style.stsar} />
+                <Star className={style.star} />
                 <Star className={style.star} />
               </div>
             </Link>
