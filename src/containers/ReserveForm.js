@@ -10,9 +10,20 @@ export default class ReserveForm extends Component {
       children: 0,
       infant: 0,
       selected: false,
+      check_out_date: '',
+      check_in_date: '',
     };
   }
-
+  handleChangeCheckin(checkin) {
+    this.setState({
+      check_in_date: checkin,
+    });
+  }
+  handleChangeCheckout(checkout) {
+    this.setState({
+      check_out_date: checkout,
+    });
+  }
   handlePlusAdult() {
     this.setState({
       adult: this.state.adult + 1,
@@ -59,6 +70,8 @@ export default class ReserveForm extends Component {
         onMinusInfant={() => this.handleMinusInfant()}
         onPlusInfant={() => this.handlePlusInfant()}
         onSelect={() => this.handleSelect()}
+        onChangeCheckin={() => this.handleChangeCheckin()}
+        onChangeCheckout={() => this.handleChangeCheckout()}
       />
     );
   }

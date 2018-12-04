@@ -80,7 +80,7 @@
   width: 376px;
   position: fixed;
   right: 180px;
-  top: -100px;
+  top: 100px;
   z-index: 10000;
   border: 1px solid #ebebeb;
   border-radius: 5px;
@@ -219,4 +219,8 @@
 .result {
   margin: 0 10px;
   font-size: 2rem;
+}
+
+.calender {
+  position: absolute;
 }
