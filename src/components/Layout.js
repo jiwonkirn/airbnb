@@ -4,6 +4,7 @@ import { ReactComponent as Logo } from '../svg/logo.svg';
 import { ReactComponent as Magnifying } from '../svg/magnifying.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
+import { Link } from 'react-router-dom';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -63,9 +64,10 @@ class Layout extends React.Component {
           />
         </div>
         <nav className={style.navbar}>
-          <p className={style.navbar_likelist}>저장목록</p>
-          <p className={style.navbar_visited}>여행</p>
           <p className={style.navbar_helpdesk}>도움말</p>
+          <Link to="login" className={style.navbar_login}>
+            로그인
+          </Link>
         </nav>
       </header>
     );
