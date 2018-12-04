@@ -5,6 +5,13 @@ import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
 import classNames from 'classnames';
+import 'react-dates/initialize';
+import {
+  DateRangePicker,
+  SingleDatePicker,
+  DayPickerRangeController,
+} from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 export default class MainView extends Component {
   constructor(props) {
@@ -125,23 +132,24 @@ export default class MainView extends Component {
               </div>
               <div className={style.checkin}>
                 <label for={style.checkinlabel}>체크인</label>
-                <input
-                  type="search"
-                  className={style.checkin_sear}
-                  required
-                  placeholder="년/월/일"
-                />
               </div>
               <div className={style.checkout}>
                 <label for={style.checkoutlabel}>체크아웃</label>
-                <input
-                  type="search"
-                  className={style.checkout_sear}
-                  required
-                  placeholder="년/월/일"
-                />
               </div>
-              <label for={style.personWrapper}>인원</label>
+              <DateRangePicker
+                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                onDatesChange={({ startDate, endDate }) =>
+                  this.setState({ startDate, endDate })
+                } // PropTypes.func.isRequired,
+                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+              />
+              <label class={style.personWrapper} for={style.personWrapper}>
+                인원
+              </label>
               <div className={style.personInputWrapper}>
                 <button
                   type="button"
