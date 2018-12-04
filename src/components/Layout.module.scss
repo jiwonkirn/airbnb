@@ -3,12 +3,14 @@
   border-bottom: 1px solid #484848;
 }
 .logo {
+  fill: rgb(255, 90, 95);
   position: absolute;
   top: 15px;
   left: 25px;
   z-index: 100;
   cursor: pointer;
 }
+
 .search {
   box-sizing: border-box;
   border-radius: 3px;

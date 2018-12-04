@@ -1,23 +1,74 @@
 import React, { Component } from 'react';
 import style from './MainView.module.scss';
 import img from './Homeimg.png';
+import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import { ReactComponent as Minus } from '../svg/minus.svg';
+import { ReactComponent as Plus } from '../svg/plus.svg';
+import classNames from 'classnames';
 
 export default class MainView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      quantity: 1,
+      adult: 1,
+      children: 1,
+      infant: 1,
+      selected: false,
     };
   }
 
-  handleQuantityChange(e) {
+  handleSelect(e) {
     this.setState({
-      quantity: parseInt(e.target.value),
+      selected: this.state.selected === true ? false : true,
+    });
+  }
+
+  handleMinusAdult(e) {
+    this.setState({
+      adult: this.state.adult - 1,
+    });
+  }
+
+  handlePlusAult(e) {
+    this.setState({
+      adult: this.state.adult + 1,
+    });
+  }
+
+  handleMinuschildren(e) {
+    this.setState({
+      children: this.state.children - 1,
+    });
+  }
+
+  handlePlusChildren(e) {
+    this.setState({
+      children: this.state.children + 1,
+    });
+  }
+
+  handleMinusInfant(e) {
+    this.setState({
+      infant: this.state.infant - 1,
+    });
+  }
+
+  handlePlusInfant(e) {
+    this.setState({
+      infant: this.state.infant + 1,
     });
   }
 
   render() {
+    const { adult, children, infant, selected } = this.state;
+    const optionBtn = classNames(style.optionBox, {
+      [style.active]: selected,
+    });
+    console.log(selected);
+    const personInput = classNames(style.personInput, {
+      [style.active]: selected,
+    });
     return (
       <div className="MainView">
         <div
@@ -39,7 +90,7 @@ export default class MainView extends Component {
                 <label for={style.destinationlabel}>목적지</label>
                 <input
                   type="search"
-                  className={style.dessear}
+                  className={style.desSear}
                   required
                   placeholder="모든위치"
                 />
@@ -62,27 +113,77 @@ export default class MainView extends Component {
                   placeholder="년/월/일"
                 />
               </div>
-              <div className={style.adult}>
-                <label for={style.adultlabel}>어른</label>
-                <input
-                  type="number"
-                  className={style.numadult}
-                  min="1"
-                  max="20"
-                  placeholder="인원"
-                  onChange={e => this.handleQuantityChange(e)}
-                />
-              </div>
-              <div className={style.child}>
-                <label for={style.childlabel}>어린이</label>
-                <input
-                  type="number"
-                  className={style.numchild}
-                  min="1"
-                  max="5"
-                  placeholder="인원"
-                  onChange={e => this.handleQuantityChange(e)}
-                />
+              <label for={style.personWrapper}>인원</label>
+              <div className={style.personInputWrapper}>
+                <button
+                  type="button"
+                  className={personInput}
+                  onClick={e => this.handleSelect(e)}
+                >
+                  <div className={style.capacity}>
+                    {`게스트 ${adult + children}명`}
+                  </div>
+                  <div>{`유아${infant}`}</div>
+                  <div className={style.arrowBox}>
+                    <ArrowDown className={style.arrowDown} />
+                  </div>
+                </button>
+                <div className={optionBtn}>
+                  <div className={style.optionType}>
+                    <label for={style.personType}>성인</label>
+                    <div className={style.numberOfPerson}>
+                      <button className={style.minus}>
+                        <Minus
+                          onClick={e => this.handleMinusAdult(e)}
+                          className={style.minuscompo}
+                        />
+                      </button>
+                      <div className={style.result}>{adult}</div>
+                      <button className={style.plus}>
+                        <Plus
+                          onClick={e => this.handlePlusAult(e)}
+                          className={style.pluscompo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={style.optionType}>
+                    <label for={style.personType}>어린이</label>
+                    <div className={style.numberOfPerson}>
+                      <button className={style.minus}>
+                        <Minus
+                          onClick={e => this.handleMinuschildren(e)}
+                          className={style.minuscompo}
+                        />
+                      </button>
+                      <div className={style.result}>{children}</div>
+                      <button className={style.plus}>
+                        <Plus
+                          onClick={e => this.handlePlusChildren(e)}
+                          className={style.pluscompo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={style.optionType}>
+                    <label for={style.personType}>유아</label>
+                    <div className={style.numberOfPerson}>
+                      <button className={style.minus}>
+                        <Minus
+                          onClick={e => this.handleMinusInfant(e)}
+                          className={style.minuscompo}
+                        />
+                      </button>
+                      <div className={style.result}>{infant}</div>
+                      <button className={style.plus}>
+                        <Plus
+                          onClick={e => this.handlePlusInfant(e)}
+                          className={style.pluscompo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
               <button className={style.searchbtn}>검색</button>
             </div>
