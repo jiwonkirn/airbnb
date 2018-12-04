@@ -5,19 +5,29 @@ import { withUser } from '../contexts/UserContext';
 import { Redirect, withRouter } from 'react-router-dom';
 
 class LoginView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: null,
+      endDate: null,
+      focusedInput: 'haha',
+    };
+  }
+
   render() {
     //페이스북 로그인
-    console.log(process.env.REACT_APP_FACEBOOKID);
+    // console.log(process.env.REACT_APP_FACEBOOKID);
     const { setProfile, appId, logined } = this.props;
-    console.log(appId);
+    // console.log(appId);
 
     //구글로그인
     const responseGoogle = response => {
-      console.log(response);
+      // console.log(response);
     };
 
     document.getElementById('googleButton');
-
+    console.log(this.state.focusedInput);
+    console.log(this.state.date);
     return (
       <div>
         <FacebookLogin

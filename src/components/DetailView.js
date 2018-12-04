@@ -34,7 +34,6 @@ export default class DetailView extends Component {
             <img src={roominfo.room_photo_5} className={style.subImg} />
           </div>
         </div>
-
         <div className={style.contentsWrapper}>
           <div className={style.roomInfo}>
             <p className={style.roomType}>{room_type}</p>
