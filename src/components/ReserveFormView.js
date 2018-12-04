@@ -75,8 +75,8 @@ export default class ReserveFormView extends Component {
               endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
               onDatesChange={({ startDate, endDate }) => {
                 this.setState({ startDate, endDate });
-                onChangeCheckin(this.state.startDate);
-                onChangeCheckout(this.state.endDate);
+                onChangeCheckin(this.state.startDate._d);
+                onChangeCheckout(this.state.endDate._d);
               }} // PropTypes.func.isRequired,
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
