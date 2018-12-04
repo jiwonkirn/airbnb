@@ -96,8 +96,8 @@ export default class DetailView extends Component {
               </ul>
             </div>
           </div>
+          <ReserveForm roomId={roomId} />
         </div>
-        <ReserveForm roomId={roomId} />
       </div>
     );
   }

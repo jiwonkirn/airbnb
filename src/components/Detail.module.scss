@@ -39,22 +39,26 @@
 
 // 숙소정보
 .contentsWrapper {
-  padding: 20px 100px;
+  padding: 20px 10px;
+  border: 1px solid red;
+  width: 100%;
+  display: inline-block;
 }
 .roomName {
   font-size: 2.5rem;
 }
+
 .hostImg {
-  width: 70px;
-  height: 70px;
+  width: 10%;
   border-radius: 50%;
   position: absolute;
   top: 1.4rem;
   right: 0;
 }
 .roomInfo {
-  width: 60%;
+  width: 65%;
   height: 1000px;
+  border: 1px solid red;
 
   display: inline-block;
   position: relative;
@@ -81,14 +85,13 @@
 // 예약폼
 .formWrapper {
   display: inline-block;
-  width: 37%;
+  width: 30%;
+  margin-left: 2%;
+  position: sticky;
+  top: 20px;
 }
 .reservationFrom {
-  width: 376px;
-  //   position: fixed;
-  right: 180px;
-  top: 100px;
-  z-index: 10000;
+  width: 100%;
   border: 1px solid #ebebeb;
   border-radius: 5px;
   padding: 0 24px;
@@ -166,9 +169,11 @@
 .optionBox.active {
   display: inline-block;
   border: #ebebeb 1px solid;
-  width: 100%;
+  width: 86%;
   padding: 10px;
   border-radius: 5px;
+  position: absolute;
+  background: #ffffff;
 }
 .optionType {
   margin-top: 20px;
