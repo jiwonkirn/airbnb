@@ -15,7 +15,9 @@ export default class DetailView extends Component {
       bathrooms,
       roominfo,
       hostimages,
+      roomId,
     } = this.props;
+    console.log(roomId);
     return (
       <div>
         <div className={style.imgWrapper}>
@@ -90,7 +92,7 @@ export default class DetailView extends Component {
             </div>
           </div>
         </div>
-        <ReserveForm />
+        <ReserveForm roomId={roomId} />
       </div>
     );
   }
