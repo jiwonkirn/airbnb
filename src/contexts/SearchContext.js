@@ -16,6 +16,7 @@ class SearchProvider extends Component {
       infant: 0,
       rooms: [], // 방 정보
       // theme: '',
+      key: '',
       handleSearch: this.handleSearch.bind(this),
       handleLinkToHome: this.handleLinkToHome.bind(this),
       handlePersonCapacitySearch: this.handlePersonCapacitySearch.bind(this),
@@ -26,6 +27,16 @@ class SearchProvider extends Component {
   }
 
   async componentDidMount() {
+    this.refreshData();
+  }
+
+  componentDidUpdate() {
+    if (this.state.key !== this.props.location.search) {
+      this.refreshData();
+    }
+  }
+
+  refreshData() {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
     const cityName = params.get('city__contains');
@@ -39,6 +50,7 @@ class SearchProvider extends Component {
       adult: adult ? parseInt(adult) : 0,
       children: children ? parseInt(children) : 0,
       infant: infant ? parseInt(infant) : 0,
+      key: search,
     });
   }
 
