@@ -5,6 +5,13 @@ import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
 import classNames from 'classnames';
+import 'react-dates/initialize';
+import {
+  DateRangePicker,
+  SingleDatePicker,
+  DayPickerRangeController,
+} from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 export default class MainView extends Component {
   constructor(props) {
@@ -15,12 +22,27 @@ export default class MainView extends Component {
       children: 1,
       infant: 1,
       selected: false,
+      desselected: false,
     };
   }
 
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
+    });
+  }
+
+  handleFocus(e) {
+    e.preventDefault();
+    this.setState({
+      desselected: true,
+    });
+  }
+
+  handleBlur(e) {
+    e.preventDefault();
+    this.setState({
+      desselected: false,
     });
   }
 
@@ -60,6 +82,12 @@ export default class MainView extends Component {
     });
   }
 
+  handleCloseBtn(e) {
+    this.setState({
+      selected: false,
+    });
+  }
+
   render() {
     const { adult, children, infant, selected } = this.state;
     const optionBtn = classNames(style.optionBox, {
@@ -89,6 +117,13 @@ export default class MainView extends Component {
               <div className={style.Destination}>
                 <label for={style.destinationlabel}>목적지</label>
                 <input
+                  style={
+                    this.state.desselected === true
+                      ? { borderColor: '#008489' }
+                      : { borderColor: '#ebebeb' }
+                  }
+                  onFocus={e => this.handleFocus(e)}
+                  onBlur={e => this.handleBlur(e)}
                   type="search"
                   className={style.desSear}
                   required
@@ -97,23 +132,24 @@ export default class MainView extends Component {
               </div>
               <div className={style.checkin}>
                 <label for={style.checkinlabel}>체크인</label>
-                <input
-                  type="search"
-                  className={style.checkin_sear}
-                  required
-                  placeholder="년/월/일"
-                />
               </div>
               <div className={style.checkout}>
                 <label for={style.checkoutlabel}>체크아웃</label>
-                <input
-                  type="search"
-                  className={style.checkout_sear}
-                  required
-                  placeholder="년/월/일"
-                />
               </div>
-              <label for={style.personWrapper}>인원</label>
+              <DateRangePicker
+                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                onDatesChange={({ startDate, endDate }) =>
+                  this.setState({ startDate, endDate })
+                } // PropTypes.func.isRequired,
+                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+              />
+              <label class={style.personWrapper} for={style.personWrapper}>
+                인원
+              </label>
               <div className={style.personInputWrapper}>
                 <button
                   type="button"
@@ -183,6 +219,12 @@ export default class MainView extends Component {
                       </button>
                     </div>
                   </div>
+                  <button
+                    className={style.close}
+                    onClick={e => this.handleCloseBtn(e)}
+                  >
+                    닫기
+                  </button>
                 </div>
               </div>
               <button className={style.searchbtn}>검색</button>

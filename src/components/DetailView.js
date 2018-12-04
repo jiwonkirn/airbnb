@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './Detail.module.scss';
-import ReserveFormView from './ReserveFormView';
+import ReserveForm from '../containers/ReserveForm';
 
 export default class DetailView extends Component {
   render() {
@@ -15,7 +15,9 @@ export default class DetailView extends Component {
       bathrooms,
       roominfo,
       hostimages,
+      roomId,
     } = this.props;
+    console.log(roomId);
     return (
       <div>
         <div className={style.imgWrapper}>
@@ -27,7 +29,6 @@ export default class DetailView extends Component {
             <img src={roominfo.room_photo_5} className={style.subImg} />
           </div>
         </div>
-
         <div className={style.contentsWrapper}>
           <div className={style.roomInfo}>
             <p className={style.roomType}>{room_type}</p>
@@ -90,7 +91,7 @@ export default class DetailView extends Component {
             </div>
           </div>
         </div>
-        <ReserveFormView />
+        <ReserveForm roomId={roomId} />
       </div>
     );
   }
