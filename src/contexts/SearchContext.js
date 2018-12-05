@@ -22,7 +22,7 @@ class SearchProvider extends Component {
       handlePersonCapacitySearch: this.handlePersonCapacitySearch.bind(this),
       handleChange: this.handleChange.bind(this),
       handleInitialize: this.handleInitialize.bind(this),
-      handlePeopleSearch: this.handlePeopleSearch.bind(this),
+      handlePersonCapacitySearch: this.handlePersonCapacitySearch.bind(this),
     };
   }
 
@@ -38,6 +38,7 @@ class SearchProvider extends Component {
 
   // 쿼리스트링을 통해 필터를 가져오는 메소드
   refreshData() {
+    console.log('출력');
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
     const cityName = params.get('city__contains');
@@ -56,34 +57,38 @@ class SearchProvider extends Component {
   }
 
   // 검색 키워드가 들어오면 주소를 바꾸고,
-  // 리스트 컴포넌트를 다시 마운트시키는 메em그
-  handleSearch(cityName) {
-    this.props.history.push(`/search-list/?city__contains=${cityName}`);
-    // this.refreshData();
-  }
+  // 리스트 컴포넌트를 다시 마운트시키는 메소그
+  async handleSearch(cityName) {
+    await this.setState({
+      cityName,
+    });
+    console.log(this.state.cityName);
+    this.handlePersonCapacitySearch();
+  } // TODO: 홈, 리스트 검색 메소드와 코드중복... 이슈 해결하기
 
   // 리스트에서 인원을 탐색하는 메소드
-  async handlePersonCapacitySearch(adult, children, infant) {
+  handlePersonCapacitySearch = async () => {
+    const { adult, children, infant } = this.state;
     const { cityName } = this.state;
-    const people = adult + children;
+    console.log(cityName);
     await this.props.history.push(
-      `${this.props.location.pathname}?` +
+      (this.props.location.pathname !== '/'
+        ? `${this.props.location.pathname}?`
+        : `search-list/?`) +
         (cityName ? `&city__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
-    this.refreshData();
-  }
+  };
 
   // 홈에서 전체검색을 하는 메소드
   async handleHomeSearch(cityName) {
     const { adult, children, infant } = this.state;
-    const people = adult + children;
     await this.props.history.push(
       `${this.props.location.pathname}?` +
         (cityName ? `&city__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
-    this.refreshData();
+    // this.refreshData();
   }
 
   // 인원을 컨트롤하는 메소드
@@ -101,15 +106,9 @@ class SearchProvider extends Component {
     });
   };
 
-  handlePeopleSearch = () => {
-    const { adult, children, infant } = this.state;
-    this.handlePersonCapacitySearch(adult, children, infant);
-  };
-
   // 로고를 눌렀을 때 홈으로 돌아오게 하는 메소드
   handleLinkToHome() {
     this.props.history.push(`/`);
-    this.refreshData();
   }
 
   render() {

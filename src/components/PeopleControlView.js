@@ -41,10 +41,10 @@ class PeopleControlView extends Component {
     return (
       <div
         className={style.personInputWrapper}
-        style={locationPath === '' ? { width: '100%' } : null}
+        style={locationPath !== 'list' ? { width: '100%' } : null}
       >
         {locationPath !== 'list' ? (
-          <div>
+          <div className={style.persoFilterBox}>
             <label>
               <small>인원</small>
             </label>
@@ -67,12 +67,12 @@ class PeopleControlView extends Component {
               }
               onHandleSelect={this.handleSelect}
               onHandleInitialize={this.props.handleInitialize}
-              onHandlePeopleSearch={this.props.handlePeopleSearch}
+              onHandlePeopleSearch={this.props.handlePersonCapacitySearch}
               {...this.props}
             />
           </div>
         ) : (
-          <div className={style.peopleItem}>
+          <div className={style.persoFilterBox}>
             <li
               className={style.peopleItemButton}
               onClick={this.handleSelect}
@@ -98,12 +98,32 @@ class PeopleControlView extends Component {
               }
               onHandleSelect={this.handleSelect}
               onHandleInitialize={this.props.handleInitialize}
-              onHandlePeopleSearch={this.props.handlePeopleSearch}
+              onHandlePeopleSearch={this.props.handlePersonCapacitySearch}
               theme={'list'}
               {...this.props}
             />
           </div>
         )}
+        {this.state.selected ? (
+          <div
+            className={style.modal}
+            style={
+              locationPath !== 'list'
+                ? {
+                    backgroundColor: 'transparent',
+                  }
+                : {
+                    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                  }
+            }
+            onClick={() => {
+              this.props.handlePersonCapacitySearch();
+              this.setState({
+                selected: false,
+              });
+            }}
+          />
+        ) : null}
       </div>
     );
   }

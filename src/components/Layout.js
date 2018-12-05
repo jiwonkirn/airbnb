@@ -59,7 +59,7 @@ class Layout extends React.Component {
             type="search"
             className={style.search}
             required
-            defaultValue={this.props.cityName}
+            defaultValue={this.props.cityName || '모든 숙소'}
             placeholder="제주도에 가보는건 어떠세요?"
           />
         </div>
