@@ -33,18 +33,18 @@ export default class PeopleControlForm extends Component {
         <div className={style.optionType}>
           <div className={style.type}>성인</div>
           <div className={style.number}>
-            <button className={style.minus}>
-              <Minus
-                onClick={e => this.handleMinus(e, 'adult')}
-                className={style.minusCompo}
-              />
+            <button
+              className={style.minus}
+              onClick={e => this.handleMinus(e, 'adult')}
+            >
+              <Minus className={style.minusCompo} />
             </button>
             <div className={style.result}>{adult}</div>
-            <button className={style.plus}>
-              <Plus
-                onClick={e => this.handlePlus(e, 'adult')}
-                className={style.plusCompo}
-              />
+            <button
+              className={style.plus}
+              onClick={e => this.handlePlus(e, 'adult')}
+            >
+              <Plus className={style.plusCompo} />
             </button>
           </div>
         </div>

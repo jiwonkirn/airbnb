@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import style from './MainView.module.scss';
 import img from './Homeimg.png';
-import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Minus } from '../svg/minus.svg';
-import { ReactComponent as Plus } from '../svg/plus.svg';
 import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -11,7 +8,6 @@ import 'react-dates/lib/css/_datepicker.css';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import PeopleControlView from './PeopleControlView';
-import PeopleControlForm from './PeopleControlForm';
 
 class MainView extends Component {
   constructor(props) {

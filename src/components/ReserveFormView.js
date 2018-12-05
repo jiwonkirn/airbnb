@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import style from './Detail.module.scss';
-import classNames from 'classnames';
 import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -26,8 +25,6 @@ export default class ReserveFormView extends Component {
 
   render() {
     const {
-      selected,
-
       check_out_date,
       check_in_date,
       onChangeCheckin,
@@ -36,11 +33,6 @@ export default class ReserveFormView extends Component {
     } = this.props;
 
     console.log(check_out_date, check_in_date);
-    // console.log(this.state.startDate._d, this.state.endDate._d);
-    const buttonClass = classNames(style.optionBox, {
-      [style.active]: selected,
-    });
-    // console.log(this.state.guest);
     return (
       <div className={style.formWrapper}>
         <form
