@@ -39,17 +39,19 @@ class Layout extends React.Component {
       loginbtnclick: true,
     });
   }
-  handleModalRemove(e){
-    e.preventDefault()
+  handleModalRemove(e) {
+    e.preventDefault();
     this.setState({
       loginbtnclick: false,
-    })
+    });
   }
   render() {
     console.log(this.state.loginbtnclick);
     return (
       <div>
-        {this.state.loginbtnclick ? <Login onModalRemove={e=> this.handleModalRemove(e)}/> : null}
+        {this.state.loginbtnclick ? (
+          <Login onModalRemove={e => this.handleModalRemove(e)} />
+        ) : null}
         <header key={this.props.cityName} className={style.header}>
           <Logo
             className={style.logo}
@@ -87,7 +89,6 @@ class Layout extends React.Component {
             </button>
           </nav>
         </header>
-        
       </div>
     );
   }
