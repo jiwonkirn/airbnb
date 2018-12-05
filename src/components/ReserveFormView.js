@@ -35,9 +35,8 @@ export default class ReserveFormView extends Component {
       onBook,
     } = this.props;
 
-    // console.log(check_out_date._d, check_in_date._d);
+    console.log(check_out_date, check_in_date);
     // console.log(this.state.startDate._d, this.state.endDate._d);
-    console.log(check_in_date, check_out_date);
     const buttonClass = classNames(style.optionBox, {
       [style.active]: selected,
     });

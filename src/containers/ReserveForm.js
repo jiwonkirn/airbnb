@@ -17,12 +17,20 @@ class ReserveForm extends Component {
   }
   handleChangeCheckin(checkin) {
     this.setState({
-      check_in_date: checkin,
+      check_in_date: new Date(checkin._d)
+        .toLocaleString()
+        .split('. ')
+        .slice(0, 3)
+        .join('-'),
     });
   }
   handleChangeCheckout(checkout) {
     this.setState({
-      check_out_date: checkout,
+      check_out_date: new Date(checkout._d)
+        .toLocaleString()
+        .split('. ')
+        .slice(0, 3)
+        .join('-'),
     });
   }
   async handleBook() {
@@ -40,6 +48,7 @@ class ReserveForm extends Component {
     });
   }
   render() {
+    console.log(this.state);
     return (
       <ReserveFormView
         {...this.state}
