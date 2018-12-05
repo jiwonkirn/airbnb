@@ -1,14 +1,14 @@
 @keyframes FadeInOut {
   0% {
-    opacity: 0.4;
+    opacity: 0.2;
   }
   100% {
-    opacity: 0.8;
+    opacity: 0.5;
   }
 }
 
 .listWrapper {
-  margin: 70px auto;
+  margin: 70px auto 0;
   width: 100%;
 
   .listTitle {
@@ -30,7 +30,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    animation: FadeInOut 1.5s ease-in-out alternate infinite;
+    animation: FadeInOut 1s ease-in-out alternate infinite;
 
     .roomInfo {
       width: calc(25% - 15px);
@@ -71,7 +71,7 @@
     .star {
       display: inline;
       width: 10px;
-      fill: #aaa;
+      fill: rgba(166, 29, 85, 0.77);
     }
   }
 }

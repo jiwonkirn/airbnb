@@ -3,6 +3,7 @@ import { ReactComponent as Star } from '../svg/star.svg';
 import style from './RoomList.module.scss';
 import { Link, withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
+import withLoading from '../hoc/RoomListLoading';
 
 class ListView extends Component {
   render() {
@@ -49,4 +50,4 @@ class ListView extends Component {
   }
 }
 
-export default withSearch(withRouter(ListView));
+export default withLoading(withSearch(withRouter(ListView)));

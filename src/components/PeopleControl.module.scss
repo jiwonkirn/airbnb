@@ -7,7 +7,9 @@
   margin: 10px 0;
 }
 
-.persoFilterBox {
+.personFilterBox.selected {
+  position: relative;
+  z-index: 100;
 }
 
 .personInput {
@@ -44,7 +46,7 @@
 .optionBox.active.list {
   width: 400px;
   top: 45px;
-  left: 50;
+  left: 0;
 }
 
 .optionType {

@@ -4,6 +4,7 @@ import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import PeopleControlForm from './PeopleControlForm';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
+import classNames from 'classnames';
 
 class PeopleControlView extends Component {
   constructor(props) {
@@ -38,13 +39,16 @@ class PeopleControlView extends Component {
   render() {
     const { locationPath } = this.state;
     const { adult, children, infant } = this.props;
+    const selectedModal = classNames(style.personFilterBox, {
+      [style.selected]: this.state.selected,
+    });
     return (
       <div
         className={style.personInputWrapper}
         style={locationPath !== 'list' ? { width: '100%' } : null}
       >
         {locationPath !== 'list' ? (
-          <div className={style.persoFilterBox}>
+          <div className={selectedModal}>
             <label>
               <small>인원</small>
             </label>
@@ -72,7 +76,7 @@ class PeopleControlView extends Component {
             />
           </div>
         ) : (
-          <div className={style.persoFilterBox}>
+          <div className={selectedModal}>
             <li
               className={style.peopleItemButton}
               onClick={this.handleSelect}

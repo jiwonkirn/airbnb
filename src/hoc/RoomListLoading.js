@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import style from './RoomListLoading.module.scss';
 
-export default class RoomListLoading extends Component {
+class RoomListLoading extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,4 +39,15 @@ export default class RoomListLoading extends Component {
       </div>
     );
   }
+}
+
+export default function withLoading(WrappedComponent) {
+  return function WithLoading(props) {
+    const { loading, ...rest } = props;
+    if (loading) {
+      return <RoomListLoading />;
+    } else {
+      return <WrappedComponent {...rest} />;
+    }
+  };
 }
