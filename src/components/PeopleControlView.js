@@ -11,17 +11,23 @@ class PeopleControlView extends Component {
 
     this.state = {
       selected: false,
-      location: '',
+      locationPath: '',
     };
   }
 
   componentDidMount() {
-    if (this.props.match.path === '/search-list') {
+    if (this.props.match.path === '/') {
       this.setState({
-        location: 'list',
+        locationPath: 'home',
+      });
+    } else if (this.props.match.path === '/search-list') {
+      this.setState({
+        locationPath: 'list',
       });
     }
   }
+
+  refreshLocation() {}
 
   handleSelect = () => {
     this.setState({
@@ -30,14 +36,14 @@ class PeopleControlView extends Component {
   };
 
   render() {
-    const { location } = this.state;
+    const { locationPath } = this.state;
     const { adult, children, infant } = this.props;
     return (
       <div
         className={style.personInputWrapper}
-        style={location === '' ? { width: '100%' } : null}
+        style={locationPath === '' ? { width: '100%' } : null}
       >
-        {location === '' ? (
+        {locationPath !== 'list' ? (
           <div>
             <label>
               <small>인원</small>

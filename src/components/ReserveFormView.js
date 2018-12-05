@@ -36,7 +36,8 @@ export default class ReserveFormView extends Component {
     } = this.props;
 
     // console.log(check_out_date._d, check_in_date._d);
-    console.log(this.state.startDate._d, this.state.endDate._d);
+    // console.log(this.state.startDate._d, this.state.endDate._d);
+    console.log(check_in_date, check_out_date);
     const buttonClass = classNames(style.optionBox, {
       [style.active]: selected,
     });
@@ -69,10 +70,10 @@ export default class ReserveFormView extends Component {
               startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
               endDate={this.state.endDate} // momentPropTypes.momentObj or null,
               endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-              onDatesChange={({ startDate, endDate }) => {
+              onDatesChange={async ({ startDate, endDate }) => {
                 this.setState({ startDate, endDate });
-                onChangeCheckin(this.state.startDate);
-                onChangeCheckout(this.state.endDate);
+                await onChangeCheckin(this.state.startDate);
+                await onChangeCheckout(this.state.endDate);
               }} // PropTypes.func.isRequired,
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,

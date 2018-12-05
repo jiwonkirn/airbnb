@@ -46,7 +46,7 @@ class SearchProvider extends Component {
     const children = params.get('children');
     const infant = params.get('infant');
     this.setState({
-      cityName,
+      cityName: cityName ? cityName : null,
       people: people ? parseInt(people) : 0,
       adult: adult ? parseInt(adult) : 0,
       children: children ? parseInt(children) : 0,
@@ -58,29 +58,21 @@ class SearchProvider extends Component {
   // 검색 키워드가 들어오면 주소를 바꾸고,
   // 리스트 컴포넌트를 다시 마운트시키는 메em그
   handleSearch(cityName) {
-    this.setState({
-      cityName,
-      key: this.state.key ? false : true,
-    });
     this.props.history.push(`/search-list/?city__contains=${cityName}`);
+    this.refreshData();
   }
 
-  // 인원을 탐색하는 메소드
-  handlePersonCapacitySearch(adult, children, infant) {
+  // 리스트에서 인원을 탐색하는 메소드
+  async handlePersonCapacitySearch(adult, children, infant) {
     const { cityName } = this.state;
     const people = adult + children + infant;
-    this.setState({
-      adult,
-      children,
-      infant,
-      people,
-      key: this.state.key ? false : true,
-    });
-    this.props.history.push(
-      `/search-list/?city__contains=${cityName}` +
+    await this.props.history.push(
+      `/search-list/?` +
+        (cityName ? `&city__contains=${cityName}` : null) +
         `&person_capacity__gte=${people}` +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
+    this.refreshData();
   }
 
   // 인원을 컨트롤하는 메소드
@@ -105,10 +97,8 @@ class SearchProvider extends Component {
 
   // 로고를 눌렀을 때 홈으로 돌아오게 하는 메소드
   handleLinkToHome() {
-    this.setState({
-      cityName: '',
-    });
     this.props.history.push(`/`);
+    this.refreshData();
   }
 
   render() {
