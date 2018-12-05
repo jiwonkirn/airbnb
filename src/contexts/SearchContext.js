@@ -69,7 +69,6 @@ class SearchProvider extends Component {
     await this.props.history.push(
       `${this.props.location.pathname}?` +
         (cityName ? `&city__contains=${cityName}` : '') +
-        `&person_capacity__gte=${people}` +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
     this.refreshData();
