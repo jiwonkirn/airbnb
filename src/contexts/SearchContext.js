@@ -59,12 +59,24 @@ class SearchProvider extends Component {
   // 리스트 컴포넌트를 다시 마운트시키는 메em그
   handleSearch(cityName) {
     this.props.history.push(`/search-list/?city__contains=${cityName}`);
-    this.refreshData();
+    // this.refreshData();
   }
 
   // 리스트에서 인원을 탐색하는 메소드
   async handlePersonCapacitySearch(adult, children, infant) {
     const { cityName } = this.state;
+    const people = adult + children;
+    await this.props.history.push(
+      `${this.props.location.pathname}?` +
+        (cityName ? `&city__contains=${cityName}` : '') +
+        `&adult=${adult}&children=${children}&infant=${infant}`
+    );
+    this.refreshData();
+  }
+
+  // 홈에서 전체검색을 하는 메소드
+  async handleHomeSearch(cityName) {
+    const { adult, children, infant } = this.state;
     const people = adult + children;
     await this.props.history.push(
       `${this.props.location.pathname}?` +
