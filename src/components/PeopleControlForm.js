@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import style from './PeopleControl.module.scss';
 import classNames from 'classnames';
-import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
-import { throws } from 'assert';
+import { withSearch } from '../contexts/SearchContext';
 
-export default class PeopleControlForm extends Component {
+class PeopleControlForm extends Component {
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
@@ -23,7 +22,7 @@ export default class PeopleControlForm extends Component {
   }
 
   render() {
-    const { adult, children, infant, location } = this.props;
+    const { adult, children, infant, locationPath } = this.props;
     const { theme } = this.props;
     const buttonClass = classNames(style.optionBox, {
       [style.active]: this.props.selected,
@@ -89,13 +88,13 @@ export default class PeopleControlForm extends Component {
             </button>
           </div>
         </div>
-        {location !== '' ? (
+        {locationPath !== 'home' ? (
           <div>
             <span
               className={style.deleteButton}
               onClick={this.props.onHandleInitialize}
             >
-              삭제
+              초기화
             </span>
             <span
               className={style.addButton}
@@ -109,3 +108,5 @@ export default class PeopleControlForm extends Component {
     );
   }
 }
+
+export default withSearch(PeopleControlForm);

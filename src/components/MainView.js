@@ -6,11 +6,7 @@ import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
 import classNames from 'classnames';
 import 'react-dates/initialize';
-import {
-  DateRangePicker,
-  SingleDatePicker,
-  DayPickerRangeController,
-} from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 export default class MainView extends Component {
@@ -122,7 +118,7 @@ export default class MainView extends Component {
             </div>
             <div className={style.magicsearch}>
               <div className={style.Destination}>
-                <label for={style.destinationlabel}>목적지</label>
+                <label className={style.destinationlabel}>목적지</label>
                 <input
                   style={
                     this.state.desselected === true
@@ -139,10 +135,10 @@ export default class MainView extends Component {
                 />
               </div>
               <div className={style.checkin}>
-                <label for={style.checkinlabel}>체크인</label>
+                <label className={style.checkinlabel}>체크인</label>
               </div>
               <div className={style.checkout}>
-                <label for={style.checkoutlabel}>체크아웃</label>
+                <label className={style.checkoutlabel}>체크아웃</label>
               </div>
               <DateRangePicker
                 startDate={this.state.startDate} // momentPropTypes.momentObj or null,
@@ -155,7 +151,10 @@ export default class MainView extends Component {
                 focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
               />
-              <label class={style.personWrapper} for={style.personWrapper}>
+              <label
+                class={style.personWrapper}
+                className={style.personWrapper}
+              >
                 인원
               </label>
               <div className={style.personInputWrapper}>
@@ -174,7 +173,7 @@ export default class MainView extends Component {
                 </button>
                 <div className={optionBtn}>
                   <div className={style.optionType}>
-                    <label for={style.personType}>성인</label>
+                    <label className={style.personType}>성인</label>
                     <div className={style.numberOfPerson}>
                       <button className={style.minus}>
                         <Minus
@@ -192,7 +191,7 @@ export default class MainView extends Component {
                     </div>
                   </div>
                   <div className={style.optionType}>
-                    <label for={style.personType}>어린이</label>
+                    <label className={style.personType}>어린이</label>
                     <div className={style.numberOfPerson}>
                       <button className={style.minus}>
                         <Minus
@@ -210,7 +209,7 @@ export default class MainView extends Component {
                     </div>
                   </div>
                   <div className={style.optionType}>
-                    <label for={style.personType}>유아</label>
+                    <label className={style.personType}>유아</label>
                     <div className={style.numberOfPerson}>
                       <button className={style.minus}>
                         <Minus

@@ -15,6 +15,7 @@ class ListView extends Component {
         <div className={style.roomInfoWrapper}>
           {rooms.map(room => (
             <Link
+              key={room.pk}
               className={style.roomInfo}
               to={
                 `/room-detail/${room.pk}` +
@@ -25,7 +26,11 @@ class ListView extends Component {
                   : '')
               }
             >
-              <img className={style.roomImg} src={room.roominfo.room_photo_1} />
+              <img
+                className={style.roomImg}
+                src={room.roominfo.room_photo_1}
+                alt={room.room_name}
+              />
               <p className={style.roomLocation}>{room.city}</p>
               <p className={style.roomTitle}>{room.room_name}</p>
               <p className={style.roomPrice}>{room.price}원</p>

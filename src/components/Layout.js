@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import style from './Layout.module.scss';
 import { ReactComponent as Logo } from '../svg/logo.svg';
 import { ReactComponent as Magnifying } from '../svg/magnifying.svg';

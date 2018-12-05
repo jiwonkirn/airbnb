@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
-import { ReactComponent as Arrow } from '../svg/arrow.svg';
-import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Minus } from '../svg/minus.svg';
-import { ReactComponent as Plus } from '../svg/plus.svg';
 import style from './Detail.module.scss';
 import classNames from 'classnames';
 import PeopleControlView from './PeopleControlView';
@@ -40,11 +36,11 @@ export default class ReserveFormView extends Component {
     } = this.props;
 
     console.log(check_out_date, check_in_date);
-    console.log(this.state.startDate, this.state.endDate);
+    // console.log(this.state.startDate._d, this.state.endDate._d);
     const buttonClass = classNames(style.optionBox, {
       [style.active]: selected,
     });
-    console.log(this.state.guest);
+    // console.log(this.state.guest);
     return (
       <div className={style.formWrapper}>
         <form
@@ -73,10 +69,10 @@ export default class ReserveFormView extends Component {
               startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
               endDate={this.state.endDate} // momentPropTypes.momentObj or null,
               endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-              onDatesChange={({ startDate, endDate }) => {
+              onDatesChange={async ({ startDate, endDate }) => {
                 this.setState({ startDate, endDate });
-                onChangeCheckin(this.state.startDate._d);
-                onChangeCheckout(this.state.endDate._d);
+                await onChangeCheckin(this.state.startDate);
+                await onChangeCheckout(this.state.endDate);
               }} // PropTypes.func.isRequired,
               focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
               onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
