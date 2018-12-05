@@ -3,6 +3,7 @@ import style from './PeopleControl.module.scss';
 import classNames from 'classnames';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
+// import { withSearch } from '../contexts/SearchContext';
 
 export default class PeopleControlForm extends Component {
   handleSelect(e) {
@@ -21,7 +22,7 @@ export default class PeopleControlForm extends Component {
   }
 
   render() {
-    const { adult, children, infant, location } = this.props;
+    const { adult, children, infant, locationPath } = this.props;
     const { theme } = this.props;
     const buttonClass = classNames(style.optionBox, {
       [style.active]: this.props.selected,
@@ -32,18 +33,18 @@ export default class PeopleControlForm extends Component {
         <div className={style.optionType}>
           <div className={style.type}>성인</div>
           <div className={style.number}>
-            <button className={style.minus}>
-              <Minus
-                onClick={e => this.handleMinus(e, 'adult')}
-                className={style.minusCompo}
-              />
+            <button
+              className={style.minus}
+              onClick={e => this.handleMinus(e, 'adult')}
+            >
+              <Minus className={style.minusCompo} />
             </button>
             <div className={style.result}>{adult}</div>
-            <button className={style.plus}>
-              <Plus
-                onClick={e => this.handlePlus(e, 'adult')}
-                className={style.plusCompo}
-              />
+            <button
+              className={style.plus}
+              onClick={e => this.handlePlus(e, 'adult')}
+            >
+              <Plus className={style.plusCompo} />
             </button>
           </div>
         </div>
@@ -87,13 +88,13 @@ export default class PeopleControlForm extends Component {
             </button>
           </div>
         </div>
-        {location !== '' ? (
+        {locationPath !== 'home' ? (
           <div>
             <span
               className={style.deleteButton}
               onClick={this.props.onHandleInitialize}
             >
-              삭제
+              초기화
             </span>
             <span
               className={style.addButton}

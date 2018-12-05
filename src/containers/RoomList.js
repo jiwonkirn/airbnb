@@ -16,6 +16,12 @@ class RoomList extends Component {
   async componentDidMount() {
     const { theme } = this.props;
     const params = new URLSearchParams(decodeURI(this.props.location.search));
+    if (params.get('adult') || params.get('children') || params.get('infant')) {
+      await params.append(
+        'person_capacity__gte',
+        parseInt(params.get('adult')) + parseInt(params.get('children'))
+      );
+    }
     params.delete('adult');
     params.delete('children');
     params.delete('infant');

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import style from './MainView.module.scss';
 import img from './Homeimg.png';
-import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Minus } from '../svg/minus.svg';
-import { ReactComponent as Plus } from '../svg/plus.svg';
 import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import { withSearch } from '../contexts/SearchContext';
+import PeopleControlView from './PeopleControlView';
 
-export default class MainView extends Component {
+class MainView extends Component {
   constructor(props) {
     super(props);
 
@@ -20,6 +19,13 @@ export default class MainView extends Component {
       selected: false,
       desselected: false,
     };
+  }
+
+  handleSubmit(e) {
+    const cityName = e.target.value;
+    if (e.keyCode === 13) {
+      this.props.handleSearch(cityName);
+    }
   }
 
   handleSelect(e) {
@@ -86,6 +92,7 @@ export default class MainView extends Component {
 
   render() {
     const { adult, children, infant, selected } = this.state;
+    const { locationPath } = this.props;
     const optionBtn = classNames(style.optionBox, {
       [style.active]: selected,
     });
@@ -117,6 +124,7 @@ export default class MainView extends Component {
                       ? { borderColor: '#008489' }
                       : { borderColor: '#ebebeb' }
                   }
+                  onKeyDown={e => this.handleSubmit(e)}
                   onFocus={e => this.handleFocus(e)}
                   onBlur={e => this.handleBlur(e)}
                   type="search"
@@ -142,90 +150,15 @@ export default class MainView extends Component {
                 focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
               />
-              <label
-                class={style.personWrapper}
-                className={style.personWrapper}
-              >
-                인원
-              </label>
-              <div className={style.personInputWrapper}>
+              <PeopleControlView />
+              {locationPath !== 'home' ? (
                 <button
-                  type="button"
-                  className={personInput}
-                  onClick={e => this.handleSelect(e)}
+                  className={style.searchbtn}
+                  onClick={this.props.onHandlePeopleSearch}
                 >
-                  <div className={style.capacity}>
-                    {`게스트 ${adult + children}명`}
-                  </div>
-                  <div>{`유아${infant}`}</div>
-                  <div className={style.arrowBox}>
-                    <ArrowDown className={style.arrowDown} />
-                  </div>
+                  검색
                 </button>
-                <div className={optionBtn}>
-                  <div className={style.optionType}>
-                    <label className={style.personType}>성인</label>
-                    <div className={style.numberOfPerson}>
-                      <button className={style.minus}>
-                        <Minus
-                          onClick={e => this.handleMinusAdult(e)}
-                          className={style.minuscompo}
-                        />
-                      </button>
-                      <div className={style.result}>{adult}</div>
-                      <button className={style.plus}>
-                        <Plus
-                          onClick={e => this.handlePlusAult(e)}
-                          className={style.pluscompo}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  <div className={style.optionType}>
-                    <label className={style.personType}>어린이</label>
-                    <div className={style.numberOfPerson}>
-                      <button className={style.minus}>
-                        <Minus
-                          onClick={e => this.handleMinuschildren(e)}
-                          className={style.minuscompo}
-                        />
-                      </button>
-                      <div className={style.result}>{children}</div>
-                      <button className={style.plus}>
-                        <Plus
-                          onClick={e => this.handlePlusChildren(e)}
-                          className={style.pluscompo}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  <div className={style.optionType}>
-                    <label className={style.personType}>유아</label>
-                    <div className={style.numberOfPerson}>
-                      <button className={style.minus}>
-                        <Minus
-                          onClick={e => this.handleMinusInfant(e)}
-                          className={style.minuscompo}
-                        />
-                      </button>
-                      <div className={style.result}>{infant}</div>
-                      <button className={style.plus}>
-                        <Plus
-                          onClick={e => this.handlePlusInfant(e)}
-                          className={style.pluscompo}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  <button
-                    className={style.close}
-                    onClick={e => this.handleCloseBtn(e)}
-                  >
-                    닫기
-                  </button>
-                </div>
-              </div>
-              <button className={style.searchbtn}>검색</button>
+              ) : null}
             </div>
           </div>
         </div>
@@ -233,3 +166,5 @@ export default class MainView extends Component {
     );
   }
 }
+
+export default withSearch(MainView);
