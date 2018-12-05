@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 export default class Login extends Component {
   render() {
-    return <LoginView />;
+    const {onModalRemove} = this.props
+    return <LoginView onModalRemove={e=> onModalRemove(e)}/>;
   }
 }

@@ -4,7 +4,6 @@ import { ReactComponent as Logo } from '../svg/logo.svg';
 import { ReactComponent as Magnifying } from '../svg/magnifying.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
-import { Link } from 'react-router-dom';
 import Login from '../containers/Login';
 
 class Layout extends React.Component {
@@ -37,14 +36,20 @@ class Layout extends React.Component {
   }
   handleLoginBtn() {
     this.setState({
-      loginbtnclick: this.state.loginbtnclick === true ? false : true,
+      loginbtnclick: true,
     });
   }
-
+  handleModalRemove(e){
+    e.preventDefault()
+    this.setState({
+      loginbtnclick: false,
+    })
+  }
   render() {
     console.log(this.state.loginbtnclick);
     return (
       <div>
+        {this.state.loginbtnclick ? <Login onModalRemove={e=> this.handleModalRemove(e)}/> : null}
         <header key={this.props.cityName} className={style.header}>
           <Logo
             className={style.logo}
@@ -75,14 +80,14 @@ class Layout extends React.Component {
           <nav className={style.navbar}>
             <p className={style.navbar_helpdesk}>도움말</p>
             <button
-              onClick={() => this.handleLoginBtn()}
+              onClick={e => this.handleLoginBtn(e)}
               className={style.navbar_login}
             >
               로그인
             </button>
           </nav>
         </header>
-        {this.state.loginbtnclick ? <Login /> : null}
+        
       </div>
     );
   }
