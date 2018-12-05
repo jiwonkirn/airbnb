@@ -23,6 +23,7 @@ class SearchProvider extends Component {
       handleChange: this.handleChange.bind(this),
       handleInitialize: this.handleInitialize.bind(this),
       handlePeopleSearch: this.handlePeopleSearch.bind(this),
+      handleHomeSearch: this.handleHomeSearch.bind(this),
     };
   }
 
@@ -56,7 +57,7 @@ class SearchProvider extends Component {
   }
 
   // 검색 키워드가 들어오면 주소를 바꾸고,
-  // 리스트 컴포넌트를 다시 마운트시키는 메em그
+  // 리스트 컴포넌트를 다시 마운트시키는 메소드
   handleSearch(cityName) {
     this.props.history.push(`/search-list/?city__contains=${cityName}`);
     // this.refreshData();
@@ -79,7 +80,9 @@ class SearchProvider extends Component {
     const { adult, children, infant } = this.state;
     const people = adult + children;
     await this.props.history.push(
-      `${this.props.location.pathname}?` +
+      (this.props.location.pathname !== '/'
+        ? `${this.props.location.pathname}?`
+        : `search-list/?`) +
         (cityName ? `&city__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
