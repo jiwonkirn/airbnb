@@ -5,6 +5,7 @@ import { ReactComponent as Magnifying } from '../svg/magnifying.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import { Link } from 'react-router-dom';
+import Login from '../containers/Login';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Layout extends React.Component {
 
     this.state = {
       selected: false,
+      loginbtnclick: false,
     };
   }
 
@@ -33,43 +35,55 @@ class Layout extends React.Component {
       selected: false,
     });
   }
+  handleLoginBtn() {
+    this.setState({
+      loginbtnclick: this.state.loginbtnclick === true ? false : true,
+    });
+  }
 
   render() {
+    console.log(this.state.loginbtnclick);
     return (
-      <header key={this.props.cityName} className={style.header}>
-        <Logo
-          className={style.logo}
-          style={{ width: '40px', height: '50px' }}
-          onClick={this.props.handleLinkToHome}
-        />
-        <div
-          className={style.searchbar}
-          onFocus={e => this.handleFocus(e)}
-          onBlur={e => this.handleBlur(e)}
-          style={
-            this.state.selected === true ? { width: '50%' } : { width: '35%' }
-          }
-        >
-          <Magnifying
-            className={style.magnifying}
-            style={{ width: '20px', height: '50px' }}
+      <div>
+        <header key={this.props.cityName} className={style.header}>
+          <Logo
+            className={style.logo}
+            style={{ width: '40px', height: '50px' }}
+            onClick={this.props.handleLinkToHome}
           />
-          <input
-            onKeyDown={e => this.handleSubmit(e)}
-            type="search"
-            className={style.search}
-            required
-            defaultValue={this.props.cityName}
-            placeholder="제주도에 가보는건 어떠세요?"
-          />
-        </div>
-        <nav className={style.navbar}>
-          <p className={style.navbar_helpdesk}>도움말</p>
-          <Link to="login" className={style.navbar_login}>
-            로그인
-          </Link>
-        </nav>
-      </header>
+          <div
+            className={style.searchbar}
+            onFocus={e => this.handleFocus(e)}
+            onBlur={e => this.handleBlur(e)}
+            style={
+              this.state.selected === true ? { width: '50%' } : { width: '35%' }
+            }
+          >
+            <Magnifying
+              className={style.magnifying}
+              style={{ width: '20px', height: '50px' }}
+            />
+            <input
+              onKeyDown={e => this.handleSubmit(e)}
+              type="search"
+              className={style.search}
+              required
+              defaultValue={this.props.cityName}
+              placeholder="제주도에 가보는건 어떠세요?"
+            />
+          </div>
+          <nav className={style.navbar}>
+            <p className={style.navbar_helpdesk}>도움말</p>
+            <button
+              onClick={() => this.handleLoginBtn()}
+              className={style.navbar_login}
+            >
+              로그인
+            </button>
+          </nav>
+        </header>
+        {this.state.loginbtnclick ? <Login /> : null}
+      </div>
     );
   }
 }
