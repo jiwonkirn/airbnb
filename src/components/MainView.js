@@ -26,6 +26,13 @@ export default class MainView extends Component {
     };
   }
 
+  handleSubmit(e) {
+    const cityName = e.target.value;
+    if (e.keycode === 13) {
+      this.props.handleSearch(cityName);
+    }
+  }
+
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
@@ -90,6 +97,7 @@ export default class MainView extends Component {
 
   render() {
     const { adult, children, infant, selected } = this.state;
+    const { location } = this.props;
     const optionBtn = classNames(style.optionBox, {
       [style.active]: selected,
     });
@@ -121,6 +129,7 @@ export default class MainView extends Component {
                       ? { borderColor: '#008489' }
                       : { borderColor: '#ebebeb' }
                   }
+                  onKeyDown={e => this.handleSubmit(e)}
                   onFocus={e => this.handleFocus(e)}
                   onBlur={e => this.handleBlur(e)}
                   type="search"
@@ -226,7 +235,14 @@ export default class MainView extends Component {
                   </button>
                 </div>
               </div>
-              <button className={style.searchbtn}>검색</button>
+              {location !== '' ? (
+                <button
+                  className={style.searchbtn}
+                  onClick={this.props.onHandlePeopleSearch}
+                >
+                  검색
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
