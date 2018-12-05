@@ -16,7 +16,9 @@ export default class DetailView extends Component {
       roominfo,
       hostimages,
       roomId,
+      amenities,
     } = this.props;
+    console.log(this.props);
     return (
       <div>
         <div className={style.imgWrapper}>
@@ -106,11 +108,13 @@ export default class DetailView extends Component {
             <div className={style.devider} />
             <div>
               <h3 className={style.category}>편의시설</h3>
-              <ul className={style.roomProperty}>
-                <li>케이블 TV</li>
-                <li>WIFI</li>
-                <li>주차장</li>
-                <li>난방</li>
+              <ul className={style.amenities}>
+                {amenities.map(amenity => (
+                  <li className={style.amenity}>
+                    <div className={style.icon} />
+                    <span className={style.am}>{amenity}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

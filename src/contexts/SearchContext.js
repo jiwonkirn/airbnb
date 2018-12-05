@@ -22,7 +22,8 @@ class SearchProvider extends Component {
       handlePersonCapacitySearch: this.handlePersonCapacitySearch.bind(this),
       handleChange: this.handleChange.bind(this),
       handleInitialize: this.handleInitialize.bind(this),
-      handlePersonCapacitySearch: this.handlePersonCapacitySearch.bind(this),
+      // handlePeopleSearch: this.handlePeopleSearch.bind(this),
+      handleHomeSearch: this.handleHomeSearch.bind(this),
     };
   }
 
@@ -84,7 +85,9 @@ class SearchProvider extends Component {
   async handleHomeSearch(cityName) {
     const { adult, children, infant } = this.state;
     await this.props.history.push(
-      `${this.props.location.pathname}?` +
+      (this.props.location.pathname !== '/'
+        ? `${this.props.location.pathname}?`
+        : `search-list/?`) +
         (cityName ? `&city__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
