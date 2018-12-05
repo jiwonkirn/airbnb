@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import style from './Detail.module.scss';
 import ReserveForm from '../containers/ReserveForm';
+import withCommonLoading from '../hoc/CommonLoading';
 
-export default class DetailView extends Component {
+class DetailView extends Component {
   render() {
     const {
       room_name,
@@ -124,3 +125,5 @@ export default class DetailView extends Component {
     );
   }
 }
+
+export default withCommonLoading(DetailView);
