@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import style from './SubSearchForm.module.scss';
-import ReserveFormView from '../components/ReserveFormView';
 import PeopleControlView from './PeopleControlView';
 
 export default class SubSearchFormView extends Component {

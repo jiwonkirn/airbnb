@@ -32,7 +32,6 @@ class PeopleControlView extends Component {
   render() {
     const { location } = this.state;
     const { adult, children, infant } = this.props;
-    console.log(adult, children, infant, 'hello');
     return (
       <div
         className={style.personInputWrapper}
@@ -40,7 +39,7 @@ class PeopleControlView extends Component {
       >
         {location === '' ? (
           <div>
-            <label for={style.personInputWrapper}>
+            <label>
               <small>인원</small>
             </label>
             <button

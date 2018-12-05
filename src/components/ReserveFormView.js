@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
-import { ReactComponent as Arrow } from '../svg/arrow.svg';
-import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Minus } from '../svg/minus.svg';
-import { ReactComponent as Plus } from '../svg/plus.svg';
 import style from './Detail.module.scss';
 import classNames from 'classnames';
 import PeopleControlView from './PeopleControlView';
@@ -44,7 +40,7 @@ export default class ReserveFormView extends Component {
     const buttonClass = classNames(style.optionBox, {
       [style.active]: selected,
     });
-    console.log(this.state.guest);
+    // console.log(this.state.guest);
     return (
       <div className={style.formWrapper}>
         <form

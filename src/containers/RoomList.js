@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RoomListView from '../components/RoomListView';
 import api from '../api';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class RoomList extends Component {
   constructor(props) {
@@ -54,7 +54,6 @@ class RoomList extends Component {
       children,
       infant,
     };
-    const { theme } = this.props;
     return <RoomListView {...this.state} {...this.props} {...value} />;
   }
 }

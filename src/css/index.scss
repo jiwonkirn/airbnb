@@ -27,6 +27,7 @@ time, mark, audio, video {
   font: inherit;
   font-weight: normal;
   vertical-align: baseline;
+  outline: 0;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -42,7 +43,12 @@ menu,
 nav,
 section {
   display: block;
+  outline: 0;
 } /* Js를 통해 태그를 추가할 수 있다. */
+
+input {
+  outline: 0;
+}
 
 ul {
   list-style-type: none;

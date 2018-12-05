@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import style from './PeopleControl.module.scss';
 import classNames from 'classnames';
-import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
-import { throws } from 'assert';
 
 export default class PeopleControlForm extends Component {
   handleSelect(e) {
