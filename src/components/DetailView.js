@@ -9,8 +9,9 @@ import { ReactComponent as Park } from '../svg/park.svg';
 import { ReactComponent as Laptop } from '../svg/laptop.svg';
 import { ReactComponent as Dryer } from '../svg/dryer.svg';
 import { ReactComponent as Washer } from '../svg/washer.svg';
+import withCommonLoading from '../hoc/CommonLoading';
 
-export default class DetailView extends Component {
+class DetailView extends Component {
   render() {
     const {
       room_name,
@@ -150,3 +151,5 @@ export default class DetailView extends Component {
     );
   }
 }
+
+export default withCommonLoading(DetailView);

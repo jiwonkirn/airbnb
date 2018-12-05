@@ -10,6 +10,7 @@ class RoomList extends Component {
       cityName: '',
       rooms: [],
       theme: '',
+      loading: true,
     };
   }
 
@@ -48,6 +49,9 @@ class RoomList extends Component {
           : '추천 숙소',
       });
     }
+    await this.setState({
+      loading: false,
+    });
   }
 
   render() {
