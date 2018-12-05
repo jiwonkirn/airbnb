@@ -65,10 +65,10 @@ class SearchProvider extends Component {
   // 리스트에서 인원을 탐색하는 메소드
   async handlePersonCapacitySearch(adult, children, infant) {
     const { cityName } = this.state;
-    const people = adult + children + infant;
+    const people = adult + children;
     await this.props.history.push(
-      `/search-list/?` +
-        (cityName ? `&city__contains=${cityName}` : null) +
+      `${this.props.location.pathname}?` +
+        (cityName ? `&city__contains=${cityName}` : '') +
         `&person_capacity__gte=${people}` +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );

@@ -3,9 +3,9 @@ import style from './PeopleControl.module.scss';
 import classNames from 'classnames';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
-import { withSearch } from '../contexts/SearchContext';
+// import { withSearch } from '../contexts/SearchContext';
 
-class PeopleControlForm extends Component {
+export default class PeopleControlForm extends Component {
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
@@ -108,5 +108,3 @@ class PeopleControlForm extends Component {
     );
   }
 }
-
-export default withSearch(PeopleControlForm);

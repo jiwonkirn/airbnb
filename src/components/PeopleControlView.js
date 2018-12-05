@@ -66,6 +66,8 @@ class PeopleControlView extends Component {
                 this.props.handleChange(name, value)
               }
               onHandleSelect={this.handleSelect}
+              onHandleInitialize={this.props.handleInitialize}
+              onHandlePeopleSearch={this.props.handlePeopleSearch}
               {...this.props}
             />
           </div>
