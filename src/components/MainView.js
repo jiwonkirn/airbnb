@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import PeopleControlView from './PeopleControlView';
 
@@ -13,6 +14,7 @@ class MainView extends Component {
     super(props);
 
     this.state = {
+      cityName: null,
       adult: 1,
       children: 1,
       infant: 1,
@@ -26,12 +28,6 @@ class MainView extends Component {
     if (e.keyCode === 13) {
       this.props.handleSearch(cityName);
     }
-  }
-
-  handleSelect(e) {
-    this.setState({
-      selected: this.state.selected === true ? false : true,
-    });
   }
 
   handleFocus(e) {
@@ -48,40 +44,26 @@ class MainView extends Component {
     });
   }
 
-  handleMinusAdult(e) {
+  handleChange(e) {
+    e.preventDefault();
     this.setState({
-      adult: this.state.adult - 1,
+      cityName: e.target.value,
     });
   }
 
-  handlePlusAult(e) {
+  handleSelect(e) {
     this.setState({
-      adult: this.state.adult + 1,
+      selected: this.state.selected === true ? false : true,
     });
   }
-
-  handleMinuschildren(e) {
-    this.setState({
-      children: this.state.children - 1,
-    });
+  async handlePlus(e, name) {
+    await this.props.onHandleChange(name, this.props[name] + 1);
   }
 
-  handlePlusChildren(e) {
-    this.setState({
-      children: this.state.children + 1,
-    });
-  }
-
-  handleMinusInfant(e) {
-    this.setState({
-      infant: this.state.infant - 1,
-    });
-  }
-
-  handlePlusInfant(e) {
-    this.setState({
-      infant: this.state.infant + 1,
-    });
+  async handleMinus(e, name) {
+    if (this.props[name] > 0) {
+      await this.props.onHandleChange(name, this.props[name] - 1);
+    }
   }
 
   handleCloseBtn(e) {
@@ -91,8 +73,7 @@ class MainView extends Component {
   }
 
   render() {
-    const { adult, children, infant, selected } = this.state;
-    const { locationPath } = this.props;
+    const { adult, children, infant, selected, locationPath } = this.state;
     const optionBtn = classNames(style.optionBox, {
       [style.active]: selected,
     });
@@ -127,6 +108,7 @@ class MainView extends Component {
                   onKeyDown={e => this.handleSubmit(e)}
                   onFocus={e => this.handleFocus(e)}
                   onBlur={e => this.handleBlur(e)}
+                  onChange={e => this.handleChange(e)}
                   type="search"
                   className={style.desSear}
                   required
@@ -154,7 +136,9 @@ class MainView extends Component {
               {locationPath !== 'home' ? (
                 <button
                   className={style.searchbtn}
-                  onClick={this.props.onHandlePeopleSearch}
+                  onClick={() =>
+                    this.props.handleHomeSearch(this.state.cityName)
+                  }
                 >
                   검색
                 </button>
