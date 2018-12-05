@@ -21,16 +21,36 @@ export default class DetailView extends Component {
       <div>
         <div className={style.imgWrapper}>
           <div className={style.responsive1}>
-            <img src={roominfo.room_photo_1} className={style.mainImg} />
+            <img
+              src={roominfo.room_photo_1}
+              className={style.mainImg}
+              alt={roominfo.room_photo_1}
+            />
           </div>
           <div className={style.subWrapper}>
-            <img src={roominfo.room_photo_2} className={style.subImg} />
+            <img
+              src={roominfo.room_photo_2}
+              className={style.subImg}
+              alt={roominfo.room_photo_2}
+            />
 
-            <img src={roominfo.room_photo_3} className={style.subImg} />
+            <img
+              src={roominfo.room_photo_3}
+              className={style.subImg}
+              alt={roominfo.room_photo_3}
+            />
 
-            <img src={roominfo.room_photo_4} className={style.subImg} />
+            <img
+              src={roominfo.room_photo_4}
+              className={style.subImg}
+              alt={roominfo.room_photo_4}
+            />
 
-            <img src={roominfo.room_photo_5} className={style.subImg} />
+            <img
+              src={roominfo.room_photo_5}
+              className={style.subImg}
+              alt={roominfo.room_photo_5}
+            />
           </div>
         </div>
         <div className={style.contentsWrapper}>

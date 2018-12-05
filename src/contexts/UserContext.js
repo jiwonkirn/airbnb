@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import api from '../api';
-import GoogleLogin from 'react-google-login';
 
 const { Provider, Consumer } = React.createContext();
 

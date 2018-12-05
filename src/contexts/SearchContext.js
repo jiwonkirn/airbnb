@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 const { Provider, Consumer } = React.createContext();
 
 // 검색과 관련된 CONTEXT
@@ -36,6 +36,7 @@ class SearchProvider extends Component {
     }
   }
 
+  // 쿼리스트링을 통해 필터를 가져오는 메소드
   refreshData() {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
