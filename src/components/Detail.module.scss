@@ -70,27 +70,27 @@
   color: #484848;
 }
 
-.amenities {
-  border: 1px solid red;
+.amenities{
+  margin-top: 20px;
 }
 .amenity {
-  border: solid 1px blue;
   display: inline-block;
   width: 50%;
-  height: 50px;
-  // font-size: 1.8rem;
+  height: 20px;
+  font-size: 1.8rem;
   font-weight: 100;
+  margin: 10px 0;
 }
 .icon {
-  border: solid 1px yellow;
-  width: 10%;
-  height: 50px;
+  width: 20px;
+  height: 20px;
   display: inline-block;
+  margin-right: 10px;
 }
 .am {
+  vertical-align: top;
   display: inline-block;
-  height: 50px;
-  border: 1px solid red;
+  line-height: 20px;
 }
 .devider {
   margin: 20px 0;
@@ -265,4 +265,10 @@
 
 .calender {
   position: absolute;
+}
+//아이콘 모음
+.tv .wireless .kitchen .hair .park .laptop .dryer .washer{
+  height: 20px;
+  width: 20px; 
+  fill: currentcolor;
 }

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import style from './Detail.module.scss';
 import ReserveForm from '../containers/ReserveForm';
+import { ReactComponent as Tv } from '../svg/tv.svg';
+import { ReactComponent as Wireless } from '../svg/wireless.svg';
+import { ReactComponent as Kitchen } from '../svg/kitchen.svg';
+import { ReactComponent as Hair } from '../svg/hair.svg';
+import { ReactComponent as Park } from '../svg/park.svg';
+import { ReactComponent as Laptop } from '../svg/laptop.svg';
+import { ReactComponent as Dryer } from '../svg/dryer.svg';
+import { ReactComponent as Washer } from '../svg/washer.svg';
 
 export default class DetailView extends Component {
   render() {
@@ -111,8 +119,26 @@ export default class DetailView extends Component {
               <ul className={style.amenities}>
                 {amenities.map(amenity => (
                   <li className={style.amenity}>
-                    <div className={style.icon} />
-                    <span className={style.am}>{amenity}</span>
+                    <div className={style.icon}>
+                      {amenity === 'tv' || amenity==='cable'?(
+                        <Tv className={style.tv}/>
+                      ):amenity === 'wireless_internet'?(
+                        <Wireless className={style.wireless}/>
+                      ):amenity === 'kitchen'?(
+                        <Kitchen className={style.kitchen}/>
+                      ):amenity === 'hair-dryer'?(
+                        <Hair className={style.hair}/>
+                      ):amenity === 'paid_parking_on_premises'?(
+                        <Park className={style.park}/>
+                      ):amenity ==='laptop-friendly'?(
+                        <Laptop className={style.laptop}/>
+                      ):amenity === 'dryer'?(
+                        <Dryer className={style.dryer}/>
+                      ):amenity === 'washer'?(
+                        <Washer className={style.washer}/>
+                      ):null}
+                    </div>
+                    <p className={style.am}>{amenity}</p>
                   </li>
                 ))}
               </ul>
