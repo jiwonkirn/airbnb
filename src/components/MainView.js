@@ -8,8 +8,9 @@ import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import { withSearch } from '../contexts/SearchContext';
 
-export default class MainView extends Component {
+class MainView extends Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +25,7 @@ export default class MainView extends Component {
 
   handleSubmit(e) {
     const cityName = e.target.value;
-    if (e.keycode === 13) {
+    if (e.keyCode === 13) {
       this.props.handleSearch(cityName);
     }
   }
@@ -93,7 +94,7 @@ export default class MainView extends Component {
 
   render() {
     const { adult, children, infant, selected } = this.state;
-    const { location } = this.props;
+    const { locationPath } = this.props;
     const optionBtn = classNames(style.optionBox, {
       [style.active]: selected,
     });
@@ -234,7 +235,7 @@ export default class MainView extends Component {
                   </button>
                 </div>
               </div>
-              {location !== '' ? (
+              {locationPath !== 'home' ? (
                 <button
                   className={style.searchbtn}
                   onClick={this.props.onHandlePeopleSearch}
@@ -249,3 +250,5 @@ export default class MainView extends Component {
     );
   }
 }
+
+export default withSearch(MainView);
