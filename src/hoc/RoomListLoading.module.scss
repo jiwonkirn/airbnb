@@ -1,0 +1,77 @@
+@keyframes FadeInOut {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.listWrapper {
+  margin: 70px auto;
+  width: 100%;
+
+  .listTitle {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #666;
+    letter-spacing: -0.015;
+    margin-bottom: 5px;
+  }
+
+  .listBody {
+    margin-bottom: 25px;
+    height: 15px;
+    color: #999;
+  }
+
+  .roomInfoWrapper {
+    margin: 10px -7.5px 20px -7.5px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    animation: FadeInOut 1.5s ease-in-out alternate infinite;
+
+    .roomInfo {
+      width: calc(25% - 15px);
+      margin: 0 7.5px 20px 7.5px;
+
+      .roomImg {
+        width: 100%;
+        background-color: #aaa;
+        margin-bottom: 10px;
+        padding-bottom: 66%;
+      }
+
+      .roomLocation {
+        width: 35%;
+        height: 10px;
+        background-color: #aaa;
+      }
+
+      .roomTitle {
+        width: 70%;
+        height: 10px;
+        background-color: #aaa;
+        margin-top: 10px;
+      }
+
+      .roomPrice {
+        width: 20%;
+        height: 10px;
+        background-color: #aaa;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .starWrapper {
+    margin: 5px 0 10px;
+
+    .star {
+      display: inline;
+      width: 10px;
+      fill: #aaa;
+    }
+  }
+}

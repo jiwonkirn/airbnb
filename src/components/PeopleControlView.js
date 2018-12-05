@@ -104,7 +104,7 @@ class PeopleControlView extends Component {
             />
           </div>
         )}
-        {this.state.selected ? (
+        {this.state.selected && locationPath !== 'home' ? (
           <div
             className={style.modal}
             style={

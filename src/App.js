@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import LoginPage from './pages/LoginPage';
+import RoomListLoading from './hoc/RoomListLoading';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
 import UserProvider from './contexts/UserContext';
@@ -21,6 +22,7 @@ class App extends Component {
                 <Switch>
                   <Route path="/search-list" component={ListPage} />
                   <Route path="/room-detail/:roomId" component={DetailPage} />
+                  <Route path="/loading" component={RoomListLoading} />
                   <Route exact path="/" component={HomePage} />
                   <Route path="/login" component={LoginPage} />
                 </Switch>

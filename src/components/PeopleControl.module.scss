@@ -3,14 +3,11 @@
 // }
 
 .personInputWrapper {
-  position: relative;
   display: inline-block;
   margin: 10px 0;
 }
 
 .persoFilterBox {
-  position: relative;
-  z-index: 100;
 }
 
 .personInput {
@@ -34,6 +31,7 @@
 .optionBox.active {
   display: inline-block;
   position: absolute;
+  z-index: 100;
   background-color: #fff;
   border: #ebebeb 1px solid;
   width: 100%;
@@ -44,7 +42,7 @@
 .optionBox.active.list {
   width: 400px;
   top: 45px;
-  left: 0;
+  left: 50;
 }
 
 .optionType {
