@@ -82,7 +82,7 @@ class Layout extends React.Component {
           <nav className={style.navbar}>
             <p className={style.navbar_helpdesk}>도움말</p>
             {this.props.logined && <p className={style.saved}>저장목록</p>}
-            {this.props.user_id ? (
+            {this.props.logined ? (
               <button className={style.navbar_login}>로그아웃</button>
             ) : (
               <button
