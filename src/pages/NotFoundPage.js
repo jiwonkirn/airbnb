@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import style from './NotFound.module.scss';
 import { Link } from 'react-router-dom';
-import img from './imgs/404-Airbnb.gif';
+import img from '../components/imgs/404-Airbnb.gif';
 
-export default class NotFound extends Component {
+export default class NotFoundPage extends Component {
   render() {
     return (
       <section className={style.container}>

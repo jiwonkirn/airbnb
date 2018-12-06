@@ -46,7 +46,6 @@ class Layout extends React.Component {
     });
   }
   render() {
-    console.log(this.state.loginbtnclick);
     return (
       <div>
         {this.state.loginbtnclick ? (

@@ -39,7 +39,6 @@ class SearchProvider extends Component {
 
   // 쿼리스트링을 통해 필터를 가져오는 메소드
   refreshData() {
-    console.log('출력');
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
     const cityName = params.get('city__contains');
@@ -63,22 +62,27 @@ class SearchProvider extends Component {
     await this.setState({
       cityName,
     });
-    console.log(this.state.cityName);
     this.handlePersonCapacitySearch();
   } // TODO: 홈, 리스트 검색 메소드와 코드중복... 이슈 해결하기
 
   // 리스트에서 인원을 탐색하는 메소드
   handlePersonCapacitySearch = async () => {
-    const { adult, children, infant } = this.state;
-    const { cityName } = this.state;
-    console.log(cityName);
-    await this.props.history.push(
-      (this.props.location.pathname !== '/search-list' && !cityName
-        ? `${this.props.location.pathname}?`
-        : `/search-list/?`) +
-        (cityName ? `&city__contains=${cityName}` : '') +
-        `&adult=${adult}&children=${children}&infant=${infant}`
-    );
+    const { adult, children, infant, cityName } = this.state;
+    if (
+      !cityName &&
+      this.props.location.pathname.match(/^\/room-detail\/\d+$/)
+    ) {
+      await this.props.history.replace(
+        this.props.location.pathname +
+          `?&adult=${adult}&children=${children}&infant=${infant}`
+      );
+    } else {
+      await this.props.history.push(
+        `/search-list?` +
+          (cityName ? `&city__contains=${cityName}` : '') +
+          `&adult=${adult}&children=${children}&infant=${infant}`
+      );
+    }
   };
 
   // 홈에서 전체검색을 하는 메소드

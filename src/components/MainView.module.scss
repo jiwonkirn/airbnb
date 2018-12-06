@@ -5,6 +5,7 @@
 }
 
 .mainimg {
+  position: relative;
   background-size: cover;
   background-position: center;
   width: calc(100% + 160px);
@@ -19,7 +20,9 @@
   padding: 32px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   width: 30%;
-  margin: 20px 0 0 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80px;
 }
 
 .title {

@@ -36,7 +36,7 @@ class ReserveFormView extends Component {
       adult,
     } = this.props;
 
-    console.log(check_out_date, check_in_date);
+    // console.log(check_out_date, check_in_date);
     return (
       <div className={style.formWrapper}>
         <form
@@ -44,7 +44,7 @@ class ReserveFormView extends Component {
           className={style.reservationFrom}
         >
           <p className={style.price}>
-            ₩{price * (children + adult)} /
+            ₩{price * (children + adult || 1)} /
             <span className={style.park}>박</span>
           </p>
           <div className={style.starwrapper}>

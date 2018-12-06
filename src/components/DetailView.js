@@ -10,6 +10,7 @@ import { ReactComponent as Laptop } from '../svg/laptop.svg';
 import { ReactComponent as Dryer } from '../svg/dryer.svg';
 import { ReactComponent as Washer } from '../svg/washer.svg';
 import withCommonLoading from '../hoc/CommonLoading';
+import SaveButton from './SaveButton';
 
 class DetailView extends Component {
   render() {
@@ -28,7 +29,7 @@ class DetailView extends Component {
       amenities,
       price,
     } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <div className={style.imgWrapper}>
@@ -64,6 +65,7 @@ class DetailView extends Component {
               alt={roominfo.room_photo_5}
             />
           </div>
+          <SaveButton roomId={roomId} />
         </div>
         <div className={style.contentsWrapper}>
           <div className={style.roomInfo}>

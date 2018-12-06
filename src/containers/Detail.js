@@ -30,17 +30,15 @@ export default class Detail extends Component {
 
   async componentDidMount() {
     const { roomId } = this.props;
-
     const { data: roomdetail } = await api.get(`/api/home/listings/${roomId}/`);
-
     this.setState({
       ...roomdetail,
       loading: false,
     });
   }
+
   render() {
     const { roomId } = this.props;
-    console.log(roomId);
     return <DetailView {...this.state} roomId={roomId} />;
   }
 }
