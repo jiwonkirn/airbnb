@@ -6,13 +6,14 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
-
+import classNames from 'classnames';
 class ReserveFormView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       startDate: '',
       endDate: '',
+      sticky: false,
     };
   }
 
@@ -20,10 +21,25 @@ class ReserveFormView extends Component {
     e.preventDefault();
   }
 
-  async handleReserve() {
-    //Todo: 서버측에 체크인, 체크아웃, 룸아이디, 인원 정보를 전달하는 코드
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  handleScroll = () => {
+    let lastScrollY = window.scrollY;
+    if (lastScrollY > 555) {
+      this.setState({
+        sticky: true,
+      });
+    } else {
+      this.setState({
+        sticky: false,
+      });
+    }
+  };
   render() {
     const {
       check_out_date,
@@ -36,9 +52,12 @@ class ReserveFormView extends Component {
       adult,
     } = this.props;
 
-    // console.log(check_out_date, check_in_date);
+    console.log(check_out_date, check_in_date);
+    const stickyClass = classNames(style.formWrapper, {
+      [style.sticky]: this.state.sticky,
+    });
     return (
-      <div className={style.formWrapper}>
+      <div className={stickyClass}>
         <form
           onSubmit={e => this.handleSubmit(e)}
           className={style.reservationFrom}

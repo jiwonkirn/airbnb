@@ -35,8 +35,13 @@
 //기본 레이아웃
 
 .category {
-  margin-top: 10px;
+  margin: 10px 0;
   font-weight: 700;
+}
+.category2 {
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 2rem;
 }
 
 // 숙소정보
@@ -44,6 +49,7 @@
   padding: 20px 10px 10px 0;
   width: 100%;
   display: inline-block;
+  border: 1px solid red;
 }
 
 .roomName {
@@ -57,10 +63,15 @@
   top: 1.4rem;
   right: 0;
 }
+.hostImg2 {
+  width: 10%;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+}
 .roomInfo {
   width: 65%;
-  height: 1000px;
-
+  border: 1px solid blue;
   display: inline-block;
   position: relative;
 }
@@ -112,8 +123,15 @@
   display: inline-block;
   width: 30%;
   margin-left: 2%;
-  position: sticky;
-  top: 20px;
+  vertical-align: top;
+}
+.formWrapper.sticky {
+  position: fixed;
+  top: 100px;
+  display: inline-block;
+  width: 30%;
+  margin-left: 2%;
+  vertical-align: top;
 }
 .reservationFrom {
   width: 100%;
@@ -303,4 +321,44 @@
 .cross {
   width: 20px;
   height: 20px;
+}
+.map {
+  width: 100%;
+  height: 350px;
+  background-color: gray;
+}
+.moreInfo {
+  color: #008489;
+  display: flex;
+}
+.location li {
+  margin: 20px 0;
+  display: flex;
+}
+.arrowDown {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+// .subNav {
+//   display: none;
+// }
+.subNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #ffffff;
+  position: fixed;
+  border: 1px solid #aaaaaa;
+  z-index: 100;
+}
+.navList {
+  display: flex;
+  padding: 0 10%;
+}
+.navList li {
+  line-height: 50px;
+  padding: 0 10px;
 }
