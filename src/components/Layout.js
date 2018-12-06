@@ -6,6 +6,8 @@ import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
 import HelpdestView from './HelpdeskView';
+import SavedModal from './SavedModal';
+import classNames from 'classnames';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -15,8 +17,16 @@ class Layout extends React.Component {
       selected: false,
       loginbtnclick: false,
       helpbtnclick: false,
+      savedModal: false,
     };
   }
+
+  handleSavedModal = () => {
+    this.setState(prev => {
+      return { savedModal: !prev.savedModal };
+    });
+    console.log(this.state.savedModal);
+  };
 
   handleSubmit(e) {
     const cityName = e.target.value;
@@ -99,7 +109,12 @@ class Layout extends React.Component {
             >
               도움말
             </p>
-            {this.props.logined && <p className={style.saved}>저장목록</p>}
+            {this.props.logined && (
+              <p className={style.saved}>
+                <span onClick={this.handleSavedModal}>저장목록</span>
+                {this.state.savedModal && <SavedModal />}
+              </p>
+            )}
             {this.props.logined ? (
               <button className={style.navbar_login}>로그아웃</button>
             ) : (

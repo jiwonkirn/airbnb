@@ -63,3 +63,11 @@
   border: 0;
   cursor: pointer;
 }
+
+.savedModal {
+  display: none;
+}
+
+.savedModal.view {
+  display: block;
+}
