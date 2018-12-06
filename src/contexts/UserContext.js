@@ -9,8 +9,10 @@ export default class UserProvider extends Component {
 
     this.state = {
       appId: '576870092752054', // 페이스북 앱 아이디
-      id: null, // 유저 아이디
-      username: null, // 유저 이름
+      email: null,
+      first_name: null,
+      last_name: null,
+      user_id: null,
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
       // logout: this.logout.bind(this),
@@ -30,16 +32,25 @@ export default class UserProvider extends Component {
       const first_name = name.split(' ')[0];
       const last_name = name.split(' ')[1];
       const user_id = id;
-      const {
-        data: { token },
-      } = await api.post('/api/user/auth-token/', {
+      const { data } = await api.post('/api/user/auth-token/', {
         email,
         first_name,
         last_name,
         user_id,
       });
-      localStorage.setItem('token', token);
-      await this.refreshUser();
+      console.log(data.user);
+      await localStorage.setItem('token', data.token);
+      if (localStorage.getItem('token')) {
+        this.setState({
+          email,
+          first_name,
+          last_name,
+          user_id,
+        });
+        await this.refreshUser();
+      } else {
+        alert('로그인에 실패했습니다 확인해주세요.');
+      }
     }
   }
 

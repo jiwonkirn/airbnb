@@ -53,11 +53,7 @@ class Layout extends React.Component {
           <Login onModalRemove={e => this.handleModalRemove(e)} />
         ) : null}
         <header key={this.props.cityName} className={style.header}>
-          <Logo
-            className={style.logo}
-            style={{ width: '40px', height: '50px' }}
-            onClick={this.props.handleLinkToHome}
-          />
+          <Logo className={style.logo} onClick={this.props.handleLinkToHome} />
           <div
             className={style.searchbar}
             onFocus={e => this.handleFocus(e)}
@@ -72,7 +68,7 @@ class Layout extends React.Component {
             />
             <input
               onKeyDown={e => this.handleSubmit(e)}
-              type="search"
+              type="text"
               className={style.search}
               required
               defaultValue={this.props.cityName}
