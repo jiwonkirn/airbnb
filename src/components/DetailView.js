@@ -198,7 +198,7 @@ class DetailView extends Component {
             ) : null}
             <div className={style.devider} />
             <div>
-              <h3>예약 가능 여부</h3>
+              <h3 className={style.category}>예약 가능 여부</h3>
               <DayPickerRangeController />
             </div>
           </div>
