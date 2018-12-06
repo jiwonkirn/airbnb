@@ -29,13 +29,25 @@ class ReserveFormView extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.sticky !== nextState.sticky) {
+      return true;
+    }
+    return false;
+  }
+
   handleScroll = () => {
     let lastScrollY = window.scrollY;
-    this.setState({
-      lastScrollY,
-    });
+    if (lastScrollY > 555) {
+      this.setState({
+        sticky: true,
+      });
+    } else {
+      this.setState({
+        sticky: false,
+      });
+    }
   };
-
   render() {
     const {
       check_out_date,
@@ -48,10 +60,9 @@ class ReserveFormView extends Component {
       adult,
     } = this.props;
 
-    // console.log(check_out_date, check_in_date);
-    const { lastScrollY } = this.state;
+    console.log(check_out_date, check_in_date);
     const stickyClass = classNames(style.formWrapper, {
-      [style.sticky]: lastScrollY > 555,
+      [style.sticky]: this.state.sticky,
     });
     return (
       <div className={stickyClass}>

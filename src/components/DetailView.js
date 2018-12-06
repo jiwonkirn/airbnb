@@ -13,9 +13,9 @@ import { ReactComponent as Cross } from '../svg/cross.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 import 'react-dates/initialize';
-import classNames from 'classnames';
 import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import SaveButton from './SaveButton';
 
 let lastScrollY = window.scrollY;
 
@@ -26,7 +26,7 @@ class DetailView extends Component {
     this.state = {
       modalclick: false,
       moreInfo: false,
-      lastScrollY: 0,
+      sticky: false,
     };
   }
   handleModal() {
@@ -48,14 +48,27 @@ class DetailView extends Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.sticky !== nextState.sticky) {
+      return true;
+    }
+    return false;
+  }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
     let lastScrollY = window.scrollY;
-    this.setState({
-      lastScrollY,
-    });
+    if (lastScrollY > 555) {
+      this.setState({
+        sticky: true,
+      });
+    } else if (lastScrollY < 555) {
+      this.setState({
+        sticky: false,
+      });
+    }
   };
 
   render() {
@@ -75,11 +88,11 @@ class DetailView extends Component {
       public_address,
       price,
     } = this.props;
-    // console.log(this.props);
-    const { lastScrollY } = this.state;
+    console.log(this.state.sticky);
+
     return (
       <div>
-        {lastScrollY > 555 ? (
+        {this.state.sticky ? (
           <div className={style.subNav}>
             <ul className={style.navList}>
               <li>개요</li>
@@ -124,6 +137,7 @@ class DetailView extends Component {
               alt={roominfo.room_photo_5}
             />
           </div>
+          <SaveButton roomId={roomId} />
         </div>
 
         <div className={style.contentsWrapper}>
