@@ -24,32 +24,37 @@ export default class UserProvider extends Component {
   }
 
   // 컴포넌트가 마운트 되면 로그인 여부를 확인한다.
+  // 저장된 방 정보를 불러온다.
   async componentDidMount() {
     await this.refreshUser();
     await this.loadSavedRooms();
-    console.log('hello');
     //서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
   }
 
+  // 저장된 방 정보를 받아오는 메소드
   loadSavedRooms = async () => {
     const { data } = await api.get('/api/user/saved/');
     this.setState({
       savedRooms: data,
     });
-    console.log(`저장된 숙소는 ${data}입니다.`);
-    console.log(data);
   };
 
+  // 방을 저장하거나 저장 취소하는 메소드
   handleSaveRoom = async roomId => {
     const room_id = parseInt(roomId);
     if (!this.state.savedRooms.find(room => room.pk == roomId)) {
-      const { data } = await api.post('/api/user/save_room/', {
+      await api.post('/api/user/save_room/', {
         room_id,
       });
-      console.log(data.message);
       alert('숙소 저장에 성공했습니다.');
       await this.loadSavedRooms();
-    } else alert('error');
+    } else {
+      await api.delete('/api/user/save_room/', {
+        data: { room_id: room_id },
+      });
+      alert('저장목록에서 삭제되었습니다.');
+      await this.loadSavedRooms();
+    }
   };
 
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드

@@ -5,13 +5,6 @@ import { withUser } from '../contexts/UserContext';
 import classNames from 'classnames';
 
 class SaveButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      saved: false,
-    };
-  }
-
   render() {
     const { roomId } = this.props;
     const saved = this.props.savedRooms.some(item => item.pk == roomId);
