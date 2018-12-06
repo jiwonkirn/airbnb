@@ -17,6 +17,8 @@ import classNames from 'classnames';
 import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
+let lastScrollY = window.scrollY;
+
 class DetailView extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,7 @@ class DetailView extends Component {
     this.state = {
       modalclick: false,
       moreInfo: false,
+      lastScrollY: 0,
     };
   }
   handleModal() {
@@ -50,16 +53,9 @@ class DetailView extends Component {
   }
   handleScroll = () => {
     let lastScrollY = window.scrollY;
-    if (lastScrollY > 555) {
-      this.setState({
-        sticky: true,
-      });
-    } else {
-      this.setState({
-        sticky: false,
-      });
-    }
-    console.log(this.state.sticky);
+    this.setState({
+      lastScrollY,
+    });
   };
 
   render() {
@@ -79,11 +75,11 @@ class DetailView extends Component {
       public_address,
       price,
     } = this.props;
-    console.log(this.props);
-
+    // console.log(this.props);
+    const { lastScrollY } = this.state;
     return (
       <div>
-        {this.state.sticky ? (
+        {lastScrollY > 555 ? (
           <div className={style.subNav}>
             <ul className={style.navList}>
               <li>개요</li>
