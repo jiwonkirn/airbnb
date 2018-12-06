@@ -26,6 +26,7 @@ class DetailView extends Component {
       hostimages,
       roomId,
       amenities,
+      price,
     } = this.props;
     console.log(this.props);
     return (
@@ -121,23 +122,23 @@ class DetailView extends Component {
                 {amenities.map(amenity => (
                   <li className={style.amenity}>
                     <div className={style.icon}>
-                      {amenity === 'tv' || amenity==='cable'?(
-                        <Tv className={style.tv}/>
-                      ):amenity === 'wireless_internet'?(
-                        <Wireless className={style.wireless}/>
-                      ):amenity === 'kitchen'?(
-                        <Kitchen className={style.kitchen}/>
-                      ):amenity === 'hair-dryer'?(
-                        <Hair className={style.hair}/>
-                      ):amenity === 'paid_parking_on_premises'?(
-                        <Park className={style.park}/>
-                      ):amenity ==='laptop-friendly'?(
-                        <Laptop className={style.laptop}/>
-                      ):amenity === 'dryer'?(
-                        <Dryer className={style.dryer}/>
-                      ):amenity === 'washer'?(
-                        <Washer className={style.washer}/>
-                      ):null}
+                      {amenity === 'tv' || amenity === 'cable' ? (
+                        <Tv className={style.tv} />
+                      ) : amenity === 'wireless_internet' ? (
+                        <Wireless className={style.wireless} />
+                      ) : amenity === 'kitchen' ? (
+                        <Kitchen className={style.kitchen} />
+                      ) : amenity === 'hair-dryer' ? (
+                        <Hair className={style.hair} />
+                      ) : amenity === 'paid_parking_on_premises' ? (
+                        <Park className={style.park} />
+                      ) : amenity === 'laptop-friendly' ? (
+                        <Laptop className={style.laptop} />
+                      ) : amenity === 'dryer' ? (
+                        <Dryer className={style.dryer} />
+                      ) : amenity === 'washer' ? (
+                        <Washer className={style.washer} />
+                      ) : null}
                     </div>
                     <p className={style.am}>{amenity}</p>
                   </li>
@@ -145,7 +146,7 @@ class DetailView extends Component {
               </ul>
             </div>
           </div>
-          <ReserveForm roomId={roomId} />
+          <ReserveForm price={this.props.price} roomId={roomId} />
         </div>
       </div>
     );
