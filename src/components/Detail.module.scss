@@ -70,7 +70,7 @@
   color: #484848;
 }
 
-.amenities{
+.amenities {
   margin-top: 20px;
 }
 .amenity {
@@ -267,8 +267,33 @@
   position: absolute;
 }
 //아이콘 모음
-.tv .wireless .kitchen .hair .park .laptop .dryer .washer{
+.tv .wireless .kitchen .hair .park .laptop .dryer .washer {
   height: 20px;
-  width: 20px; 
+  width: 20px;
   fill: currentcolor;
+}
+//편의시설 모달
+.modalWrapper {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  padding: 20px;
+}
+.amenityModal {
+  padding: 30px;
+  width: 40%;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cross {
+  width: 20px;
+  height: 20px;
 }

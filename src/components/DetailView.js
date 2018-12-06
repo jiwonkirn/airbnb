@@ -9,9 +9,27 @@ import { ReactComponent as Park } from '../svg/park.svg';
 import { ReactComponent as Laptop } from '../svg/laptop.svg';
 import { ReactComponent as Dryer } from '../svg/dryer.svg';
 import { ReactComponent as Washer } from '../svg/washer.svg';
+import { ReactComponent as Cross } from '../svg/cross.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 
 class DetailView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modalclick: false,
+    };
+  }
+  handleModal() {
+    this.setState({
+      modalclick: true,
+    });
+  }
+  handleModalremove() {
+    this.setState({
+      modalclick: false,
+    });
+  }
   render() {
     const {
       room_name,
@@ -65,6 +83,7 @@ class DetailView extends Component {
             />
           </div>
         </div>
+
         <div className={style.contentsWrapper}>
           <div className={style.roomInfo}>
             <p className={style.roomType}>{room_type}</p>
@@ -116,6 +135,7 @@ class DetailView extends Component {
               </p>
             </div>
             <div className={style.devider} />
+
             <div>
               <h3 className={style.category}>편의시설</h3>
               <ul className={style.amenities}>
@@ -144,8 +164,28 @@ class DetailView extends Component {
                   </li>
                 ))}
               </ul>
+              <p onClick={() => this.handleModal()}>31개의 편의시설 더보기</p>
             </div>
           </div>
+          {this.state.modalclick ? (
+            <div className={style.modalWrapper}>
+              <div className={style.amenityModal}>
+                <Cross
+                  onClick={() => this.handleModalremove()}
+                  className={style.cross}
+                />
+                <h3 className={style.modalTitle}>편의시설</h3>
+                <ul>
+                  {amenities.map(amenity => (
+                    <li>
+                      {amenity}
+                      <div className={style.devider} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : null}
           <ReserveForm price={this.props.price} roomId={roomId} />
         </div>
       </div>
