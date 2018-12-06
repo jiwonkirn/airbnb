@@ -9,8 +9,10 @@ export default class UserProvider extends Component {
 
     this.state = {
       appId: '576870092752054', // 페이스북 앱 아이디
-      id: null, // 유저 아이디
-      username: null, // 유저 이름
+      email: null,
+      first_name: null,
+      last_name: null,
+      user_id: null,
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
       // logout: this.logout.bind(this),
@@ -75,10 +77,12 @@ export default class UserProvider extends Component {
     localStorage.setItem('token', res2.data.token);
 
     //TODO:서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
-    // this.setState({
-    //   id:,
-    //   username:
-    // });
+    this.setState({
+      email,
+      first_name,
+      last_name,
+      user_id,
+    });
   }
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
