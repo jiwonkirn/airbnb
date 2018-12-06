@@ -29,7 +29,6 @@ class DetailView extends Component {
       amenities,
       price,
     } = this.props;
-    // console.log(this.props);
     return (
       <div>
         <div className={style.imgWrapper}>

@@ -27,7 +27,7 @@ class LoginView extends Component {
 
     //구글로그인
     const responseGoogle = response => {
-      // console.log(response);
+      //
     };
 
     document.getElementById('googleButton');
