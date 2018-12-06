@@ -39,7 +39,7 @@
 
 // 숙소정보
 .contentsWrapper {
-  padding: 20px 10px;
+  padding: 20px 10px 10px 0;
   width: 100%;
   display: inline-block;
 }
@@ -64,9 +64,33 @@
 }
 .roomProperty {
   display: flex;
+  flex-wrap: wrap;
   width: 50%;
   justify-content: space-between;
   color: #484848;
+}
+
+.amenities{
+  margin-top: 20px;
+}
+.amenity {
+  display: inline-block;
+  width: 50%;
+  height: 20px;
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin: 10px 0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.am {
+  vertical-align: top;
+  display: inline-block;
+  line-height: 20px;
 }
 .devider {
   margin: 20px 0;
@@ -241,4 +265,10 @@
 
 .calender {
   position: absolute;
+}
+//아이콘 모음
+.tv .wireless .kitchen .hair .park .laptop .dryer .washer{
+  height: 20px;
+  width: 20px; 
+  fill: currentcolor;
 }

@@ -48,9 +48,9 @@ class ReserveForm extends Component {
     });
   }
   render() {
-    console.log(this.state);
     return (
       <ReserveFormView
+        price={this.props.price}
         {...this.state}
         onSelect={e => this.handleSelect(e)}
         onChangeCheckin={checkin => this.handleChangeCheckin(checkin)}

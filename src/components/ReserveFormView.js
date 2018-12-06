@@ -5,8 +5,9 @@ import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
+import { withSearch } from '../contexts/SearchContext';
 
-export default class ReserveFormView extends Component {
+class ReserveFormView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +31,9 @@ export default class ReserveFormView extends Component {
       onChangeCheckin,
       onChangeCheckout,
       onBook,
+      price,
+      children,
+      adult,
     } = this.props;
 
     console.log(check_out_date, check_in_date);
@@ -40,7 +44,8 @@ export default class ReserveFormView extends Component {
           className={style.reservationFrom}
         >
           <p className={style.price}>
-            ₩198,821 /<span className={style.park}>박</span>
+            ₩{price * (children + adult)} /
+            <span className={style.park}>박</span>
           </p>
           <div className={style.starwrapper}>
             <Star className={style.star} />
@@ -82,3 +87,5 @@ export default class ReserveFormView extends Component {
     );
   }
 }
+
+export default withSearch(ReserveFormView);

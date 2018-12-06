@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import style from './Detail.module.scss';
 import ReserveForm from '../containers/ReserveForm';
+import { ReactComponent as Tv } from '../svg/tv.svg';
+import { ReactComponent as Wireless } from '../svg/wireless.svg';
+import { ReactComponent as Kitchen } from '../svg/kitchen.svg';
+import { ReactComponent as Hair } from '../svg/hair.svg';
+import { ReactComponent as Park } from '../svg/park.svg';
+import { ReactComponent as Laptop } from '../svg/laptop.svg';
+import { ReactComponent as Dryer } from '../svg/dryer.svg';
+import { ReactComponent as Washer } from '../svg/washer.svg';
+import withCommonLoading from '../hoc/CommonLoading';
 
-export default class DetailView extends Component {
+class DetailView extends Component {
   render() {
     const {
       room_name,
@@ -16,7 +25,10 @@ export default class DetailView extends Component {
       roominfo,
       hostimages,
       roomId,
+      amenities,
+      price,
     } = this.props;
+    console.log(this.props);
     return (
       <div>
         <div className={style.imgWrapper}>
@@ -106,17 +118,39 @@ export default class DetailView extends Component {
             <div className={style.devider} />
             <div>
               <h3 className={style.category}>편의시설</h3>
-              <ul className={style.roomProperty}>
-                <li>케이블 TV</li>
-                <li>WIFI</li>
-                <li>주차장</li>
-                <li>난방</li>
+              <ul className={style.amenities}>
+                {amenities.map(amenity => (
+                  <li className={style.amenity}>
+                    <div className={style.icon}>
+                      {amenity === 'tv' || amenity === 'cable' ? (
+                        <Tv className={style.tv} />
+                      ) : amenity === 'wireless_internet' ? (
+                        <Wireless className={style.wireless} />
+                      ) : amenity === 'kitchen' ? (
+                        <Kitchen className={style.kitchen} />
+                      ) : amenity === 'hair-dryer' ? (
+                        <Hair className={style.hair} />
+                      ) : amenity === 'paid_parking_on_premises' ? (
+                        <Park className={style.park} />
+                      ) : amenity === 'laptop-friendly' ? (
+                        <Laptop className={style.laptop} />
+                      ) : amenity === 'dryer' ? (
+                        <Dryer className={style.dryer} />
+                      ) : amenity === 'washer' ? (
+                        <Washer className={style.washer} />
+                      ) : null}
+                    </div>
+                    <p className={style.am}>{amenity}</p>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
-          <ReserveForm roomId={roomId} />
+          <ReserveForm price={this.props.price} roomId={roomId} />
         </div>
       </div>
     );
   }
 }
+
+export default withCommonLoading(DetailView);

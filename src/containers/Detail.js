@@ -24,6 +24,7 @@ export default class Detail extends Component {
       amenities: [],
       roominfo: {},
       hostimages: {},
+      loading: true,
     };
   }
 
@@ -34,6 +35,7 @@ export default class Detail extends Component {
 
     this.setState({
       ...roomdetail,
+      loading: false,
     });
   }
   render() {

@@ -71,11 +71,7 @@ class Layout extends React.Component {
           <HelpdestView onModalRemove={e => this.handleHelpModalRemove(e)} />
         ) : null}
         <header key={this.props.cityName} className={style.header}>
-          <Logo
-            className={style.logo}
-            style={{ width: '40px', height: '50px' }}
-            onClick={this.props.handleLinkToHome}
-          />
+          <Logo className={style.logo} onClick={this.props.handleLinkToHome} />
           <div
             className={style.searchbar}
             onFocus={e => this.handleFocus(e)}
@@ -90,7 +86,7 @@ class Layout extends React.Component {
             />
             <input
               onKeyDown={e => this.handleSubmit(e)}
-              type="search"
+              type="text"
               className={style.search}
               required
               defaultValue={this.props.cityName}
@@ -104,12 +100,17 @@ class Layout extends React.Component {
             >
               도움말
             </p>
-            <button
-              onClick={e => this.handleLoginBtn(e)}
-              className={style.navbar_login}
-            >
-              로그인
-            </button>
+            {this.props.logined && <p className={style.saved}>저장목록</p>}
+            {this.props.logined ? (
+              <button className={style.navbar_login}>로그아웃</button>
+            ) : (
+              <button
+                onClick={e => this.handleLoginBtn(e)}
+                className={style.navbar_login}
+              >
+                로그인
+              </button>
+            )}
           </nav>
         </header>
       </div>
