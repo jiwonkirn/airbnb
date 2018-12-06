@@ -23,6 +23,7 @@ export default class UserProvider extends Component {
   // 컴포넌트가 마운트 되면 로그인 여부를 확인한다.
   async componentDidMount() {
     await this.refreshUser();
+    //서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
   }
 
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
@@ -84,13 +85,8 @@ export default class UserProvider extends Component {
       user_id,
     });
     localStorage.setItem('token', res2.data.token);
-
-    //TODO:서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
-    // this.setState({
-    //   id:,
-    //   username:
-    // });
   }
+
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }
