@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
 import UserProvider from './contexts/UserContext';
 import { RouterSearchProvider } from './contexts/SearchContext';
-import CommonLoading from './hoc/CommonLoading';
+import NotFound from './components/NotFound';
 
 class App extends Component {
   render() {
@@ -22,9 +22,9 @@ class App extends Component {
                 <Switch>
                   <Route path="/search-list" component={ListPage} />
                   <Route path="/room-detail/:roomId" component={DetailPage} />
-                  <Route path="/loading" component={CommonLoading} />
-                  <Route exact path="/" component={HomePage} />
                   <Route path="/login" component={LoginPage} />
+                  <Route exact path="/:otherPath" component={NotFound} />
+                  <Route exact path="/" component={HomePage} />
                 </Switch>
               </main>
             </UserProvider>

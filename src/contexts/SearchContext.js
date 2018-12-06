@@ -73,9 +73,9 @@ class SearchProvider extends Component {
     const { cityName } = this.state;
     console.log(cityName);
     await this.props.history.push(
-      (this.props.location.pathname !== '/'
+      (this.props.location.pathname !== '/search-list' && !cityName
         ? `${this.props.location.pathname}?`
-        : `search-list/?`) +
+        : `/search-list/?`) +
         (cityName ? `&city__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}`
     );
