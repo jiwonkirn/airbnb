@@ -13,7 +13,7 @@ import { ReactComponent as Cross } from '../svg/cross.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 import 'react-dates/initialize';
-
+import classNames from 'classnames';
 import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
@@ -24,7 +24,6 @@ class DetailView extends Component {
     this.state = {
       modalclick: false,
       moreInfo: false,
- 
     };
   }
   handleModal() {
@@ -42,8 +41,27 @@ class DetailView extends Component {
       moreInfo: this.state.moreInfo === true ? false : true,
     });
   }
- 
-  
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  handleScroll = () => {
+    let lastScrollY = window.scrollY;
+    if (lastScrollY > 555) {
+      this.setState({
+        sticky: true,
+      });
+    } else {
+      this.setState({
+        sticky: false,
+      });
+    }
+    console.log(this.state.sticky);
+  };
+
   render() {
     const {
       room_name,
@@ -62,9 +80,21 @@ class DetailView extends Component {
       price,
     } = this.props;
     console.log(this.props);
-   
+
     return (
       <div>
+        {this.state.sticky ? (
+          <div className={style.subNav}>
+            <ul className={style.navList}>
+              <li>개요</li>
+              <li>위치</li>
+              <li>호스트</li>
+              <li>위치</li>
+              <li>환불정책</li>
+            </ul>
+          </div>
+        ) : null}
+
         <div className={style.imgWrapper}>
           <div className={style.responsive1}>
             <img

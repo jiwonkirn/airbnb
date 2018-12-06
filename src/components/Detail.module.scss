@@ -337,3 +337,25 @@
   width: 20px;
   height: 20px;
 }
+// .subNav {
+//   display: none;
+// }
+.subNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #ffffff;
+  position: fixed;
+  border: 1px solid #aaaaaa;
+  z-index: 100;
+}
+.navList {
+  display: flex;
+  padding: 0 10%;
+}
+.navList li {
+  line-height: 50px;
+  padding: 0 10px;
+}

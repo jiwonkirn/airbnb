@@ -30,16 +30,15 @@ class ReserveFormView extends Component {
   }
   handleScroll = () => {
     let lastScrollY = window.scrollY;
-    if (lastScrollY > 300) {
+    if (lastScrollY > 555) {
       this.setState({
         sticky: true,
       });
-    }else{
+    } else {
       this.setState({
         sticky: false,
       });
     }
-    console.log(this.state.sticky);
   };
   render() {
     const {
