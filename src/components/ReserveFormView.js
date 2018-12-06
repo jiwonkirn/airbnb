@@ -63,7 +63,7 @@ class ReserveFormView extends Component {
           className={style.reservationFrom}
         >
           <p className={style.price}>
-            ₩{price * (children + adult)} /
+            ₩{price * (children + adult || 1)} /
             <span className={style.park}>박</span>
           </p>
           <div className={style.starwrapper}>

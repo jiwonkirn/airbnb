@@ -3,7 +3,9 @@
   display: flex;
   margin: -30px -80px 0;
   width: calc(100%+160px);
+  position: relative;
 }
+
 .responsive1 {
   width: 50%;
 }
@@ -290,6 +292,7 @@
   width: 20px;
   fill: currentcolor;
 }
+
 //편의시설 모달
 .modalWrapper {
   position: fixed;

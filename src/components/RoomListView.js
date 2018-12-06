@@ -21,7 +21,7 @@ class ListView extends Component {
               to={
                 `/room-detail/${room.pk}` +
                 (adult || infant || children
-                  ? `/?adult=${parseInt(adult)}&children=${parseInt(
+                  ? `?adult=${parseInt(adult)}&children=${parseInt(
                       children
                     )}&infant=${parseInt(infant)}`
                   : '')
