@@ -15,9 +15,6 @@ class MainView extends Component {
 
     this.state = {
       cityName: null,
-      adult: 1,
-      children: 1,
-      infant: 1,
       selected: false,
       desselected: false,
     };
@@ -133,7 +130,7 @@ class MainView extends Component {
                 onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
               />
               <PeopleControlView />
-              {locationPath !== 'home' ? (
+              {locationPath !== 'home' && (
                 <button
                   className={style.searchbtn}
                   onClick={() =>
@@ -142,7 +139,7 @@ class MainView extends Component {
                 >
                   검색
                 </button>
-              ) : null}
+              )}
             </div>
           </div>
         </div>
