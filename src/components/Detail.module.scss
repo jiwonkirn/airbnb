@@ -47,6 +47,7 @@
   padding: 20px 10px 10px 0;
   width: 100%;
   display: inline-block;
+  border: 1px solid red;
 }
 
 .roomName {
@@ -68,8 +69,7 @@
 }
 .roomInfo {
   width: 65%;
-  height: 1000px;
-
+  border: 1px solid blue;
   display: inline-block;
   position: relative;
 }
@@ -121,8 +121,15 @@
   display: inline-block;
   width: 30%;
   margin-left: 2%;
-  position: sticky;
-  top: 20px;
+  vertical-align: top;
+}
+.formWrapper.sticky {
+  position: fixed;
+  top: 100px;
+  display: inline-block;
+  width: 30%;
+  margin-left: 2%;
+  vertical-align: top;
 }
 .reservationFrom {
   width: 100%;

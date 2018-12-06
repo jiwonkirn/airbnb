@@ -13,11 +13,8 @@ import { ReactComponent as Cross } from '../svg/cross.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 import 'react-dates/initialize';
-import {
-  DateRangePicker,
-  SingleDatePicker,
-  DayPickerRangeController,
-} from 'react-dates';
+
+import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 class DetailView extends Component {
@@ -27,6 +24,7 @@ class DetailView extends Component {
     this.state = {
       modalclick: false,
       moreInfo: false,
+ 
     };
   }
   handleModal() {
@@ -44,6 +42,8 @@ class DetailView extends Component {
       moreInfo: this.state.moreInfo === true ? false : true,
     });
   }
+ 
+  
   render() {
     const {
       room_name,
@@ -62,6 +62,7 @@ class DetailView extends Component {
       price,
     } = this.props;
     console.log(this.props);
+   
     return (
       <div>
         <div className={style.imgWrapper}>
