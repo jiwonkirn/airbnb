@@ -19,7 +19,7 @@ import SaveButton from './SaveButton';
 
 let lastScrollY = window.scrollY;
 
-class DetailView extends Component {
+class DetailView extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -48,12 +48,9 @@ class DetailView extends Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.sticky !== nextState.sticky) {
-      return true;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.sticky !== nextState.sticky || false;
+  // }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);

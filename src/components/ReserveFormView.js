@@ -7,7 +7,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
-class ReserveFormView extends Component {
+class ReserveFormView extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +29,9 @@ class ReserveFormView extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.sticky !== nextState.sticky) {
-      return true;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.sticky !== nextState.sticky || false;
+  // }
 
   handleScroll = () => {
     let lastScrollY = window.scrollY;
