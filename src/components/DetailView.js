@@ -139,30 +139,32 @@ class DetailView extends Component {
             <div>
               <h3 className={style.category}>편의시설</h3>
               <ul className={style.amenities}>
-                {amenities.map(amenity => (
-                  <li className={style.amenity}>
-                    <div className={style.icon}>
-                      {amenity === 'tv' || amenity === 'cable' ? (
-                        <Tv className={style.tv} />
-                      ) : amenity === 'wireless_internet' ? (
-                        <Wireless className={style.wireless} />
-                      ) : amenity === 'kitchen' ? (
-                        <Kitchen className={style.kitchen} />
-                      ) : amenity === 'hair-dryer' ? (
-                        <Hair className={style.hair} />
-                      ) : amenity === 'paid_parking_on_premises' ? (
-                        <Park className={style.park} />
-                      ) : amenity === 'laptop-friendly' ? (
-                        <Laptop className={style.laptop} />
-                      ) : amenity === 'dryer' ? (
-                        <Dryer className={style.dryer} />
-                      ) : amenity === 'washer' ? (
-                        <Washer className={style.washer} />
-                      ) : null}
-                    </div>
-                    <p className={style.am}>{amenity}</p>
-                  </li>
-                ))}
+                {amenities.map((amenity, index) =>
+                  index < 6 ? (
+                    <li className={style.amenity}>
+                      <div className={style.icon}>
+                        {amenity === 'tv' || amenity === 'cable' ? (
+                          <Tv className={style.tv} />
+                        ) : amenity === 'wireless_internet' ? (
+                          <Wireless className={style.wireless} />
+                        ) : amenity === 'kitchen' ? (
+                          <Kitchen className={style.kitchen} />
+                        ) : amenity === 'hair-dryer' ? (
+                          <Hair className={style.hair} />
+                        ) : amenity === 'paid_parking_on_premises' ? (
+                          <Park className={style.park} />
+                        ) : amenity === 'laptop-friendly' ? (
+                          <Laptop className={style.laptop} />
+                        ) : amenity === 'dryer' ? (
+                          <Dryer className={style.dryer} />
+                        ) : amenity === 'washer' ? (
+                          <Washer className={style.washer} />
+                        ) : null}
+                      </div>
+                      <p className={style.am}>{amenity}</p>
+                    </li>
+                  ) : null
+                )}
               </ul>
               <p onClick={() => this.handleModal()}>31개의 편의시설 더보기</p>
             </div>
