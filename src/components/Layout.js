@@ -5,6 +5,7 @@ import { ReactComponent as Magnifying } from '../svg/magnifying.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
+import HelpdestView from './HelpdeskView';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Layout extends React.Component {
     this.state = {
       selected: false,
       loginbtnclick: false,
+      helpbtnclick: false,
     };
   }
 
@@ -39,6 +41,19 @@ class Layout extends React.Component {
       loginbtnclick: true,
     });
   }
+
+  handleHelpdeskBtn() {
+    this.setState({
+      helpbtnclick: true,
+    });
+  }
+
+  handleHelpModalRemove(e) {
+    e.preventDefault();
+    this.setState({
+      helpbtnclick: false,
+    });
+  }
   handleModalRemove(e) {
     e.preventDefault();
     this.setState({
@@ -51,6 +66,9 @@ class Layout extends React.Component {
       <div>
         {this.state.loginbtnclick ? (
           <Login onModalRemove={e => this.handleModalRemove(e)} />
+        ) : null}
+        {this.state.helpbtnclick ? (
+          <HelpdestView onModalRemove={e => this.handleHelpModalRemove(e)} />
         ) : null}
         <header key={this.props.cityName} className={style.header}>
           <Logo
@@ -80,7 +98,12 @@ class Layout extends React.Component {
             />
           </div>
           <nav className={style.navbar}>
-            <p className={style.navbar_helpdesk}>도움말</p>
+            <p
+              className={style.navbar_helpdesk}
+              onClick={e => this.handleHelpdeskBtn(e)}
+            >
+              도움말
+            </p>
             <button
               onClick={e => this.handleLoginBtn(e)}
               className={style.navbar_login}
