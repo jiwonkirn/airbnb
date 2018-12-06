@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RoomListView from '../components/RoomListView';
 import api from '../api';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class RoomList extends Component {
   constructor(props) {
@@ -10,12 +10,22 @@ class RoomList extends Component {
       cityName: '',
       rooms: [],
       theme: '',
+      loading: true,
     };
   }
 
   async componentDidMount() {
     const { theme } = this.props;
     const params = new URLSearchParams(decodeURI(this.props.location.search));
+    if (params.get('adult') || params.get('children') || params.get('infant')) {
+      await params.append(
+        'person_capacity__gte',
+        parseInt(params.get('adult')) + parseInt(params.get('children'))
+      );
+    }
+    params.delete('adult');
+    params.delete('children');
+    params.delete('infant');
     const { data } = await api.get('/api/home/listings/', {
       params,
     });
@@ -39,11 +49,22 @@ class RoomList extends Component {
           : '추천 숙소',
       });
     }
+    await this.setState({
+      loading: false,
+    });
   }
 
   render() {
-    const { theme } = this.props;
-    return <RoomListView {...this.state} {...this.props} />;
+    const params = new URLSearchParams(decodeURI(this.props.location.search));
+    const adult = params.get('adult');
+    const children = params.get('children');
+    const infant = params.get('infant');
+    const value = {
+      adult,
+      children,
+      infant,
+    };
+    return <RoomListView {...this.state} {...this.props} {...value} />;
   }
 }
 

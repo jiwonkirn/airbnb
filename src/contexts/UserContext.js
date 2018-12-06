@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import api from '../api';
-import GoogleLogin from 'react-google-login';
 
 const { Provider, Consumer } = React.createContext();
 
@@ -10,8 +9,10 @@ export default class UserProvider extends Component {
 
     this.state = {
       appId: '576870092752054', // 페이스북 앱 아이디
-      id: null, // 유저 아이디
-      username: null, // 유저 이름
+      email: null,
+      first_name: null,
+      last_name: null,
+      user_id: null,
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
       // logout: this.logout.bind(this),
@@ -22,6 +23,7 @@ export default class UserProvider extends Component {
   // 컴포넌트가 마운트 되면 로그인 여부를 확인한다.
   async componentDidMount() {
     await this.refreshUser();
+    //서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
   }
 
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
@@ -31,16 +33,25 @@ export default class UserProvider extends Component {
       const first_name = name.split(' ')[0];
       const last_name = name.split(' ')[1];
       const user_id = id;
-      const {
-        data: { token },
-      } = await api.post('/api/user/auth-token/', {
+      const { data } = await api.post('/api/user/auth-token/', {
         email,
         first_name,
         last_name,
         user_id,
       });
-      localStorage.setItem('token', token);
-      await this.refreshUser();
+      console.log(data.user);
+      await localStorage.setItem('token', data.token);
+      if (localStorage.getItem('token')) {
+        this.setState({
+          email,
+          first_name,
+          last_name,
+          user_id,
+        });
+        await this.refreshUser();
+      } else {
+        alert('로그인에 실패했습니다 확인해주세요.');
+      }
     }
   }
 
@@ -74,13 +85,8 @@ export default class UserProvider extends Component {
       user_id,
     });
     localStorage.setItem('token', res2.data.token);
-
-    //TODO:서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
-    // this.setState({
-    //   id:,
-    //   username:
-    // });
   }
+
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }

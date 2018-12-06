@@ -1,7 +1,7 @@
 // 이미지
 .imgWrapper {
   display: flex;
-  margin: 0 -80px;
+  margin: -30px -80px 0;
   width: calc(100%+160px);
 }
 .responsive1 {
@@ -39,10 +39,11 @@
 
 // 숙소정보
 .contentsWrapper {
-  padding: 20px 10px;
+  padding: 20px 10px 10px 0;
   width: 100%;
   display: inline-block;
 }
+
 .roomName {
   font-size: 2.5rem;
 }
@@ -63,9 +64,33 @@
 }
 .roomProperty {
   display: flex;
+  flex-wrap: wrap;
   width: 50%;
   justify-content: space-between;
   color: #484848;
+}
+
+.amenities {
+  margin-top: 20px;
+}
+.amenity {
+  display: inline-block;
+  width: 50%;
+  height: 20px;
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin: 10px 0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.am {
+  vertical-align: top;
+  display: inline-block;
+  line-height: 20px;
 }
 .devider {
   margin: 20px 0;
@@ -115,24 +140,31 @@
 .date {
   margin-top: 10px;
 }
-.person {
-  margin-top: 10px;
+.reserveBtn {
+  border-radius: 5px;
+  margin: 20px 0 24px 0;
+  display: block;
+  background-color: rgb(255, 90, 95);
+  border: none;
+  width: 100%;
+  height: 4rem;
+  color: #ffffff;
 }
+.notice {
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.capicity {
+  color: #484848;
+}
+
 .checkInInput,
 .checkOutInput {
   width: 45%;
   height: 4rem;
   padding: 10px;
-}
-.personInput {
-  width: 100%;
-  height: 4rem;
-  padding: 10px;
-  border: #ebebeb 1px solid;
-  border-radius: 5px;
-  background: transparent;
-  display: flex;
-  justify-content: space-between;
 }
 .arrow {
   height: 24px;
@@ -161,6 +193,7 @@
   border-left: none;
   border-radius: 0 5px 5px 0;
 }
+
 .optionBox {
   display: none;
 }
@@ -226,11 +259,45 @@
   display: flex;
 }
 
-.result {
-  margin: 0 10px;
-  font-size: 2rem;
+.calender {
+  position: absolute;
 }
 
 .calender {
   position: absolute;
+}
+//아이콘 모음
+.tv .wireless .kitchen .hair .park .laptop .dryer .washer {
+  height: 20px;
+  width: 20px;
+  fill: currentcolor;
+}
+//편의시설 모달
+.modalWrapper {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  padding: 20px;
+}
+.amenityModal {
+  padding: 30px;
+  width: 40%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  height: 1000px;
+  overflow: scroll;
+}
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cross {
+  width: 20px;
+  height: 20px;
 }

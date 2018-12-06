@@ -1,0 +1,67 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  background-color: rgba(100, 100, 100, 0.6);
+}
+.wrapper {
+  background: #ffffff;
+  width: 50%;
+  height: 50%;
+  padding: 20px;
+  margin: 15% auto;
+}
+.crossImg {
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: rgb(118, 118, 118);
+}
+.facebookBtn,
+.googleBtn {
+  display: block;
+  width: 100%;
+  height: 20%;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-size: 1.7rem;
+}
+.facebookBtn {
+  background-color: rgb(69, 104, 178);
+  color: #ffffff;
+}
+.googleBtn {
+  border: 2px solid #181818;
+}
+.googleLogo {
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  margin-left: 10px;
+}
+.facebookLogo {
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  margin-left: 10px;
+  fill: #ffffff;
+}
+.a {
+  display: inline-block;
+  margin-left: 10px;
+}
+.line {
+  border: 1px solid #aaaaaa;
+  margin-top: 40px;
+}
+.login {
+  padding-top: 10px;
+  text-align: center;
+}
+.login p {
+  display: inline-block;
+  padding-right: 10px;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RoomList from '../containers/RoomList';
+import SubSearchForm from '../containers/SubSearchForm';
 import { withSearch } from '../contexts/SearchContext';
 
 class ListPage extends Component {
@@ -13,7 +14,8 @@ class ListPage extends Component {
   render() {
     const { theme } = this.state;
     return (
-      <section key={this.props.key}>
+      <section>
+        <SubSearchForm />
         <RoomList theme={theme[0]} />
         <RoomList />
       </section>

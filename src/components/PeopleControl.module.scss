@@ -1,0 +1,118 @@
+// .person {
+//   margin-top: 10px;
+// }
+
+.personInputWrapper {
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.personFilterBox.selected {
+  position: relative;
+  z-index: 100;
+}
+
+.personInput {
+  width: 100%;
+  height: 5rem;
+  padding: 10px;
+  border: #ebebeb 1px solid;
+  border-radius: 5px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  outline: 0;
+  cursor: pointer;
+}
+
+.peopleItemButton {
+  font-size: 300;
+}
+
+.optionBox {
+  display: none;
+}
+.optionBox.active {
+  display: inline-block;
+  position: absolute;
+  z-index: 100;
+  background-color: #fff;
+  border: #ebebeb 1px solid;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.optionBox.active.list {
+  width: 400px;
+  top: 45px;
+  left: 0;
+}
+
+.optionType {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.capicity {
+  color: #484848;
+}
+.arrowDown {
+  height: 16px;
+  width: 16px;
+  display: inline;
+  fill: currentcolor;
+}
+.minus,
+.plus {
+  border: rgb(0, 132, 137) solid 1px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: transparent;
+}
+.minusCompo,
+.plusCompo {
+  height: 1em;
+  width: 1em;
+  display: block;
+  fill: rgb(0, 132, 137);
+}
+.type {
+  display: inline-block;
+}
+
+.number {
+  display: flex;
+}
+
+.result {
+  margin: 0 10px;
+  width: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.deleteButton,
+.addButton {
+  line-height: 30px;
+  display: block;
+  margin-top: 20px;
+}
+
+.deleteButton {
+  float: left;
+}
+
+.addButton {
+  float: right;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}

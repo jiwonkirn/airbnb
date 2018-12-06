@@ -1,0 +1,51 @@
+@import '../css/module.scss';
+
+.container {
+  width: 1024px;
+  margin: 18px auto 0;
+  display: flex;
+  justify-content: space-between;
+
+  .bodyContainer {
+    width: 70%;
+
+    .title {
+      font-size: 138px;
+      line-height: 1.15;
+      color: #444;
+    }
+
+    .body {
+      margin-top: 20px;
+      font-size: 32px;
+      letter-spacing: -0.015;
+      color: #555;
+    }
+
+    .errorCode {
+      display: inline-block;
+      margin: 15px 0;
+      color: #777;
+      text-indent: 5px;
+    }
+
+    .otherLinksHeading {
+      margin-bottom: 5px;
+    }
+
+    .otherLinksHeading,
+    .otherLinksList {
+      margin-left: 5px;
+      font-weight: 300;
+
+      .otherLinkItem {
+        font-weight: 300;
+        color: $sub-color;
+      }
+    }
+  }
+  .notFoundImg {
+    display: block;
+    margin-right: 10px;
+  }
+}
