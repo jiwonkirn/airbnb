@@ -166,7 +166,9 @@ class DetailView extends Component {
                   ) : null
                 )}
               </ul>
-              <p onClick={() => this.handleModal()}>31개의 편의시설 더보기</p>
+              <p onClick={() => this.handleModal()}>
+                {amenities.length}개의 편의시설 더보기
+              </p>
             </div>
           </div>
           {this.state.modalclick ? (
