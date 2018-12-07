@@ -5,6 +5,8 @@ import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
+import SavedPage from './pages/SavedPage';
+import SavedDetailPage from './pages/SavedDetailPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
 import UserProvider from './contexts/UserContext';
@@ -23,6 +25,12 @@ class App extends Component {
                   <Route path="/search-list" component={ListPage} />
                   <Route path="/room-detail/:roomId" component={DetailPage} />
                   <Route path="/login" component={LoginPage} />
+                  <Route
+                    exact
+                    path="/saved/:city"
+                    component={SavedDetailPage}
+                  />
+                  <Route exact path="/saved" component={SavedPage} />
                   <Route exact path="/:otherPath" component={NotFoundPage} />
                   <Route exact path="/" component={HomePage} />
                 </Switch>

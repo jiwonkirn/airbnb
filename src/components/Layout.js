@@ -115,7 +115,7 @@ class Layout extends React.PureComponent {
               <p className={style.saved}>
                 <span onClick={this.handleSavedModal}>저장목록</span>
                 {this.state.savedModal && (
-                  <Saved onSavedModal={this.handleSavedModal} />
+                  <Saved onSavedModal={this.handleSavedModal} theme="header" />
                 )}
               </p>
             )}

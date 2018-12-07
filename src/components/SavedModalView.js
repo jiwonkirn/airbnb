@@ -19,7 +19,7 @@ class SavedModal extends Component {
             (item, index) =>
               index <= 2 && (
                 <li className={savedItem}>
-                  <Link to="/" className={style.linkBody}>
+                  <Link to="/saved" className={style.linkBody}>
                     <h3 className={style.itemTitle}>{item.room_name}</h3>
                     <span className={style.itemCity}>{item.city}</span>
                     <span className={style.itemPrice}>₩{item.price}</span>

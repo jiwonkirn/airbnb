@@ -4,6 +4,7 @@ import style from './RoomList.module.scss';
 import { Link, withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import withLoading from '../hoc/RoomListLoading';
+import RoomListItemView from './RoomListItemView';
 
 class ListView extends Component {
   render() {
@@ -27,21 +28,7 @@ class ListView extends Component {
                   : '')
               }
             >
-              <img
-                className={style.roomImg}
-                src={room.roominfo.room_photo_1}
-                alt={room.room_name}
-              />
-              <p className={style.roomLocation}>{room.city}</p>
-              <p className={style.roomTitle}>{room.room_name}</p>
-              <p className={style.roomPrice}>{room.price}원</p>
-              <div className={style.starWrapper}>
-                <Star className={style.star} />
-                <Star className={style.star} />
-                <Star className={style.star} />
-                <Star className={style.star} />
-                <Star className={style.star} />
-              </div>
+              <RoomListItemView room={room} />
             </Link>
           ))}
         </div>
