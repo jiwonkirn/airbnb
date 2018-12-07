@@ -1,15 +1,20 @@
 //전체 컨테이너 레이아웃
 .ruleContainer {
-  width: 60%;
-  border: 1px solid red;
+  width: 65%;
   display: inline-block;
   padding: 20px;
 }
 .infoContainer {
-  width: 40%;
+  width: 35%;
   height: 500px;
   display: inline-block;
   vertical-align: top;
+}
+.infoBox {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #f2f2f2;
+  padding: 20px;
 }
 //숙소규칙 컨텐츠
 .ruleTitle {
@@ -118,4 +123,26 @@
   color: #ffffff;
   font-size: 1.6rem;
   margin-top: 80px;
+}
+// 숙소 정보
+.mainInfo {
+  display: flex;
+  border: 1px solid blue;
+}
+.roomName {
+  width: 70%;
+}
+.mainImgWrapper {
+  width: 30%;
+  border: 1px solid blue;
+}
+.mainImg {
+  width: 100%;
+}
+.starBox {
+  display: flex;
+  border: 1px solid blue;
+}
+.star {
+  fill: #008489;
 }

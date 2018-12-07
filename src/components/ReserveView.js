@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './ReserveView.module.scss';
 import { ReactComponent as SelfCheckin } from '../svg/selfcheckin.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import { ReactComponent as Star } from '../svg/star.svg';
 export default class extends Component {
   constructor(props) {
     super(props);
