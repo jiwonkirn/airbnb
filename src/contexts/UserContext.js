@@ -15,6 +15,7 @@ export default class UserProvider extends Component {
       user_id: null,
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
+      removeGoogleProfile: this.removeGoogleProfile.bind(this),
       // logout: this.logout.bind(this),
       logined: false, // 로그인 여부
     };
@@ -87,8 +88,13 @@ export default class UserProvider extends Component {
       user_id,
     });
     localStorage.setItem('token', res2.data.token);
+    this.refreshUser();
   }
 
+  removeGoogleProfile() {
+    localStorage.removeItem('token');
+    this.refreshUser();
+  }
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }
