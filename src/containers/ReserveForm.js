@@ -48,6 +48,7 @@ class ReserveForm extends Component {
     });
   }
   render() {
+    const { roomId } = this.props;
     return (
       <ReserveFormView
         price={this.props.price}
@@ -56,6 +57,7 @@ class ReserveForm extends Component {
         onChangeCheckin={checkin => this.handleChangeCheckin(checkin)}
         onChangeCheckout={checkout => this.handleChangeCheckout(checkout)}
         onBook={() => this.handleBook()}
+        roomId={roomId}
       />
     );
   }

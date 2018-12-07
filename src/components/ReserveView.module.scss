@@ -1,0 +1,93 @@
+//전체 컨테이너 레이아웃
+.ruleContainer {
+  width: 60%;
+  border: 1px solid red;
+  display: inline-block;
+  padding: 20px;
+}
+.infoContainer {
+  width: 40%;
+  height: 500px;
+  display: inline-block;
+  vertical-align: top;
+}
+//숙소규칙 컨텐츠
+.ruleTitle {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-top: 20px;
+}
+.dates {
+  margin-top: 40px;
+}
+.date {
+  width: 50%;
+  display: inline-block;
+}
+.exactDate {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f2f2f2;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 25px;
+  border-radius: 5px;
+  padding: 2px;
+  margin-right: 20px;
+}
+.checkout,
+.checkin {
+  display: inline-block;
+  line-height: 25px;
+}
+//셀프체크인
+.selfCheckin {
+  margin-top: 20px;
+}
+.selfIcon {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  fill: rgb(255, 180, 0);
+}
+.self {
+  display: inline-block;
+}
+.devider {
+  border: 1px solid #f2f2f2;
+  margin: 20px 0;
+}
+//주의사항
+.noticeList {
+  margin-top: 40px;
+}
+.noticeIcon {
+  width: 50px;
+  height: 50px;
+  border: solid #f2f2f2 1px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 20px;
+}
+.noticeText {
+  line-height: 50px;
+  display: inline-block;
+  vertical-align: top;
+}
+.morebtn {
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  display: flex;
+  padding: 0;
+}
+.more {
+  color: #008489;
+}
+.arrowDown {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 10px;
+  fill: #008489;
+}

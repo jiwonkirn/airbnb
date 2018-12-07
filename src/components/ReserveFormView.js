@@ -7,6 +7,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
+import { Link, withRouter } from 'react-router-dom';
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -55,6 +56,7 @@ class ReserveFormView extends React.PureComponent {
       price,
       children,
       adult,
+      roomId,
     } = this.props;
 
     console.log(check_out_date, check_in_date);
@@ -100,9 +102,11 @@ class ReserveFormView extends React.PureComponent {
             />
           </div>
           <PeopleControlView />
-          <button className={style.reserveBtn} onClick={onBook}>
-            예약요청
-          </button>
+          <Link to={`/reserve/${roomId}`}>
+            <button className={style.reserveBtn} onClick={onBook}>
+              예약요청
+            </button>
+          </Link>
           <div className={style.notice}>
             <small>예약 확정 전에는 요금이 청구되지 않습니다</small>
           </div>
