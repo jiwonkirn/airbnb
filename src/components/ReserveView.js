@@ -15,6 +15,9 @@ export default class extends Component {
       moreclick: this.state.moreclick === true ? false : true,
     });
   }
+  handleOption(e) {
+    e.preventDefault();
+  }
   render() {
     const {
       room_name,
@@ -103,6 +106,36 @@ export default class extends Component {
               <ArrowDown className={style.arrowDown} />
             </button>
           )}
+          <h2 className={style.optionTitle}>
+            Kim님의 숙소를 예약하려면 다음 옵션 중에서 선택하세요.
+          </h2>
+          <ul>
+            <li className={style.optionItem}>
+              <input
+                className={style.select}
+                type="radio"
+                onClick={e => this.handleOption(e)}
+              />{' '}
+              <p className={style.optionText}>
+                신분증 인증은 예약을 확정할 수 있는 가장 빠른 방법입니다. 신분증
+                정보는 누구에게도 공개되지 않으며, 만료 전까지는 같은 절차를
+                반복하실 필요가 없습니다.
+              </p>
+            </li>
+            <li className={style.optionItem}>
+              <input
+                className={style.select}
+                type="radio"
+                onClick={e => this.handleOption(e)}
+              />{' '}
+              <p className={style.optionText}>
+                신분증을 인증할 필요는 없지만, 예약 확인에 최대 24시간이 소요될
+                수 있습니다. 이 시간 동안 다른 사람이 해당 숙소를 예약할 수도
+                있어요.
+              </p>
+            </li>
+          </ul>
+          <button className={style.continueBtn}>동의 및 계속하기</button>
         </div>
         <div className={style.infoContainer}>임시</div>
       </div>

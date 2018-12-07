@@ -91,3 +91,31 @@
   margin-left: 10px;
   fill: #008489;
 }
+//옵션
+.optionTitle {
+  margin-top: 60px;
+}
+.optionItem {
+  padding-top: 20px;
+  display: flex;
+}
+.optionText {
+  width: 70%;
+}
+.select {
+  width: 20px;
+  height: 20px;
+  margin: 10px 20px 0 0;
+  background: #ffffff;
+}
+//동의 버튼
+.continueBtn {
+  width: 180px;
+  height: 50px;
+  background-color: #008489;
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-top: 80px;
+}
