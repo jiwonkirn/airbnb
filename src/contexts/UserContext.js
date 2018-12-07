@@ -18,9 +18,6 @@ export default class UserProvider extends Component {
       removeGoogleProfile: this.removeGoogleProfile.bind(this),
       // logout: this.logout.bind(this),
       logined: false, // 로그인 여부
-      // 저장목록 관련
-      savedRooms: [],
-      handleSaveRoom: this.handleSaveRoom.bind(this),
     };
   }
 
@@ -28,33 +25,19 @@ export default class UserProvider extends Component {
   // 저장된 방 정보를 불러온다.
   async componentDidMount() {
     await this.refreshUser();
-    await this.loadSavedRooms();
     //서버에서 사용자의 id와 username정보를 받아와서 상태를 바꿔주는 코드
   }
 
-  // 저장된 방 정보를 받아오는 메소드
-  loadSavedRooms = async () => {
-    const { data } = await api.get('/api/user/saved/');
-    this.setState({
-      savedRooms: data,
-    });
-  };
-
-  // 방을 저장하거나 저장 취소하는 메소드
-  handleSaveRoom = async roomId => {
-    const room_id = parseInt(roomId);
-    if (!this.state.savedRooms.find(room => room.pk == roomId)) {
-      await api.post('/api/user/save_room/', {
-        room_id,
+  // 토큰이 있으면 로그인 된 상태로 여긴다.
+  refreshUser = async () => {
+    if (localStorage.getItem('token')) {
+      this.setState({
+        logined: true,
       });
-      alert('숙소 저장에 성공했습니다.');
-      await this.loadSavedRooms();
     } else {
-      await api.delete('/api/user/save_room/', {
-        data: { room_id: room_id },
+      this.setState({
+        logined: false,
       });
-      alert('저장목록에서 삭제되었습니다.');
-      await this.loadSavedRooms();
     }
   };
 
@@ -87,19 +70,6 @@ export default class UserProvider extends Component {
       }
     }
   }
-
-  // 토큰이 있으면 로그인 된 상태로 여긴다.
-  refreshUser = () => {
-    if (localStorage.getItem('token')) {
-      this.setState({
-        logined: true,
-      });
-    } else {
-      this.setState({
-        logined: false,
-      });
-    }
-  };
 
   // 구글 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setGoogleProfile(res) {

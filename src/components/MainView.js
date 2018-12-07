@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
-import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import PeopleControlView from './PeopleControlView';
+import { withUser } from '../contexts/UserContext';
 
 class MainView extends Component {
   constructor(props) {
@@ -148,4 +148,4 @@ class MainView extends Component {
   }
 }
 
-export default withSearch(MainView);
+export default withUser(withSearch(MainView));

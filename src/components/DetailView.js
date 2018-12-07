@@ -84,6 +84,7 @@ class DetailView extends React.PureComponent {
       amenities,
       public_address,
       price,
+      ...rest
     } = this.props;
     console.log(this.state.sticky);
 
@@ -134,7 +135,7 @@ class DetailView extends React.PureComponent {
               alt={roominfo.room_photo_5}
             />
           </div>
-          <SaveButton roomId={roomId} />
+          <SaveButton roomId={roomId} {...rest} />
         </div>
 
         <div className={style.contentsWrapper}>
