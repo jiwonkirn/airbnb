@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Main from '../containers/Main';
 import RecommandedCity from '../containers/RecommandedCity';
 import RoomList from '../containers/RoomList';
+import Saved from '../containers/Saved';
 
 export default class Home extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class Home extends Component {
         <Main />
         <RecommandedCity />
         <RoomList />
+        <Saved />
       </section>
     );
   }

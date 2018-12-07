@@ -6,14 +6,13 @@ import classNames from 'classnames';
 
 class SaveButton extends Component {
   render() {
-    const { roomId } = this.props;
-    const saved = this.props.savedRooms.some(item => item.pk == roomId);
+    const { roomId, saved } = this.props;
     const savedButton = classNames(style.saveIcon, {
       [style.savedIcon]: saved,
     });
     return (
       <button
-        onClick={() => this.props.handleSaveRoom(roomId)}
+        onClick={() => this.props.onHandleSaveRoom(roomId)}
         className={style.saveButton}
       >
         <Hart className={savedButton} />

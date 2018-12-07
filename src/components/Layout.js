@@ -6,7 +6,7 @@ import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
 import HelpdestView from './HelpdeskView';
-import SavedModal from './SavedModal';
+import Saved from '../containers/Saved';
 import classNames from 'classnames';
 
 class Layout extends React.Component {
@@ -25,7 +25,7 @@ class Layout extends React.Component {
     this.setState(prev => {
       return { savedModal: !prev.savedModal };
     });
-    console.log(this.state.savedModal);
+    // console.log(this.state.savedModal);
   };
 
   handleSubmit(e) {
@@ -71,6 +71,7 @@ class Layout extends React.Component {
     });
   }
   render() {
+    console.log(this.state.savedModal);
     return (
       <div>
         {this.state.loginbtnclick ? (
@@ -112,7 +113,9 @@ class Layout extends React.Component {
             {this.props.logined && (
               <p className={style.saved}>
                 <span onClick={this.handleSavedModal}>저장목록</span>
-                {this.state.savedModal && <SavedModal />}
+                {this.state.savedModal && (
+                  <Saved onSavedModal={this.handleSavedModal} />
+                )}
               </p>
             )}
             {this.props.logined ? (
