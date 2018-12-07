@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import style from './HelpdeskView.module.scss';
+import style from './HelpdeskDetail.module.scss';
 import { ReactComponent as Cross } from '../svg/cross.svg';
-import { ReactComponent as Magnifyinga } from '../svg/magnifying_little.svg';
-import { ReactComponent as ArrowRight } from '../svg/arrowRight.svg';
-import HelpdeskDetail from './HelpdeskDetail';
+import { ReactComponent as ArrowLeft } from '../svg/arrowLeft.svg';
 
-export default class HelpdestView extends Component {
+export default class HelpdeskDetail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selected: false,
-      listselected: false,
       curruntpageID: null,
       data: [
         {
@@ -54,101 +50,24 @@ export default class HelpdestView extends Component {
     };
   }
 
-  handleFocus(e) {
-    this.setState({
-      selected: true,
-    });
-  }
-
-  handleBlur(e) {
-    this.setState({
-      selected: false,
-    });
-  }
-
-  handleHelpDetailBtn(e, id) {
-    this.setState({
-      listselected: true,
-      page: id,
-    });
-  }
-
-  handleHelpDetailModalRemove(e) {
-    e.preventDefault();
-    this.setState({
-      listselected: false,
-    });
-  }
-
   render() {
     const { data } = this.state;
+    const { page } = this.props;
     return (
-      <div className={style.HelpdeskView}>
-        <div className={style.titlebox}>
-          <h1 className={style.helptitle}>에어비앤비 도움말</h1>
-          <button
-            className={style.closeBtn}
-            onClick={e => this.props.onModalRemove(e)}
-          >
-            <Cross clssName={style.crossImg} />
-          </button>
-        </div>
-        <div className={style.helpdeskForm}>
-          {this.state.listselected ? (
-            <HelpdeskDetail
-              page={this.state.page}
-              onModalRemove={e => this.handleHelpDetailModalRemove(e)}
-            />
-          ) : null}
-          <div className={style.helpdesksearbox}>
-            <div
-              className={style.helpsearchbox}
-              style={
-                this.state.selected === true
-                  ? { borderColor: '#008489' }
-                  : { borderColor: '#ebebeb' }
-              }
-              onFocus={e => this.handleFocus(e)}
-              onBlur={e => this.handleBlur(e)}
-            >
-              <Magnifyinga
-                className={style.magnifying}
-                style={{ width: '16px', height: '16px' }}
-              />
-              <input
-                type="search"
-                className={style.helpsearch}
-                required
-                placeholder="질문을 입력하거나 키워드로 검색하세요"
-              />
-            </div>
-          </div>
-          <label className={style.recommendarticletitle}>추천도움말</label>
-          <div className={style.helpsectionWrapper}>
-            <section className={style.helpsection}>
-              {data.map((article, id) => {
-                return id <= 6 ? (
-                  <ul className={style.help}>
-                    <li
-                      className={style.list}
-                      onClick={e => this.handleHelpDetailBtn(e, id)}
-                    >
-                      <div className={style.title}>{article.title}</div>
-                      <ArrowRight
-                        className={style.arrowright}
-                        style={{ width: '14px', height: '14px' }}
-                      />
-                    </li>
-                  </ul>
-                ) : null;
-              })}
-            </section>
-          </div>
-        </div>
-        <div className={style.btnArea}>
-          <button className={style.helpmore}>도움말 센터로 가기</button>
-        </div>
-      </div>
+      <section className={style.helpsection}>
+        <button
+          className={style.leftBtn}
+          onClick={e => this.props.onModalRemove(e)}
+        >
+          <ArrowLeft clssName={style.crossImg} />
+        </button>
+        <ul className={style.help}>
+          <li className={style.list}>
+            <div className={style.title}>{data[page].title}</div>
+            <div className={style.body}>{data[page].body}</div>
+          </li>
+        </ul>
+      </section>
     );
   }
 }

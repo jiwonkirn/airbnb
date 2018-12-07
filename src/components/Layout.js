@@ -5,10 +5,10 @@ import { ReactComponent as Magnifying } from '../svg/magnifying.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
-import HelpdestView from './HelpdeskView';
 import SavedModal from './SavedModal';
 import { GoogleLogout } from 'react-google-login';
 import classNames from 'classnames';
+import HelpdeskView from './HelpdeskView';
 
 class Layout extends React.PureComponent {
   constructor(props) {
@@ -78,7 +78,7 @@ class Layout extends React.PureComponent {
           <Login onModalRemove={e => this.handleModalRemove(e)} />
         ) : null}
         {this.state.helpbtnclick ? (
-          <HelpdestView onModalRemove={e => this.handleHelpModalRemove(e)} />
+          <HelpdeskView onModalRemove={e => this.handleHelpModalRemove(e)} />
         ) : null}
         <header key={this.props.cityName} className={style.header}>
           <Logo className={style.logo} onClick={this.props.handleLinkToHome} />
