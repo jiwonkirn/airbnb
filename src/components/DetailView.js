@@ -313,7 +313,9 @@ class DetailView extends React.PureComponent {
             <div className={style.map} />
             <p>정확한 위치 정보는 예약이 확정된 후 알려드립니다.</p>
           </div>
-          <ReserveForm price={this.props.price} roomId={roomId} />
+          <div className={style.wrapper}>
+            <ReserveForm price={this.props.price} roomId={roomId} />
+          </div>
         </div>
       </div>
     );
