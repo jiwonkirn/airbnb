@@ -119,18 +119,25 @@
 }
 
 // 예약폼
-.formWrapper {
+.wrapper {
+  border: 1px solid blue;
   display: inline-block;
   width: 30%;
+  vertical-align: top;
   margin-left: 2%;
+  position: relative;
+}
+.formWrapper {
+  display: inline-block;
+  width: 100%;
   vertical-align: top;
 }
 .formWrapper.sticky {
   position: fixed;
   top: 100px;
   display: inline-block;
-  width: 30%;
-  margin-left: 2%;
+  width: 25%;
+  margin-left: 1%;
   vertical-align: top;
 }
 .reservationFrom {

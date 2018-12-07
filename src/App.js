@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
 import UserProvider from './contexts/UserContext';
 import { RouterSearchProvider } from './contexts/SearchContext';
+import ReservePage from './pages/ReservePage';
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
                     component={SavedDetailPage}
                   />
                   <Route exact path="/saved" component={SavedPage} />
+                  <Route path="/reserve/:roomId" component={ReservePage} />
                   <Route exact path="/:otherPath" component={NotFoundPage} />
                   <Route exact path="/" component={HomePage} />
                 </Switch>
