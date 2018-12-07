@@ -7,9 +7,10 @@ import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
 import HelpdestView from './HelpdeskView';
 import SavedModal from './SavedModal';
+import { GoogleLogout } from 'react-google-login';
 import classNames from 'classnames';
 
-class Layout extends React.Component {
+class Layout extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -116,7 +117,12 @@ class Layout extends React.Component {
               </p>
             )}
             {this.props.logined ? (
-              <button className={style.navbar_login}>로그아웃</button>
+              <button
+                onClick={() => this.props.removeGoogleProfile()}
+                className={style.navbar_login}
+              >
+                로그아웃
+              </button>
             ) : (
               <button
                 onClick={e => this.handleLoginBtn(e)}
