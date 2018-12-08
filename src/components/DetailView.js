@@ -84,9 +84,9 @@ class DetailView extends React.PureComponent {
       amenities,
       public_address,
       price,
+      room_photo,
       ...rest
     } = this.props;
-    console.log(this.state.sticky);
 
     return (
       <div>
@@ -105,35 +105,23 @@ class DetailView extends React.PureComponent {
         <div className={style.imgWrapper}>
           <div className={style.responsive1}>
             <img
-              src={roominfo.room_photo_1}
+              src={room_photo[0]}
               className={style.mainImg}
-              alt={roominfo.room_photo_1}
+              alt={room_photo[0]}
             />
           </div>
           <div className={style.subWrapper}>
-            <img
-              src={roominfo.room_photo_2}
-              className={style.subImg}
-              alt={roominfo.room_photo_2}
-            />
-
-            <img
-              src={roominfo.room_photo_3}
-              className={style.subImg}
-              alt={roominfo.room_photo_3}
-            />
-
-            <img
-              src={roominfo.room_photo_4}
-              className={style.subImg}
-              alt={roominfo.room_photo_4}
-            />
-
-            <img
-              src={roominfo.room_photo_5}
-              className={style.subImg}
-              alt={roominfo.room_photo_5}
-            />
+            {room_photo.map(
+              (item, index) =>
+                index > 0 && (
+                  <img
+                    src={item}
+                    className={style.subImg}
+                    alt={item}
+                    key={index}
+                  />
+                )
+            )}
           </div>
           <SaveButton roomId={roomId} {...rest} />
         </div>

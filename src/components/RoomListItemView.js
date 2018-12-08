@@ -9,7 +9,7 @@ export default class RoomListItemView extends Component {
       <>
         <img
           className={style.roomImg}
-          src={room.room_photo[1]}
+          src={room.room_photo[0]}
           alt={room.room_name}
         />
         <p className={style.roomLocation}>{room.city}</p>
