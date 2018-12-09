@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "loadjs": "^3.5.4",
     "lodash.throttle": "^4.1.1",
     "moment": "^2.22.2",
     "node-sass": "^4.10.0",

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './SavedDetail.module.scss';
 import { withRouter, Link } from 'react-router-dom';
 import RoomListItemView from './RoomListItemView';
+import DaumMap from './DaumMap';
 
 class SavedDetailView extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class SavedDetailView extends Component {
             </ul>
           </div>
         </section>
-        <section className={style.mapContainer} />
+        <DaumMap {...this.state} />
       </>
     );
   }
