@@ -19,7 +19,7 @@ import SaveButton from './SaveButton';
 
 let lastScrollY = window.scrollY;
 
-class DetailView extends React.PureComponent {
+class DetailView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -56,16 +56,28 @@ class DetailView extends React.PureComponent {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
-    let lastScrollY = window.scrollY;
-    if (lastScrollY > 555) {
+    // scroll 이벤트가 발생할 때마다 setState
+    // let lastScrollY = window.scrollY;
+    // if (lastScrollY > 555) {
+    //   this.setState({
+    //     sticky: true,
+    //   });
+    // } else if (lastScrollY < 555) {
+    //   this.setState({
+    //     sticky: false,
+    //   });
+    // }
+    const currentScroll = window.scrollY;
+    if (currentScroll > 555 && this.lastScrollY <= 555) {
       this.setState({
         sticky: true,
       });
-    } else if (lastScrollY < 555) {
+    } else if (this.lastScrollY > 555 && currentScroll <= 555) {
       this.setState({
         sticky: false,
       });
     }
+    this.lastScrollY = currentScroll;
   };
 
   render() {
