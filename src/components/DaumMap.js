@@ -55,8 +55,8 @@ export default class DaumMap extends Component {
       };
       const map = new daum.maps.Map(container, options);
       for (const item of list) {
-        var iwPosition = new daum.maps.LatLng(item.lat, item.lng); //인포윈도우 표시 위치입니다
-        new daum.maps.CustomOverlay({
+        const iwPosition = new daum.maps.LatLng(item.lat, item.lng); //인포윈도우 표시 위치입니다
+        const infoWindow = new daum.maps.CustomOverlay({
           map: map,
           clickable: true,
           content: `<div class="infoMarker"}><span>₩${item.price}</span></div>`,

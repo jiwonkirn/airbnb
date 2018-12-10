@@ -84,7 +84,7 @@ class DetailView extends React.PureComponent {
       amenities,
       public_address,
       price,
-      room_photo,
+      room_photos,
       ...rest
     } = this.props;
 
@@ -105,19 +105,19 @@ class DetailView extends React.PureComponent {
         <div className={style.imgWrapper}>
           <div className={style.responsive1}>
             <img
-              src={room_photo[0]}
+              src={room_photos[0].room_photo}
               className={style.mainImg}
-              alt={room_photo[0]}
+              alt={room_photos[0].room_photo}
             />
           </div>
           <div className={style.subWrapper}>
-            {room_photo.map(
+            {room_photos.map(
               (item, index) =>
                 index > 0 && (
                   <img
-                    src={item}
+                    src={item.room_photo}
                     className={style.subImg}
-                    alt={item}
+                    alt={item.room_photo}
                     key={index}
                   />
                 )
