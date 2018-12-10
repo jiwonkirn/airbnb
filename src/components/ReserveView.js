@@ -138,7 +138,15 @@ export default class extends Component {
           </ul>
           <button className={style.continueBtn}>동의 및 계속하기</button>
         </div>
-        <div className={style.infoContainer}>임시</div>
+        <div className={style.infoContainer}>
+          <div className={style.infoBox}>
+            <div className={style.mainInfo}>
+              <div className={style.textInfo}>
+                <p>{room_name}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
