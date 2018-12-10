@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Detail from '../containers/Detail';
+import { withUser } from '../contexts/UserContext';
 
-export default class DetailPage extends Component {
+class DetailPage extends Component {
   render() {
     const { match } = this.props;
     const roomId = match.params.roomId;
-    return <Detail roomId={roomId} />;
+    return <Detail key={this.props.logined} roomId={roomId} />;
   }
 }
+
+export default withUser(DetailPage);
