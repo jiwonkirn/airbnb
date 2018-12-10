@@ -1,0 +1,35 @@
+//전체 레이아웃
+.guestInfoContainer {
+  display: inline-block;
+  width: 66%;
+}
+.guestTitle {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-top: 20px;
+}
+.subTitle {
+  margin: 20px 0;
+}
+.guestOption {
+  width: 50%;
+}
+.greeting {
+  margin: 10px 0;
+}
+
+.textArea {
+  width: 80%;
+  margin: 20px 0;
+  display: block;
+}
+.continueBtn {
+  width: 120px;
+  height: 50px;
+  background-color: #008489;
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-top: 20px;
+}

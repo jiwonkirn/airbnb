@@ -6,6 +6,7 @@ import withCommonLoading from '../hoc/CommonLoading';
 import { withSearch } from '../contexts/SearchContext';
 import RoomInfoView from './RoomInfoView';
 import ReserveNav from './ReserveNav';
+import { Link } from 'react-router-dom';
 class ReserveView extends Component {
   constructor(props) {
     super(props);
@@ -23,28 +24,7 @@ class ReserveView extends Component {
     e.preventDefault();
   }
   render() {
-    const {
-      room_name,
-      room_type,
-      city,
-      room_and_property_type,
-      person_capacity,
-      bedrooms,
-      beds,
-      bathrooms,
-      roominfo,
-      hostimages,
-      roomId,
-      amenities,
-      public_address,
-      notices,
-      room_photos,
-      adult,
-      children,
-      checkIn,
-      checkOut,
-      price,
-    } = this.props;
+    const { public_address, notices, room_photos, roomId } = this.props;
     console.log(room_photos);
     return (
       <div>
@@ -147,7 +127,9 @@ class ReserveView extends Component {
               </p>
             </li>
           </ul>
-          <button className={style.continueBtn}>동의 및 계속하기</button>
+          <Link to={`/guest-info/${roomId}`}>
+            <button className={style.continueBtn}>동의 및 계속하기</button>
+          </Link>
         </div>
         <RoomInfoView {...this.props} />
       </div>

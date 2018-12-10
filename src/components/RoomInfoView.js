@@ -6,6 +6,7 @@ import { ReactComponent as Calender } from '../svg/calender.svg';
 import { ReactComponent as Arrow } from '../svg/arrow.svg';
 import { ReactComponent as QuestionMark } from '../svg/questionMark.svg';
 import { withSearch } from '../contexts/SearchContext';
+import withCommonLoading from '../hoc/CommonLoading';
 
 class RoomInfoView extends Component {
   render() {
@@ -96,4 +97,4 @@ class RoomInfoView extends Component {
     );
   }
 }
-export default withSearch(RoomInfoView);
+export default withCommonLoading(withSearch(RoomInfoView));
