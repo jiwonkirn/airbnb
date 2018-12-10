@@ -25,7 +25,7 @@ export default class SavedView extends Component {
                     className={style.itemContainer}
                     style={{
                       backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 30%), url(${
-                        item[1][0].room_photo[0]
+                        item[1][0].room_photos[0].room_photo
                       })`,
                     }}
                   >

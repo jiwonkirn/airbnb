@@ -25,7 +25,7 @@ class SavedModal extends Component {
                     <span className={style.itemPrice}>₩{item.price}</span>
                     <img
                       className={style.itemImage}
-                      src={item.room_photo[0]}
+                      src={item.room_photos[0].room_photo}
                       alt={item.room_name}
                     />
                   </Link>
