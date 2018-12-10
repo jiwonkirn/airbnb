@@ -142,7 +142,12 @@ export default class extends Component {
           <div className={style.infoBox}>
             <div className={style.mainInfo}>
               <div className={style.textInfo}>
-                <p>{room_name}</p>
+                <h2>{room_name}</h2>
+                <p>{public_address}</p>
+                <div className={style.starBox} />
+              </div>
+              <div className={style.mainImgWrapper}>
+                {/* <img src={room_photos[0].room_photo} alt="숙소사진" /> */}
               </div>
             </div>
           </div>
