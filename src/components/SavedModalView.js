@@ -3,6 +3,7 @@ import style from './SavedModal.module.scss';
 import { Link } from 'react-router-dom';
 import { withUser } from '../contexts/UserContext';
 import classNames from 'classnames';
+import withCommonLoading from '../hoc/CommonLoading';
 
 class SavedModal extends Component {
   render() {
@@ -12,7 +13,12 @@ class SavedModal extends Component {
       <section key={this.props.keyProp} className={style.savedModalContainer}>
         <div className={style.titleContainer}>
           <h2 className={style.title}>목록</h2>
-          <span className={style.linkToList}>닫기</span>
+          <span
+            className={style.linkToList}
+            onClick={() => this.props.onSavedModal()}
+          >
+            닫기
+          </span>
         </div>
         <ul className={style.savedList}>
           {savedRooms.map(

@@ -9,27 +9,7 @@ export default class DaumMap extends Component {
     this.state = {};
   }
 
-  async componentDidMount() {
-    // const { list } = this.props;
-    // console.log(list[0].lat);
-    // const lat =
-    //   list.reduce((acc, item) => acc + parseInt(item.lat), 0) / list.length;
-    // console.log(lat);
-    // await loadjs(
-    //   '//dapi.kakao.com/v2/maps/sdk.js?appkey=da639cf155de5cfa487552ed41060ff3&autoload=false',
-    //   async () => {
-    //     const { daum } = window;
-    //     daum.maps.load(() => {
-    //       const container = document.getElementById('map');
-    //       const options = {
-    //         center: new daum.maps.LatLng(33.450701, 126.570667),
-    //         level: 3,
-    //       };
-    //       const map = new daum.maps.Map(container, options);
-    //     });
-    //   }
-    // );
-  }
+  async componentDidMount() {}
 
   componentDidUpdate = async (prevProps, prevState) => {
     if (prevProps.list !== this.props.list) {
@@ -51,7 +31,7 @@ export default class DaumMap extends Component {
       const container = document.getElementById('map');
       const options = {
         center: new daum.maps.LatLng(lat, lng),
-        level: 4,
+        level: 5,
       };
       const map = new daum.maps.Map(container, options);
       for (const item of list) {

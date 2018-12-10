@@ -9,6 +9,7 @@ import Saved from '../containers/Saved';
 import { GoogleLogout } from 'react-google-login';
 import classNames from 'classnames';
 import HelpdeskView from './HelpdeskView';
+import { withRouter } from 'react-router-dom';
 
 class Layout extends React.PureComponent {
   constructor(props) {
@@ -22,11 +23,19 @@ class Layout extends React.PureComponent {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        savedModal: false,
+      });
+    }
+  }
+
   handleSavedModal = () => {
     this.setState(prev => {
       return { savedModal: !prev.savedModal };
     });
-    // console.log(this.state.savedModal);
+    console.log('haha');
   };
 
   handleSubmit(e) {
@@ -72,7 +81,7 @@ class Layout extends React.PureComponent {
     });
   }
   render() {
-    console.log(this.state.savedModal);
+    console.log('haha');
     return (
       <div>
         {this.state.loginbtnclick ? (
@@ -141,4 +150,4 @@ class Layout extends React.PureComponent {
   }
 }
 
-export default withSearch(withUser(Layout));
+export default withRouter(withSearch(withUser(Layout)));

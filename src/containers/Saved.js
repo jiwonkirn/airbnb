@@ -79,7 +79,13 @@ class Saved extends Component {
 
   render() {
     if (this.props.theme === 'header') {
-      return <SavedModalView key={this.props.logined} {...this.state} />;
+      return (
+        <SavedModalView
+          key={this.props.logined}
+          {...this.state}
+          onSavedModal={this.props.onSavedModal}
+        />
+      );
     } else if (this.props.match.path === '/saved/:city') {
       return <SavedDetailView key={this.props.logined} {...this.state} />;
     } else {

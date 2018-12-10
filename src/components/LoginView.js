@@ -39,7 +39,7 @@ class LoginView extends Component {
           <Cross className={style.crossImg} onClick={e => onModalRemove(e)} />
           <FacebookLogin
             appId="576870092752054"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture"
             callback={setProfile}
             render={renderProps => (

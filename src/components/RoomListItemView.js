@@ -7,10 +7,9 @@ export default class RoomListItemView extends Component {
     const { room } = this.props;
     return (
       <>
-        <img
+        <div
+          style={{ backgroundImage: `url(${room.room_photos[0].room_photo})` }}
           className={style.roomImg}
-          src={room.room_photos[0].room_photo}
-          alt={room.room_name}
         />
         <p className={style.roomLocation}>{room.city}</p>
         <p className={style.roomTitle}>{room.room_name}</p>
