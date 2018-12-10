@@ -127,23 +127,45 @@
 // 숙소 정보
 .mainInfo {
   display: flex;
-  border: 1px solid blue;
+  // border: 1px solid blue;
 }
 .textInfo {
   width: 70%;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 .mainImgWrapper {
   width: 30%;
-  border: 1px solid blue;
+  // border: 1px solid blue;
 }
 .mainImg {
   width: 100%;
 }
 .starBox {
   display: flex;
-  border: 1px solid blue;
+  // border: 1px solid blue;
 }
 .star {
   fill: #008489;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+.guestInfo {
+  display: flex;
+}
+.guest {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  fill: currentColor;
+}
+.iconWrapper {
+  display: inline-block;
+  margin-right: 10px;
+}
+.calender {
+  height: 20px;
+  width: 20px;
+  display: block;
+  fill: currentColor;
 }

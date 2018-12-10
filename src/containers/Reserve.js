@@ -25,6 +25,7 @@ export default class Reserve extends Component {
       roominfo: {},
       hostimages: {},
       loading: true,
+      room_photos: [],
       notices: [
         '어린이와 유아에게 적합함',
         '반려동물 동반 불가',
@@ -39,11 +40,14 @@ export default class Reserve extends Component {
     const { data: roomdetail } = await api.get(`/api/home/listings/${roomId}/`);
     this.setState({
       ...roomdetail,
+    });
+    console.log(roomdetail);
+    this.setState({
       loading: false,
     });
   }
 
   render() {
-    return <ReserveView {...this.state} />;
+    return <ReserveView {...this.state} roomId={this.props.roomId} />;
   }
 }
