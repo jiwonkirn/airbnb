@@ -15,38 +15,28 @@ class ReserveForm extends Component {
       room: this.props.roomId,
     };
   }
-  handleChangeCheckin(checkin) {
-    this.setState({
-      check_in_date: new Date(checkin._d)
-        .toLocaleString()
-        .split('. ')
-        .slice(0, 3)
-        .join('-'),
-    });
-  }
-  handleChangeCheckout(checkout) {
-    this.setState({
-      check_out_date: new Date(checkout._d)
-        .toLocaleString()
-        .split('. ')
-        .slice(0, 3)
-        .join('-'),
-    });
-  }
+
   async handleBook() {
-    const { check_out_date, check_in_date, num_guest, room } = this.state;
+    const { checkin: check_in_date, checkout: check_out_date } = this.props;
+    const { num_guest, room } = this.state;
     await api.post('/api/home/booking/', {
       check_out_date,
       check_in_date,
       num_guest,
       room,
     });
+
+    alert(
+      `체크인 날짜: ${check_in_date}, 체크아웃 날짜: ${check_out_date}, 게스트: ${num_guest}명, 방pk: ${room}`
+    );
   }
+
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
     });
   }
+
   render() {
     const { roomId } = this.props;
     return (
@@ -54,8 +44,6 @@ class ReserveForm extends Component {
         price={this.props.price}
         {...this.state}
         onSelect={e => this.handleSelect(e)}
-        onChangeCheckin={checkin => this.handleChangeCheckin(checkin)}
-        onChangeCheckout={checkout => this.handleChangeCheckout(checkout)}
         onBook={() => this.handleBook()}
         roomId={roomId}
       />

@@ -59,10 +59,14 @@ class RoomList extends Component {
     const adult = params.get('adult');
     const children = params.get('children');
     const infant = params.get('infant');
+    const checkin = params.get('checkin');
+    const checkout = params.get('checkout');
     const value = {
       adult,
       children,
       infant,
+      checkin,
+      checkout,
     };
     return <RoomListView {...this.state} {...this.props} {...value} />;
   }
