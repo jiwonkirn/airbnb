@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './components/Layout';
+import GuestInfoPage from './pages/GuestInfoPage';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
@@ -35,6 +36,7 @@ class App extends Component {
                   <Route exact path="/saved" component={SavedPage} />
                   <Route path="/reserve/:roomId" component={ReservePage} />
                   <Route path="/date" component={Dates} />
+                  <Route path="/guest-info/:roomId" component={GuestInfoPage} />
                   <Route exact path="/:otherPath" component={NotFoundPage} />
                   <Route exact path="/" component={HomePage} />
                 </Switch>

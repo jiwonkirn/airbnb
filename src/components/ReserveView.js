@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import style from './ReserveView.module.scss';
 import { ReactComponent as SelfCheckin } from '../svg/selfcheckin.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Star } from '../svg/star.svg';
-import { ReactComponent as Guest } from '../svg/guest.svg';
-import { ReactComponent as Calender } from '../svg/calender.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 import { withSearch } from '../contexts/SearchContext';
+import RoomInfoView from './RoomInfoView';
+import ReserveNav from './ReserveNav';
+import { Link } from 'react-router-dom';
 class ReserveView extends Component {
   constructor(props) {
     super(props);
@@ -24,30 +24,11 @@ class ReserveView extends Component {
     e.preventDefault();
   }
   render() {
-    const {
-      room_name,
-      room_type,
-      city,
-      room_and_property_type,
-      person_capacity,
-      bedrooms,
-      beds,
-      bathrooms,
-      roominfo,
-      hostimages,
-      roomId,
-      amenities,
-      public_address,
-      notices,
-      room_photos,
-      adult,
-      children,
-      checkIn,
-      checkOut,
-    } = this.props;
+    const { public_address, notices, room_photos, roomId } = this.props;
     console.log(room_photos);
     return (
       <div>
+        <ReserveNav />
         <div className={style.ruleContainer}>
           <h1 className={style.ruleTitle}>숙소 이용규칙 확인하기</h1>
           <h2>{public_address} 1박</h2>
@@ -146,51 +127,11 @@ class ReserveView extends Component {
               </p>
             </li>
           </ul>
-          <button className={style.continueBtn}>동의 및 계속하기</button>
+          <Link to={`/guest-info/${roomId}`}>
+            <button className={style.continueBtn}>동의 및 계속하기</button>
+          </Link>
         </div>
-        <div className={style.infoContainer}>
-          <div className={style.infoBox}>
-            <div className={style.mainInfo}>
-              <div className={style.textInfo}>
-                <h2>{room_name}</h2>
-                <p>
-                  {public_address}의 {room_type}
-                </p>
-                <div className={style.starBox}>
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                </div>
-              </div>
-              <div className={style.mainImgWrapper}>
-                <img
-                  src={room_photos[roomId - 1].room_photo}
-                  className={style.mainImg}
-                  alt={room_photos[roomId - 1].room_photo}
-                />
-              </div>
-            </div>
-            <hr className={style.devider} />
-            <ul className={style.guestDateContainer}>
-              <li className={style.guestInfo}>
-                {' '}
-                <div className={style.iconWrapper}>
-                  <Guest className={style.guest} />
-                </div>{' '}
-                <p>게스트 {adult + children}명</p>
-              </li>
-              <li>
-                <div className={style.iconWrapper}>
-                  <Calender className={style.calender} />
-                </div>
-                <p>{checkIn}</p>
-                <p>{checkOut}</p>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <RoomInfoView {...this.props} />
       </div>
     );
   }

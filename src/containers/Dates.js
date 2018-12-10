@@ -11,6 +11,7 @@ class Dates extends Component {
     };
   }
 
+  // TODO: 예약이 불가능한 날짜를 가져와서 내려준다.
   componentDidMount() {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);

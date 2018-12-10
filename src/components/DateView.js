@@ -19,7 +19,6 @@ class DateView extends Component {
   // 로딩이 다 되면 날짜의 기본값을 채워넣는다.
   componentDidUpdate(prevProps, prevState) {
     if (!this.props.loading && prevProps.loading) {
-      console.log('why?');
       const { checkin, checkout } = this.props;
       if (checkin && checkout) {
         this.setState({
@@ -58,30 +57,44 @@ class DateView extends Component {
   };
 
   render() {
-    if (this.props.match.path === '/search-list') {
-      return <DayPickerRangeController />;
-    } else {
-      return (
-        <DateRangePicker
-          startDate={this.state.startDate}
-          startDateId="your_unique_start_date_id"
-          endDate={this.state.endDate}
-          endDateId="your_unique_end_date_id"
-          onDatesChange={async ({ startDate, endDate }) => {
-            await this.setState({ startDate, endDate });
-            if (this.state.endDate) {
-              this.handleSearch();
-            }
-          }}
-          focusedInput={this.state.focusedInput}
-          onFocusChange={focusedInput => {
-            this.setState({ focusedInput });
-          }}
-          readOnly={true}
-          isDayBlocked={this.handleBlock}
-        />
-      );
-    }
+    // if (
+    //   this.props.match.path === '/search-list' ||
+    //   this.props.match.path === '/date'
+    // ) {
+    //   return (
+    //     <DayPickerRangeController
+    //       startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+    //       endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+    //       onDatesChange={({ startDate, endDate }) =>
+    //         this.setState({ startDate, endDate })
+    //       } // PropTypes.func.isRequired,
+    //       focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+    //       onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+    //       readOnly={false}
+    //     />
+    //   );
+    // } else {
+    return (
+      <DateRangePicker
+        startDate={this.state.startDate}
+        startDateId="your_unique_start_date_id"
+        endDate={this.state.endDate}
+        endDateId="your_unique_end_date_id"
+        onDatesChange={async ({ startDate, endDate }) => {
+          await this.setState({ startDate, endDate });
+          if (this.state.endDate) {
+            this.handleSearch();
+          }
+        }}
+        focusedInput={this.state.focusedInput}
+        onFocusChange={focusedInput => {
+          this.setState({ focusedInput });
+        }}
+        readOnly={true}
+        isDayBlocked={this.handleBlock}
+      />
+    );
+    // }
   }
 }
 
