@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import style from './ReserveView.module.scss';
 import { ReactComponent as SelfCheckin } from '../svg/selfcheckin.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
-import { ReactComponent as Star } from '../svg/star.svg';
-import { ReactComponent as Guest } from '../svg/guest.svg';
-import { ReactComponent as Calender } from '../svg/calender.svg';
-import { ReactComponent as Arrow } from '../svg/arrow.svg';
-import { ReactComponent as QuestionMark } from '../svg/questionMark.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 import { withSearch } from '../contexts/SearchContext';
+import RoomInfoView from './RoomInfoView';
+import ReserveNav from './ReserveNav';
 class ReserveView extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +48,7 @@ class ReserveView extends Component {
     console.log(room_photos);
     return (
       <div>
+        <ReserveNav />
         <div className={style.ruleContainer}>
           <h1 className={style.ruleTitle}>숙소 이용규칙 확인하기</h1>
           <h2>{public_address} 1박</h2>
@@ -151,79 +149,7 @@ class ReserveView extends Component {
           </ul>
           <button className={style.continueBtn}>동의 및 계속하기</button>
         </div>
-        <div className={style.infoContainer}>
-          <div className={style.infoBox}>
-            <div className={style.mainInfo}>
-              <div className={style.textInfo}>
-                <h2 className={style.roomType}>{room_name}</h2>
-                <p>
-                  {public_address}의 {room_type}
-                </p>
-                <div className={style.starBox}>
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                  <Star className={style.star} />
-                </div>
-              </div>
-              <div className={style.mainImgWrapper}>
-                <img
-                  src={room_photos[roomId - 1].room_photo}
-                  className={style.mainImg}
-                  alt={room_photos[roomId - 1].room_photo}
-                />
-              </div>
-            </div>
-            <hr className={style.devider} />
-            <div className={style.subWrapper}>
-              <ul className={style.guestDateContainer}>
-                <li className={style.guestInfo}>
-                  {' '}
-                  <div className={style.iconWrapper}>
-                    <Guest className={style.guest} />
-                  </div>{' '}
-                  <p>게스트 {adult + children}명</p>
-                </li>
-                <li className={style.dateInfo}>
-                  <div className={style.iconWrapper}>
-                    <Calender className={style.calender} />
-                  </div>
-                  <p className={style.checkIn} />
-                  <div className={style.iconWrapper}>
-                    <Arrow className={style.calender} />
-                  </div>
-                  <p className={style.checkOut} />
-                </li>
-              </ul>
-              <hr className={style.devider} />
-              <ul>
-                <li className={style.priceInfo}>
-                  {' '}
-                  <p className={style.roomPrice}>₩{price} x 1박</p>
-                  <p className={style.extra}> ₩{price * 1}</p>{' '}
-                </li>
-                <li className={style.priceInfo}>
-                  {' '}
-                  <div className={style.serviceWrapper}>
-                    <p className={style.roomPrice}>서비스 수수료</p>
-                    <div className={style.questionIcon}>
-                      <QuestionMark className={style.questionMark} />
-                    </div>
-                  </div>
-                  <p className={style.extra}> 아직 정보 없음</p>{' '}
-                </li>
-                <li />
-              </ul>
-              <hr className={style.devider} />
-              <div className={style.totalPrice}>
-                <p>총합계(KRW)</p>
-                <p>₩ 정보없음</p>
-              </div>
-              <hr className={style.devider} />
-            </div>
-          </div>
-        </div>
+        <RoomInfoView {...this.props} />
       </div>
     );
   }
