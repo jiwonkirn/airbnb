@@ -1,12 +1,11 @@
 //전체 컨테이너 레이아웃
 .ruleContainer {
-  width: 65%;
+  width: 66%;
   display: inline-block;
   padding: 20px;
 }
 .infoContainer {
-  width: 35%;
-  height: 500px;
+  width: 34%;
   display: inline-block;
   vertical-align: top;
 }
@@ -131,7 +130,6 @@
 }
 .textInfo {
   width: 70%;
-  // border: 1px solid red;
 }
 .mainImgWrapper {
   width: 30%;
@@ -152,12 +150,14 @@
 }
 .guestInfo {
   display: flex;
+  margin-bottom: 10px;
 }
 .guest {
   height: 20px;
   width: 20px;
   display: inline-block;
   fill: currentColor;
+  margin-bottom: 10px;
 }
 .iconWrapper {
   display: inline-block;
@@ -168,4 +168,47 @@
   width: 20px;
   display: block;
   fill: currentColor;
+}
+.dateInfo {
+  display: flex;
+}
+.checkIn,
+.checkOut {
+  width: 100px;
+  height: 2rem;
+  border: solid black 1px;
+  margin-right: 10px;
+}
+.priceInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.questionMark {
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: rgb(72, 72, 72);
+  // border: 1px solid red;
+  // margin: auto 0;
+}
+.roomPrice {
+  // border: 1px solid blue;
+  line-height: 16px;
+}
+.serviceWrapper {
+  display: flex;
+}
+.totalPrice {
+  display: flex;
+  justify-content: space-between;
+}
+.subWrapper {
+  font-size: 1.6rem;
+}
+.roomType {
+  margin-bottom: 20px;
+}
+.questionIcon {
+  margin-left: 5px;
 }
