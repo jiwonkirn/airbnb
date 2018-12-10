@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Saved from '../containers/Saved';
+import { withUser } from '../contexts/UserContext';
 
-export default class SavedPage extends Component {
+class SavedPage extends Component {
   render() {
-    return <Saved />;
+    return <Saved key={this.props.logined} />;
   }
 }
+
+export default withUser(SavedPage);

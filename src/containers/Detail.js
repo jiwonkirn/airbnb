@@ -37,16 +37,24 @@ class Detail extends Component {
       ...roomdetail,
     });
 
+    if (localStorage.getItem('token')) {
+      this.handleLoadSaved();
+    }
+
+    this.setState({
+      loading: false,
+    });
+  }
+
+  handleLoadSaved = async () => {
+    const { roomId } = this.props;
     const { data: savedRoomList } = await api.get('/api/user/saved/');
     if (savedRoomList.some(item => item.pk == roomId)) {
       this.setState({
         saved: true,
       });
     }
-    this.setState({
-      loading: false,
-    });
-  }
+  };
 
   // 방을 저장하거나 저장 취소하는 메소드
   handleSaveRoom = async roomId => {
