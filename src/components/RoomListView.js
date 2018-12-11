@@ -10,7 +10,7 @@ class ListView extends Component {
   render() {
     const { rooms } = this.props;
     const { themeName } = this.props;
-    const { adult, infant, children } = this.props;
+    const { adult, infant, children, checkin, checkout } = this.props;
     return (
       <div className={style.listWrapper}>
         <h1 className={style.listTitle}>{themeName}</h1>
@@ -21,10 +21,12 @@ class ListView extends Component {
               className={style.roomInfo}
               to={
                 `/room-detail/${room.pk}` +
-                (adult || infant || children
+                (adult || infant || children || checkin || checkout
                   ? `?adult=${parseInt(adult)}&children=${parseInt(
                       children
-                    )}&infant=${parseInt(infant)}`
+                    )}&infant=${parseInt(
+                      infant
+                    )}&checkin=${checkin}&checkout=${checkout}`
                   : '')
               }
             >

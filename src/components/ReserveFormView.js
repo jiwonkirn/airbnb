@@ -8,6 +8,7 @@ import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
+import Dates from '../containers/Dates';
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -87,19 +88,7 @@ class ReserveFormView extends React.PureComponent {
               <small>날짜</small>{' '}
             </label>
 
-            <DateRangePicker
-              startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-              startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-              endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-              endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-              onDatesChange={async ({ startDate, endDate }) => {
-                this.setState({ startDate, endDate });
-                await onChangeCheckin(this.state.startDate);
-                await onChangeCheckout(this.state.endDate);
-              }} // PropTypes.func.isRequired,
-              focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-              onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-            />
+            <Dates />
           </div>
           <PeopleControlView />
           <Link to={`/reserve/${roomId}`}>

@@ -57,9 +57,10 @@ class PeopleControlView extends Component {
               className={style.personInput}
               type="button"
             >
-              <div className={style.capicity}>{`게스트 ${adult +
-                children}명`}</div>
-              <div>{`유아${infant}`}</div>
+              <div className={style.capicity}>{`게스트 ${adult + children}명${
+                infant != 0 ? ', 유아' + infant + '명' : ''
+              }`}</div>
+              {/* <div className={style.capicity}>{`유아${infant}`}명</div> */}
               <div className={style.arrowDownBox}>
                 <ArrowDown className={style.arrowDown} />
               </div>

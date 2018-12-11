@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import style from './SubSearchForm.module.scss';
 import PeopleControlView from './PeopleControlView';
+import Dates from '../containers/Dates';
 
 export default class SubSearchFormView extends Component {
   constructor(props) {
@@ -27,7 +28,9 @@ export default class SubSearchFormView extends Component {
     return (
       <section className={style.filterNav}>
         <ul>
-          <li>날짜</li>
+          <li className={style.date}>
+            <Dates />
+          </li>
           <PeopleControlView {...this.state} />
         </ul>
       </section>

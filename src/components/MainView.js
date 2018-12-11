@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './MainView.module.scss';
-import img from './Homeimg.png';
+import img from '../components/imgs/Homeimg.png';
 import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -8,6 +8,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { withSearch } from '../contexts/SearchContext';
 import PeopleControlView from './PeopleControlView';
 import { withUser } from '../contexts/UserContext';
+import Dates from '../containers/Dates';
 
 class MainView extends Component {
   constructor(props) {
@@ -113,22 +114,9 @@ class MainView extends Component {
                 />
               </div>
               <div className={style.checkin}>
-                <label className={style.checkinlabel}>체크인</label>
+                <label className={style.checkinlabel}>체크인 / 체크아웃</label>
               </div>
-              <div className={style.checkout}>
-                <label className={style.checkoutlabel}>체크아웃</label>
-              </div>
-              <DateRangePicker
-                startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                onDatesChange={({ startDate, endDate }) =>
-                  this.setState({ startDate, endDate })
-                } // PropTypes.func.isRequired,
-                focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-              />
+              <Dates />
               <PeopleControlView />
               {locationPath !== 'home' && (
                 <button

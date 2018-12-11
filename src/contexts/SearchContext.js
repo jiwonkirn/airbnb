@@ -9,8 +9,8 @@ class SearchProvider extends Component {
     this.state = {
       cityName: '', // 도시 이흠
       poeple: 0,
-      checkIn: '',
-      checkOut: '',
+      checkin: '',
+      checkout: '',
       adult: 0,
       children: 0,
       infant: 0,
@@ -46,6 +46,8 @@ class SearchProvider extends Component {
     const adult = params.get('adult');
     const children = params.get('children');
     const infant = params.get('infant');
+    const checkin = params.get('checkin');
+    const checkout = params.get('checkout');
     this.setState({
       cityName: cityName ? cityName : null,
       people: people ? parseInt(people) : 0,
@@ -53,6 +55,8 @@ class SearchProvider extends Component {
       children: children ? parseInt(children) : 0,
       infant: infant ? parseInt(infant) : 0,
       key: search,
+      checkin: checkin ? checkin : 0,
+      checkout: checkout ? checkout : 0,
     });
   }
 
@@ -67,33 +71,33 @@ class SearchProvider extends Component {
 
   // 리스트에서 인원을 탐색하는 메소드
   handlePersonCapacitySearch = async () => {
-    const { adult, children, infant, cityName } = this.state;
+    const { adult, children, infant, cityName, checkin, checkout } = this.state;
     if (
       !cityName &&
       this.props.location.pathname.match(/^\/room-detail\/\d+$/)
     ) {
       await this.props.history.replace(
         this.props.location.pathname +
-          `?&adult=${adult}&children=${children}&infant=${infant}`
+          `?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
       );
     } else {
       await this.props.history.push(
         `/search-list?` +
           (cityName ? `&city__contains=${cityName}` : '') +
-          `&adult=${adult}&children=${children}&infant=${infant}`
+          `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
       );
     }
   };
 
   // 홈에서 전체검색을 하는 메소드
   async handleHomeSearch(cityName) {
-    const { adult, children, infant } = this.state;
+    const { adult, children, infant, checkin, checkout } = this.state;
     await this.props.history.push(
       (this.props.location.pathname !== '/'
         ? `${this.props.location.pathname}?`
         : `search-list/?`) +
         (cityName ? `&city__contains=${cityName}` : '') +
-        `&adult=${adult}&children=${children}&infant=${infant}`
+        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
     );
     // this.refreshData();
   }
@@ -105,6 +109,7 @@ class SearchProvider extends Component {
     });
   };
 
+  // 인원 초기화
   handleInitialize = () => {
     this.setState({
       adult: 0,

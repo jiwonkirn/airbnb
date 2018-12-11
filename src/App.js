@@ -8,12 +8,14 @@ import PayPage from './pages/PayPage';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SavedPage from './pages/SavedPage';
+import SavedRsvnPage from './pages/SavedRsvnPage';
 import SavedDetailPage from './pages/SavedDetailPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
 import UserProvider from './contexts/UserContext';
 import { RouterSearchProvider } from './contexts/SearchContext';
 import ReservePage from './pages/ReservePage';
+import Dates from './containers/Dates';
 
 class App extends Component {
   render() {
@@ -35,7 +37,9 @@ class App extends Component {
                     component={SavedDetailPage}
                   />
                   <Route exact path="/saved" component={SavedPage} />
+                  <Route path="/trips" component={SavedRsvnPage} />
                   <Route path="/reserve/:roomId" component={ReservePage} />
+                  <Route path="/date" component={Dates} />
                   <Route path="/guest-info/:roomId" component={GuestInfoPage} />
                   <Route exact path="/:otherPath" component={NotFoundPage} />
                   <Route exact path="/" component={HomePage} />

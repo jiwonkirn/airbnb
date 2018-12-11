@@ -26,7 +26,9 @@ class RoomList extends Component {
     params.delete('adult');
     params.delete('children');
     params.delete('infant');
-    const { data } = await api.get('/api/home/listings/', {
+    const {
+      data: { results: data },
+    } = await api.get('/api/home/listings/', {
       params,
     });
     if (data.length === 0) console.log('자료가 없습니다.');
@@ -59,10 +61,14 @@ class RoomList extends Component {
     const adult = params.get('adult');
     const children = params.get('children');
     const infant = params.get('infant');
+    const checkin = params.get('checkin');
+    const checkout = params.get('checkout');
     const value = {
       adult,
       children,
       infant,
+      checkin,
+      checkout,
     };
     return <RoomListView {...this.state} {...this.props} {...value} />;
   }
