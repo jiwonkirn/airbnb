@@ -19,13 +19,16 @@ class ReserveForm extends Component {
   async handleBook() {
     const { checkin: check_in_date, checkout: check_out_date } = this.props;
     const { num_guest, room } = this.state;
-    // await api.post('/api/home/booking/', {
-    //   check_in_date,
-    //   check_out_date,
-    //   num_guest,
-    //   room: room.toString(),
-    // });
-
+    // try {
+    //   await api.post('/api/home/booking/', {
+    //     check_in_date,
+    //     check_out_date,
+    //     num_guest,
+    //     room: room.toString(),
+    //   });
+    // } catch (e) {
+    //   alert(e.name);
+    // }
     console.log(
       `체크인 날짜: ${check_in_date}, 체크아웃 날짜: ${check_out_date}, 게스트: ${num_guest}명, 방pk: ${room}`
     );

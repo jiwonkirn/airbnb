@@ -26,7 +26,9 @@ class RoomList extends Component {
     params.delete('adult');
     params.delete('children');
     params.delete('infant');
-    const { data } = await api.get('/api/home/listings/', {
+    const {
+      data: { results: data },
+    } = await api.get('/api/home/listings/', {
       params,
     });
     if (data.length === 0) console.log('자료가 없습니다.');
