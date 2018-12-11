@@ -28,7 +28,9 @@ export default class SubSearchFormView extends Component {
     return (
       <section className={style.filterNav}>
         <ul>
-          <Dates />
+          <li className={style.date}>
+            <Dates />
+          </li>
           <PeopleControlView {...this.state} />
         </ul>
       </section>

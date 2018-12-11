@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import './DateView.scss';
 import { DateRangePicker, DayPickerRangeController } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import { withRouter } from 'react-router-dom';
+import { ReactComponent as Cross } from '../svg/cross.svg';
 var moment = require('moment');
 
 class DateView extends Component {
@@ -13,6 +15,8 @@ class DateView extends Component {
     this.state = {
       startDate: null,
       endDate: null,
+      lisplay: 'block',
+      display: 'none',
     };
   }
 
@@ -20,6 +24,7 @@ class DateView extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (!this.props.loading && prevProps.loading) {
       const { checkin, checkout } = this.props;
+      console.log(checkin);
       if (checkin && checkout) {
         this.setState({
           startDate: moment(checkin).local(),
@@ -56,45 +61,81 @@ class DateView extends Component {
     }
   };
 
+  handleModal = () => {
+    this.setState(prev => {
+      return {
+        display: prev.display === 'none' ? 'block' : 'none',
+        lisplay: prev.lisplay === 'block' ? 'none' : 'block',
+      };
+    });
+  };
+
+  handleIntitialDates = async () => {
+    const { handlePersonCapacitySearch, handleChange } = this.props;
+    await this.setState({
+      startDate: 0,
+      endDate: 0,
+    });
+    await handleChange('checkin', 0);
+    await handleChange('checkout', 0);
+    if (this.props.match.path !== '/') {
+      handlePersonCapacitySearch();
+    }
+  };
+
   render() {
-    // if (
-    //   this.props.match.path === '/search-list' ||
-    //   this.props.match.path === '/date'
-    // ) {
-    //   return (
-    //     <DayPickerRangeController
-    //       startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-    //       endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-    //       onDatesChange={({ startDate, endDate }) =>
-    //         this.setState({ startDate, endDate })
-    //       } // PropTypes.func.isRequired,
-    //       focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-    //       onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-    //       readOnly={false}
-    //     />
-    //   );
-    // } else {
+    const bool =
+      this.props.match.path === '/search-list' ||
+      this.props.match.path === '/date';
+    const { startDate, endDate } = this.state;
+    const { path } = this.props.match;
+    console.log(path);
     return (
-      <DateRangePicker
-        startDate={this.state.startDate}
-        startDateId="your_unique_start_date_id"
-        endDate={this.state.endDate}
-        endDateId="your_unique_end_date_id"
-        onDatesChange={async ({ startDate, endDate }) => {
-          await this.setState({ startDate, endDate });
-          if (this.state.endDate) {
-            this.handleSearch();
+      <div style={{ position: 'relative' }}>
+        <DateRangePicker
+          startDate={this.state.startDate}
+          startDateId="your_unique_start_date_id"
+          endDate={this.state.endDate}
+          endDateId="your_unique_end_date_id"
+          onDatesChange={async ({ startDate, endDate }) => {
+            await this.setState({ startDate, endDate });
+            if (this.state.endDate) {
+              this.handleSearch();
+            }
+          }}
+          focusedInput={this.state.focusedInput}
+          onFocusChange={focusedInput => {
+            this.setState({ focusedInput });
+          }}
+          readOnly={true}
+          isDayBlocked={this.handleBlock}
+          small={bool}
+          withPortal={bool}
+          block={!bool}
+          endDatePlaceholderText="체크아웃"
+          startDatePlaceholderText="체크인"
+          anchorDirection={path === '/room-detail/:roomId' && 'right'}
+          showClearDates={true}
+        />
+        <Cross
+          onClick={this.handleIntitialDates}
+          className="initialButton"
+          style={
+            this.props.match.path === '/search-list'
+              ? {
+                  right: '12px',
+                  width: '10px',
+                }
+              : {
+                  right: '20px',
+                  width: '15px',
+                }
           }
-        }}
-        focusedInput={this.state.focusedInput}
-        onFocusChange={focusedInput => {
-          this.setState({ focusedInput });
-        }}
-        readOnly={true}
-        isDayBlocked={this.handleBlock}
-      />
+        >
+          X
+        </Cross>
+      </div>
     );
-    // }
   }
 }
 

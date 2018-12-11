@@ -114,10 +114,7 @@ class MainView extends Component {
                 />
               </div>
               <div className={style.checkin}>
-                <label className={style.checkinlabel}>체크인</label>
-              </div>
-              <div className={style.checkout}>
-                <label className={style.checkoutlabel}>체크아웃</label>
+                <label className={style.checkinlabel}>체크인 / 체크아웃</label>
               </div>
               <Dates />
               <PeopleControlView />
