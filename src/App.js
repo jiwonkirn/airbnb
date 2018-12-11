@@ -4,6 +4,7 @@ import GuestInfoPage from './pages/GuestInfoPage';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
+import PayPage from './pages/PayPage';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SavedPage from './pages/SavedPage';
@@ -26,6 +27,7 @@ class App extends Component {
                 <Switch>
                   <Route path="/search-list" component={ListPage} />
                   <Route path="/room-detail/:roomId" component={DetailPage} />
+                  <Route path="/pay/:roomId" component={PayPage} />
                   <Route path="/login" component={LoginPage} />
                   <Route
                     exact
