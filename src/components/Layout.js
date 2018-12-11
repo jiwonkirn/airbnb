@@ -9,6 +9,7 @@ import Saved from '../containers/Saved';
 import { GoogleLogout } from 'react-google-login';
 import classNames from 'classnames';
 import HelpdeskView from './HelpdeskView';
+import SavedRsvn from '../containers/SavedRsvn';
 import { withRouter } from 'react-router-dom';
 
 class Layout extends React.PureComponent {
@@ -20,6 +21,7 @@ class Layout extends React.PureComponent {
       loginbtnclick: false,
       helpbtnclick: false,
       savedModal: false,
+      savedRsvn: false,
     };
   }
 
@@ -37,6 +39,11 @@ class Layout extends React.PureComponent {
     });
     console.log('haha');
   };
+
+  handleSavedRsvn() {
+    // console.log(this.props.match);
+    this.props.history.push('/trips');
+  }
 
   handleSubmit(e) {
     const cityName = e.target.value;
@@ -125,6 +132,14 @@ class Layout extends React.PureComponent {
                 <span onClick={this.handleSavedModal}>저장목록</span>
                 {this.state.savedModal && (
                   <Saved onSavedModal={this.handleSavedModal} theme="header" />
+                )}
+              </p>
+            )}
+            {this.props.logined && (
+              <p className={style.savedRsvn}>
+                <span onClick={() => this.handleSavedRsvn()}>여행</span>
+                {this.state.savedRsvn && (
+                  <SavedRsvn onSavedRsvn={() => this.handleSavedRsvn()} />
                 )}
               </p>
             )}

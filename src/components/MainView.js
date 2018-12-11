@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './MainView.module.scss';
-import img from './Homeimg.png';
+import img from '../components/imgs/Homeimg.png';
 import classNames from 'classnames';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
