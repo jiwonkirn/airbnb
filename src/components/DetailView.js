@@ -28,6 +28,7 @@ class DetailView extends React.Component {
       modalclick: false,
       moreInfo: false,
       sticky: false,
+      ruleMore: false,
     };
   }
   handleModal() {
@@ -43,6 +44,11 @@ class DetailView extends React.Component {
   handleMoreInfo() {
     this.setState({
       moreInfo: this.state.moreInfo === true ? false : true,
+    });
+  }
+  handleMoreRule() {
+    this.setState({
+      ruleMore: this.state.ruleMore === true ? false : true,
     });
   }
   componentDidMount() {
@@ -114,7 +120,7 @@ class DetailView extends React.Component {
     const IconMap = {
       주방: Kitchen,
     };
-    console.log(lat, lng)
+    console.log(lat, lng);
     return (
       <div>
         {this.state.sticky ? (
@@ -258,10 +264,13 @@ class DetailView extends React.Component {
               possimus saepe esse sed neque officiis!
             </p>
             <div className={style.devider} />
-            <h className={style.category2}>지역정보</h>
+            <h3 className={style.category2}>지역정보</h3>
             <ul className={style.location}>
-              <li>특징,</li>
-              <li>Alex님의 숙소는 {public_address}에 있습니다.</li>
+              <li>
+                {room_host.last_name}
+                {room_host.first_name}님의 숙소는 {public_address}에 있습니다.
+              </li>
+              <li>지역 정보 특징이 들어와야 하는 자리(아직 정보 없음)</li>
               {this.state.moreInfo === false ? (
                 <li className={style.moreInfo}>
                   <p onClick={() => this.handleMoreInfo()}>
@@ -302,6 +311,65 @@ class DetailView extends React.Component {
               <DaumMap1 {...this.props} />
             </div>
             <p>정확한 위치 정보는 예약이 확정된 후 알려드립니다.</p>
+            <hr className={style.devider} />
+            <h3 className={style.category2}>환불 정책</h3>
+            <dl>
+              <dt className={style.roomRuleList}>숙소 이용 규칙</dt>
+              <dd className={style.roomRuleItem}>반려동물 동반 불가</dd>
+              <dd className={style.roomRuleItem}>
+                흡연, 파티 또는 이벤트 금지
+              </dd>
+              <dd className={style.roomRuleItem}>
+                체크인 시간: 16:00 이후 언제나, 체크아웃 시간: 11:00까지
+              </dd>
+              <dd className={style.roomRuleItem}>키패드(으)로 셀프 체크인</dd>
+            </dl>
+            <button
+              onClick={() => this.handleMoreRule()}
+              className={style.roomRuleMore}
+            >
+              숙소 이용 규칙
+            </button>
+            {this.state.ruleMore ? (
+              <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+                quis rem quibusdam, in minima et sunt nostrum maxime nisi, totam
+                quae, quas cum saepe molestias incidunt. Animi facere autem
+                aliquid. Voluptas provident laborum dolorem expedita
+                voluptatibus assumenda. Qui quam at voluptates? Natus debitis
+                porro a eos ipsum, rerum nesciunt vero maxime tempora eum quia
+                consequuntur eius itaque, molestias magnam! Tempora. Officia
+                laudantium, placeat laborum fugit repellat enim totam neque cum
+                eum expedita optio quidem numquam a consectetur pariatur tempore
+                quam atque ullam dolores tempora facere, culpa nisi! Cum, iusto
+                expedita.
+              </div>
+            ) : null}
+            <hr className={style.devider} />
+            <h4 className={style.subTitle}>예약 취소</h4>
+            <dl>
+              <dt className={style.subTitle}>일반 정책</dt>
+              <dd>
+                체크인 5일 전까지 예약을 취소하면 에어비앤비 서비스 수수료을
+                제외한 요금이 환불됩니다.
+              </dd>
+            </dl>
+            <div className={style.reserveRuleWrapper}>
+              <ul className={style.reserveRuleList}>
+                <li className={style.reserveRuleItem}>
+                  체크인 5일 전까지 예약을 취소하면 에어비앤비 서비스 수수료을
+                  제외한 요금이 환불됩니다.
+                </li>
+                <li className={style.reserveRuleItem}>
+                  체크인까지 5일이 남지 않은 시점에 예약을 취소하면 첫 1박 요금과
+                  나머지 숙박 요금의 50%는 환불되지 않습니다.
+                </li>
+                <li className={style.reserveRuleItem}>
+                  에어비앤비 서비스 수수료는 예약 후 48시간 이내에 취소하고 체크인
+                  전인 경우에만 환불됩니다.
+                </li>
+              </ul>
+            </div>
           </div>
           <div className={style.wrapper}>
             <ReserveForm price={this.props.price} roomId={roomId} />

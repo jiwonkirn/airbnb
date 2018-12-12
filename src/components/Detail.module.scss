@@ -382,3 +382,30 @@
   line-height: 50px;
   padding: 0 10px;
 }
+//환불정책
+.roomRuleList {
+  font-weight: 700;
+  margin: 10px 0;
+}
+.roomRuleItem {
+  margin: 10px 0;
+}
+.roomRuleMore {
+  border: none;
+  padding: 0;
+  color: #008489;
+  background-color: #ffffff;
+}
+.subTitle {
+  font-weight: 700;
+  margin: 10px 0;
+}
+.reserveRuleWrapper {
+}
+.reserveRuleList {
+  list-style-type: disc;
+}
+.reserveRuleItem {
+  display: list-item;
+  padding-top: 10px;
+}
