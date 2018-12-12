@@ -127,7 +127,7 @@ class DateView extends Component {
                   width: '10px',
                 }
               : {
-                  right: '20px',
+                  right: '18px',
                   width: '15px',
                 }
           }

@@ -81,7 +81,6 @@ class Layout extends React.PureComponent {
     });
   }
   render() {
-    console.log('haha');
     return (
       <div>
         {this.state.loginbtnclick ? (
