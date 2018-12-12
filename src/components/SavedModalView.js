@@ -6,6 +6,31 @@ import classNames from 'classnames';
 import withCommonLoading from '../hoc/CommonLoading';
 
 class SavedModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: false,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      selected: true,
+    });
+    document.addEventListener('click', this.handleRemove);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleRemove);
+  }
+
+  handleRemove = e => {
+    e.stopPropagation();
+    if (!e.target.getAttribute('class').includes('SavedModal')) {
+      this.props.onSavedModal();
+    }
+  };
+
   render() {
     const { savedRooms } = this.props;
     const savedItem = classNames(style.savedItem, { clearfix: true });

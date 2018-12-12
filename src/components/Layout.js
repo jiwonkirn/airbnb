@@ -33,11 +33,11 @@ class Layout extends React.PureComponent {
     }
   }
 
-  handleSavedModal = () => {
-    this.setState(prev => {
+  handleSavedModal = async () => {
+    await this.setState(prev => {
       return { savedModal: !prev.savedModal };
     });
-    console.log('haha');
+    console.log(this.state.savedModal);
   };
 
   handleSavedRsvn() {
