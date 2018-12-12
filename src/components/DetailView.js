@@ -11,6 +11,7 @@ import { ReactComponent as Dryer } from '../svg/dryer.svg';
 import { ReactComponent as Washer } from '../svg/washer.svg';
 import { ReactComponent as Cross } from '../svg/cross.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import DaumMap1 from './DaumMap1';
 import withCommonLoading from '../hoc/CommonLoading';
 import 'react-dates/initialize';
 import { DayPickerRangeController } from 'react-dates';
@@ -102,15 +103,18 @@ class DetailView extends React.Component {
       room_info_3,
       room_info_4,
       room_host,
+      lat,
+      lng,
       ...rest
     } = this.props;
-    const devided = room_info_1.split('\n\n').map(item=>item.split('\n'))
-    const devided2 =room_info_2.split('\n')
-    const devided3 =room_info_3.split('\n')
-    const devided4 =room_info_4.split('\n')
-    const IconMap={
+    const devided = room_info_1.split('\n\n').map(item => item.split('\n'));
+    const devided2 = room_info_2.split('\n');
+    const devided3 = room_info_3.split('\n');
+    const devided4 = room_info_4.split('\n');
+    const IconMap = {
       주방: Kitchen,
-    }
+    };
+    console.log(lat, lng)
     return (
       <div>
         {this.state.sticky ? (
@@ -160,44 +164,45 @@ class DetailView extends React.Component {
                 src={hostimages.host_thumbnail_url}
                 alt="host_thumbnail"
               />
-              <label className={style.hostName} htmlFor={style.hostImg}>{room_host.last_name}{room_host.first_name}</label>
+              <label className={style.hostName} htmlFor={style.hostImg}>
+                {room_host.last_name}
+                {room_host.first_name}
+              </label>
             </div>
-            {
-              devided.map(item=>
-                <div>
-                  <h3 className={style.category}>{item[0]}</h3>
-                  <p>{item[1]}</p>
-                </div>
-                )
-            }
+            {devided.map(item => (
+              <div>
+                <h3 className={style.category}>{item[0]}</h3>
+                <p>{item[1]}</p>
+              </div>
+            ))}
             <div className={style.devider} />
             <button className={style.transe}>
               이 설명을 한국어로 번역하기
             </button>
             <div>
               <h3 className={style.category}>숙소</h3>
-              {devided2.map(item=>
-                <p >{item}</p>
-                )}
-                <div className={style.roomInfo2}>
-                  {devided3.map(item=>
-                  <p >{item}</p>
-                  )}
-                </div>
+              {devided2.map(item => (
+                <p>{item}</p>
+              ))}
+              <div className={style.roomInfo2}>
+                {devided3.map(item => (
+                  <p>{item}</p>
+                ))}
+              </div>
             </div>
             <div className={style.devider} />
 
             <div>
               <h3 className={style.category}>편의시설</h3>
               <ul className={style.amenities}>
-                {devided4.map((amenity) =>
-                    <li className={style.amenity}>
-                      {/* <div className={style.icon}>
+                {devided4.map(amenity => (
+                  <li className={style.amenity}>
+                    {/* <div className={style.icon}>
                         < {IconMap[amenity]}/>
                       </div> */}
-                      <p className={style.am}>{amenity}</p>
-                    </li>
-                )}
+                    <p className={style.am}>{amenity}</p>
+                  </li>
+                ))}
               </ul>
               <p onClick={() => this.handleModal()}>
                 {amenities.length}개의 편의시설 더보기
@@ -229,7 +234,10 @@ class DetailView extends React.Component {
             </div>
             <div className={style.devider} />
             <div>
-              <h3 className={style.category2}>호스트: {room_host.last_name}{room_host.first_name}님</h3>
+              <h3 className={style.category2}>
+                호스트: {room_host.last_name}
+                {room_host.first_name}님
+              </h3>
               <img
                 className={style.hostImg2}
                 src={hostimages.host_thumbnail_url}
@@ -290,7 +298,9 @@ class DetailView extends React.Component {
                 </div>
               </div>
             ) : null}
-            <div className={style.map} />
+            <div className={style.map}>
+              <DaumMap1 {...this.props} />
+            </div>
             <p>정확한 위치 정보는 예약이 확정된 후 알려드립니다.</p>
           </div>
           <div className={style.wrapper}>
