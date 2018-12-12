@@ -100,12 +100,17 @@ class DetailView extends React.Component {
       room_info_1,
       room_info_2,
       room_info_3,
+      room_info_4,
       room_host,
       ...rest
     } = this.props;
     const devided = room_info_1.split('\n\n').map(item=>item.split('\n'))
     const devided2 =room_info_2.split('\n')
     const devided3 =room_info_3.split('\n')
+    const devided4 =room_info_4.split('\n')
+    const IconMap={
+      주방: Kitchen,
+    }
     return (
       <div>
         {this.state.sticky ? (
@@ -185,31 +190,13 @@ class DetailView extends React.Component {
             <div>
               <h3 className={style.category}>편의시설</h3>
               <ul className={style.amenities}>
-                {amenities.map((amenity, index) =>
-                  index < 6 ? (
+                {devided4.map((amenity) =>
                     <li className={style.amenity}>
-                      <div className={style.icon}>
-                        {amenity === 'tv' || amenity === 'cable' ? (
-                          <Tv className={style.tv} />
-                        ) : amenity === 'wireless_internet' ? (
-                          <Wireless className={style.wireless} />
-                        ) : amenity === 'kitchen' ? (
-                          <Kitchen className={style.kitchen} />
-                        ) : amenity === 'hair-dryer' ? (
-                          <Hair className={style.hair} />
-                        ) : amenity === 'paid_parking_on_premises' ? (
-                          <Park className={style.park} />
-                        ) : amenity === 'laptop-friendly' ? (
-                          <Laptop className={style.laptop} />
-                        ) : amenity === 'dryer' ? (
-                          <Dryer className={style.dryer} />
-                        ) : amenity === 'washer' ? (
-                          <Washer className={style.washer} />
-                        ) : null}
-                      </div>
+                      {/* <div className={style.icon}>
+                        < {IconMap[amenity]}/>
+                      </div> */}
                       <p className={style.am}>{amenity}</p>
                     </li>
-                  ) : null
                 )}
               </ul>
               <p onClick={() => this.handleModal()}>
@@ -249,7 +236,7 @@ class DetailView extends React.Component {
                 alt="host_thumbnail"
               />
             </div>
-            <p>
+            <p className={style.hostIntroduce}>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Reiciendis, quia. Temporibus, odio blanditiis labore dolorum
               aliquam repudiandae, sapiente officiis fugit quas placeat a sed

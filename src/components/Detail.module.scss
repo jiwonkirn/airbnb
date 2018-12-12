@@ -80,6 +80,9 @@
   position: absolute;
   right: 0;
 }
+.hostIntroduce {
+  width: 80%;
+}
 .roomInfo {
   width: 65%;
   // border: 1px solid blue;
@@ -101,7 +104,6 @@
   display: inline-block;
   width: 50%;
   height: 20px;
-  font-size: 1.8rem;
   font-weight: 100;
   margin: 10px 0;
 }
