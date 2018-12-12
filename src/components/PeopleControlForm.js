@@ -88,7 +88,7 @@ export default class PeopleControlForm extends Component {
             </button>
           </div>
         </div>
-        {locationPath !== 'home' ? (
+        {locationPath !== 'home' && locationPath !== 'reserve' ? (
           <div>
             <span
               className={style.deleteButton}

@@ -25,6 +25,10 @@ class PeopleControlView extends Component {
       this.setState({
         locationPath: 'list',
       });
+    } else if (this.props.match.path === '/guest-info/:roomId') {
+      this.setState({
+        locationPath: 'reserve',
+      });
     }
   }
 

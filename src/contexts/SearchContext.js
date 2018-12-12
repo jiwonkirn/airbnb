@@ -74,7 +74,8 @@ class SearchProvider extends Component {
     const { adult, children, infant, cityName, checkin, checkout } = this.state;
     if (
       !cityName &&
-      this.props.location.pathname.match(/^\/room-detail\/\d+$/)
+      (this.props.location.pathname.match(/^\/room-detail\/\d+$/) ||
+        this.props.location.pathname.match(/^\/guest-info\/\d+$/))
     ) {
       await this.props.history.replace(
         this.props.location.pathname +
