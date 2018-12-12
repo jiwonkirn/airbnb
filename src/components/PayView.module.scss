@@ -1,0 +1,137 @@
+.PayInfoContainer {
+  width: 66%;
+  //   border: 1px solid red;
+  display: inline-block;
+  padding-right: 5%;
+}
+.payTitle {
+  //   border: 1px solid red;
+  font-size: 3rem;
+  font-weight: 700;
+}
+.pay {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
+.creditCardbtn {
+  width: 70%;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  background-color: #ffffff;
+  height: 50px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.cardIcon {
+  width: 40px;
+  margin-right: 10px;
+  display: inline-block;
+  //   border: 1px solid red;
+}
+.cardText {
+  //   border: 1px solid red;
+  vertical-align: top;
+  display: inline-block;
+  line-height: 25px;
+}
+.cardWrapper {
+  margin-top: 20px;
+}
+.visaCard,
+.card2,
+.card3 {
+  width: 40px;
+}
+.arrowDown {
+  width: 25px;
+  height: 25px;
+}
+//이름 입력란
+.nameWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+.nameWrapper li {
+  width: 48%;
+  //   border: 1px solid red;
+}
+.nameInput,
+.familyNameInput {
+  width: 100%;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  background-color: #ffffff;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px;
+}
+.cardInfoInputList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  //   border: solid 1px red;
+}
+.cardNumber {
+  width: 100%;
+}
+.cardInfoInputList input {
+  width: 100%;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  background-color: #ffffff;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px;
+}
+.expireDate,
+.cvv {
+  width: 50%;
+}
+.expireDate input {
+  border-radius: 5px 0 0 5px;
+}
+.cvv input {
+  border-radius: 0 5px 5px 0;
+}
+.couponBtn {
+  border: none;
+  background: transparent;
+  color: #008489;
+  padding: 0;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.couponInput {
+  width: 50%;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  background-color: #ffffff;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px;
+  margin-right: 10px;
+}
+.finalReserveBtn {
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  background-color: rgb(255, 90, 95);
+  color: #ffffff;
+  margin-top: 50px;
+}
+.subTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 20px 0 10px 0;
+}
+.a {
+  font-size: 1.6rem;
+}
+.notice {
+  margin-top: 50px;
+}

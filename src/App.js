@@ -4,9 +4,11 @@ import GuestInfoPage from './pages/GuestInfoPage';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
+import PayPage from './pages/PayPage';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SavedPage from './pages/SavedPage';
+import SavedRsvnPage from './pages/SavedRsvnPage';
 import SavedDetailPage from './pages/SavedDetailPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
@@ -27,6 +29,7 @@ class App extends Component {
                 <Switch>
                   <Route path="/search-list" component={ListPage} />
                   <Route path="/room-detail/:roomId" component={DetailPage} />
+                  <Route path="/pay/:roomId" component={PayPage} />
                   <Route path="/login" component={LoginPage} />
                   <Route
                     exact
@@ -34,6 +37,7 @@ class App extends Component {
                     component={SavedDetailPage}
                   />
                   <Route exact path="/saved" component={SavedPage} />
+                  <Route path="/trips" component={SavedRsvnPage} />
                   <Route path="/reserve/:roomId" component={ReservePage} />
                   <Route path="/date" component={Dates} />
                   <Route path="/guest-info/:roomId" component={GuestInfoPage} />

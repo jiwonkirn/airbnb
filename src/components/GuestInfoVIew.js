@@ -3,9 +3,11 @@ import style from './GuestInfoView.module.scss';
 import RoomInfoView from './RoomInfoView';
 import PeopleControlForm from './PeopleControlForm';
 import PeopleControlView from './PeopleControlView';
+import { Link } from 'react-router-dom';
 
 export default class GuestInfoVIew extends Component {
   render() {
+    const { roomId } = this.props;
     return (
       <div>
         <div className={style.guestInfoContainer}>
@@ -26,7 +28,9 @@ export default class GuestInfoVIew extends Component {
             cols="30"
             rows="10"
           />
-          <button className={style.continueBtn}>계속하기</button>
+          <Link to={`/pay/${roomId}`}>
+            <button className={style.continueBtn}>계속하기</button>
+          </Link>
         </div>
         <RoomInfoView {...this.props} />
       </div>
