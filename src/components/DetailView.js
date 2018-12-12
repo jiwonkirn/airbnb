@@ -98,9 +98,14 @@ class DetailView extends React.Component {
       price,
       room_photos,
       room_info_1,
+      room_info_2,
+      room_info_3,
+      room_host,
       ...rest
     } = this.props;
     const devided = room_info_1.split('\n\n').map(item=>item.split('\n'))
+    const devided2 =room_info_2.split('\n')
+    const devided3 =room_info_3.split('\n')
     return (
       <div>
         {this.state.sticky ? (
@@ -144,11 +149,14 @@ class DetailView extends React.Component {
             <p className={style.roomType}>{room_type}</p>
             <h2 className={style.roomName}>{room_name}</h2>
             <p className={style.city}>{city}</p>
-            <img
-              className={style.hostImg}
-              src={hostimages.host_thumbnail_url}
-              alt="host_thumbnail"
-            />
+            <div className={style.host}>
+              <img
+                className={style.hostImg}
+                src={hostimages.host_thumbnail_url}
+                alt="host_thumbnail"
+              />
+              <label className={style.hostName} htmlFor={style.hostImg}>{room_host.last_name}{room_host.first_name}</label>
+            </div>
             {
               devided.map(item=>
                 <div>
@@ -163,12 +171,14 @@ class DetailView extends React.Component {
             </button>
             <div>
               <h3 className={style.category}>숙소</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam nam est voluptates velit fugiat recusandae a ipsum aut
-                saepe earum provident possimus error reiciendis, tenetur
-                exercitationem, incidunt minima fugit itaque.
-              </p>
+              {devided2.map(item=>
+                <p >{item}</p>
+                )}
+                <div className={style.roomInfo2}>
+                  {devided3.map(item=>
+                  <p >{item}</p>
+                  )}
+                </div>
             </div>
             <div className={style.devider} />
 
@@ -232,7 +242,7 @@ class DetailView extends React.Component {
             </div>
             <div className={style.devider} />
             <div>
-              <h3 className={style.category2}>호스트: Alex님</h3>
+              <h3 className={style.category2}>호스트: {room_host.last_name}{room_host.first_name}님</h3>
               <img
                 className={style.hostImg2}
                 src={hostimages.host_thumbnail_url}

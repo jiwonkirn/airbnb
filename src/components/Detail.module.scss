@@ -38,7 +38,11 @@
   margin: 10px 0;
   font-weight: 700;
 }
+.roomInfo2 {
+  margin-top: 20px;
+}
 .category2 {
+  display: inline-block;
   margin: 10px 0;
   font-weight: 700;
   font-size: 2rem;
@@ -55,14 +59,21 @@
 .roomName {
   font-size: 2.5rem;
 }
-
-.hostImg {
-  width: 10%;
-  border-radius: 50%;
+.host {
   position: absolute;
   top: 1.4rem;
   right: 0;
+  width: 10%;
+  height: 10%;
 }
+.hostImg {
+  width: 100%;
+  border-radius: 50%;
+}
+.hostName {
+  text-align: center;
+}
+
 .hostImg2 {
   width: 10%;
   border-radius: 50%;
