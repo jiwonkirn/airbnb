@@ -14,11 +14,11 @@ class SavedRsvnView extends Component {
             에어비앤비를 통해 첫 예약을 할 경우 회원님은 ₩16,000의 여행 크레딧을
             받게 됩니다.
           </div>
-          <button className={style.inviteFriend}>친구 초대하기</button>
           <img className={style.giftImg} src={img} alt="gift img" />
+          <button className={style.inviteFriend}>친구 초대하기</button>
         </section>
         <section className={style.previousRsvn}>
-          <div className={style.parttitle}>이전예약</div>
+          <div className={style.partTitle}>이전예약</div>
         </section>
       </div>
     );
