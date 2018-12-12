@@ -97,9 +97,10 @@ class DetailView extends React.Component {
       public_address,
       price,
       room_photos,
+      room_info_1,
       ...rest
     } = this.props;
-
+    const devided = room_info_1.split('\n\n').map(item=>item.split('\n'))
     return (
       <div>
         {this.state.sticky ? (
@@ -148,33 +149,14 @@ class DetailView extends React.Component {
               src={hostimages.host_thumbnail_url}
               alt="host_thumbnail"
             />
-            <div>
-              <h3 className={style.category}>{room_and_property_type}</h3>
-              <ul className={style.roomProperty}>
-                <li>인원 {person_capacity}개</li>
-                <li>침실 {bedrooms}개</li>
-                <li>침대 {beds}개</li>
-                <li>욕실 {bathrooms}개</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className={style.category}>{room_and_property_type}</h3>
-              <ul className={style.roomProperty}>
-                <li>인원 {person_capacity}개</li>
-                <li>침실 {bedrooms}개</li>
-                <li>침대 {beds}개</li>
-                <li>욕실 {bathrooms}개</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className={style.category}>{room_and_property_type}</h3>
-              <ul className={style.roomProperty}>
-                <li>인원 {person_capacity}개</li>
-                <li>침실 {bedrooms}개</li>
-                <li>침대 {beds}개</li>
-                <li>욕실 {bathrooms}개</li>
-              </ul>
-            </div>
+            {
+              devided.map(item=>
+                <div>
+                  <h3 className={style.category}>{item[0]}</h3>
+                  <p>{item[1]}</p>
+                </div>
+                )
+            }
             <div className={style.devider} />
             <button className={style.transe}>
               이 설명을 한국어로 번역하기
