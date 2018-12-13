@@ -14,7 +14,7 @@
   height: 25px;
   position: absolute;
   left: 20px;
-  top: -48px;
+  top: -60px;
   cursor: pointer;
   background-color: transparent;
   border-style: initial;
@@ -29,6 +29,10 @@
   font-weight: 600;
   color: #484848;
   letter-spacing: normal;
+}
+
+.body {
+  white-space: pre;
 }
 
 .closeBtn {
