@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReserveFormView from '../components/ReserveFormView';
+import { withRouter } from 'react-router-dom';
 import api from '../api';
 import { withSearch } from '../contexts/SearchContext';
 
@@ -9,29 +10,22 @@ class ReserveForm extends Component {
 
     this.state = {
       selected: false,
-      check_out_date: '',
-      check_in_date: '',
       num_guest: this.props.adult + this.props.children,
       room: this.props.roomId,
     };
   }
 
   async handleBook() {
-    const { checkin: check_in_date, checkout: check_out_date } = this.props;
-    const { num_guest, room } = this.state;
-    // try {
-    //   await api.post('/api/home/booking/', {
-    //     check_in_date,
-    //     check_out_date,
-    //     num_guest,
-    //     room: room.toString(),
-    //   });
-    // } catch (e) {
-    //   alert(e.name);
-    // }
-    console.log(
-      `체크인 날짜: ${check_in_date}, 체크아웃 날짜: ${check_out_date}, 게스트: ${num_guest}명, 방pk: ${room}`
-    );
+    if (localStorage.getItem('token')) {
+      const { checkin, checkout, adult, infant, children } = this.props;
+      const { room: roomId } = this.state;
+      console.log(checkin, checkout, adult, infant, children);
+      this.props.history.push(
+        `/reserve/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
+      );
+    } else {
+      alert('로그인이 되어있지 않습니다. 로그인해주세요.');
+    }
   }
 
   handleSelect(e) {
@@ -54,4 +48,4 @@ class ReserveForm extends Component {
   }
 }
 
-export default withSearch(ReserveForm);
+export default withRouter(withSearch(ReserveForm));

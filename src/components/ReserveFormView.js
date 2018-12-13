@@ -89,11 +89,9 @@ class ReserveFormView extends React.PureComponent {
             <Dates />
           </div>
           <PeopleControlView />
-          <Link to={`/reserve/${roomId}`}>
-            <button className={style.reserveBtn} onClick={onBook}>
-              예약요청
-            </button>
-          </Link>
+          <button className={style.reserveBtn} onClick={onBook}>
+            예약요청
+          </button>
           <div className={style.notice}>
             <small>예약 확정 전에는 요금이 청구되지 않습니다</small>
           </div>
