@@ -408,4 +408,10 @@
 .reserveRuleItem {
   display: list-item;
   padding-top: 10px;
+  margin-left: 1.4em;
+}
+.mainInfoList {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
 }
