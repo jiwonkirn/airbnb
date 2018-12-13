@@ -264,7 +264,7 @@ class DetailView extends React.Component {
             </div>
             <div className={style.devider} />
             <h3 className={style.category2}>후기 {this.state.review}개</h3>
-            <Review />
+            <Review roomId={roomId}/>
             <hr className={style.devider} />
             <div>
               <h3 className={style.category2}>
