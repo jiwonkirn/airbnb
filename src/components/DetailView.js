@@ -199,8 +199,8 @@ class DetailView extends React.Component {
                 <li>욕실 {bathrooms}개</li>
               </ul>
             </div>
-            {devided.map(item => (
-              <div>
+            {devided.map((item, index) => (
+              <div key={index}>
                 <h3 className={style.category}>{item[0]}</h3>
                 <p>{item[1]}</p>
               </div>
@@ -211,12 +211,12 @@ class DetailView extends React.Component {
             </button>
             <div>
               <h3 className={style.category}>숙소</h3>
-              {devided2.map(item => (
-                <p>{item}</p>
+              {devided2.map((item, index) => (
+                <p key={index}>{item}</p>
               ))}
               <div className={style.roomInfo2}>
-                {devided3.map(item => (
-                  <p>{item}</p>
+                {devided3.map((item, index) => (
+                  <p key={index}>{item}</p>
                 ))}
               </div>
             </div>
@@ -225,8 +225,8 @@ class DetailView extends React.Component {
             <div>
               <h3 className={style.category}>편의시설</h3>
               <ul className={style.amenities}>
-                {devided4.map(amenity => (
-                  <li className={style.amenity}>
+                {devided4.map((amenity, index) => (
+                  <li key={index} className={style.amenity}>
                     <div className={style.icon}>
                       {IconMap[amenity.split(' ').join('')]}
                     </div>
@@ -247,8 +247,8 @@ class DetailView extends React.Component {
                   />
                   <h3 className={style.modalTitle}>편의시설</h3>
                   <ul>
-                    {amenities.map(amenity => (
-                      <li>
+                    {amenities.map( (amenity, index) => (
+                      <li key={index}>
                         {amenity}
                         <div className={style.devider} />
                       </li>

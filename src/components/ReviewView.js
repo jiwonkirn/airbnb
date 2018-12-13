@@ -68,17 +68,17 @@ export default class ReviewView extends PureComponent {
           <button className={style.reviewBtn}>후기 쓰기</button>
         </form>
         <hr className={style.devider} />
-        {reviews.map(review => (
-          <div>
+        {reviews.map((review, index) => (
+          <div key={index}>
             <div className={style.userInfo}>
               <div className={style.userImg} />
               <div className={style.userGrade}>
                 <div className={style.starBox}>
-                  {stars.map(star =>
+                  {stars.map((star, index) =>
                     star <= review.grade ? (
-                      <Star className={style.star1} />
+                      <Star key={index} className={style.star1} />
                     ) : (
-                      <Star className={style.star2} />
+                      <Star key={index} className={style.star2} />
                     )
                   )}
                 </div>
