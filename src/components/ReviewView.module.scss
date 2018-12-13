@@ -1,0 +1,62 @@
+.grade {
+  display: flex;
+}
+.gradeText {
+  line-height: 30px;
+  margin-right: 10px;
+}
+.gradeSelect {
+  height: 30px;
+}
+.reviewText {
+  width: 100%;
+}
+.reviewBtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #008489;
+  color: #ffffff;
+  width: 150px;
+  height: 50px;
+}
+.devider {
+  margin: 20px 0;
+  border: 1px solid #ebebeb;
+}
+.userInfo {
+  display: flex;
+}
+.userImg {
+  border: 1px solid #f2f2f2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.userGrade li {
+  line-height: 25px;
+}
+.userGrade {
+  margin-bottom: 20px;
+}
+.starBox {
+  display: flex;
+  height: 25px;
+  padding: 5px 5px 5px 0;
+}
+.star1 {
+  height: 100%;
+  line-height: 25px;
+  fill: #008489;
+}
+.star2 {
+  height: 100%;
+  line-height: 25px;
+  fill: #aaaaaa;
+}
+.category2 {
+  display: inline-block;
+  margin: 20px 0;
+  font-weight: 700;
+  font-size: 2rem;
+}

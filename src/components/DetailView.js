@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import style from './Detail.module.scss';
 import ReserveForm from '../containers/ReserveForm';
+import Review from '../containers/Review';
 import { ReactComponent as Tv } from '../svg/tv.svg';
 import { ReactComponent as Wireless } from '../svg/wireless.svg';
 import { ReactComponent as Kitchen } from '../svg/kitchen.svg';
@@ -11,6 +12,9 @@ import { ReactComponent as Dryer } from '../svg/dryer.svg';
 import { ReactComponent as Washer } from '../svg/washer.svg';
 import { ReactComponent as Cross } from '../svg/cross.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import { ReactComponent as Iron } from '../svg/iron.svg';
+import { ReactComponent as Hanger } from '../svg/hanger.svg';
+import { ReactComponent as Elevator } from '../svg/elevator.svg';
 import DaumMap1 from './DaumMap1';
 import withCommonLoading from '../hoc/CommonLoading';
 import 'react-dates/initialize';
@@ -29,6 +33,7 @@ class DetailView extends React.Component {
       moreInfo: false,
       sticky: false,
       ruleMore: false,
+      review: 0,
     };
   }
   handleModal() {
@@ -113,12 +118,22 @@ class DetailView extends React.Component {
       lng,
       ...rest
     } = this.props;
-    const devided = room_info_1.split('\n\n').map(item => item.split('\n'));
+    const devided = room_info_1
+      .split('\n\n')
+      .map(item => item.split('\n'))
+      .splice(1, 2);
     const devided2 = room_info_2.split('\n');
     const devided3 = room_info_3.split('\n');
     const devided4 = room_info_4.split('\n');
     const IconMap = {
-      주방: Kitchen,
+      주방: <Kitchen />,
+      건조기: <Dryer />,
+      헤어드라이어: <Hair />,
+      다리미: <Iron />,
+      옷걸이: <Hanger />,
+      무선인터넷: <Wireless />,
+      건물내무료주차: <Park />,
+      엘리베이터: <Elevator />,
     };
     console.log(lat, lng);
     return (
@@ -175,6 +190,15 @@ class DetailView extends React.Component {
                 {room_host.first_name}
               </label>
             </div>
+            <div>
+            <h3 className={style.category}>{room_and_property_type}</h3>
+              <ul className={style.mainInfoList}>
+                <li>인원 {person_capacity}명</li>
+                <li>침실 {bedrooms}개</li>
+                <li>침대 {beds}개</li>
+                <li>욕실 {bathrooms}개</li>
+              </ul>
+            </div>
             {devided.map((item, index) => (
               <div key={index}>
                 <h3 className={style.category}>{item[0]}</h3>
@@ -203,9 +227,9 @@ class DetailView extends React.Component {
               <ul className={style.amenities}>
                 {devided4.map((amenity, index) => (
                   <li key={index} className={style.amenity}>
-                    {/* <div className={style.icon}>
-                        < {IconMap[amenity]}/>
-                      </div> */}
+                    <div className={style.icon}>
+                      {IconMap[amenity.split(' ').join('')]}
+                    </div>
                     <p className={style.am}>{amenity}</p>
                   </li>
                 ))}
@@ -223,7 +247,7 @@ class DetailView extends React.Component {
                   />
                   <h3 className={style.modalTitle}>편의시설</h3>
                   <ul>
-                    {amenities.map((amenity, index) => (
+                    {amenities.map( (amenity, index) => (
                       <li key={index}>
                         {amenity}
                         <div className={style.devider} />
@@ -239,6 +263,8 @@ class DetailView extends React.Component {
               <DayPickerRangeController />
             </div>
             <div className={style.devider} />
+            
+            <Review roomId={roomId}/>
             <div>
               <h3 className={style.category2}>
                 호스트: {room_host.last_name}

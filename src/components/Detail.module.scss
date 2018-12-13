@@ -58,6 +58,7 @@
 
 .roomName {
   font-size: 2.5rem;
+  width: 70%;
 }
 .host {
   position: absolute;
@@ -408,4 +409,10 @@
 .reserveRuleItem {
   display: list-item;
   padding-top: 10px;
+  margin-left: 1.4em;
+}
+.mainInfoList {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
 }
