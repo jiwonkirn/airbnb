@@ -10,14 +10,15 @@ class ListView extends Component {
     const { rooms } = this.props;
     const { themeName } = this.props;
     const { adult, infant, children, checkin, checkout } = this.props;
-    const { pathname, search } = this.props.location;
+    const { path } = this.props.match;
+    console.log(path);
     return (
       <div className={style.listWrapper}>
         <h1 className={style.listTitle}>{themeName}</h1>
         <div className={style.roomInfoWrapper}>
-          {rooms.map(
-            (room, index) =>
-              index < 8 && (
+          {rooms.map((room, index) => {
+            if (path === '/search-list/detail') {
+              return (
                 <Link
                   key={room.pk}
                   className={style.roomInfo}
@@ -34,10 +35,36 @@ class ListView extends Component {
                 >
                   <RoomListItemView room={room} />
                 </Link>
-              )
-          )}
+              );
+            } else {
+              return (
+                index < 8 && (
+                  <Link
+                    key={room.pk}
+                    className={style.roomInfo}
+                    to={
+                      `/room-detail/${room.pk}` +
+                      (adult || infant || children || checkin || checkout
+                        ? `?adult=${parseInt(adult)}&children=${parseInt(
+                            children
+                          )}&infant=${parseInt(
+                            infant
+                          )}&checkin=${checkin}&checkout=${checkout}`
+                        : '')
+                    }
+                  >
+                    <RoomListItemView room={room} />
+                  </Link>
+                )
+              );
+            }
+          })}
         </div>
-        <Link to={`/`}>모두 보기</Link>
+        {path === '/search-list/detail' ? null : (
+          <Link to={`/search-list/detail${this.props.location.search}`}>
+            모두 보기
+          </Link>
+        )}
       </div>
     );
   }

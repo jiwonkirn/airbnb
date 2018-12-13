@@ -24,6 +24,7 @@ class SearchProvider extends Component {
       handleInitialize: this.handleInitialize.bind(this),
       // handlePeopleSearch: this.handlePeopleSearch.bind(this),
       handleHomeSearch: this.handleHomeSearch.bind(this),
+      handleSubSearch: this.handleSubSearch.bind(this),
     };
   }
 
@@ -88,6 +89,19 @@ class SearchProvider extends Component {
           `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
       );
     }
+  };
+
+  // 필터링 바에서 검색하는 메소드
+  handleSubSearch = () => {
+    const { adult, children, infant, cityName, checkin, checkout } = this.state;
+    const pathname = this.props.location.pathname;
+    this.props.history.push(
+      (pathname === '/search-list/detail'
+        ? '/search-list/detail?'
+        : `/search-list?`) +
+        (cityName ? `&public_address__contains=${cityName}` : '') +
+        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
+    );
   };
 
   // 홈에서 전체검색을 하는 메소드

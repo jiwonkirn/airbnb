@@ -21,8 +21,22 @@ export default class PeopleControlForm extends Component {
     }
   }
 
+  handleSearchSelector = () => {
+    if (this.props.location.pathname === '/search-list/detail') {
+      this.props.onHandleSubSearch();
+    } else {
+      this.props.onHandlePeopleSearch();
+    }
+  };
+
   render() {
-    const { adult, children, infant, locationPath } = this.props;
+    const {
+      adult,
+      children,
+      infant,
+      locationPath,
+      location: { pathname },
+    } = this.props;
     const { theme } = this.props;
     const buttonClass = classNames(style.optionBox, {
       [style.active]: this.props.selected,
@@ -98,7 +112,7 @@ export default class PeopleControlForm extends Component {
             </span>
             <span
               className={style.addButton}
-              onClick={this.props.onHandlePeopleSearch}
+              onClick={this.props.handleSearchSelector}
             >
               적용
             </span>

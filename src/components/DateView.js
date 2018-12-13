@@ -45,17 +45,25 @@ class DateView extends Component {
 
   // 날짜 정보를 모두 입력하면 날짜 정보를 바꿔준다.
   handleSearch = async () => {
-    const { handlePersonCapacitySearch, handleChange } = this.props;
+    const {
+      handlePersonCapacitySearch,
+      handleChange,
+      handleSubSearch,
+    } = this.props;
     await handleChange('checkin', this.handleDateString(this.state.startDate));
     await handleChange('checkout', this.handleDateString(this.state.endDate));
-    if (this.props.match.path !== '/') {
+    if (
+      this.props.match.path !== '/' &&
+      this.props.location.pathname !== '/search-list/detail'
+    ) {
       handlePersonCapacitySearch();
+    } else if (this.props.location.pathname === '/search-list/detail') {
+      handleSubSearch();
     }
   };
 
   // 특정 날짜의 예약을 막는 메소드
   handleBlock = day => {
-    console.log('eh');
     const { bookingInfo } = this.props;
     const blockedDate = bookingInfo.some(item => {
       return (
@@ -80,21 +88,31 @@ class DateView extends Component {
   };
 
   handleIntitialDates = async () => {
-    const { handlePersonCapacitySearch, handleChange } = this.props;
+    const {
+      handlePersonCapacitySearch,
+      handleChange,
+      handleSubSearch,
+    } = this.props;
     await this.setState({
       startDate: 0,
       endDate: 0,
     });
     await handleChange('checkin', 0);
     await handleChange('checkout', 0);
-    if (this.props.match.path !== '/') {
+    if (
+      this.props.match.path !== '/' &&
+      this.props.location.pathname !== '/search-list/detail'
+    ) {
       handlePersonCapacitySearch();
+    } else if (this.props.location.pathname === '/search-list/detail') {
+      handleSubSearch();
     }
   };
 
   render() {
     const bool =
       this.props.match.path === '/search-list' ||
+      this.props.match.path === '/search-list/detail' ||
       this.props.match.path === '/date';
     const { startDate, endDate } = this.state;
     const { path } = this.props.match;
