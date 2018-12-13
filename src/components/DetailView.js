@@ -33,7 +33,6 @@ class DetailView extends React.Component {
       moreInfo: false,
       sticky: false,
       ruleMore: false,
-      review: 0,
     };
   }
   handleModal() {
@@ -263,9 +262,8 @@ class DetailView extends React.Component {
               <DayPickerRangeController />
             </div>
             <div className={style.devider} />
-            <h3 className={style.category2}>후기 {this.state.review}개</h3>
+            
             <Review roomId={roomId}/>
-            <hr className={style.devider} />
             <div>
               <h3 className={style.category2}>
                 호스트: {room_host.last_name}
