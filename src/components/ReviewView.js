@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import style from './ReviewView.module.scss';
 import { ReactComponent as Star } from '../svg/star.svg';
-export default class ReviewView extends PureComponent {
+export default class ReviewView extends Component {
   constructor(props) {
     super(props);
 
@@ -22,7 +22,14 @@ export default class ReviewView extends PureComponent {
       // comment: e.target.elements.comment.value, 과 뭐가 다른 건지 질문...
     });
   }
-  handleSubmit(e) {
+  refreshState = () => {
+    this.setState({
+      grade: '',
+      comment: '',
+      stars: [1, 2, 3, 4, 5],
+    });
+  };
+  async handleSubmit(e) {
     e.preventDefault();
     const grade = this.state.grade;
     const comment = this.state.comment;
@@ -30,9 +37,12 @@ export default class ReviewView extends PureComponent {
       this.props.onPost(grade, comment);
     }
     this.props.onGetReview();
+    await this.refreshState();
+    //이거 왜 await를 붙여야 하는 걸까...??
   }
+
   render() {
-    const { grade, stars } = this.state;
+    const { grade, stars, comment } = this.state;
     const { reviews } = this.props;
     return (
       <div>
@@ -60,6 +70,7 @@ export default class ReviewView extends PureComponent {
               onChange={e => this.handleComment(e)}
               className={style.reviewText}
               name="comment"
+              value={comment}
               id=""
               cols="30"
               rows="10"
