@@ -81,7 +81,7 @@ class MainView extends Component {
     return (
       <div className="MainView">
         <div
-          class={style.mainimg}
+          className={style.mainimg}
           style={{
             backgroundImage: 'url(' + img + ')',
           }}

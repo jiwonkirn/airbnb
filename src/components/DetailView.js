@@ -175,8 +175,8 @@ class DetailView extends React.Component {
                 {room_host.first_name}
               </label>
             </div>
-            {devided.map(item => (
-              <div>
+            {devided.map((item, index) => (
+              <div key={index}>
                 <h3 className={style.category}>{item[0]}</h3>
                 <p>{item[1]}</p>
               </div>
@@ -187,12 +187,12 @@ class DetailView extends React.Component {
             </button>
             <div>
               <h3 className={style.category}>숙소</h3>
-              {devided2.map(item => (
-                <p>{item}</p>
+              {devided2.map((item, index) => (
+                <p key={index}>{item}</p>
               ))}
               <div className={style.roomInfo2}>
-                {devided3.map(item => (
-                  <p>{item}</p>
+                {devided3.map((item, index) => (
+                  <p key={index}>{item}</p>
                 ))}
               </div>
             </div>
@@ -201,8 +201,8 @@ class DetailView extends React.Component {
             <div>
               <h3 className={style.category}>편의시설</h3>
               <ul className={style.amenities}>
-                {devided4.map(amenity => (
-                  <li className={style.amenity}>
+                {devided4.map((amenity, index) => (
+                  <li key={index} className={style.amenity}>
                     {/* <div className={style.icon}>
                         < {IconMap[amenity]}/>
                       </div> */}
@@ -223,8 +223,8 @@ class DetailView extends React.Component {
                   />
                   <h3 className={style.modalTitle}>편의시설</h3>
                   <ul>
-                    {amenities.map(amenity => (
-                      <li>
+                    {amenities.map((amenity, index) => (
+                      <li key={index}>
                         {amenity}
                         <div className={style.devider} />
                       </li>
@@ -361,12 +361,12 @@ class DetailView extends React.Component {
                   제외한 요금이 환불됩니다.
                 </li>
                 <li className={style.reserveRuleItem}>
-                  체크인까지 5일이 남지 않은 시점에 예약을 취소하면 첫 1박 요금과
-                  나머지 숙박 요금의 50%는 환불되지 않습니다.
+                  체크인까지 5일이 남지 않은 시점에 예약을 취소하면 첫 1박
+                  요금과 나머지 숙박 요금의 50%는 환불되지 않습니다.
                 </li>
                 <li className={style.reserveRuleItem}>
-                  에어비앤비 서비스 수수료는 예약 후 48시간 이내에 취소하고 체크인
-                  전인 경우에만 환불됩니다.
+                  에어비앤비 서비스 수수료는 예약 후 48시간 이내에 취소하고
+                  체크인 전인 경우에만 환불됩니다.
                 </li>
               </ul>
             </div>

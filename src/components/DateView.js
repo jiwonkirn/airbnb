@@ -24,7 +24,6 @@ class DateView extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (!this.props.loading && prevProps.loading) {
       const { checkin, checkout } = this.props;
-      console.log(checkin);
       if (checkin && checkout) {
         this.setState({
           startDate: moment(checkin).local(),
@@ -89,7 +88,6 @@ class DateView extends Component {
       this.props.match.path === '/date';
     const { startDate, endDate } = this.state;
     const { path } = this.props.match;
-    console.log(path);
     return (
       <div style={{ position: 'relative' }}>
         <DateRangePicker
@@ -114,7 +112,7 @@ class DateView extends Component {
           block={!bool}
           endDatePlaceholderText="체크아웃"
           startDatePlaceholderText="체크인"
-          anchorDirection={path === '/room-detail/:roomId' && 'right'}
+          anchorDirection={path === '/room-detail/:roomId' ? 'right' : 'left'}
           showClearDates={true}
         />
         <Cross

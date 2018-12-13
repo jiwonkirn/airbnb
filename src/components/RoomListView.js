@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ReactComponent as Star } from '../svg/star.svg';
 import style from './RoomList.module.scss';
 import { Link, withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';

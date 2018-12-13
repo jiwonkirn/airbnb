@@ -26,11 +26,15 @@
         position: relative;
         // transition: visibility 0 ease-in-out;
         transition-delay: 0.5s;
+        cursor: pointer;
 
         .img {
           border-radius: 5px;
-          height: 300px;
+          width: 100%;
+          padding-bottom: 120%;
           background-color: #333;
+          background-size: cover;
+          background-position: center;
         }
 
         .info {

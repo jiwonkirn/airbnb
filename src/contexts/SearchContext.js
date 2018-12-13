@@ -41,7 +41,7 @@ class SearchProvider extends Component {
   refreshData() {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
-    const cityName = params.get('city__contains');
+    const cityName = params.get('public_address__contains');
     const people = params.get('person_capacity__gte');
     const adult = params.get('adult');
     const children = params.get('children');
@@ -84,7 +84,7 @@ class SearchProvider extends Component {
     } else {
       await this.props.history.push(
         `/search-list?` +
-          (cityName ? `&city__contains=${cityName}` : '') +
+          (cityName ? `&public_address__contains=${cityName}` : '') +
           `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
       );
     }
@@ -97,7 +97,7 @@ class SearchProvider extends Component {
       (this.props.location.pathname !== '/'
         ? `${this.props.location.pathname}?`
         : `search-list/?`) +
-        (cityName ? `&city__contains=${cityName}` : '') +
+        (cityName ? `&public_address__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
     );
     // this.refreshData();

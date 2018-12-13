@@ -4,11 +4,11 @@ import style from './Detail.module.scss';
 import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Dates from '../containers/Dates';
+
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -51,8 +51,6 @@ class ReserveFormView extends React.PureComponent {
     const {
       check_out_date,
       check_in_date,
-      onChangeCheckin,
-      onChangeCheckout,
       onBook,
       price,
       children,

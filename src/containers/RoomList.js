@@ -4,6 +4,8 @@ import api from '../api';
 import { withRouter } from 'react-router-dom';
 
 class RoomList extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +17,8 @@ class RoomList extends Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
+
     const { theme } = this.props;
     const params = new URLSearchParams(decodeURI(this.props.location.search));
     if (params.get('adult') || params.get('children') || params.get('infant')) {
@@ -32,6 +36,7 @@ class RoomList extends Component {
       params,
     });
     if (data.length === 0) console.log('자료가 없습니다.');
+    // if (this._isMounted) {
     if (theme === 'price') {
       const filteredData = data
         .sort((x, y) => x.price - y.price)
@@ -54,6 +59,11 @@ class RoomList extends Component {
     await this.setState({
       loading: false,
     });
+    // }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
