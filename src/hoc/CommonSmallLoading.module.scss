@@ -1,0 +1,48 @@
+@import '../css/module.scss';
+
+@keyframes Loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loadingContainer {
+  width: 100%;
+  min-height: 40px;
+  position: relative;
+  padding-top: 20px;
+  background-color: #fff;
+
+  .loadingItemContainer {
+    width: 50px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+
+    .loadingItem {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $sub-color;
+      margin: 0 3.5px;
+    }
+
+    .loadingItem:first-child {
+      animation: Loading 0.4s alternate infinite ease-in-out forwards;
+    }
+
+    .loadingItem:nth-child(2) {
+      animation: Loading 0.4s alternate 0.15s infinite ease-in-out forwards;
+    }
+
+    .loadingItem:nth-child(3) {
+      animation: Loading 0.4s alternate 0.3s infinite ease-in-out forwards;
+    }
+  }
+}

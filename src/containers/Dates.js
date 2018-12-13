@@ -19,20 +19,25 @@ class Dates extends Component {
   async componentDidMount() {
     const { search } = this.props.location;
     const { roomId } = this.props.match.params;
+    console.log(roomId);
     const params = new URLSearchParams(search);
     const checkin =
       params.get('checkin') === '0' ? null : params.get('checkin');
     const checkout =
       params.get('checkout') === '0' ? null : params.get('checkout');
-    const {
-      data: { booking_info: bookingInfo },
-    } = await api.get(`/api/home/listings/${roomId}/`);
     this.setState({
       checkin,
       checkout,
-      bookingInfo,
       loading: false,
     });
+    if (roomId) {
+      const {
+        data: { booking_info: bookingInfo },
+      } = await api.get(`/api/home/listings/${roomId}/`);
+      this.setState({
+        bookingInfo,
+      });
+    }
   }
 
   render() {

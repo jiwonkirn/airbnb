@@ -21,7 +21,10 @@ class PeopleControlView extends Component {
       this.setState({
         locationPath: 'home',
       });
-    } else if (this.props.match.path === '/search-list') {
+    } else if (
+      this.props.match.path === '/search-list' ||
+      this.props.match.path === '/search-list/detail'
+    ) {
       this.setState({
         locationPath: 'list',
       });
@@ -42,7 +45,12 @@ class PeopleControlView extends Component {
 
   render() {
     const { locationPath } = this.state;
-    const { adult, children, infant } = this.props;
+    const {
+      adult,
+      children,
+      infant,
+      location: { pathname },
+    } = this.props;
     const selectedModal = classNames(style.personFilterBox, {
       [style.selected]: this.state.selected,
     });
@@ -109,6 +117,7 @@ class PeopleControlView extends Component {
               onHandleSelect={this.handleSelect}
               onHandleInitialize={this.props.handleInitialize}
               onHandlePeopleSearch={this.props.handlePersonCapacitySearch}
+              onHandleSubSearch={this.props.handleSubSearch}
               theme={'list'}
               {...this.props}
             />
@@ -127,7 +136,11 @@ class PeopleControlView extends Component {
                   }
             }
             onClick={() => {
-              this.props.handlePersonCapacitySearch();
+              if (pathname === '/search-list/detail') {
+                this.props.handleSubSearch();
+              } else {
+                this.props.handlePersonCapacitySearch();
+              }
               this.setState({
                 selected: false,
               });

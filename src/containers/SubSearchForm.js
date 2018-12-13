@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import SubSearchFormView from '../components/SubSearchFormView';
+import { withSearch } from '../contexts/SearchContext';
 
-export default class SubSearchForm extends Component {
+class SubSearchForm extends Component {
   render() {
     return <SubSearchFormView />;
   }
 }
+
+export default SubSearchForm;
