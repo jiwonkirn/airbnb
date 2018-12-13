@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SavedPage from './pages/SavedPage';
 import SavedRsvnPage from './pages/SavedRsvnPage';
+import ListDetailPage from './pages/ListDetailPage';
 import SavedDetailPage from './pages/SavedDetailPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
@@ -27,6 +28,10 @@ class App extends Component {
               <Layout />
               <main className="mainSection">
                 <Switch>
+                  <Route
+                    path="/search-list/detail"
+                    component={ListDetailPage}
+                  />
                   <Route path="/search-list" component={ListPage} />
                   <Route path="/room-detail/:roomId" component={DetailPage} />
                   <Route path="/pay/:roomId" component={PayPage} />

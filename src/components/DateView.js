@@ -55,7 +55,17 @@ class DateView extends Component {
 
   // 특정 날짜의 예약을 막는 메소드
   handleBlock = day => {
-    if (this.handleDateString(day._d) === '2018-12-20') {
+    console.log('eh');
+    const { bookingInfo } = this.props;
+    const blockedDate = bookingInfo.some(item => {
+      return (
+        item.check_in_date === this.handleDateString(day._d) ||
+        item.reserved_dates.some(
+          innerItem => innerItem === this.handleDateString(day._d)
+        )
+      );
+    });
+    if (blockedDate) {
       return true;
     }
   };

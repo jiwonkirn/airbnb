@@ -36,17 +36,19 @@ class ReserveFormView extends React.PureComponent {
   // }
 
   handleScroll = () => {
-    let lastScrollY = window.scrollY;
-    if (lastScrollY > 555) {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 555 && this.lastScrollY <= 555) {
       this.setState({
         sticky: true,
       });
-    } else {
+    } else if (this.lastScrollY > 555 && currentScroll <= 555) {
       this.setState({
         sticky: false,
       });
     }
+    this.lastScrollY = currentScroll;
   };
+
   render() {
     const {
       check_out_date,

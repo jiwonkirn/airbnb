@@ -26,7 +26,11 @@ class SavedModal extends Component {
 
   handleRemove = e => {
     e.stopPropagation();
-    if (!e.target.getAttribute('class').includes('SavedModal')) {
+    if (
+      e.target.hasAttribute('class')
+        ? !e.target.getAttribute('class').includes('SavedModal')
+        : true
+    ) {
       this.props.onSavedModal();
     }
   };

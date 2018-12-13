@@ -38,19 +38,16 @@ class RoomList extends Component {
     if (data.length === 0) console.log('자료가 없습니다.');
     // if (this._isMounted) {
     if (theme === 'price') {
-      const filteredData = data
-        .sort((x, y) => x.price - y.price)
-        .filter((item, index) => index < 8);
+      const filteredData = data.sort((x, y) => x.price - y.price);
       this.setState({
         cityName: params.get('city__contains'),
         rooms: filteredData,
         themeName: '경제적으로 다녀오세요!',
       });
     } else {
-      const filteredData = data.filter((item, index) => index < 8);
       this.setState({
         cityName: params.get('city__contains'),
-        rooms: filteredData,
+        rooms: data,
         themeName: params.get('city__contains')
           ? params.get('city__contains') + '의 추천 숙소'
           : '추천 숙소',
@@ -67,6 +64,7 @@ class RoomList extends Component {
   }
 
   render() {
+    console.log(this.props.match.path);
     const params = new URLSearchParams(decodeURI(this.props.location.search));
     const adult = params.get('adult');
     const children = params.get('children');
