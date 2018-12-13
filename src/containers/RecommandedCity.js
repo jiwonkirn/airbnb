@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecommandedCityView from '../components/RecommandedCityView';
+import api from '../api';
 
 class RecommandedCity extends Component {
   constructor(props) {
@@ -8,27 +9,25 @@ class RecommandedCity extends Component {
       title: '에어비앤비 추천',
       lists: [
         '서울',
-        '파리',
-        '도쿄',
-        '타이페이',
-        '런던',
-        '상하이',
-        '치앙마이',
-        '오사카',
-        '로스엔젤레스',
+        '제주',
+        '부산',
+        '종로',
+        '해운대',
+        '중구',
+        '마포구',
+        '수영구',
       ],
-      averagePrice: [
-        81920,
-        91029,
-        82130,
-        63048,
-        92030,
-        72030,
-        82130,
-        63048,
-        92030,
-      ],
+      averagePrice: {},
+      loading: true,
     };
+  }
+
+  async componentDidMount() {
+    const { data: averagePrice } = await api.get('/api/home/average/');
+    this.setState({
+      averagePrice,
+      loading: false,
+    });
   }
 
   render() {

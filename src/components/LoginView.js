@@ -10,12 +10,10 @@ class LoginView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: null,
-      endDate: null,
-      focusedInput: 'haha',
       crossclick: false,
     };
   }
+
   handleCross() {
     this.setState({
       crossclick: true,
@@ -24,15 +22,7 @@ class LoginView extends Component {
   render() {
     //페이스북 로그인
     const { setProfile, onModalRemove } = this.props;
-
-    //구글로그인
-    const responseGoogle = response => {
-      //
-    };
-
     document.getElementById('googleButton');
-    console.log(this.state.focusedInput);
-    console.log(this.state.date);
     return (
       <div className={style.container} onClick={e => onModalRemove(e)}>
         <div className={style.wrapper}>
@@ -62,7 +52,9 @@ class LoginView extends Component {
             )}
             buttonText="Login"
             onSuccess={this.props.setGoogleProfile}
-            onFailure={responseGoogle}
+            onFailure={response => {
+              alert('로그인에 실패했습니다.');
+            }}
           />
           <hr className={style.line} />
           <div className={style.login}>

@@ -24,7 +24,6 @@ class DateView extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (!this.props.loading && prevProps.loading) {
       const { checkin, checkout } = this.props;
-      console.log(checkin);
       if (checkin && checkout) {
         this.setState({
           startDate: moment(checkin).local(),
@@ -56,7 +55,17 @@ class DateView extends Component {
 
   // 특정 날짜의 예약을 막는 메소드
   handleBlock = day => {
-    if (this.handleDateString(day._d) === '2018-12-20') {
+    console.log('eh');
+    const { bookingInfo } = this.props;
+    const blockedDate = bookingInfo.some(item => {
+      return (
+        item.check_in_date === this.handleDateString(day._d) ||
+        item.reserved_dates.some(
+          innerItem => innerItem === this.handleDateString(day._d)
+        )
+      );
+    });
+    if (blockedDate) {
       return true;
     }
   };
@@ -89,7 +98,6 @@ class DateView extends Component {
       this.props.match.path === '/date';
     const { startDate, endDate } = this.state;
     const { path } = this.props.match;
-    console.log(path);
     return (
       <div style={{ position: 'relative' }}>
         <DateRangePicker
@@ -114,7 +122,7 @@ class DateView extends Component {
           block={!bool}
           endDatePlaceholderText="체크아웃"
           startDatePlaceholderText="체크인"
-          anchorDirection={path === '/room-detail/:roomId' && 'right'}
+          anchorDirection={path === '/room-detail/:roomId' ? 'right' : 'left'}
           showClearDates={true}
         />
         <Cross

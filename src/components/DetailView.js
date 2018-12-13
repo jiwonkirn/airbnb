@@ -33,6 +33,7 @@ class DetailView extends React.Component {
       moreInfo: false,
       sticky: false,
       ruleMore: false,
+      review: 0,
     };
   }
   handleModal() {

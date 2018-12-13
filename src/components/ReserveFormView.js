@@ -4,11 +4,11 @@ import style from './Detail.module.scss';
 import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Dates from '../containers/Dates';
+
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -36,23 +36,23 @@ class ReserveFormView extends React.PureComponent {
   // }
 
   handleScroll = () => {
-    let lastScrollY = window.scrollY;
-    if (lastScrollY > 555) {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 555 && this.lastScrollY <= 555) {
       this.setState({
         sticky: true,
       });
-    } else {
+    } else if (this.lastScrollY > 555 && currentScroll <= 555) {
       this.setState({
         sticky: false,
       });
     }
+    this.lastScrollY = currentScroll;
   };
+
   render() {
     const {
       check_out_date,
       check_in_date,
-      onChangeCheckin,
-      onChangeCheckout,
       onBook,
       price,
       children,
@@ -91,11 +91,9 @@ class ReserveFormView extends React.PureComponent {
             <Dates />
           </div>
           <PeopleControlView />
-          <Link to={`/reserve/${roomId}`}>
-            <button className={style.reserveBtn} onClick={onBook}>
-              예약요청
-            </button>
-          </Link>
+          <button className={style.reserveBtn} onClick={onBook}>
+            예약요청
+          </button>
           <div className={style.notice}>
             <small>예약 확정 전에는 요금이 청구되지 않습니다</small>
           </div>
