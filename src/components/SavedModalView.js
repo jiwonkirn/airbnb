@@ -25,18 +25,17 @@ class SavedModal extends Component {
   }
 
   handleRemove = e => {
-    this.props.onSavedModal();
+    e.stopPropagation();
+    if (!e.target.getAttribute('class').includes('SavedModal')) {
+      this.props.onSavedModal();
+    }
   };
 
   render() {
     const { savedRooms } = this.props;
     const savedItem = classNames(style.savedItem, { clearfix: true });
     return (
-      <section
-        key={this.props.keyProp}
-        className={style.savedModalContainer}
-        onClick={e => e.stopPropagation()}
-      >
+      <section key={this.props.keyProp} className={style.savedModalContainer}>
         <div className={style.titleContainer}>
           <h2 className={style.title}>목록</h2>
           <span

@@ -19,8 +19,8 @@ const cityList = {
   서울: seoul,
   제주: jeju,
   부산: busan,
-  종로구: jongro,
-  해운대구: haeundae,
+  종로: jongro,
+  해운대: haeundae,
   중구: junggu,
   마포구: mapogu,
   수영구: suyeong,
@@ -59,7 +59,7 @@ class RecommandedCityView extends Component {
   }
 
   render() {
-    const { title, lists, averagePrice } = this.props;
+    const { title, lists, averagePrice, loading } = this.props;
     const { order, translateX } = this.state;
     return (
       <div className={style.RecommandedCity}>
@@ -81,7 +81,7 @@ class RecommandedCityView extends Component {
                 >
                   <div className={style.info}>
                     <h3>{item}</h3>
-                    <p>₩{averagePrice[index]}/1박 평균</p>
+                    <p>₩{averagePrice[item + '_average']}/1박 평균</p>
                   </div>
                 </div>
               </li>
