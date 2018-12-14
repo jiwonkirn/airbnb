@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import ReserveNav from './ReserveNav';
 import RoomInfoView from './RoomInfoView';
 import style from './PayView.module.scss';
@@ -8,7 +8,7 @@ import { ReactComponent as Card2 } from '../svg/card2.svg';
 import { ReactComponent as Card3 } from '../svg/card3.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { withRouter } from 'react-router-dom';
-
+import { withSearch } from '../contexts/SearchContext';
 class PayView extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +33,13 @@ class PayView extends Component {
       checkin,
       checkout,
     });
+  }
+  handleReserve() {
+    const checkin = this.state.checkin;
+    const checkout = this.state.checkout;
+    const adult = this.props.adult;
+    const children = this.props.children;
+    this.props.onPost(checkin, checkout, adult, children);
   }
   render() {
     const { roomId } = this.props;
@@ -147,7 +154,12 @@ class PayView extends Component {
               숙소 이용규칙, 환불 정책, 및 게스트 환불 정책에 동의합니다. 또한,
               서비스 수수료를 포함하여 명시된 총 금액을 결제하는 데 동의합니다.
             </p>
-            <button className={style.finalReserveBtn}>예약 요청하기</button>
+            <button
+              onClick={() => this.handleReserve()}
+              className={style.finalReserveBtn}
+            >
+              예약 요청하기
+            </button>
           </div>
         </div>
         <RoomInfoView
@@ -164,4 +176,4 @@ class PayView extends Component {
     );
   }
 }
-export default withRouter(PayView);
+export default withRouter(withSearch(PayView));
