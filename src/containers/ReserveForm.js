@@ -16,15 +16,16 @@ class ReserveForm extends Component {
   }
 
   async handleBook() {
-    if (localStorage.getItem('token')) {
-      const { checkin, checkout, adult, infant, children } = this.props;
+    const { checkin, checkout, adult, infant, children } = this.props;
+    if (children + adult === 0 || checkout === '' || checkin === '') {
+      alert('인원, 날짜는 필수 입력값입니다.');
+    } else if (localStorage.getItem('token') === null) {
+      alert('로그인이 되어있지 않습니다. 로그인해주세요.');
+    } else {
       const { room: roomId } = this.state;
-      console.log(checkin, checkout, adult, infant, children);
       this.props.history.push(
         `/reserve/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
       );
-    } else {
-      alert('로그인이 되어있지 않습니다. 로그인해주세요.');
     }
   }
 

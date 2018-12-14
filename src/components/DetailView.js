@@ -247,7 +247,7 @@ class DetailView extends React.Component {
                   />
                   <h3 className={style.modalTitle}>편의시설</h3>
                   <ul>
-                    {amenities.map( (amenity, index) => (
+                    {amenities.map((amenity, index) => (
                       <li key={index}>
                         {amenity}
                         <div className={style.devider} />
@@ -262,8 +262,7 @@ class DetailView extends React.Component {
               <h3 className={style.category}>예약 가능 여부</h3>
               <DayPickerRangeController />
             </div>
-            <div className={style.devider} />
-            
+            <div className={style.devider} />    
             <Review roomId={roomId}/>
             <div>
               <h3 className={style.category2}>
