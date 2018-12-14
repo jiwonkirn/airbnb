@@ -5,6 +5,7 @@ import { withSearch } from '../contexts/SearchContext';
 import { ReactComponent as ArrowRight } from '../svg/arrowRight.svg';
 import withLoading from '../hoc/RoomListLoading';
 import RoomListItemView from './RoomListItemView';
+import classNames from 'classnames';
 
 class ListView extends Component {
   render() {
@@ -12,6 +13,9 @@ class ListView extends Component {
     const { themeName } = this.props;
     const { adult, infant, children, checkin, checkout } = this.props;
     const { path } = this.props.match;
+    const roomInfo = classNames(style.roomInfo, {
+      [style.roomDetailInfo]: path === '/search-list/detail',
+    });
     console.log(path);
     return (
       <div className={style.listWrapper}>
@@ -22,7 +26,7 @@ class ListView extends Component {
               return (
                 <Link
                   key={room.pk}
-                  className={style.roomInfo}
+                  className={roomInfo}
                   to={
                     `/room-detail/${room.pk}` +
                     (adult || infant || children || checkin || checkout
