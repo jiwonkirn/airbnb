@@ -93,7 +93,9 @@ class Saved extends Component {
         />
       );
     } else if (this.props.match.path === '/saved/:city') {
-      return <SavedDetailView key={this.props.logined} {...this.state} />;
+      return (
+        <SavedDetailView key={this.props.location.pathname} {...this.state} />
+      );
     } else {
       return <SavedView key={this.props.logined} {...this.state} />;
     }

@@ -32,35 +32,39 @@ class RoomList extends Component {
     params.delete('infant');
     params.delete('checkin');
     params.delete('checkout');
-    const {
-      data: { results: data },
-    } = await api.get('/api/home/listings/', {
-      params,
-    });
-    if (data.length === 0) {
-      this.props.history.push('/search-list/not-found');
-    } else {
-      if (this._isMounted) {
-        if (theme === 'price') {
-          const filteredData = data.sort((x, y) => x.price - y.price);
-          this.setState({
-            cityName: params.get('city__contains'),
-            rooms: filteredData,
-            themeName: '경제적으로 다녀오세요!',
-          });
-        } else {
-          this.setState({
-            cityName: params.get('city__contains'),
-            rooms: data,
-            themeName: params.get('city__contains')
-              ? params.get('city__contains') + '의 추천 숙소'
-              : '추천 숙소',
+    try {
+      const {
+        data: { results: data },
+      } = await api.get('/api/home/listings/', {
+        params,
+      });
+      if (data.length === 0) {
+        this.props.history.push('/search-list/not-found');
+      } else {
+        if (this._isMounted) {
+          if (theme === 'price') {
+            const filteredData = data.sort((x, y) => x.price - y.price);
+            this.setState({
+              cityName: params.get('city__contains'),
+              rooms: filteredData,
+              themeName: '경제적으로 다녀오세요!',
+            });
+          } else {
+            this.setState({
+              cityName: params.get('city__contains'),
+              rooms: data,
+              themeName: params.get('city__contains')
+                ? params.get('city__contains') + '의 추천 숙소'
+                : '추천 숙소',
+            });
+          }
+          await this.setState({
+            loading: false,
           });
         }
-        await this.setState({
-          loading: false,
-        });
       }
+    } catch (e) {
+      this.props.history.push('/notFound');
     }
   }
 
