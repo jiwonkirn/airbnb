@@ -83,11 +83,15 @@ class RoomInfoView extends Component {
               <li className={style.priceInfo}>
                 {' '}
                 <p className={style.roomPrice}>
-                  ₩{price} x {parseInt(checkoutDate) - parseInt(checkinDate)}박
+                  ₩{price * (children + adult)} x{' '}
+                  {parseInt(checkoutDate) - parseInt(checkinDate)}박
                 </p>
                 <p className={style.extra}>
                   {' '}
-                  ₩{price * (parseInt(checkoutDate) - parseInt(checkinDate))}
+                  ₩
+                  {price *
+                    (children + adult) *
+                    (parseInt(checkoutDate) - parseInt(checkinDate))}
                 </p>{' '}
               </li>
               <li className={style.priceInfo}>
@@ -107,7 +111,9 @@ class RoomInfoView extends Component {
               <p>총합계(KRW)</p>
               <p>
                 ₩{' '}
-                {price * (parseInt(checkoutDate) - parseInt(checkinDate)) +
+                {price *
+                  (children + adult) *
+                  (parseInt(checkoutDate) - parseInt(checkinDate)) +
                   4498}
               </p>
             </div>
