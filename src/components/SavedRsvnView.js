@@ -3,8 +3,22 @@ import style from './SavedRsvnView.module.scss';
 import img from '../components/imgs/giftImg.png';
 import { withUser } from '../contexts/UserContext';
 import { ReactComponent as Star } from '../svg/star.svg';
+import Receipt from '../containers/Receipt.js';
+import { withRouter } from 'react-router-dom';
 
 class SavedRsvnView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: false,
+    };
+  }
+
+  handleReceipt() {
+    this.props.history.push('/receipt');
+  }
+
   render() {
     const { data } = this.props;
     return (
@@ -41,7 +55,16 @@ class SavedRsvnView extends Component {
                     <Star className={style.star} />
                   </div>
                   <div className={style.comment}>후기읽기</div>
-                  <div className={style.receipt}>영수증보기</div>
+                  {this.props.logined && (
+                    <p className={style.receipt}>
+                      <span onClick={() => this.handleReceipt()}>
+                        영수증보기
+                      </span>
+                      {this.state.selected && (
+                        <Receipt onRecipt={() => this.handleReceipt()} />
+                      )}
+                    </p>
+                  )}
                   <div className={style.payRequest}>지급 또는 결제요청</div>
                 </div>
               </li>
@@ -53,4 +76,4 @@ class SavedRsvnView extends Component {
   }
 }
 
-export default withUser(SavedRsvnView);
+export default withRouter(withUser(SavedRsvnView));

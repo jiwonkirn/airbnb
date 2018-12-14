@@ -4,6 +4,7 @@ import GuestInfoPage from './pages/GuestInfoPage';
 import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
+import ReceiptPage from './pages/ReceiptPage';
 import PayPage from './pages/PayPage';
 import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -48,6 +49,7 @@ class App extends Component {
                   />
                   <Route exact path="/saved" component={SavedPage} />
                   <Route path="/trips" component={SavedRsvnPage} />
+                  <Route path="/receipt" component={ReceiptPage} />>
                   <Route path="/reserve/:roomId" component={ReservePage} />
                   <Route path="/date" component={Dates} />
                   <Route path="/guest-info/:roomId" component={GuestInfoPage} />
