@@ -7,13 +7,16 @@ import { ReactComponent as VisaCard } from '../svg/visaCard.svg';
 import { ReactComponent as Card2 } from '../svg/card2.svg';
 import { ReactComponent as Card3 } from '../svg/card3.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import { withRouter } from 'react-router-dom';
 
-export default class PayView extends Component {
+class PayView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       buttonclick: false,
+      checkin: '',
+      checkout: '',
     };
   }
   handleButton() {
@@ -21,8 +24,24 @@ export default class PayView extends Component {
       buttonclick: this.state.buttonclick === true ? false : true,
     });
   }
+  componentDidMount() {
+    const location = this.props.location;
+    const params = new URLSearchParams(location.search);
+    const checkin = params.get('checkin');
+    const checkout = params.get('checkout');
+    this.setState({
+      checkin,
+      checkout,
+    });
+  }
   render() {
     const { roomId } = this.props;
+    const checkinYear = this.state.checkin.split('-')[0];
+    const checkinMounth = this.state.checkin.split('-')[1];
+    const checkinDate = this.state.checkin.split('-')[2];
+    const checkoutYear = this.state.checkout.split('-')[0];
+    const checkoutMounth = this.state.checkout.split('-')[1];
+    const checkoutDate = this.state.checkout.split('-')[2];
     return (
       <div>
         <ReserveNav />
@@ -131,8 +150,18 @@ export default class PayView extends Component {
             <button className={style.finalReserveBtn}>예약 요청하기</button>
           </div>
         </div>
-        <RoomInfoView {...this.props} roomId={roomId} />
+        <RoomInfoView
+          checkinYear={checkinYear}
+          checkinMounth={checkinMounth}
+          checkinDate={checkinDate}
+          checkoutYear={checkoutYear}
+          checkoutMounth={checkoutMounth}
+          checkoutDate={checkoutDate}
+          {...this.props}
+          roomId={roomId}
+        />
       </div>
     );
   }
 }
+export default withRouter(PayView);
