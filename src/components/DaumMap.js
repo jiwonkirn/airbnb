@@ -36,7 +36,9 @@ export default class DaumMap extends Component {
         new daum.maps.CustomOverlay({
           map: map,
           clickable: true,
-          content: `<div class="infoMarker"}><span>₩${item.price}</span></div>`,
+          content: `<div class="infoMarker"}><span class="infoMarkerBody">₩${
+            item.price
+          }</span></div>`,
           position: iwPosition,
           xAnchor: 0.5,
           yAnchor: 1,

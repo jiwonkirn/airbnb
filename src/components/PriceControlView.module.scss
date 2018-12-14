@@ -1,0 +1,30 @@
+.PriceControlContainer {
+  position: relative;
+}
+
+.priceContainer {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+
+  // 그래프 부분
+  .controller {
+    margin: 10px 0;
+
+    // 컨트롤 바
+
+    .minPriceButton {
+      left: 0;
+    }
+
+    .maxPriceButton {
+      right: 0;
+    }
+  }
+}
