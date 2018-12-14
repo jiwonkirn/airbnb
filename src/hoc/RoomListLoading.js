@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import style from './RoomListLoading.module.scss';
+import classNames from 'classnames';
 
 class RoomListLoading extends Component {
   constructor(props) {
@@ -10,8 +11,21 @@ class RoomListLoading extends Component {
     };
   }
 
+  componentDidMount() {
+    const { path } = this.props.match;
+    if (path === '/search-list/detail') {
+      this.setState({
+        items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      });
+    }
+  }
+
   render() {
     const { items } = this.state;
+    const { path } = this.props.match;
+    const roomInfo = classNames(style.roomInfo, {
+      [style.roomDetailInfo]: path === '/search-list/detail',
+    });
     return (
       <div className={style.listWrapper}>
         <h1 className={style.listTitle}>로딩중입니다...</h1>
@@ -21,7 +35,7 @@ class RoomListLoading extends Component {
         </p>
         <div className={style.roomInfoWrapper}>
           {items.map(item => (
-            <section key={item} className={style.roomInfo}>
+            <section key={item} className={roomInfo}>
               <div className={style.roomImg} />
               <p className={style.roomLocation} />
               <p className={style.roomTitle} />
@@ -45,7 +59,7 @@ export default function withLoading(WrappedComponent) {
   return function WithLoading(props) {
     const { loading, ...rest } = props;
     if (loading) {
-      return <RoomListLoading />;
+      return <RoomListLoading {...props} />;
     } else {
       return <WrappedComponent {...rest} />;
     }
