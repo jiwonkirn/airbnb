@@ -49,7 +49,17 @@ class ReserveView extends Component {
     });
   }
   render() {
-    const { public_address, notices, room_photos, roomId } = this.props;
+    const {
+      public_address,
+      notices,
+      room_photos,
+      roomId,
+      adult,
+      children,
+      infant,
+      checkin,
+      checkout,
+    } = this.props;
     console.log(room_photos);
     const checkinYear = this.state.checkin.split('-')[0];
     const checkinMounth = this.state.checkin.split('-')[1];
@@ -170,7 +180,9 @@ class ReserveView extends Component {
               </p>
             </li>
           </ul>
-          <Link to={`/guest-info/${roomId}`}>
+          <Link
+            to={`/guest-info/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
+          >
             <button className={style.continueBtn}>동의 및 계속하기</button>
           </Link>
         </div>
