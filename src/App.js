@@ -13,7 +13,7 @@ import SavedDetailPage from './pages/SavedDetailPage';
 import ListDetailPage from './pages/ListDetailPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
-import UserProvider from './contexts/UserContext';
+import { UserProvider } from './contexts/UserContext';
 import { RouterSearchProvider } from './contexts/SearchContext';
 import ReservePage from './pages/ReservePage';
 import Dates from './containers/Dates';
