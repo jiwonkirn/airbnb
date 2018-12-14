@@ -9,6 +9,7 @@ export default class ReviewView extends Component {
       grade: '',
       comment: '',
       stars: [1, 2, 3, 4, 5],
+      reviewmore: false,
     };
   }
   handleGrade(e) {
@@ -29,6 +30,11 @@ export default class ReviewView extends Component {
       stars: [1, 2, 3, 4, 5],
     });
   };
+  handleReviewMore() {
+    this.setState({
+      reviewmore: this.state.reviewmore === true ? false : true,
+    });
+  }
   async handleSubmit(e) {
     e.preventDefault();
     const grade = this.state.grade;
@@ -79,27 +85,58 @@ export default class ReviewView extends Component {
           <button className={style.reviewBtn}>후기 쓰기</button>
         </form>
         <hr className={style.devider} />
-        {reviews.map((review, index) => (
-          <div key={index}>
-            <div className={style.userInfo}>
-              <div className={style.userImg} />
-              <div className={style.userGrade}>
-                <div className={style.starBox}>
-                  {stars.map((star, index) =>
-                    star <= review.grade ? (
-                      <Star key={index} className={style.star1} />
-                    ) : (
-                      <Star key={index} className={style.star2} />
-                    )
-                  )}
+
+        {this.state.reviewmore
+          ? reviews.map((review, index) => (
+              <div key={index}>
+                <div className={style.userInfo}>
+                  <div className={style.userImg} />
+                  <div className={style.userGrade}>
+                    <div className={style.starBox}>
+                      {stars.map((star, index) =>
+                        star <= review.grade ? (
+                          <Star key={index} className={style.star1} />
+                        ) : (
+                          <Star key={index} className={style.star2} />
+                        )
+                      )}
+                    </div>
+                    <p>{review.created_at}</p>
+                  </div>
                 </div>
-                <p>{review.created_at}</p>
+                <p>{review.comment}</p>
+                <hr className={style.devider} />
               </div>
-            </div>
-            <p>{review.comment}</p>
-            <hr className={style.devider} />
-          </div>
-        ))}
+            ))
+          : reviews.map((review, index) =>
+              index < 10 ? (
+                <div key={index}>
+                  <div className={style.userInfo}>
+                    <div className={style.userImg} />
+                    <div className={style.userGrade}>
+                      <div className={style.starBox}>
+                        {stars.map((star, index) =>
+                          star <= review.grade ? (
+                            <Star key={index} className={style.star1} />
+                          ) : (
+                            <Star key={index} className={style.star2} />
+                          )
+                        )}
+                      </div>
+                      <p>{review.created_at}</p>
+                    </div>
+                  </div>
+                  <p>{review.comment}</p>
+                  <hr className={style.devider} />
+                </div>
+              ) : null
+            )}
+        {this.state.reviewmore ? (
+          <button onClick={() => this.handleReviewMore()}>접기</button>
+        ) : (
+          <button onClick={() => this.handleReviewMore()}>더보기</button>
+        )}
+        <hr className={style.devider}/>
       </div>
     );
   }
