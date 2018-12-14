@@ -3,6 +3,7 @@ import RoomList from '../containers/RoomList';
 import SubSearchForm from '../containers/SubSearchForm';
 import { withSearch } from '../contexts/SearchContext';
 import { withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 class ListPage extends Component {
   constructor(props) {
@@ -14,12 +15,18 @@ class ListPage extends Component {
 
   render() {
     const { theme } = this.state;
+    const { cityName } = this.props;
     return (
-      <section>
-        <SubSearchForm />
-        <RoomList theme={theme[0]} />
-        <RoomList />
-      </section>
+      <>
+        <Helmet>
+          <title>{cityName + ' - FASTBNB'}</title>
+        </Helmet>
+        <section>
+          <SubSearchForm />
+          <RoomList theme={theme[0]} />
+          <RoomList />
+        </section>
+      </>
     );
   }
 }

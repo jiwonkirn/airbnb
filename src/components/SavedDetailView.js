@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import RoomListItemView from './RoomListItemView';
 import DaumMap from './DaumMap';
 import withCommonLoading from '../hoc/CommonLoading';
+import { Helmet } from 'react-helmet';
 
 class SavedDetailView extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class SavedDetailView extends Component {
     const { city, list } = this.state;
     return (
       <>
+        <Helmet>
+          <title>{city + '를 주제로 저장된 숙소 - FASTBNB'}</title>
+        </Helmet>
         <section className={style.mainContainer}>
           <div className={style.header}>
             <Link className={style.toSavedList} to="/saved">

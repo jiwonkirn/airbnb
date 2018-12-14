@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SavedRsvn from '../containers/SavedRsvn';
 import { withUser } from '../contexts/UserContext';
 import { withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 class SavedRsvnPage extends Component {
   componentDidMount() {
@@ -12,7 +13,14 @@ class SavedRsvnPage extends Component {
   }
 
   render() {
-    return <SavedRsvn key={this.props.logined} />;
+    return (
+      <>
+        <Helmet>
+          <title>{'여행 - FASTBNB'}</title>
+        </Helmet>
+        <SavedRsvn key={this.props.logined} />
+      </>
+    );
   }
 }
 
