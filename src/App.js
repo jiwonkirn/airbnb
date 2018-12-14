@@ -12,6 +12,7 @@ import SavedPage from './pages/SavedPage';
 import SavedRsvnPage from './pages/SavedRsvnPage';
 import SavedDetailPage from './pages/SavedDetailPage';
 import ListDetailPage from './pages/ListDetailPage';
+import MainContainer from './MainContainer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
 import { UserProvider } from './contexts/UserContext';
@@ -28,7 +29,7 @@ class App extends Component {
           <RouterSearchProvider>
             <UserProvider>
               <Layout />
-              <main className="mainSection">
+              <MainContainer>
                 <Switch>
                   <Route
                     path="/search-list/detail"
@@ -56,7 +57,7 @@ class App extends Component {
                   <Route exact path="/:otherPath" component={NotFoundPage} />
                   <Route exact path="/" component={HomePage} />
                 </Switch>
-              </main>
+              </MainContainer>
             </UserProvider>
           </RouterSearchProvider>
         </BrowserRouter>

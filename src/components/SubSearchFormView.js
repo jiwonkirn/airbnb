@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import style from './SubSearchForm.module.scss';
 import PeopleControlView from './PeopleControlView';
 import Dates from '../containers/Dates';
-import Price from '../containers/Price';
 
 export default class SubSearchFormView extends Component {
   constructor(props) {
@@ -33,7 +32,6 @@ export default class SubSearchFormView extends Component {
             <Dates />
           </li>
           <PeopleControlView {...this.state} />
-          <Price />
         </ul>
       </section>
     );
