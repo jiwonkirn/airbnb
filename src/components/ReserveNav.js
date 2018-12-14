@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { ReactComponent as Logo } from '../svg/logo.svg';
 import { ReactComponent as ArrowRight } from '../svg/arrowRight.svg';
 import style from './ReserveNav.module.scss';
+import { Link } from 'react-router-dom';
 export default class ReserveNav extends Component {
   render() {
     return (
       <header className={style.reserveNav}>
-        <Logo className={style.logo} />
+        <Link to="/">
+          <Logo className={style.logo} />
+        </Link>
         <nav>
           <ul className={style.navList}>
             <li>

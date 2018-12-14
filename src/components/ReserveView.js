@@ -6,13 +6,28 @@ import withCommonLoading from '../hoc/CommonLoading';
 import { withSearch } from '../contexts/SearchContext';
 import RoomInfoView from './RoomInfoView';
 import ReserveNav from './ReserveNav';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { ReactComponent as Child } from '../svg/child.svg';
+import { ReactComponent as Pet } from '../svg/pet.svg';
+import { ReactComponent as Party } from '../svg/party.svg';
+import { ReactComponent as Smoke } from '../svg/smoke.svg';
 class ReserveView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       moreclick: false,
+      checkin: '',
+      checkout: '',
+      day: [
+        '일요일',
+        '월요일',
+        '화요일',
+        '수요일',
+        '목요일',
+        '금요일',
+        '토요일',
+      ],
     };
   }
   handleMore() {
@@ -23,35 +38,71 @@ class ReserveView extends Component {
   handleOption(e) {
     e.preventDefault();
   }
+  componentDidMount() {
+    const location = this.props.location;
+    const params = new URLSearchParams(location.search);
+    const checkin = params.get('checkin');
+    const checkout = params.get('checkout');
+    this.setState({
+      checkin,
+      checkout,
+    });
+  }
   render() {
-    const { public_address, notices, room_photos, roomId } = this.props;
+    const {
+      public_address,
+      notices,
+      room_photos,
+      roomId,
+      adult,
+      children,
+      infant,
+      checkin,
+      checkout,
+    } = this.props;
     console.log(room_photos);
+    const checkinYear = this.state.checkin.split('-')[0];
+    const checkinMounth = this.state.checkin.split('-')[1];
+    const checkinDate = this.state.checkin.split('-')[2];
+    const checkoutYear = this.state.checkout.split('-')[0];
+    const checkoutMounth = this.state.checkout.split('-')[1];
+    const checkoutDate = this.state.checkout.split('-')[2];
+    const checkinDay = new Date(this.state.checkin).getDay();
+    const checkoutDay = new Date(this.state.checkout).getDay();
+    const iconMap = {
+      어린이와유아에게적합함: <Child />,
+      반려동물동반불가: <Pet />,
+      파티나이벤트금지: <Party />,
+      흡연금지: <Smoke />,
+    };
     return (
       <div>
         <ReserveNav />
         <div className={style.ruleContainer}>
           <h1 className={style.ruleTitle}>숙소 이용규칙 확인하기</h1>
-          <h2>{public_address} 1박</h2>
+          <h2>
+            {public_address} {parseInt(checkoutDate) - parseInt(checkinDate)}일
+          </h2>
           <ul className={style.dates}>
             <li className={style.date}>
               {' '}
               <div className={style.exactDate}>
-                <p>월</p>
-                <p>일</p>
+                <p>{checkinMounth}월</p>
+                <p className={style.checkDate}>{checkinDate}</p>
               </div>{' '}
               <div className={style.checkin}>
-                <p>체크인:</p>
-                <p>16:00</p>
+                <p>체크인: {this.state.day[checkinDay]}</p>
+                <p>15:00 - 02:00(다음 날)</p>
               </div>
             </li>
             <li className={style.date}>
               <div className={style.exactDate}>
-                <p>월</p>
-                <p>일</p>
+                <p>{checkoutMounth}월</p>
+                <p className={style.checkDate}>{checkoutDate}</p>
               </div>
               <div className={style.checkout}>
-                <p>체크아웃:</p>
-                <p>16:00</p>
+                <p>체크아웃: {this.state.day[checkoutDay]}</p>
+                <p>12:00</p>
               </div>
             </li>
           </ul>
@@ -63,9 +114,11 @@ class ReserveView extends Component {
           <h2>주의할 사항</h2>
           <ul className={style.noticeList}>
             {notices.map(notice => (
-              <li>
+              <li className={style.noticeItem}>
                 {' '}
-                <div className={style.noticeIcon} />
+                <div className={style.noticeIcon}>
+                  {iconMap[notice.split(' ').join('')]}
+                </div>
                 <p className={style.noticeText}>{notice}</p>
               </li>
             ))}
@@ -127,14 +180,24 @@ class ReserveView extends Component {
               </p>
             </li>
           </ul>
-          <Link to={`/guest-info/${roomId}`}>
+          <Link
+            to={`/guest-info/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
+          >
             <button className={style.continueBtn}>동의 및 계속하기</button>
           </Link>
         </div>
-        <RoomInfoView {...this.props} />
+        <RoomInfoView
+          checkinYear={checkinYear}
+          checkinMounth={checkinMounth}
+          checkinDate={checkinDate}
+          checkoutYear={checkoutYear}
+          checkoutMounth={checkoutMounth}
+          checkoutDate={checkoutDate}
+          {...this.props}
+        />
       </div>
     );
   }
 }
 
-export default withCommonLoading(withSearch(ReserveView));
+export default withCommonLoading(withSearch(withRouter(ReserveView)));
