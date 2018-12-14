@@ -3,11 +3,37 @@ import style from './GuestInfoView.module.scss';
 import RoomInfoView from './RoomInfoView';
 import PeopleControlForm from './PeopleControlForm';
 import PeopleControlView from './PeopleControlView';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { withSearch } from '../contexts/SearchContext';
 
-export default class GuestInfoVIew extends Component {
+class GuestInfoVIew extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      checkin: '',
+      checkout: '',
+    };
+  }
+
+  componentDidMount() {
+    const location = this.props.location;
+    const params = new URLSearchParams(location.search);
+    const checkin = params.get('checkin');
+    const checkout = params.get('checkout');
+    this.setState({
+      checkin,
+      checkout,
+    });
+  }
   render() {
-    const { roomId } = this.props;
+    const { roomId, adult, children, infant, checkin, checkout } = this.props;
+    const checkinYear = this.state.checkin.split('-')[0];
+    const checkinMounth = this.state.checkin.split('-')[1];
+    const checkinDate = this.state.checkin.split('-')[2];
+    const checkoutYear = this.state.checkout.split('-')[0];
+    const checkoutMounth = this.state.checkout.split('-')[1];
+    const checkoutDate = this.state.checkout.split('-')[2];
     return (
       <div>
         <div className={style.guestInfoContainer}>
@@ -28,12 +54,24 @@ export default class GuestInfoVIew extends Component {
             cols="30"
             rows="10"
           />
-          <Link to={`/pay/${roomId}`}>
+          <Link
+            to={`/pay/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
+          >
             <button className={style.continueBtn}>계속하기</button>
           </Link>
         </div>
-        <RoomInfoView {...this.props} />
+        <RoomInfoView
+          checkinYear={checkinYear}
+          checkinMounth={checkinMounth}
+          checkinDate={checkinDate}
+          checkoutYear={checkoutYear}
+          checkoutMounth={checkoutMounth}
+          checkoutDate={checkoutDate}
+          {...this.props}
+        />
       </div>
     );
   }
 }
+
+export default withRouter(withSearch(GuestInfoVIew));
