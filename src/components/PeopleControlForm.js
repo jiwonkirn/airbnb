@@ -35,7 +35,7 @@ export default class PeopleControlForm extends Component {
       children,
       infant,
       locationPath,
-      location: { pathname },
+      // location: { pathname },
     } = this.props;
     const { theme } = this.props;
     const buttonClass = classNames(style.optionBox, {

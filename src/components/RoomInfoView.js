@@ -39,9 +39,9 @@ class RoomInfoView extends Component {
             </div>
             <div className={style.mainImgWrapper}>
               <img
-                src={room_photos[roomId - 1].room_photo}
+                src={room_photos[0].room_photo}
                 className={style.mainImg}
-                alt={room_photos[roomId - 1].room_photo}
+                alt={room_photos[0].room_photo}
               />
             </div>
           </div>
