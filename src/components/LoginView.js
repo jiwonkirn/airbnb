@@ -56,10 +56,10 @@ class LoginView extends Component {
               alert('로그인에 실패했습니다.');
             }}
           />
-          <hr className={style.line} />
+          {/* <hr className={style.line} /> */}
           <div className={style.login}>
             <p>이미 에어비앤비 계정이 있나요?</p>
-            <p>로그인</p>
+            <p className={style.linkToUser}>로그인</p>
           </div>
         </div>
       </div>
