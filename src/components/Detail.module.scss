@@ -379,9 +379,11 @@
   display: flex;
   padding: 0 10%;
 }
-.navList li {
+.navList button {
   line-height: 50px;
-  padding: 0 10px;
+  border: none;
+  background: transparent;
+  margin-left: 10px;
 }
 //환불정책
 .roomRuleList {
