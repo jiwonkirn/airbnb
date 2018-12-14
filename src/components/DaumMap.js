@@ -9,16 +9,12 @@ export default class DaumMap extends Component {
     this.state = {};
   }
 
-  async componentDidMount() {}
-
-  componentDidUpdate = async (prevProps, prevState) => {
-    if (prevProps.list !== this.props.list) {
-      await loadjs(
-        '//dapi.kakao.com/v2/maps/sdk.js?appkey=da639cf155de5cfa487552ed41060ff3&autoload=false&libraries=services,clusterer,drawing',
-        this.makeMap
-      );
-    }
-  };
+  async componentDidMount() {
+    await loadjs(
+      '//dapi.kakao.com/v2/maps/sdk.js?appkey=da639cf155de5cfa487552ed41060ff3&autoload=false&libraries=services,clusterer,drawing',
+      this.makeMap
+    );
+  }
 
   makeMap = () => {
     const { daum } = window;
@@ -51,7 +47,6 @@ export default class DaumMap extends Component {
   };
 
   render() {
-    console.log('render');
     return <section id="map" className={style.map} />;
   }
 }

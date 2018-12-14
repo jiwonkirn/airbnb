@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import style from './SavedView.module.scss';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import withCommonLoading from '../hoc/CommonLoading';
 
-export default class SavedView extends Component {
+class SavedView extends Component {
   render() {
     const { savedRooms, filteredRooms, keyProps } = this.props;
-    console.log(filteredRooms);
     return (
       <section className={style.container}>
         <h2 className={style.heading}>목록</h2>
@@ -40,3 +40,5 @@ export default class SavedView extends Component {
     );
   }
 }
+
+export default withCommonLoading(SavedView);
