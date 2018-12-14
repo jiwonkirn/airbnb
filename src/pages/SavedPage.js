@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Saved from '../containers/Saved';
 import { withUser } from '../contexts/UserContext';
 import { withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 class SavedPage extends Component {
   componentDidMount() {
@@ -12,7 +13,14 @@ class SavedPage extends Component {
   }
 
   render() {
-    return <Saved key={this.props.logined} />;
+    return (
+      <>
+        <Helmet>
+          <title>{'숙소 저장목록 - FASTBNB'}</title>
+        </Helmet>
+        <Saved key={this.props.logined} />
+      </>
+    );
   }
 }
 

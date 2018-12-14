@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import api from '../api';
+import { withRouter } from 'react-router-dom';
 
 const { Provider, Consumer } = React.createContext();
 
-export default class UserProvider extends Component {
+class UserProviders extends Component {
   constructor(props) {
     super(props);
 
@@ -56,6 +57,7 @@ export default class UserProvider extends Component {
         last_name,
         user_id,
       });
+      alert(`${last_name} ${first_name}남 환영합니다!`);
       await localStorage.setItem('token', token);
       if (localStorage.getItem('token')) {
         this.setState({
@@ -87,11 +89,13 @@ export default class UserProvider extends Component {
       first_name,
       user_id,
     });
+    alert('로그인 되었습니다.');
     localStorage.setItem('token', res2.data.token);
     this.refreshUser();
   }
 
   removeGoogleProfile() {
+    alert('로그아웃 되었습니다.');
     localStorage.removeItem('token');
     this.refreshUser();
   }
@@ -99,6 +103,8 @@ export default class UserProvider extends Component {
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }
 }
+
+const UserProvider = withRouter(UserProviders);
 
 function withUser(WrappedComponent) {
   return function(props) {

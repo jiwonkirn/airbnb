@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DetailView from '../components/DetailView';
 import api from '../api';
 import { withUser } from '../contexts/UserContext';
+import { Helmet } from 'react-helmet';
 
 class Detail extends Component {
   constructor(props) {
@@ -81,12 +82,18 @@ class Detail extends Component {
 
   render() {
     const { roomId } = this.props;
+    const { room_name } = this.state;
     return (
-      <DetailView
-        {...this.state}
-        roomId={roomId}
-        onHandleSaveRoom={roomId => this.handleSaveRoom(roomId)}
-      />
+      <>
+        <Helmet>
+          <title>{room_name + ' - FASTBNB'}</title>
+        </Helmet>
+        <DetailView
+          {...this.state}
+          roomId={roomId}
+          onHandleSaveRoom={roomId => this.handleSaveRoom(roomId)}
+        />
+      </>
     );
   }
 }

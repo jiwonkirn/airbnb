@@ -20,16 +20,22 @@ class Saved extends Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
       this.loadSavedRooms();
+    } else {
+      alert('저장목록은 로그인이 필요한 페이지입니다.');
+      this.props.history.push('/');
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.logined !== prevProps.logined &&
-      localStorage.getItem('token')
-    ) {
-      this.loadSavedRooms();
-    }
+    // if (
+    //   this.props.logined !== prevProps.logined &&
+    //   localStorage.getItem('token')
+    // ) {
+    //   this.loadSavedRooms();
+    // } else {
+    //   alert('저장목록은 로그인이 필요한 페이지입니다.')
+    //   this.props.history.push('/')
+    // }
   }
 
   loadSavedRooms = async () => {
