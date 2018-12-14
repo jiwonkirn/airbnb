@@ -1,3 +1,8 @@
+// .outer {
+//   border: 1px solid red;
+//   width: 90%;
+//   margin: 0 auto;
+// }
 // 이미지
 .imgWrapper {
   display: flex;
@@ -50,10 +55,11 @@
 
 // 숙소정보
 .contentsWrapper {
-  padding: 20px 10px 10px 0;
-  width: 100%;
-  display: inline-block;
-  // border: 1px solid red;
+  padding-top: 20px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .roomName {
@@ -85,8 +91,7 @@
   width: 80%;
 }
 .roomInfo {
-  width: 65%;
-  // border: 1px solid blue;
+  width: 60%;
   display: inline-block;
   position: relative;
 }
@@ -134,24 +139,19 @@
 
 // 예약폼
 .wrapper {
-  // border: 1px solid blue;
-  display: inline-block;
-  width: 30%;
+  width: 350px;
   vertical-align: top;
-  margin-left: 2%;
+  margin-left: 5%;
   position: relative;
 }
 .formWrapper {
-  display: inline-block;
   width: 100%;
   vertical-align: top;
 }
 .formWrapper.sticky {
   position: fixed;
   top: 100px;
-  display: inline-block;
-  width: 25%;
-  margin-left: 1%;
+  width: 350px;
   vertical-align: top;
 }
 .reservationFrom {
@@ -379,9 +379,11 @@
   display: flex;
   padding: 0 10%;
 }
-.navList li {
+.navList button {
   line-height: 50px;
-  padding: 0 10px;
+  border: none;
+  background: transparent;
+  margin-left: 10px;
 }
 //환불정책
 .roomRuleList {

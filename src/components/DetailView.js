@@ -68,17 +68,6 @@ class DetailView extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
   handleScroll = () => {
-    // scroll 이벤트가 발생할 때마다 setState
-    // let lastScrollY = window.scrollY;
-    // if (lastScrollY > 555) {
-    //   this.setState({
-    //     sticky: true,
-    //   });
-    // } else if (lastScrollY < 555) {
-    //   this.setState({
-    //     sticky: false,
-    //   });
-    // }
     const currentScroll = window.scrollY;
     if (currentScroll > 555 && this.lastScrollY <= 555) {
       this.setState({
@@ -91,7 +80,21 @@ class DetailView extends React.Component {
     }
     this.lastScrollY = currentScroll;
   };
-
+  handleBrief() {
+    window.scroll(0, 500);
+  }
+  handleReview() {
+    window.scroll(0, 1700);
+  }
+  handleHost() {
+    window.scroll(0, 3400);
+  }
+  handleLocation() {
+    window.scroll(0, 3700);
+  }
+  handleRecall() {
+    window.scroll(0, 4200);
+  }
   render() {
     const {
       room_name,
@@ -137,15 +140,15 @@ class DetailView extends React.Component {
     };
     console.log(lat, lng);
     return (
-      <div>
+      <div className={style.outer}>
         {this.state.sticky ? (
           <div className={style.subNav}>
             <ul className={style.navList}>
-              <li>개요</li>
-              <li>위치</li>
-              <li>호스트</li>
-              <li>위치</li>
-              <li>환불정책</li>
+              <button onClick={() => this.handleBrief()}>개요</button>
+              <button onClick={() => this.handleReview()}>후기</button>
+              <button onClick={() => this.handleHost()}>호스트</button>
+              <button onClick={() => this.handleLocation()}>위치</button>
+              <button onClick={() => this.handleRecall()}>환불정책</button>
             </ul>
           </div>
         ) : null}
@@ -191,7 +194,7 @@ class DetailView extends React.Component {
               </label>
             </div>
             <div>
-            <h3 className={style.category}>{room_and_property_type}</h3>
+              <h3 className={style.category}>{room_and_property_type}</h3>
               <ul className={style.mainInfoList}>
                 <li>인원 {person_capacity}명</li>
                 <li>침실 {bedrooms}개</li>
@@ -262,8 +265,8 @@ class DetailView extends React.Component {
               <h3 className={style.category}>예약 가능 여부</h3>
               <DayPickerRangeController />
             </div>
-            <div className={style.devider} />    
-            <Review roomId={roomId}/>
+            <div className={style.devider} />
+            <Review roomId={roomId} />
             <div>
               <h3 className={style.category2}>
                 호스트: {room_host.last_name}
