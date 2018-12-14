@@ -28,6 +28,10 @@
   width: 50%;
   display: inline-block;
 }
+.checkDate {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 .exactDate {
   text-align: center;
   width: 50px;
@@ -37,8 +41,12 @@
   vertical-align: top;
   line-height: 25px;
   border-radius: 5px;
-  padding: 2px;
   margin-right: 20px;
+  padding: 10px;
+}
+.exactDate p {
+  // border: 1px solid red;
+  line-height: 15px;
 }
 .checkout,
 .checkin {
@@ -73,6 +81,7 @@
   border-radius: 5px;
   display: inline-block;
   margin-right: 20px;
+  padding: 13px;
 }
 .noticeText {
   line-height: 50px;
@@ -174,9 +183,8 @@
 }
 .checkIn,
 .checkOut {
-  width: 100px;
-  height: 2rem;
-  border: solid black 1px;
+  width: 150px;
+  line-height: 2rem;
   margin-right: 10px;
 }
 .priceInfo {
@@ -211,4 +219,14 @@
 }
 .questionIcon {
   margin-left: 5px;
+}
+//아이콘
+.icon {
+  height: 24px;
+  width: 24px;
+  display: block;
+  fill: rgb(217, 57, 0);
+}
+.noticeItem {
+  margin: 10px;
 }

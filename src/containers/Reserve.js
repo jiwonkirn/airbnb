@@ -41,13 +41,18 @@ export default class Reserve extends Component {
     this.setState({
       ...roomdetail,
     });
-    console.log(roomdetail);
     this.setState({
       loading: false,
     });
   }
 
   render() {
-    return <ReserveView {...this.state} roomId={this.props.roomId} />;
+    return (
+      <ReserveView
+        {...this.state}
+        roomId={this.props.roomId}
+        params={this.state.params}
+      />
+    );
   }
 }

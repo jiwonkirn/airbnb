@@ -5,6 +5,7 @@ import { ReactComponent as Guest } from '../svg/guest.svg';
 import { ReactComponent as Calender } from '../svg/calender.svg';
 import { ReactComponent as Arrow } from '../svg/arrow.svg';
 import { ReactComponent as QuestionMark } from '../svg/questionMark.svg';
+
 import { withSearch } from '../contexts/SearchContext';
 import withCommonLoading from '../hoc/CommonLoading';
 
@@ -19,7 +20,14 @@ class RoomInfoView extends Component {
       adult,
       children,
       price,
+      checkinYear,
+      checkinMounth,
+      checkinDate,
+      checkoutYear,
+      checkoutMounth,
+      checkoutDate,
     } = this.props;
+
     return (
       <div className={style.infoContainer}>
         <div className={style.infoBox}>
@@ -59,19 +67,28 @@ class RoomInfoView extends Component {
                 <div className={style.iconWrapper}>
                   <Calender className={style.calender} />
                 </div>
-                <p className={style.checkIn} />
+                <p className={style.checkIn}>
+                  {checkinYear}년 {checkinMounth}월 {checkinDate}일
+                </p>
                 <div className={style.iconWrapper}>
                   <Arrow className={style.calender} />
                 </div>
-                <p className={style.checkOut} />
+                <p className={style.checkOut}>
+                  {checkoutYear}년 {checkoutMounth}월 {checkoutDate}일
+                </p>
               </li>
             </ul>
             <hr className={style.devider} />
             <ul>
               <li className={style.priceInfo}>
                 {' '}
-                <p className={style.roomPrice}>₩{price} x 1박</p>
-                <p className={style.extra}> ₩{price * 1}</p>{' '}
+                <p className={style.roomPrice}>
+                  ₩{price} x {parseInt(checkoutDate) - parseInt(checkinDate)}박
+                </p>
+                <p className={style.extra}>
+                  {' '}
+                  ₩{price * (parseInt(checkoutDate) - parseInt(checkinDate))}
+                </p>{' '}
               </li>
               <li className={style.priceInfo}>
                 {' '}
@@ -81,14 +98,18 @@ class RoomInfoView extends Component {
                     <QuestionMark className={style.questionMark} />
                   </div>
                 </div>
-                <p className={style.extra}> 아직 정보 없음</p>{' '}
+                <p className={style.extra}> ₩4498</p>{' '}
               </li>
               <li />
             </ul>
             <hr className={style.devider} />
             <div className={style.totalPrice}>
               <p>총합계(KRW)</p>
-              <p>₩ 정보없음</p>
+              <p>
+                ₩{' '}
+                {price * (parseInt(checkoutDate) - parseInt(checkinDate)) +
+                  4498}
+              </p>
             </div>
             <hr className={style.devider} />
           </div>
