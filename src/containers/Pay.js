@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PayView from '../components/PayView';
 import api from '../api';
-export default class Pay extends Component {
+
+class Pay extends Component {
   constructor(props) {
     super(props);
 
@@ -45,9 +47,27 @@ export default class Pay extends Component {
       loading: false,
     });
   }
-
+  async handlePost(checkin, checkout, adult, children) {
+    await api.post('/api/home/booking/', {
+      check_in_date: checkin,
+      check_out_date: checkout,
+      num_guest: adult + children,
+      room: this.props.roomId,
+    });
+    this.props.history.push('/receipt');
+  }
   render() {
     const { roomId } = this.props;
-    return <PayView {...this.state} roomId={roomId} />;
+    return (
+      <PayView
+        onPost={(checkin, checkout, adult, children) =>
+          this.handlePost(checkin, checkout, adult, children)
+        }
+        {...this.state}
+        roomId={roomId}
+      />
+    );
   }
 }
+
+export default withRouter(Pay);
