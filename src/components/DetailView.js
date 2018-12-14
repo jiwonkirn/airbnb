@@ -137,7 +137,7 @@ class DetailView extends React.Component {
     };
     console.log(lat, lng);
     return (
-      <div>
+      <div className={style.outer}>
         {this.state.sticky ? (
           <div className={style.subNav}>
             <ul className={style.navList}>
