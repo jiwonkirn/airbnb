@@ -3,6 +3,7 @@ import style from './SavedDetail.module.scss';
 import { withRouter, Link } from 'react-router-dom';
 import RoomListItemView from './RoomListItemView';
 import DaumMap from './DaumMap';
+import withCommonLoading from '../hoc/CommonLoading';
 
 class SavedDetailView extends Component {
   constructor(props) {
@@ -13,16 +14,14 @@ class SavedDetailView extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.filteredRooms !== prevProps.filteredRooms) {
-      const rooms = this.props.filteredRooms.find(
-        item => item[0] === this.props.match.params.city
-      );
-      this.setState({
-        city: rooms[0],
-        list: rooms[1],
-      });
-    }
+  componentDidMount() {
+    const rooms = this.props.filteredRooms.find(
+      item => item[0] === this.props.match.params.city
+    );
+    this.setState({
+      city: rooms[0],
+      list: rooms[1],
+    });
   }
 
   render() {
@@ -57,4 +56,4 @@ class SavedDetailView extends Component {
   }
 }
 
-export default withRouter(SavedDetailView);
+export default withCommonLoading(withRouter(SavedDetailView));

@@ -1,3 +1,5 @@
+@import '../css/module.scss';
+
 /* 숙소 리스트 */
 .listWrapper {
   margin: 70px auto 0;
@@ -11,7 +13,7 @@
 /* 숙소 아이템 */
 .roomInfoWrapper {
   margin: 10px -7.5px 20px -7.5px;
-  width: 100%;
+  width: calc(100% + 15px);
   display: flex;
   flex-wrap: wrap;
 }
@@ -48,4 +50,14 @@
   display: inline;
   width: 10px;
   fill: rgb(166, 29, 85);
+}
+.toAllLink {
+  color: $sub-color;
+  font-size: 16px;
+}
+.arrowRight {
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  fill: $sub-color;
 }

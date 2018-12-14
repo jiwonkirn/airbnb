@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './RoomList.module.scss';
 import { Link, withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
+import { ReactComponent as ArrowRight } from '../svg/arrowRight.svg';
 import withLoading from '../hoc/RoomListLoading';
 import RoomListItemView from './RoomListItemView';
 
@@ -61,8 +62,12 @@ class ListView extends Component {
           })}
         </div>
         {path === '/search-list/detail' ? null : (
-          <Link to={`/search-list/detail${this.props.location.search}`}>
+          <Link
+            to={`/search-list/detail${this.props.location.search}`}
+            className={style.toAllLink}
+          >
             모두 보기
+            <ArrowRight className={style.arrowRight} />
           </Link>
         )}
       </div>
