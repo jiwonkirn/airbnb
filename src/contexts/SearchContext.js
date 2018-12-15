@@ -14,6 +14,8 @@ class SearchProvider extends Component {
       adult: 0,
       children: 0,
       infant: 0,
+      max_price: 200000,
+      min_price: 0,
       rooms: [], // 방 정보
       // theme: '',
       key: '',
@@ -25,6 +27,7 @@ class SearchProvider extends Component {
       // handlePeopleSearch: this.handlePeopleSearch.bind(this),
       handleHomeSearch: this.handleHomeSearch.bind(this),
       handleSubSearch: this.handleSubSearch.bind(this),
+      handlePrice: this.handlePrice.bind(this),
     };
   }
 
@@ -49,6 +52,8 @@ class SearchProvider extends Component {
     const infant = params.get('infant');
     const checkin = params.get('checkin');
     const checkout = params.get('checkout');
+    const min_price = params.get('price__gte');
+    const max_price = params.get('price__lte');
     this.setState({
       cityName: cityName ? cityName : null,
       people: people ? parseInt(people) : 0,
@@ -58,6 +63,8 @@ class SearchProvider extends Component {
       key: search,
       checkin: checkin ? checkin : 0,
       checkout: checkout ? checkout : 0,
+      min_price: min_price ? parseInt(min_price) : 0,
+      max_price: max_price ? parseInt(max_price) : 200000,
     });
   }
 
@@ -72,7 +79,16 @@ class SearchProvider extends Component {
 
   // 리스트에서 인원을 탐색하는 메소드
   handlePersonCapacitySearch = async () => {
-    const { adult, children, infant, cityName, checkin, checkout } = this.state;
+    const {
+      adult,
+      children,
+      infant,
+      cityName,
+      checkin,
+      checkout,
+      min_price,
+      max_price,
+    } = this.state;
     if (
       !cityName &&
       (this.props.location.pathname.match(/^\/room-detail\/\d+$/) ||
@@ -86,33 +102,50 @@ class SearchProvider extends Component {
       await this.props.history.push(
         `/search-list?` +
           (cityName ? `&public_address__contains=${cityName}` : '') +
-          `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
+          `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&price__gte=${min_price}&price__lte=${max_price}`
       );
     }
   };
 
   // 필터링 바에서 검색하는 메소드
   handleSubSearch = () => {
-    const { adult, children, infant, cityName, checkin, checkout } = this.state;
+    const {
+      adult,
+      children,
+      infant,
+      cityName,
+      checkin,
+      checkout,
+      min_price,
+      max_price,
+    } = this.state;
     const pathname = this.props.location.pathname;
     this.props.history.push(
       (pathname === '/search-list/detail'
         ? '/search-list/detail?'
         : `/search-list?`) +
         (cityName ? `&public_address__contains=${cityName}` : '') +
-        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
+        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&min_price=${min_price}&max_price=${max_price}`
     );
   };
 
   // 홈에서 전체검색을 하는 메소드
   async handleHomeSearch(cityName) {
-    const { adult, children, infant, checkin, checkout } = this.state;
+    const {
+      adult,
+      children,
+      infant,
+      checkin,
+      checkout,
+      min_price,
+      max_price,
+    } = this.state;
     await this.props.history.push(
       (this.props.location.pathname !== '/'
         ? `${this.props.location.pathname}?`
         : `search-list/?`) +
         (cityName ? `&public_address__contains=${cityName}` : '') +
-        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
+        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&min_price=${min_price}&max_price=${max_price}`
     );
     // this.refreshData();
   }
@@ -130,6 +163,13 @@ class SearchProvider extends Component {
       adult: 0,
       children: 0,
       infant: 0,
+    });
+  };
+
+  handlePrice = (min, max) => {
+    this.setState({
+      min_price: min,
+      max_price: max,
     });
   };
 

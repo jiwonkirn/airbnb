@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import 'rc-slider/assets/index.css';
 import './PriceControlView.scss';
 import style from './PriceControlView.module.scss';
+import { withSearch } from '../contexts/SearchContext';
 
 const marks = {
   0: '0',
@@ -25,50 +26,64 @@ class OptionControlView extends Component {
     };
   }
 
-  handleSelect = () => {
-    this.setState(prev => {
+  componentDidMount = () => {
+    const { min_price: min, max_price: max } = this.props;
+    this.setState({
+      min,
+      max,
+    });
+  };
+
+  handleSelect = async e => {
+    e.stopPropagation();
+    await this.setState(prev => {
       return { selected: !prev.selected };
     });
+    if (!this.state.selected) {
+      this.props.handlePersonCapacitySearch();
+    }
   };
 
   handleChange = ([a, b]) => {
-    this.setState({
-      min: a,
-      max: b,
-    });
+    this.props.handlePrice(a, b);
   };
 
   render() {
-    const { min, max, selected } = this.state;
+    const { selected } = this.state;
+    const { min_price: min, max_price: max } = this.props;
+    const filtered = min > 0 || max < 200000;
     const viewControler = classNames(style.priceControl, {
       [style.view]: selected,
     });
+    const priceControlNav = classNames(style.priceControlContainer, {
+      [style.filtered]: filtered,
+    });
     const viewModal = classNames(style.modal, { [style.view]: selected });
     return (
-      <>
-        <li className={style.priceControlContainer} onClick={this.handleSelect}>
-          가격
-          <section className={viewControler}>
-            <h3 className={style.heading}>가격 범위를 설정해주세요.</h3>
-            <Range
-              min={0}
-              max={200000}
-              step={5000}
-              value={[min, max]}
-              marks={marks}
-              onChange={this.handleChange}
-            />
-            <p className={style.priceValue}>
-              <span className={style.minPrice}>₩{min}</span> -
-              <span className={style.maxPrice}> ₩{max}</span>
-            </p>
-            <button className={style.applyOptionButton}>적용</button>
-          </section>
+      <section className={style.container}>
+        <li className={priceControlNav} onClick={e => this.handleSelect(e)}>
+          {filtered ? `₩${min} - ₩${max}` : '가격'}
         </li>
+        <section className={viewControler}>
+          <h3 className={style.heading}>가격 범위를 설정해주세요.</h3>
+          <Range
+            min={0}
+            max={200000}
+            step={5000}
+            value={[min, max]}
+            marks={marks}
+            onChange={this.handleChange}
+          />
+          <p className={style.priceValue}>
+            <span className={style.minPrice}>₩{min}</span> -
+            <span className={style.maxPrice}> ₩{max}</span>
+          </p>
+          <button className={style.applyOptionButton}>적용</button>
+        </section>
         <div className={viewModal} />
-      </>
+      </section>
     );
   }
 }
 
-export default withRouter(OptionControlView);
+export default withSearch(withRouter(OptionControlView));
