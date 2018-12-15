@@ -17,7 +17,6 @@ class UserProviders extends Component {
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
       removeGoogleProfile: this.removeGoogleProfile.bind(this),
-      // logout: this.logout.bind(this),
       logined: false, // 로그인 여부
     };
   }
@@ -44,8 +43,16 @@ class UserProviders extends Component {
 
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setProfile(res) {
+    console.log(res);
     if (!localStorage.getItem('token')) {
-      const { email, id, name } = res;
+      const {
+        email,
+        id,
+        name,
+        picture: {
+          data: { url },
+        },
+      } = res;
       const first_name = name.split(' ')[0];
       const last_name = name.split(' ')[1];
       const user_id = id;
@@ -59,6 +66,7 @@ class UserProviders extends Component {
       });
       alert(`${last_name} ${first_name}남 환영합니다!`);
       await localStorage.setItem('token', token);
+      await localStorage.setItem('photo', url);
       if (localStorage.getItem('token')) {
         this.setState({
           email,
