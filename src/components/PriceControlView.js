@@ -57,6 +57,7 @@ class OptionControlView extends Component {
     });
     const priceControlNav = classNames(style.priceControlContainer, {
       [style.filtered]: filtered,
+      [style.view]: selected,
     });
     const viewModal = classNames(style.modal, { [style.view]: selected });
     return (
@@ -78,6 +79,12 @@ class OptionControlView extends Component {
             <span className={style.minPrice}>₩{min}</span> -
             <span className={style.maxPrice}> ₩{max}</span>
           </p>
+          <button
+            className={style.initialOptionButton}
+            onClick={() => this.handleChange([0, 200000])}
+          >
+            초기화
+          </button>
           <button
             onClick={this.handleSelect}
             className={style.applyOptionButton}

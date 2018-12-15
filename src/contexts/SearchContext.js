@@ -125,7 +125,7 @@ class SearchProvider extends Component {
         ? '/search-list/detail?'
         : `/search-list?`) +
         (cityName ? `&public_address__contains=${cityName}` : '') +
-        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&min_price=${min_price}&max_price=${max_price}`
+        `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&price__gte=${min_price}&price__lte=${max_price}`
     );
   };
 

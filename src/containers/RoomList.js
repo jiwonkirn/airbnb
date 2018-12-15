@@ -39,7 +39,7 @@ class RoomList extends Component {
         params,
       });
       if (data.length === 0) {
-        this.props.history.push('/search-list/not-found');
+        this.props.history.replace('/search-list/not-found');
       } else {
         if (this._isMounted) {
           if (theme === 'price') {
