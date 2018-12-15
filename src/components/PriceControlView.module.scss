@@ -13,6 +13,10 @@ li.priceControlContainer {
   z-index: 100;
   margin: 0;
   letter-spacing: 0.02em;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 30px;
+  top: -1px;
 }
 
 .priceControlContainer.filtered {

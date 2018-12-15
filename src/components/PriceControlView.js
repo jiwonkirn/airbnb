@@ -78,9 +78,14 @@ class OptionControlView extends Component {
             <span className={style.minPrice}>₩{min}</span> -
             <span className={style.maxPrice}> ₩{max}</span>
           </p>
-          <button className={style.applyOptionButton}>적용</button>
+          <button
+            onClick={this.handleSelect}
+            className={style.applyOptionButton}
+          >
+            적용
+          </button>
         </section>
-        <div className={viewModal} />
+        <div onClick={this.handleSelect} className={viewModal} />
       </section>
     );
   }
