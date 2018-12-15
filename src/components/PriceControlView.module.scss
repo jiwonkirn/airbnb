@@ -1,0 +1,52 @@
+@import '../css/module.scss';
+
+.priceControlContainer {
+  position: relative;
+  z-index: 100;
+
+  .priceControl {
+    width: 400px;
+    padding: 25px;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+
+    .heading {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .priceValue {
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    .applyOptionButton {
+      background-color: #fff;
+      border: 0;
+      padding: 10px 0;
+      color: $sub-color;
+      float: right;
+    }
+  }
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 10;
+  display: none;
+}
+
+.priceControl.view,
+.modal.view {
+  display: block;
+}
