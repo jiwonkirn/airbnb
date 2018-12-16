@@ -5,6 +5,8 @@ import { withUser } from '../contexts/UserContext';
 import classNames from 'classnames';
 import SavedAlertView from './SavedAlertView';
 
+let clearModal;
+
 class SaveButton extends Component {
   constructor(props) {
     super(props);
@@ -17,11 +19,18 @@ class SaveButton extends Component {
     await this.setState({
       alert: true,
     });
-    await setTimeout(() => {
+    clearModal = await setTimeout(() => {
       this.setState({
         alert: false,
       });
     }, 3000);
+  };
+
+  handleClear = () => {
+    clearTimeout(clearModal);
+    this.setState({
+      alert: false,
+    });
   };
 
   render() {
@@ -41,7 +50,11 @@ class SaveButton extends Component {
           <Hart className={savedButton} />
           <span className={style.saveBody}>{saved ? '저장됨' : '저장'}</span>
         </button>
-        <SavedAlertView {...this.state} saved={saved} />
+        <SavedAlertView
+          handleClear={this.handleClear}
+          {...this.state}
+          saved={saved}
+        />
       </>
     );
   }
