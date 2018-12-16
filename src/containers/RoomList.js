@@ -13,10 +13,29 @@ class RoomList extends Component {
       rooms: [],
       theme: '',
       loading: true,
+      offset: 0,
+      hasMore: true,
     };
   }
 
   async componentDidMount() {
+    this.loadData(0);
+
+    if (this.props.location.pathname === '/search-list/detail') {
+      window.onscroll = () => {
+        if (
+          window.innerHeight + document.documentElement.scrollTop ===
+            document.documentElement.offsetHeight &&
+          this.state.hasMore
+        ) {
+          console.log(this.state.offset);
+          this.loadData(this.state.offset);
+        }
+      };
+    }
+  }
+
+  loadData = async offset => {
     this._isMounted = true;
 
     const { theme } = this.props;
@@ -32,14 +51,34 @@ class RoomList extends Component {
     params.delete('infant');
     params.delete('checkin');
     params.delete('checkout');
+    params.append('limit', 30);
+    params.append('offset', offset);
     try {
       const {
         data: { results: data },
       } = await api.get('/api/home/listings/', {
         params,
       });
-      if (data.length === 0) {
+      if (offset === 0 && data.length === 0) {
         this.props.history.replace('/search-list/not-found');
+      } else if (data.length === 0) {
+        this.setState({
+          hasMore: false,
+        });
+      } else if (
+        this.props.location.pathname === '/search-list/detail' &&
+        offset !== 0
+      ) {
+        this.setState(prev => {
+          return {
+            cityName: params.get('city__contains'),
+            rooms: prev.rooms.concat(data),
+            themeName: params.get('city__contains')
+              ? params.get('city__contains') + '의 추천 숙소'
+              : '추천 숙소',
+            offset: prev.offset + 30,
+          };
+        });
       } else {
         if (this._isMounted) {
           if (theme === 'price') {
@@ -50,12 +89,15 @@ class RoomList extends Component {
               themeName: '경제적으로 다녀오세요!',
             });
           } else {
-            this.setState({
-              cityName: params.get('city__contains'),
-              rooms: data,
-              themeName: params.get('city__contains')
-                ? params.get('city__contains') + '의 추천 숙소'
-                : '추천 숙소',
+            this.setState(prev => {
+              return {
+                cityName: params.get('city__contains'),
+                rooms: data,
+                themeName: params.get('city__contains')
+                  ? params.get('city__contains') + '의 추천 숙소'
+                  : '추천 숙소',
+                offset: prev.offset + 30,
+              };
             });
           }
           await this.setState({
@@ -66,7 +108,7 @@ class RoomList extends Component {
     } catch (e) {
       this.props.history.push('/notFound');
     }
-  }
+  };
 
   componentWillUnmount() {
     this._isMounted = false;
