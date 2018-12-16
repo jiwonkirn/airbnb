@@ -100,7 +100,9 @@ class SearchProvider extends Component {
       );
     } else {
       await this.props.history.push(
-        `/search-list?` +
+        (this.props.location.pathname === '/search-list/detail'
+          ? '/search-list/detail?'
+          : `/search-list?`) +
           (cityName ? `&public_address__contains=${cityName}` : '') +
           `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&price__gte=${min_price}&price__lte=${max_price}`
       );
