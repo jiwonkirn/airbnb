@@ -53,6 +53,9 @@ class RoomList extends Component {
     params.delete('checkout');
     params.append('limit', 30);
     params.append('offset', offset);
+    if (theme && !params.get('public_address__contains')) {
+      params.append('public_address__contains', theme);
+    }
     try {
       const {
         data: { results: data },
@@ -71,35 +74,20 @@ class RoomList extends Component {
       ) {
         this.setState(prev => {
           return {
-            cityName: params.get('city__contains'),
             rooms: prev.rooms.concat(data),
-            themeName: params.get('city__contains')
-              ? params.get('city__contains') + '의 추천 숙소'
-              : '추천 숙소',
             offset: prev.offset + 30,
           };
         });
       } else {
         if (this._isMounted) {
-          if (theme === 'price') {
-            const filteredData = data.sort((x, y) => x.price - y.price);
-            this.setState({
-              cityName: params.get('city__contains'),
-              rooms: filteredData,
-              themeName: '경제적으로 다녀오세요!',
-            });
-          } else {
-            this.setState(prev => {
-              return {
-                cityName: params.get('city__contains'),
-                rooms: data,
-                themeName: params.get('city__contains')
-                  ? params.get('city__contains') + '의 추천 숙소'
-                  : '추천 숙소',
-                offset: prev.offset + 30,
-              };
-            });
-          }
+          this.setState(prev => {
+            return {
+              rooms: data,
+              themeName: theme ? theme + '의 추천 숙소' : '추천 숙소',
+              offset: prev.offset + 30,
+            };
+          });
+
           await this.setState({
             loading: false,
           });

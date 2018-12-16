@@ -8,7 +8,16 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cities: ['마포구', '중구'],
+      cities: [
+        '서울',
+        '부산',
+        '제주도',
+        '종로',
+        '해운대',
+        '마포구',
+        '중구',
+        '수영구',
+      ],
       selected: '',
     };
   }
@@ -23,6 +32,7 @@ export default class Home extends Component {
   }
 
   render() {
+    const { cities } = this.state;
     return (
       <>
         <Helmet>
@@ -31,7 +41,9 @@ export default class Home extends Component {
         <section>
           <Main />
           <RecommandedCity />
-          <RoomList />
+          {cities.map(item => (
+            <RoomList key={item} theme={item} />
+          ))}
         </section>
       </>
     );
