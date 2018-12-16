@@ -21,6 +21,11 @@ import Dates from './containers/Dates';
 import ListNotFound from './pages/ListNotFound';
 
 class App extends Component {
+  componentDidMount() {
+    if (window.scrollY !== 0) {
+      window.scroll(0, 0);
+    }
+  }
   render() {
     return (
       <div className="App">

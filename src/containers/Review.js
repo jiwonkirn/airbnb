@@ -20,7 +20,7 @@ export default class Review extends Component {
   }
   async handleGetReview() {
     const roomId = this.props.roomId;
-    const { data: reviews } = await api.get(`/api/home/review/user/list/`, {
+    const { data: reviews } = await api.get('/api/home/review/room/list/', {
       params: {
         room_id: roomId,
       },
@@ -34,6 +34,7 @@ export default class Review extends Component {
   }
   render() {
     console.log(this.state.reviews);
+    console.log(this.props.roomId);
     return (
       <ReviewView
         onPost={(grade, comment) => this.handlePost(grade, comment)}
