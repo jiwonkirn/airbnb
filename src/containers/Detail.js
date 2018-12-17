@@ -68,7 +68,7 @@ class Detail extends Component {
       this.setState({
         saved: true,
       });
-      alert('숙소 저장에 성공했습니다.');
+      // alert('숙소 저장에 성공했습니다.');
     } else {
       await api.delete('/api/user/save_room/', {
         data: { room_id: room_id },
@@ -76,7 +76,7 @@ class Detail extends Component {
       this.setState({
         saved: false,
       });
-      alert('저장목록에서 삭제되었습니다.');
+      // alert('저장목록에서 삭제되었습니다.');
     }
   };
 

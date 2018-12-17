@@ -1,30 +1,82 @@
-.PriceControlContainer {
+@import '../css/module.scss';
+
+.container {
   position: relative;
+  display: inline-block;
 }
 
-.priceContainer {
+li.priceControlContainer {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  // z-index: 100;
+  margin: 0;
+  letter-spacing: 0.02em;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 30px;
+  top: -1px;
+}
+
+.priceControlContainer.filtered {
+  background-color: $sub-color;
+  color: #fff;
+}
+
+.priceControl {
+  width: 400px;
+  padding: 25px;
   position: absolute;
   top: 46px;
   left: 0;
-  width: 400px;
-  padding: 20px;
+  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 100;
 
-  // 그래프 부분
-  .controller {
-    margin: 10px 0;
-
-    // 컨트롤 바
-
-    .minPriceButton {
-      left: 0;
-    }
-
-    .maxPriceButton {
-      right: 0;
-    }
+  .heading {
+    font-size: 16px;
+    font-weight: 700;
   }
+
+  .priceValue {
+    color: #aaa;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .initialOptionButton,
+  .applyOptionButton {
+    background-color: #fff;
+    border: 0;
+    padding: 15px 0 0;
+    color: $sub-color;
+  }
+
+  .applyOptionButton {
+    float: right;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 10;
+  display: none;
+}
+
+.priceControl.view,
+.modal.view {
+  display: block;
+}
+
+.priceControlContainer.view {
+  z-index: 100;
 }

@@ -23,7 +23,7 @@ class ListPage extends Component {
         </Helmet>
         <section>
           <SubSearchForm />
-          <RoomList theme={theme[0]} />
+          <RoomList theme={cityName} />
           <RoomList />
         </section>
       </>

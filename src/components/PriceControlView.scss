@@ -1,0 +1,39 @@
+@import '../css/module.scss';
+
+.rc-slider {
+  width: 95%;
+  margin: 30px auto 45px;
+  transform: translateX(-2px);
+}
+
+.rc-slider-track {
+  background-color: $sub-color;
+}
+
+.rc-slider-dot {
+  box-sizing: content-box;
+  border: 2px solid #ddd;
+  transform: translateY(3px);
+}
+
+.rc-slider-dot.rc-slider-dot-active {
+  border: 2px solid $sub-color;
+}
+
+.rc-slider-handle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border: 0;
+  top: 2px;
+}
+
+.rc-slider-handle:active {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.rc-slider-handle-click-focused:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

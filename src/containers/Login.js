@@ -4,6 +4,6 @@ import React, { Component } from 'react';
 export default class Login extends Component {
   render() {
     const { onModalRemove } = this.props;
-    return <LoginView onModalRemove={e => onModalRemove(e)} />;
+    return <img src={localStorage.getItem('photo')} alt="0" />;
   }
 }
