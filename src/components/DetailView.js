@@ -158,7 +158,7 @@ class DetailView extends React.Component {
         {this.state.sticky ? (
           <div className={style.subNav}>
             <ul className={style.navList}>
-              <button  onClick={() => this.handleBrief()}>개요</button>
+              <button onClick={() => this.handleBrief()}>개요</button>
               <button onClick={() => this.handleReview()}>후기</button>
               <button  onClick={() => this.handleHost()}>호스트</button>
               <button onClick={() => this.handleLocation()}>위치</button>
