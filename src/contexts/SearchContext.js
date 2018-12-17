@@ -100,9 +100,7 @@ class SearchProvider extends Component {
       );
     } else {
       await this.props.history.push(
-        (this.props.location.pathname === '/search-list/detail'
-          ? '/search-list/detail?'
-          : `/search-list?`) +
+        '/search-list?' +
           (cityName ? `&public_address__contains=${cityName}` : '') +
           `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&price__gte=${min_price}&price__lte=${max_price}`
       );
@@ -121,11 +119,8 @@ class SearchProvider extends Component {
       min_price,
       max_price,
     } = this.state;
-    const pathname = this.props.location.pathname;
     this.props.history.push(
-      (pathname === '/search-list/detail'
-        ? '/search-list/detail?'
-        : `/search-list?`) +
+      '/search-list?' +
         (cityName ? `&public_address__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&price__gte=${min_price}&price__lte=${max_price}`
     );
@@ -145,7 +140,7 @@ class SearchProvider extends Component {
     await this.props.history.push(
       (this.props.location.pathname !== '/'
         ? `${this.props.location.pathname}?`
-        : `search-list/?`) +
+        : `search-list?`) +
         (cityName ? `&public_address__contains=${cityName}` : '') +
         `&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}&min_price=${min_price}&max_price=${max_price}`
     );

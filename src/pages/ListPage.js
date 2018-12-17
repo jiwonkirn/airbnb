@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import RoomList from '../containers/RoomList';
 import SubSearchForm from '../containers/SubSearchForm';
-import { withSearch } from '../contexts/SearchContext';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { withSearch } from '../contexts/SearchContext';
 
-class ListPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: ['price'],
-    };
-  }
-
+class ListDetailPage extends Component {
   render() {
-    const { theme } = this.state;
     const { cityName } = this.props;
     return (
       <>
@@ -23,12 +15,11 @@ class ListPage extends Component {
         </Helmet>
         <section>
           <SubSearchForm />
-          <RoomList theme={cityName} />
-          <RoomList />
+          <RoomList key={this.props.location.search} />
         </section>
       </>
     );
   }
 }
 
-export default withRouter(withSearch(ListPage));
+export default withSearch(withRouter(ListDetailPage));
