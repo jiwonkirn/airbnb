@@ -25,6 +25,7 @@ export default class Review extends Component {
         room_id: roomId,
       },
     });
+    console.log(reviews);
     this.setState({
       reviews,
     });

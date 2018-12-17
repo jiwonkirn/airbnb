@@ -73,3 +73,38 @@
 .savedModal.view {
   display: block;
 }
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+footer {
+  border-top: 1px solid #f2f2f2;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  // margin-top: 40px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 10px 10px 10px;
+  border-bottom: #f2f2f2 1px solid;
+}
+.footer2 {
+  display: flex;
+  margin-top: 40px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 10px 10px 50px;
+}
+.footerName {
+  font-weight: 700;
+}
+.logo2 {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+.copy {
+  line-height: 25px;
+}

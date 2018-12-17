@@ -41,6 +41,7 @@ class ReserveView extends Component {
   componentDidMount() {
     const location = this.props.location;
     const params = new URLSearchParams(location.search);
+    console.log(params)
     const checkin = params.get('checkin');
     const checkout = params.get('checkout');
     this.setState({

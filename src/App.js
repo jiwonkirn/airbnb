@@ -33,36 +33,40 @@ class App extends Component {
         <BrowserRouter>
           <RouterSearchProvider>
             <UserProvider>
-              <Layout />
-              <MainContainer>
-                <Switch>
-                  <Route
-                    path="/search-list/detail"
-                    component={ListDetailPage}
-                  />
-                  <Route
-                    path="/search-list/not-found"
-                    component={ListNotFound}
-                  />
-                  <Route path="/search-list" component={ListPage} />
-                  <Route path="/room-detail/:roomId" component={DetailPage} />
-                  <Route path="/pay/:roomId" component={PayPage} />
-                  <Route path="/login" component={LoginPage} />
-                  <Route
-                    exact
-                    path="/saved/:city"
-                    component={SavedDetailPage}
-                  />
-                  <Route exact path="/saved" component={SavedPage} />
-                  <Route path="/trips" component={SavedRsvnPage} />
-                  <Route path="/receipt" component={ReceiptPage} />>
-                  <Route path="/reserve/:roomId" component={ReservePage} />
-                  <Route path="/date" component={Dates} />
-                  <Route path="/guest-info/:roomId" component={GuestInfoPage} />
-                  <Route exact path="/:otherPath" component={NotFoundPage} />
-                  <Route exact path="/" component={HomePage} />
-                </Switch>
-              </MainContainer>
+              <Layout>
+                <MainContainer>
+                  <Switch>
+                    <Route
+                      path="/search-list/detail"
+                      component={ListDetailPage}
+                    />
+                    <Route
+                      path="/search-list/not-found"
+                      component={ListNotFound}
+                    />
+                    <Route path="/search-list" component={ListPage} />
+                    <Route path="/room-detail/:roomId" component={DetailPage} />
+                    <Route path="/pay/:roomId" component={PayPage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route
+                      exact
+                      path="/saved/:city"
+                      component={SavedDetailPage}
+                    />
+                    <Route exact path="/saved" component={SavedPage} />
+                    <Route path="/trips" component={SavedRsvnPage} />
+                    <Route path="/receipt" component={ReceiptPage} />>
+                    <Route path="/reserve/:roomId" component={ReservePage} />
+                    <Route path="/date" component={Dates} />
+                    <Route
+                      path="/guest-info/:roomId"
+                      component={GuestInfoPage}
+                    />
+                    <Route exact path="/:otherPath" component={NotFoundPage} />
+                    <Route exact path="/" component={HomePage} />
+                  </Switch>
+                </MainContainer>
+              </Layout>
             </UserProvider>
           </RouterSearchProvider>
         </BrowserRouter>

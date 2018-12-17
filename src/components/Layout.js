@@ -2,6 +2,11 @@ import React from 'react';
 import style from './Layout.module.scss';
 import { ReactComponent as Logo } from '../svg/logo.svg';
 import { ReactComponent as Magnifying } from '../svg/magnifying.svg';
+import { ReactComponent as Facebook } from '../svg/facebook.svg';
+import { ReactComponent as Twitter } from '../svg/twitter.svg';
+import { ReactComponent as Instagram } from '../svg/instagram.svg';
+import { ReactComponent as Blog } from '../svg/blog.svg';
+import { ReactComponent as Board } from '../svg/board.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
@@ -159,6 +164,71 @@ class Layout extends React.PureComponent {
             )}
           </nav>
         </header>
+        {this.props.children}
+        <footer>
+          <div className={style.footer}>
+            <div className={style.footerSection}>
+              <label className={style.footerName} htmlFor={style.footerList}>
+                에어비앤비
+              </label>
+              <ul className={style.footerList}>
+                <li>채용정보</li>
+                <li>미디어</li>
+                <li>정책</li>
+                <li>도움말</li>
+                <li>다양성과 소속감</li>
+              </ul>
+            </div>
+            <div className={style.footerSection}>
+              <label className={style.footerName} htmlFor={style.footerList}>
+                여행하기
+              </label>
+              <ul className={style.footerList}>
+                <li>신뢰와 안전</li>
+                <li>친구 초대하기</li>
+                <li>Airbnb Citizen</li>
+                <li>비즈니스 프로그램</li>
+                <li>가이드북</li>
+                <li>AirbnbMag</li>
+                <li>에어비앤비 이벤트</li>
+                <li>한국의 변경된 환불정책</li>
+              </ul>
+            </div>
+            <div className={style.footerSection}>
+              <label className={style.footerName} htmlFor={style.footerList}>
+                호스팅하기
+              </label>
+              <ul className={style.footerList}>
+                <li>호스팅의 장점</li>
+                <li>호스트 추천하기</li>
+                <li>호스팅 기준</li>
+                <li>책임감 있는 호스트 되기</li>
+                <li>커뮤니티 센터</li>
+                <li>트립 호스팅NEW!</li>
+                <li>Open Homes 프로그램</li>
+              </ul>
+            </div>
+            <div className={style.footerSection}>
+              <div>
+                <Facebook className={style.icon} />
+                <Twitter className={style.icon} />
+                <Instagram className={style.icon} />
+                <Blog className={style.icon} />
+                <Board className={style.icon} />
+              </div>
+              <ul>
+                <li>이용약관</li>
+                <li>개인정보</li>
+                <li>처리방침</li>
+                <li>여행지 찾기</li>
+              </ul>
+            </div>
+          </div>
+          <div className={style.footer2}>
+            <Logo className={style.logo2} />
+            <p className={style.copy}> © Airbnb, Inc.</p>
+          </div>
+        </footer>
       </div>
     );
   }
