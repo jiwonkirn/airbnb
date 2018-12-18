@@ -1,13 +1,21 @@
 {
-  "name": "fds-bbs",
+  "name": "airbnb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "loadjs": "^3.5.4",
+    "lodash.throttle": "^4.1.1",
+    "moment": "^2.22.2",
     "node-sass": "^4.10.0",
+    "rc-slider": "^8.6.4",
     "react": "^16.6.3",
+    "react-dates": "^18.2.2",
     "react-dom": "^16.6.3",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^4.0.0",
+    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1"
   },
@@ -29,13 +37,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@storybook/react": "^4.0.9",
+    "@babel/core": "^7.1.6",
     "@storybook/addon-actions": "^4.0.9",
     "@storybook/addon-links": "^4.0.9",
     "@storybook/addons": "^4.0.9",
-    "@babel/core": "^7.1.6",
+    "@storybook/react": "^4.0.9",
     "babel-loader": "^8.0.4",
     "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.15.2"
+    "prettier": "^1.15.2",
+    "storybook-react-router": "^1.0.1"
   }
 }

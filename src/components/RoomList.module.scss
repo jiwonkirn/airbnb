@@ -1,0 +1,66 @@
+@import '../css/module.scss';
+
+/* 숙소 리스트 */
+.listWrapper {
+  margin: 70px auto 0;
+  width: 100%;
+}
+.listTitle {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+/* 숙소 아이템 */
+.roomInfoWrapper {
+  margin: 10px -7.5px 20px -7.5px;
+  width: calc(100% + 15px);
+  display: flex;
+  flex-wrap: wrap;
+}
+.roomInfo {
+  width: calc(25% - 15px);
+  margin: 0 7.5px 20px 7.5px;
+}
+.roomInfo.roomDetailInfo {
+  width: calc(20% - 15px);
+}
+.roomImg {
+  width: 100%;
+  margin-bottom: 10px;
+  padding-bottom: 66%;
+  background-color: #aaaaaa;
+  background-size: 100%;
+  background-position: center;
+}
+.roomLocation {
+  color: rgb(166, 29, 85);
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 700;
+}
+.roomTitle {
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 4px;
+}
+.roomPrice {
+  margin-top: 4px;
+}
+.starWrapper {
+  margin-top: 2px;
+}
+.star {
+  display: inline;
+  width: 10px;
+  fill: rgb(166, 29, 85);
+}
+.toAllLink {
+  color: $sub-color;
+  font-size: 16px;
+}
+.arrowRight {
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  fill: $sub-color;
+}

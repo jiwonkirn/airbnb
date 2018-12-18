@@ -1,0 +1,58 @@
+@import '../css/module.scss';
+
+.mainContainer {
+  margin: -30px 0 0 -80px;
+  width: calc(39% + 80px);
+  height: calc(100vh - 80px);
+  overflow: scroll;
+  float: left;
+}
+
+.header,
+.body {
+  padding: 25px 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.header {
+  .toSavedList {
+    color: $sub-color;
+  }
+
+  .headerHeading {
+    margin: 50px 0 5px;
+    font-size: 30px;
+    color: #444;
+  }
+
+  .headerBody {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .inviteButton {
+    border: 1px solid $sub-color;
+    color: $sub-color;
+    margin-top: 25px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+  }
+}
+
+.body {
+  .roomsList {
+    .roomContainer {
+      padding: 30px 0;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}
+
+// .mapContainer {
+//   margin: -30px -80px 0 0;
+//   width: calc(61% + 80px);
+//   height: calc(100vh - 80px);
+//   background-color: #ddd;
+//   float: right;
+// }

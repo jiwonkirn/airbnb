@@ -1,0 +1,232 @@
+//전체 컨테이너 레이아웃
+.ruleContainer {
+  width: 66%;
+  display: inline-block;
+  padding: 20px;
+}
+.infoContainer {
+  width: 34%;
+  display: inline-block;
+  vertical-align: top;
+}
+.infoBox {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #f2f2f2;
+  padding: 20px;
+}
+//숙소규칙 컨텐츠
+.ruleTitle {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-top: 20px;
+}
+.dates {
+  margin-top: 40px;
+}
+.date {
+  width: 50%;
+  display: inline-block;
+}
+.checkDate {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.exactDate {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f2f2f2;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 25px;
+  border-radius: 5px;
+  margin-right: 20px;
+  padding: 10px;
+}
+.exactDate p {
+  // border: 1px solid red;
+  line-height: 15px;
+}
+.checkout,
+.checkin {
+  display: inline-block;
+  line-height: 25px;
+}
+//셀프체크인
+.selfCheckin {
+  margin-top: 20px;
+}
+.selfIcon {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  fill: rgb(255, 180, 0);
+}
+.self {
+  display: inline-block;
+}
+.devider {
+  border: 1px solid #f2f2f2;
+  margin: 20px 0;
+}
+//주의사항
+.noticeList {
+  margin-top: 40px;
+}
+.noticeIcon {
+  width: 50px;
+  height: 50px;
+  border: solid #f2f2f2 1px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 13px;
+}
+.noticeText {
+  line-height: 50px;
+  display: inline-block;
+  vertical-align: top;
+}
+.morebtn {
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  display: flex;
+  padding: 0;
+}
+.more {
+  color: #008489;
+}
+.arrowDown {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 10px;
+  fill: #008489;
+}
+//옵션
+.optionTitle {
+  margin-top: 60px;
+}
+.optionItem {
+  padding-top: 20px;
+  display: flex;
+}
+.optionText {
+  width: 70%;
+}
+.select {
+  width: 20px;
+  height: 20px;
+  margin: 10px 20px 0 0;
+  background: #ffffff;
+}
+//동의 버튼
+.continueBtn {
+  width: 180px;
+  height: 50px;
+  background-color: #008489;
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-top: 80px;
+}
+// 숙소 정보
+.mainInfo {
+  display: flex;
+  // border: 1px solid blue;
+}
+.textInfo {
+  width: 70%;
+}
+.mainImgWrapper {
+  width: 30%;
+  // border: 1px solid blue;
+}
+.mainImg {
+  width: 100%;
+}
+.starBox {
+  display: flex;
+  // border: 1px solid blue;
+}
+.star {
+  fill: #008489;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+.guestInfo {
+  display: flex;
+  margin-bottom: 10px;
+}
+.guest {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  fill: currentColor;
+  margin-bottom: 10px;
+}
+.iconWrapper {
+  display: inline-block;
+  margin-right: 10px;
+}
+.calender {
+  height: 20px;
+  width: 20px;
+  display: block;
+  fill: currentColor;
+}
+.dateInfo {
+  display: flex;
+}
+.checkIn,
+.checkOut {
+  width: 150px;
+  line-height: 2rem;
+  margin-right: 10px;
+}
+.priceInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.questionMark {
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: rgb(72, 72, 72);
+  // border: 1px solid red;
+  // margin: auto 0;
+}
+.roomPrice {
+  // border: 1px solid blue;
+  line-height: 16px;
+}
+.serviceWrapper {
+  display: flex;
+}
+.totalPrice {
+  display: flex;
+  justify-content: space-between;
+}
+.subWrapper {
+  font-size: 1.6rem;
+}
+.roomType {
+  margin-bottom: 20px;
+}
+.questionIcon {
+  margin-left: 5px;
+}
+//아이콘
+.icon {
+  height: 24px;
+  width: 24px;
+  display: block;
+  fill: rgb(217, 57, 0);
+}
+.noticeItem {
+  margin: 10px;
+}

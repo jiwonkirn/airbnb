@@ -1,0 +1,416 @@
+
+// 이미지
+.imgWrapper {
+  display: flex;
+  margin: -30px -80px 0;
+  width: calc(100%+160px);
+  position: relative;
+}
+
+.responsive1 {
+  width: 50%;
+}
+.subWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+.mainImg {
+  width: 100%;
+  height: 100%;
+
+  background-color: #aaaaaa;
+}
+.roomType {
+  color: rgb(166, 29, 85);
+}
+.city {
+  color: #484848;
+}
+.subImg {
+  width: 50%;
+  height: 50%;
+  background-color: #aaaaaa;
+}
+//기본 레이아웃
+
+.category {
+  margin: 10px 0;
+  font-weight: 700;
+}
+.roomInfo2 {
+  margin-top: 20px;
+}
+.category2 {
+  display: inline-block;
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+// 숙소정보
+.contentsWrapper {
+  padding-top: 20px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.roomName {
+  font-size: 2.5rem;
+  width: 70%;
+}
+.host {
+  position: absolute;
+  top: 1.4rem;
+  right: 0;
+  width: 10%;
+  height: 10%;
+}
+.hostImg {
+  width: 100%;
+  border-radius: 50%;
+}
+.hostName {
+  text-align: center;
+}
+
+.hostImg2 {
+  width: 10%;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+}
+.hostIntroduce {
+  width: 80%;
+}
+.roomInfo {
+  width: 60%;
+  display: inline-block;
+  position: relative;
+}
+.roomProperty {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  justify-content: space-between;
+  color: #484848;
+}
+
+.amenities {
+  margin-top: 20px;
+}
+.amenity {
+  display: inline-block;
+  width: 50%;
+  height: 20px;
+  font-weight: 100;
+  margin: 10px 0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.am {
+  vertical-align: top;
+  display: inline-block;
+  line-height: 20px;
+}
+.devider {
+  margin: 20px 0;
+  border: 1px solid #ebebeb;
+}
+.transe {
+  border: #101010 1px solid;
+  border-radius: 5px;
+  background-color: transparent;
+  width: 100%;
+  height: 3rem;
+  margin: 10px 0;
+}
+
+// 예약폼
+.wrapper {
+  width: 350px;
+  vertical-align: top;
+  margin-left: 5%;
+  position: relative;
+}
+.formWrapper {
+  width: 100%;
+  vertical-align: top;
+}
+.formWrapper.sticky {
+  position: fixed;
+  top: 100px;
+  width: 350px;
+  vertical-align: top;
+}
+.reservationFrom {
+  width: 100%;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 0 24px;
+  background: #ffffff;
+}
+.price {
+  font-size: 2rem;
+  font-family: 700;
+  margin: 20px 0;
+}
+.star {
+  display: inline;
+  height: 1em;
+  width: 1em;
+  fill: rgb(166, 29, 85);
+}
+.dateInputWrapper {
+  display: flex;
+}
+.dateLabel {
+  width: 100%;
+}
+.date {
+  margin-top: 10px;
+}
+.reserveBtn {
+  border-radius: 5px;
+  margin: 20px 0 24px 0;
+  display: block;
+  background-color: rgb(255, 90, 95);
+  border: none;
+  width: 100%;
+  height: 4rem;
+  color: #ffffff;
+}
+.notice {
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.capicity {
+  color: #484848;
+}
+
+.checkInInput,
+.checkOutInput {
+  width: 45%;
+  height: 4rem;
+  padding: 10px;
+}
+.arrow {
+  height: 24px;
+  width: 24px;
+  fill: currentcolor;
+  margin-top: 20%;
+}
+.arrowBox {
+  width: 10%;
+  height: 4rem;
+  border-top: #ebebeb 1px solid;
+  border-bottom: #ebebeb 1px solid;
+}
+.checkInInput {
+  border-top: #ebebeb 1px solid;
+  border-left: #ebebeb 1px solid;
+  border-bottom: #ebebeb 1px solid;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.checkOutInput {
+  border-top: #ebebeb 1px solid;
+  border-right: #ebebeb 1px solid;
+  border-bottom: #ebebeb 1px solid;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+}
+
+.optionBox {
+  display: none;
+}
+.optionBox.active {
+  display: inline-block;
+  border: #ebebeb 1px solid;
+  width: 86%;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  background: #ffffff;
+}
+.optionType {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.reserveBtn {
+  border-radius: 5px;
+  margin: 20px 0 24px 0;
+  display: block;
+  background-color: rgb(255, 90, 95);
+  border: none;
+  width: 100%;
+  height: 4rem;
+  color: #ffffff;
+}
+.notice {
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.arrowDownBox {
+}
+.capicity {
+  color: #484848;
+}
+.arrowDown {
+  height: 16px;
+  width: 16px;
+  display: inline;
+  fill: currentcolor;
+}
+.minus,
+.plus {
+  border: rgb(0, 132, 137) solid 1px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: transparent;
+}
+.minusCompo,
+.plusCompo {
+  height: 1em;
+  width: 1em;
+  display: block;
+  fill: rgb(0, 132, 137);
+}
+.type {
+  display: inline-block;
+}
+.number {
+  display: flex;
+}
+
+.calender {
+  position: absolute;
+}
+
+.calender {
+  position: absolute;
+}
+//아이콘 모음
+.tv .wireless .kitchen .hair .park .laptop .dryer .washer {
+  height: 20px;
+  width: 20px;
+  fill: currentcolor;
+}
+
+//편의시설 모달
+.modalWrapper {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  padding: 20px;
+}
+.amenityModal {
+  padding: 30px;
+  width: 40%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  height: 1000px;
+  overflow: scroll;
+}
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cross {
+  width: 20px;
+  height: 20px;
+}
+.map {
+  width: 100%;
+  height: 350px;
+  background-color: gray;
+}
+.moreInfo {
+  color: #008489;
+  display: flex;
+}
+.location li {
+  margin: 20px 0;
+  display: flex;
+}
+.arrowDown {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+// .subNav {
+//   display: none;
+// }
+.subNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #ffffff;
+  position: fixed;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+}
+.navList {
+  display: flex;
+  padding: 0 10%;
+}
+.navList button {
+  line-height: 50px;
+  border: none;
+  background: transparent;
+  margin-left: 10px;
+}
+//환불정책
+.roomRuleList {
+  font-weight: 700;
+  margin: 10px 0;
+}
+.roomRuleItem {
+  margin: 10px 0;
+}
+.roomRuleMore {
+  border: none;
+  padding: 0;
+  color: #008489;
+  background-color: #ffffff;
+}
+.subTitle {
+  font-weight: 700;
+  margin: 10px 0;
+}
+.reserveRuleWrapper {
+}
+.reserveRuleList {
+  list-style-type: disc;
+}
+.reserveRuleItem {
+  display: list-item;
+  padding-top: 10px;
+  margin-left: 1.4em;
+}
+.mainInfoList {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}

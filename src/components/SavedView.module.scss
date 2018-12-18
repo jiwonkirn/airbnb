@@ -1,0 +1,53 @@
+.container {
+  width: 1032px;
+  margin: 25px auto;
+
+  .heading {
+    font-size: 30px;
+  }
+
+  .savedContainer {
+    margin-top: 70px;
+
+    .savedHeading,
+    .savedNumber {
+      font-size: 16px;
+    }
+
+    .savedHeading {
+      display: inline-block;
+    }
+
+    .savedNumber {
+      float: right;
+    }
+
+    .savedList {
+      width: calc(100% + 10px);
+      margin: 15px -5px 15px -5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .item {
+        width: calc(33.3% - 10px);
+        margin: 10px 5px 0 5px;
+        position: relative;
+
+        .itemContainer {
+          padding-bottom: 60%;
+          background-size: 100%;
+          background-repeat: no-repeat;
+        }
+
+        .itemTitle {
+          position: absolute;
+          bottom: 15px;
+          left: 15px;
+          font-weight: 700;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

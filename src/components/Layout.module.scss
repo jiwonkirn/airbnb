@@ -1,7 +1,110 @@
-@import '../css/module.scss';
-
+.header {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid #ddd;
+}
 .logo {
-  fill: $main-color;
-  width: 34px;
-  height: 34px;
+  fill: rgb(255, 90, 95);
+  position: absolute;
+  top: 16px;
+  left: 17px;
+  width: 48px;
+  height: 48px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 80px;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  border: #ebebeb 1px solid;
+  transition: all 0.3s ease-in;
+  height: 48px;
+}
+
+.magnifying {
+  margin-left: 20px;
+}
+
+.search {
+  box-sizing: border-box;
+  border: 0;
+  padding-left: 15px;
+  width: 100%;
+  line-height: 40px;
+  outline: 0;
+  font-weight: 700;
+  font-size: 16px;
+  color: #454545;
+}
+
+.navbar {
+  font-size: 0;
+  position: absolute;
+  top: 30px;
+  right: 25px;
+  // z-index: 100;
+}
+
+.navbar_login,
+.navbar_helpdesk,
+.saved,
+.savedRsvn {
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-left: 20px;
+  background-color: buttonface;
+  padding: 2px 6px 3px;
+  border-image: initial;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.savedModal {
+  display: none;
+}
+
+.savedModal.view {
+  display: block;
+}
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+footer {
+  border-top: 1px solid #f2f2f2;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  // margin-top: 40px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 10px 10px 10px;
+  border-bottom: #f2f2f2 1px solid;
+}
+.footer2 {
+  display: flex;
+  margin-top: 40px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 10px 10px 50px;
+}
+.footerName {
+  font-weight: 700;
+}
+.logo2 {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+.copy {
+  line-height: 25px;
 }

@@ -1,0 +1,100 @@
+.RecommandedCity {
+  position: relative;
+  margin-top: 70px;
+  // h2 {
+  //   font-size: 22px;
+  //   font-weight: 700;
+  //   margin: 0 0 20px;
+  // }
+
+  .slideContainer {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 20px;
+
+    ul {
+      transition: all 0.5s ease-in-out;
+      margin-left: -7.5px;
+      margin-right: -7.5px;
+
+      li {
+        width: calc(20% - 15px);
+        margin: 0 7.5px 0 7.5px;
+        display: inline-block;
+        position: relative;
+        // transition: visibility 0 ease-in-out;
+        transition-delay: 0.5s;
+        cursor: pointer;
+
+        .img {
+          border-radius: 5px;
+          width: 100%;
+          padding-bottom: 120%;
+          background-color: #333;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .info {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 15%;
+          text-align: center;
+
+          h3,
+          p {
+            color: #fff;
+          }
+
+          h3 {
+            font-size: 16px;
+            font-weight: 700;
+          }
+
+          p {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+  .prevButton,
+  .nextButton {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 50%;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: calc(50% + 20px);
+    transform: translateY(-50%);
+  }
+
+  .prevButton {
+    left: -15px;
+  }
+
+  .nextButton {
+    right: -15px;
+  }
+
+  .prevButtonSvg {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
+
+  .nextButtonSvg {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
+}
