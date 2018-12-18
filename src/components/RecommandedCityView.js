@@ -97,6 +97,7 @@ class RecommandedCityView extends Component {
         </button>
         <button
           className={style.nextButton}
+          style={order === lists.length - 5 ? { display: 'none' } : null}
           onClick={() => this.handleSlideRight()}
         >
           <AllowRight className={style.nextButtonSvg} />
