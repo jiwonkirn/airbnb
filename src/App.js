@@ -55,7 +55,8 @@ class App extends Component {
                     />
                     <Route exact path="/saved" component={SavedPage} />
                     <Route path="/trips" component={SavedRsvnPage} />
-                    <Route path="/receipt" component={ReceiptPage} />>
+                    <Route path="/receipt/:receiptId" component={ReceiptPage} />
+                    >
                     <Route path="/reserve/:roomId" component={ReservePage} />
                     <Route path="/date" component={Dates} />
                     <Route
