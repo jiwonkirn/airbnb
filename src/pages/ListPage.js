@@ -36,8 +36,10 @@ class ListPage extends Component {
           <section className={style.resultHeadingContainer}>
             <h2 className={style.result}>
               {theme[cityName] ? theme[cityName] : null}
-              <span className={style.resultName}>{' ' + cityName}</span>에 대한
-              검색결과입니다.
+              <span className={style.resultName}>
+                {!cityName ? '전체숙소' : ' ' + cityName}
+              </span>
+              에 대한 검색결과입니다.
             </h2>
           </section>
           <RecommandedTheme />
