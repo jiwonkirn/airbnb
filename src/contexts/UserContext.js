@@ -53,7 +53,7 @@ class UserProviders extends Component {
         },
       } = res;
       const first_name = name.split(' ')[0];
-      const last_name = name.split(' ')[1] && '';
+      const last_name = name.split(' ')[1] == null ? ' ' : name.split(' ')[1];
       const user_id = id;
       console.log(first_name, last_name, user_id);
       try {
