@@ -40,12 +40,12 @@ export default class Review extends Component {
     await this.handleGetReview();
     this.handleReviewPage();
   }
-  // async componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.reviews !== this.state.reviews) {
-  //     await this.handleGetReview();
-  //     this.handleReviewPage();
-  //   }
-  // }
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.reviews.length !== this.state.reviews.length) {
+      await this.handleGetReview();
+      this.handleReviewPage();
+    }
+  }
   render() {
     return (
       <ReviewView
