@@ -1,0 +1,115 @@
+.RecommandedCity {
+  position: relative;
+  margin-top: 40px;
+
+  // h2 {
+  //   font-size: 22px;
+  //   font-weight: 700;
+  //   margin: 0 0 20px;
+  // }
+
+  .headingBody {
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-top: 2px;
+  }
+
+  .slideContainer {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 20px;
+
+    ul {
+      transition: all 0.5s ease-in-out;
+      margin-left: -7.5px;
+      margin-right: -7.5px;
+
+      li {
+        width: calc(25% - 15px);
+        margin: 0 7.5px 0 7.5px;
+        display: inline-block;
+        position: relative;
+        // transition: visibility 0 ease-in-out;
+        transition-delay: 0.5s;
+        vertical-align: top;
+        cursor: pointer;
+
+        .img {
+          // border-radius: 5px;
+          width: 100%;
+          padding-bottom: 66%;
+          background-color: #333;
+          background-size: cover;
+          background-position: center;
+          // margin-bottom: 10px;
+        }
+
+        .roomTitle {
+          color: rgb(166, 29, 85);
+          font-size: 1.2rem;
+          line-height: 1.6rem;
+          font-weight: 700;
+          width: 100%;
+          margin: 10px 0 5px;
+        }
+        .roomBody {
+          font-weight: 700;
+          font-size: 16px;
+          margin-top: 4px;
+          white-space: normal;
+        }
+        .roomFilter {
+          display: inline-block;
+          margin-top: 4px;
+        }
+        .starWrapper {
+          margin-top: 2px;
+        }
+        .star {
+          display: inline;
+          width: 10px;
+          fill: rgb(166, 29, 85);
+        }
+      }
+    }
+  }
+  .prevButton,
+  .nextButton {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 50%;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: calc(41% + 20px);
+    transform: translateY(-50%);
+  }
+
+  .prevButton {
+    left: -15px;
+  }
+
+  .nextButton {
+    right: -15px;
+  }
+
+  .prevButtonSvg {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
+
+  .nextButtonSvg {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
+}

@@ -65,9 +65,9 @@ class ListView extends Component {
             }
           })}
         </div>
-        {path === '/search-list/detail' ? null : (
+        {path === '/search-list' ? null : (
           <Link
-            to={`/search-list/detail${this.props.location.search}`}
+            to={`/search-list${this.props.location.search}`}
             className={style.toAllLink}
           >
             모두 보기
