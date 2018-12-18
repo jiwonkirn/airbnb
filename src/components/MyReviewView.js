@@ -20,26 +20,28 @@ export default class MyReviewView extends Component {
       <div className={style.myReviewContianer}>
         <div className={style.title}>내가 작성한 후기</div>
         <div className={style.list}>
-          <div className={style.userImg} />
-          <div className={style.commentbox}>
-            {room.map(item => (
-              <div className={style.item}>
-                <Link to={'/review/' + item[0]}>
-                  <div className={style.date}>{item.created_at}</div>
-                  <div className={style.comment}>{item.comment}</div>
-                  <div className={style.starBox}>
-                    {stars.map((star, index) =>
-                      star <= item.grade ? (
-                        <Star key={index} className={style.star1} />
-                      ) : (
-                        <Star key={index} className={style.star2} />
-                      )
-                    )}
+          {room.map(item => (
+            <div className={style.item}>
+              <Link to={'/review/' + item[0]}>
+                <div className={style.commentWrapper}>
+                  <div className={style.userImg} />
+                  <div className={style.commentbox}>
+                    <div className={style.date}>{item.created_at}</div>
+                    <div className={style.comment}>{item.comment}</div>
+                    <div className={style.starBox}>
+                      {stars.map((star, index) =>
+                        star <= item.grade ? (
+                          <Star key={index} className={style.star1} />
+                        ) : (
+                          <Star key={index} className={style.star2} />
+                        )
+                      )}
+                    </div>
                   </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     );
