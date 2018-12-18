@@ -5,6 +5,7 @@ import { withUser } from '../contexts/UserContext';
 import { ReactComponent as Star } from '../svg/star.svg';
 import Receipt from '../containers/Receipt.js';
 import { withRouter } from 'react-router-dom';
+import MyReview from '../containers/MyReview';
 
 class SavedRsvnView extends Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class SavedRsvnView extends Component {
 
   handleReceipt(receiptId) {
     this.props.history.push('/receipt/' + receiptId);
+  }
+
+  handleReview() {
+    this.props.history.push('/review');
   }
 
   render() {
@@ -54,7 +59,16 @@ class SavedRsvnView extends Component {
                     <Star className={style.star} />
                     <Star className={style.star} />
                   </div>
-                  <div className={style.comment}>후기읽기</div>
+                  {this.props.logined && (
+                    <p className={style.comment}>
+                      <span onClick={() => this.handleReview(data.id)}>
+                        후기 읽기
+                      </span>
+                      {this.state.selected && (
+                        <MyReview onReview={() => this.handleReview()} />
+                      )}
+                    </p>
+                  )}
                   {this.props.logined && (
                     <p className={style.receipt}>
                       <span onClick={() => this.handleReceipt(data.id)}>
