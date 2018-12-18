@@ -13,9 +13,30 @@ class RoomListLoading extends Component {
 
   componentDidMount() {
     const { path } = this.props.match;
-    if (path === '/search-list/detail') {
+    if (path === '/search-list') {
       this.setState({
-        items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        items: [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+        ],
       });
     }
   }
@@ -24,7 +45,7 @@ class RoomListLoading extends Component {
     const { items } = this.state;
     const { path } = this.props.match;
     const roomInfo = classNames(style.roomInfo, {
-      [style.roomDetailInfo]: path === '/search-list/detail',
+      [style.roomDetailInfo]: path === '/search-list',
     });
     return (
       <div className={style.listWrapper}>
