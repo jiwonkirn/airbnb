@@ -19,12 +19,8 @@ export default class Review extends Component {
     });
   }
   async handleGetReview() {
-    const roomId = this.props.roomId;
-    const { data: reviews } = await api.get('/api/home/review/room/list/', {
-      params: {
-        room_id: roomId,
-      },
-    });
+    const room_id = this.props.roomId;
+    const { data: reviews } = await api.get(`/api/home/review/${room_id}/`);
     console.log(reviews);
     this.setState({
       reviews,

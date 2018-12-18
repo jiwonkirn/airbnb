@@ -14,7 +14,7 @@ class ListView extends Component {
     const { adult, infant, children, checkin, checkout } = this.props;
     const { path } = this.props.match;
     const roomInfo = classNames(style.roomInfo, {
-      [style.roomDetailInfo]: path === '/search-list/detail',
+      [style.roomDetailInfo]: path === '/search-list',
     });
     console.log(path);
     return (
@@ -22,7 +22,7 @@ class ListView extends Component {
         <h1 className={style.listTitle}>{themeName}</h1>
         <div className={style.roomInfoWrapper}>
           {rooms.map((room, index) => {
-            if (path === '/search-list/detail') {
+            if (path === '/search-list') {
               return (
                 <Link
                   key={room.pk}

@@ -4,6 +4,11 @@ import { withRouter } from 'react-router-dom';
 class MainContainer extends Component {
   componentDidUpdate = prevProps => {
     const { pathname } = this.props.location;
+    console.log(
+      'MainContainer componentDidUpdate',
+      pathname,
+      prevProps.location.pathname
+    );
     if (pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0);
     }

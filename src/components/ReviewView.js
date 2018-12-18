@@ -9,6 +9,7 @@ export default class ReviewView extends Component {
       grade: '',
       comment: '',
       stars: [1, 2, 3, 4, 5],
+      reviewpage: null,
     };
   }
   handleGrade(e) {
@@ -22,6 +23,15 @@ export default class ReviewView extends Component {
       // comment: e.target.elements.comment.value, 과 뭐가 다른 건지 질문...
     });
   }
+  // handleReviewPage(reviews){
+  //   const array = []
+  //   for(let i =0; i<reviews.length; i+=10){
+  //     array.push(reviews.slice(i, i+10))
+  //   }
+  //   this.setState({
+  //     review: array
+  //   })
+  // }
   refreshState = () => {
     this.setState({
       grade: '',
@@ -40,7 +50,9 @@ export default class ReviewView extends Component {
     await this.refreshState();
     //이거 왜 await를 붙여야 하는 걸까...??
   }
-
+  componentDidMount() {
+    // this.handleReviewPage(this.props.reviews);
+  }
   render() {
     const { grade, stars, comment } = this.state;
     const { reviews } = this.props;
