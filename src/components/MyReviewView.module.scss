@@ -15,16 +15,24 @@
 }
 
 .list {
-  display: flex;
   margin-top: 40px;
-  box-sizing: border-box;
-  border: 1px solid #dce0e0;
-  padding: 20px;
 }
 
 .commentbox {
-  margin-left: 30px;
+  display: block;
+  margin-left: 50px;
 }
+
+.commentWrapper {
+  display: flex;
+}
+
+.item {
+  display: flex;
+  border: 1px solid #dce0e0;
+  padding: 30px;
+}
+
 .starBox {
   display: flex;
   height: 25px;
