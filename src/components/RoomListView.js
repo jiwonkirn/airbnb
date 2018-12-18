@@ -16,7 +16,6 @@ class ListView extends Component {
     const roomInfo = classNames(style.roomInfo, {
       [style.roomDetailInfo]: path === '/search-list',
     });
-    console.log(path);
     return (
       <div className={style.listWrapper}>
         <h1 className={style.listTitle}>{themeName}</h1>

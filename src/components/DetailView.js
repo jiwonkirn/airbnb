@@ -21,6 +21,7 @@ import 'react-dates/initialize';
 import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import SaveButton from './SaveButton';
+import { withUser } from '../contexts/UserContext';
 
 let lastScrollY = window.scrollY;
 
@@ -133,6 +134,7 @@ class DetailView extends React.Component {
       room_host,
       lat,
       lng,
+      device,
       ...rest
     } = this.props;
     const devided = room_info_1
@@ -178,7 +180,11 @@ class DetailView extends React.Component {
           <div className={style.subWrapper}>
             {room_photos.map(
               (item, index) =>
-                index > 0 && (
+                (device === 'desktop'
+                  ? index > 0
+                  : device === 'tablet'
+                  ? index > 0 && index < 3
+                  : index === 0) && (
                   <img
                     src={item.room_photo}
                     className={style.subImg}
@@ -428,4 +434,4 @@ class DetailView extends React.Component {
   }
 }
 
-export default withCommonLoading(DetailView);
+export default withUser(withCommonLoading(DetailView));

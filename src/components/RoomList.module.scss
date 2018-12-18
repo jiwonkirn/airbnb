@@ -20,9 +20,27 @@
 .roomInfo {
   width: calc(25% - 15px);
   margin: 0 7.5px 20px 7.5px;
+
+  @include tablet {
+    width: calc(50% - 15px);
+    margin: 0 7.5px 40px 7.5px;
+  }
+  @include mobile {
+    width: calc(100%);
+    margin: 0 7.5px 40px 7.5px;
+  }
 }
 .roomInfo.roomDetailInfo {
   width: calc(20% - 15px);
+
+  @include tablet {
+    width: calc(50% - 15px);
+    margin: 0 7.5px 40px 7.5px;
+  }
+  @include mobile {
+    width: calc(100%);
+    margin: 0 7.5px 40px 7.5px;
+  }
 }
 .roomImg {
   width: 100%;

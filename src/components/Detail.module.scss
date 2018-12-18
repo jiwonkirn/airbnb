@@ -1,3 +1,4 @@
+@import '../css/module.scss';
 
 // 이미지
 .imgWrapper {
@@ -9,11 +10,25 @@
 
 .responsive1 {
   width: 50%;
+  @include tablet {
+    width: 66.666%;
+  }
+  @include mobile {
+    width: 0%;
+    display: none;
+  }
 }
 .subWrapper {
   display: flex;
   flex-wrap: wrap;
   width: 50%;
+
+  @include tablet {
+    width: 33.333%;
+  }
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .mainImg {
@@ -32,6 +47,15 @@
   width: 50%;
   height: 50%;
   background-color: #aaaaaa;
+
+  @include tablet {
+    width: 100%;
+    height: 50%;
+  }
+  @include mobile {
+    width: 100%;
+    height: 100%;
+  }
 }
 //기본 레이아웃
 

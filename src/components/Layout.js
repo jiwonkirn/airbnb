@@ -27,7 +27,20 @@ class Layout extends React.PureComponent {
       helpbtnclick: false,
       savedModal: false,
       savedRsvn: false,
+      device: 'desktop',
     };
+  }
+
+  componentDidMount() {
+    if (window.innerWidth <= 760) {
+      this.setState({
+        device: 'mobile',
+      });
+    } else if (window.innerWidth > 761 && window.innerWidth <= 1128) {
+      this.setState({
+        device: 'tablet',
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -93,6 +106,7 @@ class Layout extends React.PureComponent {
     });
   }
   render() {
+    const { selected, device } = this.state;
     return (
       <div>
         {this.state.loginbtnclick ? (
@@ -108,7 +122,23 @@ class Layout extends React.PureComponent {
             onFocus={e => this.handleFocus(e)}
             onBlur={e => this.handleBlur(e)}
             style={
-              this.state.selected === true ? { width: '50%' } : { width: '35%' }
+              selected
+                ? {
+                    width:
+                      device === 'desktop'
+                        ? '650px'
+                        : device === 'tablet'
+                        ? '50%'
+                        : '75%',
+                  }
+                : {
+                    width:
+                      device === 'desktop'
+                        ? '460px'
+                        : device === 'tablet'
+                        ? '50%'
+                        : '75%',
+                  }
             }
           >
             <Magnifying
