@@ -18,7 +18,7 @@ class SearchProvider extends Component {
       min_price: 0,
       rooms: [], // 방 정보
       // theme: '',
-      key: '',
+      // key: '',
       handleSearch: this.handleSearch.bind(this),
       handleLinkToHome: this.handleLinkToHome.bind(this),
       handlePersonCapacitySearch: this.handlePersonCapacitySearch.bind(this),
@@ -35,8 +35,8 @@ class SearchProvider extends Component {
     this.refreshData();
   }
 
-  componentDidUpdate() {
-    if (this.state.key !== this.props.location.search) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.search !== this.props.location.search) {
       this.refreshData();
     }
   }
@@ -60,7 +60,6 @@ class SearchProvider extends Component {
       adult: adult ? parseInt(adult) : 0,
       children: children ? parseInt(children) : 0,
       infant: infant ? parseInt(infant) : 0,
-      key: search,
       checkin: checkin ? checkin : 0,
       checkout: checkout ? checkout : 0,
       min_price: min_price ? parseInt(min_price) : 0,

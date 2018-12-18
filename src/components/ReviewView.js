@@ -51,7 +51,7 @@ export default class ReviewView extends Component {
     //이거 왜 await를 붙여야 하는 걸까...??
   }
   componentDidMount() {
-    this.handleReviewPage(this.props.reviews);
+    // this.handleReviewPage(this.props.reviews);
   }
   render() {
     const { grade, stars, comment } = this.state;
