@@ -15,8 +15,8 @@ class SavedRsvnView extends Component {
     };
   }
 
-  handleReceipt() {
-    this.props.history.push('/receipt');
+  handleReceipt(receiptId) {
+    this.props.history.push('/receipt/' + receiptId);
   }
 
   render() {
@@ -57,7 +57,7 @@ class SavedRsvnView extends Component {
                   <div className={style.comment}>후기읽기</div>
                   {this.props.logined && (
                     <p className={style.receipt}>
-                      <span onClick={() => this.handleReceipt()}>
+                      <span onClick={() => this.handleReceipt(data.id)}>
                         영수증보기
                       </span>
                       {this.state.selected && (

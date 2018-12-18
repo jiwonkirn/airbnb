@@ -21,7 +21,7 @@ class RoomList extends Component {
   async componentDidMount() {
     this.loadData(0);
 
-    if (this.props.location.pathname === '/search-list/detail') {
+    if (this.props.location.pathname === '/search-list') {
       window.onscroll = () => {
         if (
           window.innerHeight + document.documentElement.scrollTop ===
@@ -51,7 +51,7 @@ class RoomList extends Component {
     params.delete('infant');
     params.delete('checkin');
     params.delete('checkout');
-    params.append('limit', 30);
+    params.append('limit', 20);
     params.append('offset', offset);
     if (theme && !params.get('public_address__contains')) {
       params.append('public_address__contains', theme);
@@ -68,14 +68,11 @@ class RoomList extends Component {
         this.setState({
           hasMore: false,
         });
-      } else if (
-        this.props.location.pathname === '/search-list/detail' &&
-        offset !== 0
-      ) {
+      } else if (offset !== 0) {
         this.setState(prev => {
           return {
             rooms: prev.rooms.concat(data),
-            offset: prev.offset + 30,
+            offset: prev.offset + 20,
           };
         });
       } else {
@@ -83,8 +80,12 @@ class RoomList extends Component {
           this.setState(prev => {
             return {
               rooms: data,
-              themeName: theme ? theme + '의 추천 숙소' : '추천 숙소',
-              offset: prev.offset + 30,
+              themeName: theme
+                ? theme + '의 추천 숙소'
+                : params.get('public_address__contains')
+                ? params.get('public_address__contains') + '의 추천 숙소'
+                : '추천 숙소',
+              offset: prev.offset + 20,
             };
           });
 

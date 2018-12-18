@@ -12,7 +12,9 @@ class ReceiptPage extends Component {
   }
 
   render() {
-    return <Receipt key={this.props.logined} />;
+    const { match } = this.props;
+    const roomId = match.params.roomId;
+    return <Receipt key={this.props.logined} roomId={roomId} />;
   }
 }
 

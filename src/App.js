@@ -11,7 +11,6 @@ import NotFoundPage from './pages/NotFoundPage';
 import SavedPage from './pages/SavedPage';
 import SavedRsvnPage from './pages/SavedRsvnPage';
 import SavedDetailPage from './pages/SavedDetailPage';
-import ListDetailPage from './pages/ListDetailPage';
 import MainContainer from './MainContainer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './css/module.scss';
@@ -37,10 +36,6 @@ class App extends Component {
                 <MainContainer>
                   <Switch>
                     <Route
-                      path="/search-list/detail"
-                      component={ListDetailPage}
-                    />
-                    <Route
                       path="/search-list/not-found"
                       component={ListNotFound}
                     />
@@ -55,7 +50,8 @@ class App extends Component {
                     />
                     <Route exact path="/saved" component={SavedPage} />
                     <Route path="/trips" component={SavedRsvnPage} />
-                    <Route path="/receipt" component={ReceiptPage} />>
+                    <Route path="/receipt/:receiptId" component={ReceiptPage} />
+                    >
                     <Route path="/reserve/:roomId" component={ReservePage} />
                     <Route path="/date" component={Dates} />
                     <Route

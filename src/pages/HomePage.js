@@ -8,7 +8,8 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cities: [
+      cities: [],
+      entries: [
         '서울',
         '부산',
         '제주도',
@@ -23,12 +24,29 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    const { cities } = this.state;
-    let randomIndex = Math.floor(Math.random() * cities.length);
-    //? 왜 이렇게 쓰나요
-    this.setState({
-      selected: cities[randomIndex],
-    });
+    window.addEventListener('scroll', this.handlePush);
+  }
+
+  handlePush = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight &&
+      this.state.cities.length < 8
+    ) {
+      const { cities, entries } = this.state;
+      const citiesCopy = cities.slice();
+      const entriesCopy = entries.slice();
+      const random = Math.floor(Math.random() * entriesCopy.length);
+      citiesCopy.push(entriesCopy.splice(random, 1));
+      this.setState({
+        cities: citiesCopy,
+        entries: entriesCopy,
+      });
+    }
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handlePush);
   }
 
   render() {
