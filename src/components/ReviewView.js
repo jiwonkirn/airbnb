@@ -111,7 +111,11 @@ export default class ReviewView extends Component {
             </div>
           ))}
         {reviewpage.map((item, index) => (
-          <button onClick={() => this.handlePageNumber(index)} key={index}>
+          <button
+            className={style.reviewPage}
+            onClick={() => this.handlePageNumber(index)}
+            key={index}
+          >
             {index + 1}
           </button>
         ))}
