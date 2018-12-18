@@ -43,7 +43,6 @@ class UserProviders extends Component {
 
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setProfile(res) {
-    console.log(res);
     if (!localStorage.getItem('token')) {
       const {
         email,
@@ -54,8 +53,9 @@ class UserProviders extends Component {
         },
       } = res;
       const first_name = name.split(' ')[0];
-      const last_name = name.split(' ')[1];
+      const last_name = name.split(' ')[1] && '';
       const user_id = id;
+      console.log(first_name, last_name, user_id);
       try {
         const {
           data: { token },
