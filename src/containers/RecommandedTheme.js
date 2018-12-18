@@ -7,7 +7,7 @@ class RecommandedTheme extends Component {
     super(props);
     this.state = {
       title: '원하시는 테마를 선택해보세요!',
-      lists: ['couple', 'team', 'low-price', 'this-week', 'beds'],
+      lists: ['solo', 'couple', 'team', 'price', 'hurry', 'beds'],
       loading: true,
     };
   }

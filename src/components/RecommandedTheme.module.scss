@@ -1,6 +1,7 @@
 .RecommandedCity {
   position: relative;
   margin-top: 40px;
+
   // h2 {
   //   font-size: 22px;
   //   font-weight: 700;
@@ -32,6 +33,7 @@
         position: relative;
         // transition: visibility 0 ease-in-out;
         transition-delay: 0.5s;
+        vertical-align: top;
         cursor: pointer;
 
         .img {
@@ -50,7 +52,7 @@
           line-height: 1.6rem;
           font-weight: 700;
           width: 100%;
-          margin: 10px 0;
+          margin: 10px 0 5px;
         }
         .roomBody {
           font-weight: 700;

@@ -3,10 +3,11 @@ import style from './SubSearchForm.module.scss';
 import PeopleControlView from './PeopleControlView';
 import PriceControlView from './PriceControlView';
 import Dates from '../containers/Dates';
+import { withRouter } from 'react-router-dom';
 
 let lastScrollY = window.scrollY;
 
-export default class SubSearchFormView extends Component {
+class SubSearchFormView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +59,7 @@ export default class SubSearchFormView extends Component {
       >
         <ul>
           <li className={style.date}>
-            <Dates />
+            <Dates key={this.props.location.search} />
           </li>
           <PeopleControlView {...this.state} />
           <PriceControlView />
@@ -67,3 +68,5 @@ export default class SubSearchFormView extends Component {
     );
   }
 }
+
+export default withRouter(SubSearchFormView);
