@@ -51,8 +51,6 @@ export default class ReviewView extends Component {
   render() {
     const { grade, stars, comment, pagenumber } = this.state;
     const { reviews, reviewpage } = this.props;
-    console.log(this.props.reviewpage);
-    console.log(this.state.pagenumber);
     return (
       <div>
         <h3 className={style.category2}>후기 {reviews.length}개</h3>

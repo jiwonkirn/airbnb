@@ -19,12 +19,20 @@
   border: 1px solid #f2f2f2;
   border-radius: 5px;
   background-color: #ffffff;
-  height: 50px;
   text-align: left;
-  display: flex;
-  justify-content: space-between;
   padding: 10px;
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+  position: relative;
+  &:focus {
+    border: 1px solid #008489;
+  }
 }
+.creditCardbtn div {
+  height: 30px;
+  margin-bottom: 20px;
+}
+
 .cardIcon {
   width: 40px;
   margin-right: 10px;
@@ -48,6 +56,9 @@
 .arrowDown {
   width: 25px;
   height: 25px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 //이름 입력란
 .nameWrapper {
@@ -68,6 +79,9 @@
   height: 50px;
   justify-content: space-between;
   padding: 10px;
+  &:focus {
+    border: 1px solid #008489;
+  }
 }
 .cardInfoInputList {
   display: flex;
@@ -78,6 +92,12 @@
 .cardNumber {
   width: 100%;
 }
+.cardNumber input {
+  color: #aaaaaa;
+  &:focus {
+    border: 1px solid #008489;
+  }
+}
 .cardInfoInputList input {
   width: 100%;
   border: 1px solid #f2f2f2;
@@ -86,6 +106,9 @@
   height: 50px;
   justify-content: space-between;
   padding: 10px;
+  &:focus {
+    border: 1px solid #008489;
+  }
 }
 .expireDate,
 .cvv {
@@ -93,9 +116,11 @@
 }
 .expireDate input {
   border-radius: 5px 0 0 5px;
+  color: #aaaaaa;
 }
 .cvv input {
   border-radius: 0 5px 5px 0;
+  color: #aaaaaa;
 }
 .couponBtn {
   border: none;
