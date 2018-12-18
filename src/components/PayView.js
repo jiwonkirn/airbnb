@@ -17,6 +17,11 @@ class PayView extends Component {
       buttonclick: false,
       checkin: '',
       checkout: '',
+      payselected: false,
+      cardnumber: '카드정보',
+      expiredate: '만료일',
+      cvv: 'CVV',
+      post: null,
     };
   }
   handleButton() {
@@ -41,6 +46,82 @@ class PayView extends Component {
     const children = this.props.children;
     this.props.onPost(checkin, checkout, adult, children);
   }
+  handleFocus() {
+    this.setState({
+      payselected: true,
+    });
+  }
+  handleBlur() {
+    this.setState({
+      payselected: false,
+    });
+  }
+  handleCardNumber(e) {
+    const cardnumber = e.target.value;
+    this.setState({
+      cardnumber,
+    });
+  }
+  handleCardNumberFocus() {
+    if (this.state.cardnumber === '카드정보') {
+      this.setState({
+        cardnumber: '',
+      });
+    }
+  }
+  handleCardNumberBlur() {
+    if (!this.state.cardnumber) {
+      this.setState({
+        cardnumber: '카드정보',
+      });
+    }
+  }
+  handleExpiredateFocus() {
+    if (this.state.expiredate === '만료일') {
+      this.setState({
+        expiredate: '',
+      });
+    }
+  }
+  handleExpiredateBlur() {
+    if (!this.state.expiredate) {
+      this.setState({
+        expiredate: '만료일',
+      });
+    }
+  }
+  async handleExpiredate(e) {
+    const expiredate = e.target.value;
+    this.setState({
+      expiredate,
+    });
+  }
+  handleCvvFocus() {
+    if (this.state.cvv === 'CVV') {
+      this.setState({
+        cvv: '',
+      });
+    }
+  }
+  handleCvvBlur() {
+    if (!this.state.cvv) {
+      this.setState({
+        cvv: 'CVV',
+      });
+    }
+  }
+  handleCvv(e) {
+    const cvv = e.target.value;
+    this.setState({
+      cvv,
+    });
+  }
+  handlePost(e) {
+    const post = e.target.value;
+    this.setState({
+      post,
+    });
+  }
   render() {
     const { roomId } = this.props;
     const checkinYear = this.state.checkin.split('-')[0];
@@ -49,6 +130,9 @@ class PayView extends Component {
     const checkoutYear = this.state.checkout.split('-')[0];
     const checkoutMounth = this.state.checkout.split('-')[1];
     const checkoutDate = this.state.checkout.split('-')[2];
+    const { cardnumber, expiredate, cvv, post } = this.state;
+    console.log(this.state.payselected);
+    console.log(this.state.expiredate);
     return (
       <div>
         <ReserveNav />
@@ -63,12 +147,29 @@ class PayView extends Component {
                 <Card3 className={style.card3} />
               </div>
             </div>
-            <button className={style.creditCardbtn}>
+            <button
+              onFocus={() => this.handleFocus()}
+              onBlur={() => this.handleBlur()}
+              style={
+                this.state.payselected === true
+                  ? {
+                      height: '100px',
+                    }
+                  : {
+                      height: '50px',
+                    }
+              }
+              className={style.creditCardbtn}
+            >
               <div>
                 <CreditCard className={style.cardIcon} />
                 <p className={style.cardText}>신용카드</p>
               </div>
               <ArrowDown className={style.arrowDown} />
+              <div className={style.div2}>
+                <CreditCard className={style.cardIcon} />
+                <p className={style.cardText}>신용카드</p>
+              </div>
             </button>
             <ul className={style.nameWrapper}>
               <li>
@@ -95,15 +196,36 @@ class PayView extends Component {
               <ul className={style.cardInfoInputList}>
                 <li className={style.cardNumber}>
                   {' '}
-                  <input type="text" />{' '}
+                  <input
+                    placeholder="0000 0000 0000 0000"
+                    onFocus={() => this.handleCardNumberFocus()}
+                    onBlur={() => this.handleCardNumberBlur()}
+                    onChange={e => this.handleCardNumber(e)}
+                    value={cardnumber}
+                    type="text"
+                  />{' '}
                 </li>
                 <li className={style.expireDate}>
                   {' '}
-                  <input type="text" />{' '}
+                  <input
+                    placeholder="MM/YY"
+                    onBlur={() => this.handleExpiredateBlur()}
+                    onFocus={() => this.handleExpiredateFocus()}
+                    onChange={e => this.handleExpiredate(e)}
+                    value={expiredate}
+                    type="text"
+                  />{' '}
                 </li>
                 <li className={style.cvv}>
                   {' '}
-                  <input type="text" />{' '}
+                  <input
+                    placeholder="3자리"
+                    onBlur={() => this.handleCvvBlur()}
+                    onFocus={() => this.handleCvvFocus()}
+                    onChange={e => this.handleCvv(e)}
+                    value={cvv}
+                    type="text"
+                  />{' '}
                 </li>
               </ul>
             </div>
@@ -113,7 +235,13 @@ class PayView extends Component {
                 <label className={style.subTitle} htmlFor={style.nameInput}>
                   청구지 정보
                 </label>{' '}
-                <input className={style.nameInput} type="text" />{' '}
+                <input
+                  value={post}
+                  onChange={e => this.handlePost(e)}
+                  className={style.nameInput}
+                  placeholder="우편번호"
+                  type="text"
+                />{' '}
               </li>
               <li>
                 <label
