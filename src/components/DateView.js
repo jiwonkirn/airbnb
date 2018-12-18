@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import './DateView.scss';
-import { DateRangePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import { withRouter } from 'react-router-dom';
 import { ReactComponent as Cross } from '../svg/cross.svg';

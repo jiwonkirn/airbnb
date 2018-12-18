@@ -44,7 +44,7 @@ export default class Review extends Component {
     this.handleReviewPage();
   }
   async componentDidUpdate(prevProps, prevState) {
-    if (prevState.reviews !== this.state.reviews) {
+    if (prevState.reviews.length !== this.state.reviews.length) {
       await this.handleGetReview();
       this.handleReviewPage();
     }

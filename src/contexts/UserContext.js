@@ -78,6 +78,7 @@ class UserProviders extends Component {
           await this.refreshUser();
         }
       } catch (e) {
+        console.lof(e.message);
         alert('로그인에 실패하셨습니다.');
       }
     }
