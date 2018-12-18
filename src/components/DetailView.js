@@ -87,28 +87,28 @@ class DetailView extends React.Component {
   };
   handleBrief() {
     const currentScroll = window.scrollY;
-    const BriefLocation = this.BriefRef.current.getBoundingClientRect() 
-    window.scroll(0, currentScroll+BriefLocation.y)
+    const BriefLocation = this.BriefRef.current.getBoundingClientRect();
+    window.scroll(0, currentScroll + BriefLocation.y);
   }
   handleReview() {
     const currentScroll = window.scrollY;
-    const ReviewLocation = this.ReviewRef.current.getBoundingClientRect() 
-    window.scroll(0, currentScroll+ReviewLocation.y-50)
+    const ReviewLocation = this.ReviewRef.current.getBoundingClientRect();
+    window.scroll(0, currentScroll + ReviewLocation.y - 50);
   }
   handleHost() {
     const currentScroll = window.scrollY;
-    const HostLocation = this.HostRef.current.getBoundingClientRect()
-    window.scroll(0, currentScroll+HostLocation.y-50);
+    const HostLocation = this.HostRef.current.getBoundingClientRect();
+    window.scroll(0, currentScroll + HostLocation.y - 50);
   }
   handleLocation() {
     const currentScroll = window.scrollY;
-    const LocationLocation = this.LocationRef.current.getBoundingClientRect()
-    window.scroll(0, currentScroll+LocationLocation.y-50);
+    const LocationLocation = this.LocationRef.current.getBoundingClientRect();
+    window.scroll(0, currentScroll + LocationLocation.y - 50);
   }
   handleRecall() {
     const currentScroll = window.scrollY;
-    const RecallLocation = this.RecallRef.current.getBoundingClientRect()
-    window.scroll(0, currentScroll+RecallLocation.y-50);
+    const RecallLocation = this.RecallRef.current.getBoundingClientRect();
+    window.scroll(0, currentScroll + RecallLocation.y - 50);
   }
   render() {
     const {
@@ -161,9 +161,9 @@ class DetailView extends React.Component {
             <ul className={style.navList}>
               <button onClick={() => this.handleBrief()}>개요</button>
               <button onClick={() => this.handleReview()}>후기</button>
-              <button  onClick={() => this.handleHost()}>호스트</button>
+              <button onClick={() => this.handleHost()}>호스트</button>
               <button onClick={() => this.handleLocation()}>위치</button>
-              <button  onClick={() => this.handleRecall()}>환불정책</button>
+              <button onClick={() => this.handleRecall()}>환불정책</button>
             </ul>
           </div>
         ) : null}
@@ -193,38 +193,38 @@ class DetailView extends React.Component {
         </div>
 
         <div className={style.contentsWrapper}>
-          <div  className={style.roomInfo}>
-          <div ref={this.BriefRef}>
-            <p  className={style.roomType}>{room_type}</p>
-            <h2 className={style.roomName}>{room_name}</h2>
-            <p className={style.city}>{city}</p>
-            <div className={style.host}>
-              <img
-                className={style.hostImg}
-                src={hostimages.host_thumbnail_url}
-                alt="host_thumbnail"
-              />
-              <label className={style.hostName} htmlFor={style.hostImg}>
-                {room_host.last_name}
-                {room_host.first_name}
-              </label>
-            </div>
-            <div>
-              <h3 className={style.category}>{room_and_property_type}</h3>
-              <ul className={style.mainInfoList}>
-                <li>인원 {person_capacity}명</li>
-                <li>침실 {bedrooms}개</li>
-                <li>침대 {beds}개</li>
-                <li>욕실 {bathrooms}개</li>
-              </ul>
-            </div>
-            {devided.map((item, index) => (
-              <div key={index}>
-                <h3 className={style.category}>{item[0]}</h3>
-                <p>{item[1]}</p>
+          <div className={style.roomInfo}>
+            <div ref={this.BriefRef}>
+              <p className={style.roomType}>{room_type}</p>
+              <h2 className={style.roomName}>{room_name}</h2>
+              <p className={style.city}>{city}</p>
+              <div className={style.host}>
+                <img
+                  className={style.hostImg}
+                  src={hostimages.host_thumbnail_url}
+                  alt="host_thumbnail"
+                />
+                <label className={style.hostName} htmlFor={style.hostImg}>
+                  {room_host.last_name}
+                  {room_host.first_name}
+                </label>
               </div>
-            ))}
-          </div>
+              <div>
+                <h3 className={style.category}>{room_and_property_type}</h3>
+                <ul className={style.mainInfoList}>
+                  <li>인원 {person_capacity}명</li>
+                  <li>침실 {bedrooms}개</li>
+                  <li>침대 {beds}개</li>
+                  <li>욕실 {bathrooms}개</li>
+                </ul>
+              </div>
+              {devided.map((item, index) => (
+                <div key={index}>
+                  <h3 className={style.category}>{item[0]}</h3>
+                  <p>{item[1]}</p>
+                </div>
+              ))}
+            </div>
             <div className={style.devider} />
             <button className={style.transe}>
               이 설명을 한국어로 번역하기
@@ -285,7 +285,7 @@ class DetailView extends React.Component {
               <DayPickerRangeController />
             </div>
             <div ref={this.ReviewRef} className={style.devider} />
-            <Review  roomId={roomId} />
+            <Review roomId={roomId} />
             <div ref={this.HostRef}>
               <h3 className={style.category2}>
                 호스트: {room_host.last_name}
@@ -311,7 +311,9 @@ class DetailView extends React.Component {
               possimus saepe esse sed neque officiis!
             </p>
             <div className={style.devider} />
-            <h3  ref={this.LocationRef} className={style.category2}>지역정보</h3>
+            <h3 ref={this.LocationRef} className={style.category2}>
+              지역정보
+            </h3>
             <ul className={style.location}>
               <li>
                 {room_host.last_name}
@@ -359,7 +361,9 @@ class DetailView extends React.Component {
             </div>
             <p>정확한 위치 정보는 예약이 확정된 후 알려드립니다.</p>
             <hr className={style.devider} />
-            <h3 ref={this.RecallRef} className={style.category2}>환불 정책</h3>
+            <h3 ref={this.RecallRef} className={style.category2}>
+              환불 정책
+            </h3>
             <dl>
               <dt className={style.roomRuleList}>숙소 이용 규칙</dt>
               <dd className={style.roomRuleItem}>반려동물 동반 불가</dd>

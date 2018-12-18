@@ -29,6 +29,7 @@ class DateView extends Component {
           startDate: moment(checkin).local(),
           endDate: moment(checkout).local(),
         });
+        console.log(this.state.startDate);
       }
     }
   }

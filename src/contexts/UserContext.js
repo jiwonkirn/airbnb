@@ -43,7 +43,6 @@ class UserProviders extends Component {
 
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setProfile(res) {
-    console.log(res);
     if (!localStorage.getItem('token')) {
       const {
         email,
@@ -54,29 +53,32 @@ class UserProviders extends Component {
         },
       } = res;
       const first_name = name.split(' ')[0];
-      const last_name = name.split(' ')[1];
+      const last_name = name.split(' ')[1] == null ? ' ' : name.split(' ')[1];
       const user_id = id;
-      const {
-        data: { token },
-      } = await api.post('/api/user/auth-token/', {
-        email,
-        first_name,
-        last_name,
-        user_id,
-      });
-      alert(`${last_name} ${first_name}남 환영합니다!`);
-      await localStorage.setItem('token', token);
-      await localStorage.setItem('photo', url);
-      if (localStorage.getItem('token')) {
-        this.setState({
+      console.log(first_name, last_name, user_id);
+      try {
+        const {
+          data: { token },
+        } = await api.post('/api/user/auth-token/', {
           email,
           first_name,
           last_name,
           user_id,
         });
-        await this.refreshUser();
-      } else {
-        alert('로그인에 실패했습니다 확인해주세요.');
+        alert(`${last_name} ${first_name}남 환영합니다!`);
+        await localStorage.setItem('token', token);
+        await localStorage.setItem('photo', url);
+        if (localStorage.getItem('token')) {
+          this.setState({
+            email,
+            first_name,
+            last_name,
+            user_id,
+          });
+          await this.refreshUser();
+        }
+      } catch (e) {
+        alert('로그인에 실패하셨습니다.');
       }
     }
   }

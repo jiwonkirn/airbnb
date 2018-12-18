@@ -19,12 +19,10 @@ class Dates extends Component {
   async componentDidMount() {
     const { search } = this.props.location;
     const { roomId } = this.props.match.params;
-    console.log(roomId);
     const params = new URLSearchParams(search);
-    const checkin =
-      params.get('checkin') === '0' ? null : params.get('checkin');
+    const checkin = params.get('checkin') == '0' ? null : params.get('checkin');
     const checkout =
-      params.get('checkout') === '0' ? null : params.get('checkout');
+      params.get('checkout') == '0' ? null : params.get('checkout');
     this.setState({
       checkin,
       checkout,

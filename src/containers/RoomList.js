@@ -84,14 +84,16 @@ class RoomList extends Component {
                 ? theme + '의 추천 숙소'
                 : params.get('public_address__contains')
                 ? params.get('public_address__contains') + '의 추천 숙소'
-                : '추천 숙소',
+                : '전체 숙소',
               offset: prev.offset + 20,
             };
           });
 
-          await this.setState({
-            loading: false,
-          });
+          await setTimeout(() => {
+            this.setState({
+              loading: false,
+            });
+          }, 500);
         }
       }
     } catch (e) {
