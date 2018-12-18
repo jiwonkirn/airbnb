@@ -1,0 +1,42 @@
+.title {
+  margin-top: 40px;
+  display: block;
+  font-size: 30px;
+  color: #484848;
+  height: 100%;
+}
+
+.userImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: #484848;
+}
+
+.list {
+  display: flex;
+  margin-top: 40px;
+  box-sizing: border-box;
+  border: 1px solid #dce0e0;
+  padding: 20px;
+}
+
+.commentbox {
+  margin-left: 30px;
+}
+.starBox {
+  display: flex;
+  height: 25px;
+  padding: 5px 5px 5px 0;
+}
+.star1 {
+  height: 100%;
+  line-height: 25px;
+  fill: #008489;
+}
+.star2 {
+  height: 100%;
+  line-height: 25px;
+  fill: #aaaaaa;
+}

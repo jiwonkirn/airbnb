@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Receipt from '../containers/Receipt';
+import MyReview from '../containers/MyReview';
 import { withUser } from '../contexts/UserContext';
 import { withRouter } from 'react-router-dom';
 
-class ReceiptPage extends Component {
+class MyReviewPage extends Component {
   componentDidMount() {
     if (!localStorage.getItem('token')) {
       alert('로그인이 되어있지 않습니다. 로그인해주세요');
@@ -12,10 +12,8 @@ class ReceiptPage extends Component {
   }
 
   render() {
-    const { match } = this.props;
-    const roomId = match.params.roomId;
-    return <Receipt key={this.props.logined} roomId={roomId} />;
+    return <MyReview key={this.props.logined} />;
   }
 }
 
-export default withRouter(withUser(ReceiptPage));
+export default withRouter(withUser(MyReviewPage));

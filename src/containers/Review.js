@@ -8,6 +8,7 @@ export default class Review extends Component {
 
     this.state = {
       reviews: [],
+      reviewpage: [],
     };
   }
 
@@ -26,17 +27,36 @@ export default class Review extends Component {
       reviews,
     });
   }
-  componentDidMount() {
-    this.handleGetReview();
+  handleReviewPage() {
+    const reviews = this.state.reviews;
+    console.log(reviews);
+    const array = [];
+    for (let i = 0; i < reviews.length; i += 10) {
+      array.push(reviews.slice(i, i + 10));
+    }
+    console.log(array);
+    this.setState({
+      reviewpage: array,
+    });
+  }
+  async componentDidMount() {
+    await this.handleGetReview();
+    this.handleReviewPage();
+  }
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.reviews !== this.state.reviews) {
+      await this.handleGetReview();
+      this.handleReviewPage();
+    }
   }
   render() {
-    console.log(this.state.reviews);
-    console.log(this.props.roomId);
+    console.log(this.state.reviewpage);
     return (
       <ReviewView
         onPost={(grade, comment) => this.handlePost(grade, comment)}
         onGetReview={() => this.handleGetReview()}
         reviews={this.state.reviews}
+        reviewpage={this.state.reviewpage}
       />
     );
   }

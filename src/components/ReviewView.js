@@ -9,7 +9,7 @@ export default class ReviewView extends Component {
       grade: '',
       comment: '',
       stars: [1, 2, 3, 4, 5],
-      reviewpage: null,
+      pagenumber: 0,
     };
   }
   handleGrade(e) {
@@ -23,15 +23,6 @@ export default class ReviewView extends Component {
       // comment: e.target.elements.comment.value, 과 뭐가 다른 건지 질문...
     });
   }
-  // handleReviewPage(reviews){
-  //   const array = []
-  //   for(let i =0; i<reviews.length; i+=10){
-  //     array.push(reviews.slice(i, i+10))
-  //   }
-  //   this.setState({
-  //     review: array
-  //   })
-  // }
   refreshState = () => {
     this.setState({
       grade: '',
@@ -45,17 +36,23 @@ export default class ReviewView extends Component {
     const comment = this.state.comment;
     if (grade && comment) {
       this.props.onPost(grade, comment);
+    } else {
+      alert('별점이나 후기를 입력하셨는지 다시 확인해 주세요.');
     }
     this.props.onGetReview();
     await this.refreshState();
     //이거 왜 await를 붙여야 하는 걸까...??
   }
-  componentDidMount() {
-    // this.handleReviewPage(this.props.reviews);
+  handlePageNumber(pagenumber) {
+    this.setState({
+      pagenumber: pagenumber,
+    });
   }
   render() {
-    const { grade, stars, comment } = this.state;
-    const { reviews } = this.props;
+    const { grade, stars, comment, pagenumber } = this.state;
+    const { reviews, reviewpage } = this.props;
+    console.log(this.props.reviewpage);
+    console.log(this.state.pagenumber);
     return (
       <div>
         <h3 className={style.category2}>후기 {reviews.length}개</h3>
@@ -91,26 +88,36 @@ export default class ReviewView extends Component {
           <button className={style.reviewBtn}>후기 쓰기</button>
         </form>
         <hr className={style.devider} />
-        {reviews.map((review, index) => (
-          <div key={index}>
-            <div className={style.userInfo}>
-              <div className={style.userImg} />
-              <div className={style.userGrade}>
-                <div className={style.starBox}>
-                  {stars.map((star, index) =>
-                    star <= review.grade ? (
-                      <Star key={index} className={style.star1} />
-                    ) : (
-                      <Star key={index} className={style.star2} />
-                    )
-                  )}
+        {reviewpage[pagenumber] &&
+          reviewpage[pagenumber].map((review, index) => (
+            <div key={index}>
+              <div className={style.userInfo}>
+                <div className={style.userImg} />
+                <div className={style.userGrade}>
+                  <div className={style.starBox}>
+                    {stars.map((star, index) =>
+                      star <= review.grade ? (
+                        <Star key={index} className={style.star1} />
+                      ) : (
+                        <Star key={index} className={style.star2} />
+                      )
+                    )}
+                  </div>
+                  <p>{review.created_at}</p>
                 </div>
-                <p>{review.created_at}</p>
               </div>
+              <p>{review.comment}</p>
+              <hr className={style.devider} />
             </div>
-            <p>{review.comment}</p>
-            <hr className={style.devider} />
-          </div>
+          ))}
+        {reviewpage.map((item, index) => (
+          <button
+            className={style.reviewPage}
+            onClick={() => this.handlePageNumber(index)}
+            key={index}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
     );
