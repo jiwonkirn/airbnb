@@ -8,6 +8,11 @@ import { ReactComponent as Instagram } from '../svg/instagram.svg';
 import { ReactComponent as Blog } from '../svg/blog.svg';
 import { ReactComponent as Board } from '../svg/board.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
+import { ReactComponent as Home } from '../svg/home.svg';
+import { ReactComponent as Conversation } from '../svg/conversation.svg';
+import { ReactComponent as Carrier } from '../svg/carrier.svg';
+import { ReactComponent as Hart } from '../svg/hart.svg';
+import { ReactComponent as Person } from '../svg/person.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
@@ -30,6 +35,7 @@ class Layout extends React.PureComponent {
       savedRsvn: false,
       navSelected: false,
     };
+    this.props.handleFixModal(this.state.navSelected);
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -38,14 +44,7 @@ class Layout extends React.PureComponent {
         savedModal: false,
         navSelected: false,
       });
-      const body = document.querySelector('body');
-      if (this.state.navSelected) {
-        body.style.overflow = 'hidden';
-        body.style.position = 'fixed';
-      } else {
-        body.style.overflow = 'visible';
-        body.style.position = 'static';
-      }
+      this.props.handleFixModal(this.state.navSelected);
     }
   }
 
@@ -108,7 +107,7 @@ class Layout extends React.PureComponent {
     await this.setState(prev => {
       return { navSelected: !prev.navSelected };
     });
-    this.props.handleFixModal();
+    this.props.handleFixModal(this.state.navSelected);
   };
 
   render() {
@@ -195,7 +194,8 @@ class Layout extends React.PureComponent {
           <nav className={nav}>
             {device !== 'desktop' && (
               <Link to="/" className={style.toHomeMobile}>
-                홈
+                {'홈'}
+                <Home className={style.home} />
               </Link>
             )}
             <p
@@ -203,10 +203,12 @@ class Layout extends React.PureComponent {
               onClick={e => this.handleHelpdeskBtn(e)}
             >
               도움말
+              <Conversation className={style.conversation} />
             </p>
             {this.props.logined && (
               <p className={style.saved}>
                 <span onClick={this.handleSavedModal}>저장목록</span>
+                <Hart className={style.hart} />
                 {this.state.savedModal && (
                   <Saved onSavedModal={this.handleSavedModal} theme="header" />
                 )}
@@ -215,25 +217,28 @@ class Layout extends React.PureComponent {
             {this.props.logined && (
               <p className={style.savedRsvn}>
                 <span onClick={() => this.handleSavedRsvn()}>여행</span>
+                <Carrier className={style.carrier} />
                 {this.state.savedRsvn && (
                   <SavedRsvn onSavedRsvn={() => this.handleSavedRsvn()} />
                 )}
               </p>
             )}
             {this.props.logined ? (
-              <button
+              <p
                 onClick={() => this.props.removeGoogleProfile()}
                 className={style.navbar_login}
               >
                 로그아웃
-              </button>
+                <Person className={style.person} />
+              </p>
             ) : (
-              <button
+              <p
                 onClick={e => this.handleLoginBtn(e)}
                 className={style.navbar_login}
               >
                 로그인
-              </button>
+                <Person className={style.person} />
+              </p>
             )}
           </nav>
         </header>

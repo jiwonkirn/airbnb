@@ -11,6 +11,7 @@
   @include tablet {
     margin: -30px -50px 0;
     padding: 5px 50px;
+    width: calc(100% + 100px);
   }
 
   @include mobile {
