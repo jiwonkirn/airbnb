@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .infoMain {
   margin-top: 40px;
   margin-left: 10%;
@@ -86,6 +91,8 @@
   height: 200px;
   margin: 0;
   background-color: #000;
+  background-size: cover;
+  background-position: center;
 }
 
 .hostImg {
