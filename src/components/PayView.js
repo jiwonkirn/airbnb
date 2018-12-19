@@ -10,6 +10,8 @@ import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import { withUser } from '../contexts/UserContext';
+import Receipt from '../containers/Receipt';
+
 class PayView extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,7 @@ class PayView extends Component {
       cvv: 'CVV',
       post: null,
       name: this.props.last_name,
+      selected: false,
     };
   }
   handleButton() {
@@ -98,7 +101,7 @@ class PayView extends Component {
   async handleExpiredate(e) {
     const expiredate = e.target.value;
     const reg = new RegExp(/^[0-9]*$/);
-    if (expiredate.match(reg)&&expiredate.length<5) {
+    if (expiredate.match(reg) && expiredate.length < 5) {
       this.setState({
         expiredate,
       });
@@ -133,6 +136,11 @@ class PayView extends Component {
       post,
     });
   }
+
+  handleReceipt(receiptId) {
+    this.props.history.push('/receipt/' + receiptId);
+  }
+
   render() {
     const { roomId } = this.props;
     const checkinYear = this.state.checkin.split('-')[0];
@@ -144,8 +152,8 @@ class PayView extends Component {
     const { cardnumber, expiredate, cvv, post, name } = this.state;
     console.log(this.state.payselected);
     console.log(this.state.expiredate);
-    console.log(this.state.name)
-    console.log(this.props.last_name)
+    console.log(this.state.name);
+    console.log(this.props.last_name);
     return (
       <div>
         <ReserveNav />
@@ -295,11 +303,14 @@ class PayView extends Component {
               숙소 이용규칙, 환불 정책, 및 게스트 환불 정책에 동의합니다. 또한,
               서비스 수수료를 포함하여 명시된 총 금액을 결제하는 데 동의합니다.
             </p>
-            <button
-              onClick={() => this.handleReserve()}
-              className={style.finalReserveBtn}
-            >
-              예약 요청하기
+            <button className={style.finalReserveBtn}>
+              {this.props.logined && (
+                <p className={style.receipt}>
+                  <span onClick={() => this.handleReceipt(roomId)}>
+                    예약요청하기
+                  </span>
+                </p>
+              )}
             </button>
           </div>
         </div>
@@ -317,4 +328,4 @@ class PayView extends Component {
     );
   }
 }
-export default withRouter(withSearch(withUser(PayView)));
+export default withUser(withRouter(withSearch(PayView)));

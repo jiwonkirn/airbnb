@@ -141,6 +141,7 @@
   margin-right: 10px;
 }
 .finalReserveBtn {
+  box-sizing: border-box;
   width: 200px;
   border: none;
   border-radius: 5px;
@@ -148,6 +149,7 @@
   background-color: rgb(255, 90, 95);
   color: #ffffff;
   margin-top: 50px;
+  cursor: pointer;
 }
 .subTitle {
   font-size: 1.6rem;
