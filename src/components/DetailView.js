@@ -114,12 +114,20 @@ class DetailView extends React.Component {
     window.scroll(0, currentScroll + RecallLocation.y - 50);
   }
 
-  handleMobileReservation = () => {
-    this.setState(prev => {
+  handleMobileReservation = async () => {
+    await this.setState(prev => {
       return {
         mobileReservation: !prev.mobileReservation,
       };
     });
+    const body = document.querySelector('body');
+    if (this.state.mobileReservation) {
+      body.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+    } else {
+      body.style.overflow = 'visible';
+      body.style.position = 'static';
+    }
   };
 
   render() {

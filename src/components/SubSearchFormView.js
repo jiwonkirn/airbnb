@@ -57,7 +57,7 @@ class SubSearchFormView extends Component {
         style={this.state.sticky ? { position: 'fixed', top: '30px' } : null}
         className={style.filterNav}
       >
-        <ul>
+        <ul className={style.filterContainer}>
           <li className={style.date}>
             <Dates key={this.props.location.search} />
           </li>

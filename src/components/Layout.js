@@ -7,6 +7,7 @@ import { ReactComponent as Twitter } from '../svg/twitter.svg';
 import { ReactComponent as Instagram } from '../svg/instagram.svg';
 import { ReactComponent as Blog } from '../svg/blog.svg';
 import { ReactComponent as Board } from '../svg/board.svg';
+import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
@@ -15,7 +16,7 @@ import { GoogleLogout } from 'react-google-login';
 import classNames from 'classnames';
 import HelpdeskView from './HelpdeskView';
 import SavedRsvn from '../containers/SavedRsvn';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class Layout extends React.PureComponent {
   constructor(props) {
@@ -27,27 +28,24 @@ class Layout extends React.PureComponent {
       helpbtnclick: false,
       savedModal: false,
       savedRsvn: false,
-      device: 'desktop',
+      navSelected: false,
     };
   }
 
-  componentDidMount() {
-    if (window.innerWidth <= 760) {
-      this.setState({
-        device: 'mobile',
-      });
-    } else if (window.innerWidth > 761 && window.innerWidth <= 1128) {
-      this.setState({
-        device: 'tablet',
-      });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.setState({
+      await this.setState({
         savedModal: false,
+        navSelected: false,
       });
+      const body = document.querySelector('body');
+      if (this.state.navSelected) {
+        body.style.overflow = 'hidden';
+        body.style.position = 'fixed';
+      } else {
+        body.style.overflow = 'visible';
+        body.style.position = 'static';
+      }
     }
   }
 
@@ -105,8 +103,23 @@ class Layout extends React.PureComponent {
       loginbtnclick: false,
     });
   }
+
+  handleNavigation = async () => {
+    await this.setState(prev => {
+      return { navSelected: !prev.navSelected };
+    });
+    this.props.handleFixModal();
+  };
+
   render() {
-    const { selected, device } = this.state;
+    const { selected, navSelected } = this.state;
+    const {
+      device,
+      location: { pathname },
+    } = this.props;
+    const nav = classNames(style.navbar, {
+      [style.activeNav]: this.state.navSelected,
+    });
     return (
       <div>
         {this.state.loginbtnclick ? (
@@ -115,8 +128,33 @@ class Layout extends React.PureComponent {
         {this.state.helpbtnclick ? (
           <HelpdeskView onModalRemove={e => this.handleHelpModalRemove(e)} />
         ) : null}
-        <header key={this.props.cityName} className={style.header}>
-          <Logo className={style.logo} onClick={this.props.handleLinkToHome} />
+        <header
+          style={
+            device === 'mobile' && pathname === '/'
+              ? { position: 'fixed' }
+              : null
+          }
+          key={this.props.cityName}
+          className={style.header}
+        >
+          <Logo
+            className={style.logo}
+            onClick={() => {
+              if (device === 'desktop') {
+                this.props.handleLinkToHome();
+              } else {
+                this.handleNavigation();
+              }
+            }}
+          />
+          <ArrowDown
+            style={
+              navSelected
+                ? { transform: 'rotate(90deg)' }
+                : { transform: 'rotate(0)' }
+            }
+            className={style.arrowDown}
+          />
           <div
             className={style.searchbar}
             onFocus={e => this.handleFocus(e)}
@@ -154,7 +192,12 @@ class Layout extends React.PureComponent {
               placeholder="제주도에 가보는건 어떠세요?"
             />
           </div>
-          <nav className={style.navbar}>
+          <nav className={nav}>
+            {device !== 'desktop' && (
+              <Link to="/" className={style.toHomeMobile}>
+                홈
+              </Link>
+            )}
             <p
               className={style.navbar_helpdesk}
               onClick={e => this.handleHelpdeskBtn(e)}

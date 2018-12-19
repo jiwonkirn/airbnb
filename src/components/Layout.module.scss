@@ -6,6 +6,12 @@
   height: 80px;
   border-bottom: 1px solid #ddd;
   width: 100%;
+  position: relative;
+
+  @include mobile {
+    z-index: 103;
+    background-color: #fff;
+  }
 }
 .logo {
   fill: rgb(255, 90, 95);
@@ -18,16 +24,44 @@
   cursor: pointer;
 }
 
+.arrowDown {
+  display: none;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 45%;
+  transform: translateY(-50%);
+  left: 65px;
+  z-index: 101;
+  fill: #999;
+  transition: all 0.2s ease-in-out;
+
+  @include tablet {
+    display: block;
+  }
+  @include mobile {
+    display: block;
+  }
+}
+
 .searchbar {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 80px;
   border-radius: 3px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   border: #ebebeb 1px solid;
   transition: all 0.3s ease-in;
   height: 48px;
+  margin-left: 80px;
+
+  @include tablet {
+    margin-left: 90px;
+  }
+
+  @include mobile {
+    margin-left: 90px;
+  }
 }
 
 .magnifying {
@@ -54,12 +88,44 @@
 
   @include tablet {
     display: none;
+    position: fixed;
+    width: 100%;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 102;
+    padding: 20px 0;
   }
   @include mobile {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 102;
+    padding: 20px 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease-in-out;
+    // width: calc(100% - 100px);
+  }
+
+  &.activeNav {
+    @include tablet {
+      display: block;
+      transform: translateX(0);
+    }
+    @include mobile {
+      display: block;
+      transform: translateX(0);
+    }
   }
 }
 
+.toHomeMobile,
 .navbar_login,
 .navbar_helpdesk,
 .saved,
@@ -67,12 +133,23 @@
   display: inline-block;
   font-size: 1.4rem;
   margin-left: 20px;
-  background-color: buttonface;
   padding: 2px 6px 3px;
   border-image: initial;
   border: 0;
   cursor: pointer;
   position: relative;
+  background-color: transparent;
+
+  @include tablet {
+  }
+  @include mobile {
+    display: block;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #666;
+    margin: 0 20px;
+    border-bottom: 1px solid #eee;
+  }
 }
 
 .savedModal {

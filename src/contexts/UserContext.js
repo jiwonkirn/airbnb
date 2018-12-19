@@ -19,6 +19,7 @@ class UserProviders extends Component {
       setProfile: this.setProfile.bind(this),
       setGoogleProfile: this.setGoogleProfile.bind(this),
       removeGoogleProfile: this.removeGoogleProfile.bind(this),
+      handleFixModal: this.handleFixModal.bind(this),
       logined: false, // 로그인 여부
       device: 'desktop',
     };
@@ -154,6 +155,18 @@ class UserProviders extends Component {
     localStorage.removeItem('token');
     this.refreshUser();
   }
+
+  handleFixModal = boolean => {
+    const body = document.querySelector('body');
+    if (boolean) {
+      body.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+    } else {
+      body.style.overflow = 'visible';
+      body.style.position = 'static';
+    }
+  };
+
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }

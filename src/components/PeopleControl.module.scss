@@ -12,6 +12,9 @@
   z-index: 100;
 }
 
+.personFilterBox.selected.mobile {
+}
+
 .personInput {
   // height: 5rem;
   // border-radius: 5px;
@@ -55,6 +58,14 @@
   width: 400px;
   top: 45px;
   left: 0;
+}
+
+.optionBox.active.list.mobile {
+  width: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .optionType {

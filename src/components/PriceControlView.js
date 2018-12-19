@@ -6,6 +6,7 @@ import 'rc-slider/assets/index.css';
 import './PriceControlView.scss';
 import style from './PriceControlView.module.scss';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 
 const marks = {
   0: '0',
@@ -35,12 +36,14 @@ class OptionControlView extends Component {
   };
 
   handleSelect = async e => {
-    e.stopPropagation();
     await this.setState(prev => {
       return { selected: !prev.selected };
     });
     if (!this.state.selected) {
       this.props.handlePersonCapacitySearch();
+      this.props.handleFixModal(this.state.selected);
+    } else {
+      this.props.handleFixModal(this.state.selected);
     }
   };
 
@@ -50,10 +53,11 @@ class OptionControlView extends Component {
 
   render() {
     const { selected } = this.state;
-    const { min_price: min, max_price: max } = this.props;
+    const { min_price: min, max_price: max, device } = this.props;
     const filtered = min > 0 || max < 200000;
     const viewControler = classNames(style.priceControl, {
       [style.view]: selected,
+      [style.mobile]: device === 'mobile',
     });
     const priceControlNav = classNames(style.priceControlContainer, {
       [style.filtered]: filtered,
@@ -98,4 +102,4 @@ class OptionControlView extends Component {
   }
 }
 
-export default withSearch(withRouter(OptionControlView));
+export default withUser(withSearch(withRouter(OptionControlView)));
