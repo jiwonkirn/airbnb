@@ -25,7 +25,7 @@ class PayView extends Component {
       expiredate: '만료일',
       cvv: 'CVV',
       post: null,
-      name: this.props.last_name,
+      name: '',
       selected: false,
     };
   }
@@ -49,7 +49,12 @@ class PayView extends Component {
     const checkout = this.state.checkout;
     const adult = this.props.adult;
     const children = this.props.children;
-    this.props.onPost(checkin, checkout, adult, children);
+    const cardnumber = this.state.cardnumber
+    const expiredate = this.state.expiredate
+    const cvv = this.state.cvv
+    const post = this.state.post
+    const name = this.state.name
+    this.props.onPost(checkin, checkout, adult, children, cardnumber, expiredate, cvv, post, name);
   }
   handleFocus() {
     this.setState({
@@ -304,9 +309,7 @@ class PayView extends Component {
             >
               {this.props.logined && (
                 <p className={style.receipt}>
-                  <span>
-                    예약요청하기
-                  </span>
+                  <span>예약요청하기</span>
                 </p>
               )}
             </button>
