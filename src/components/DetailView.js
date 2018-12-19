@@ -377,7 +377,9 @@ class DetailView extends React.Component {
             <div className={style.map}>
               <DaumMap1 {...this.props} />
             </div>
-            <p>정확한 위치 정보는 예약이 확정된 후 알려드립니다.</p>
+            <p className={style.placeLocation}>
+              정확한 위치 정보는 예약이 확정된 후 알려드립니다.
+            </p>
             <hr className={style.devider} />
             <h3 ref={this.RecallRef} className={style.category2}>
               환불 정책
@@ -463,6 +465,11 @@ class DetailView extends React.Component {
             className={classNames(style.wrapper, {
               [style.reservationActive]: this.state.mobileReservation,
             })}
+            onClick={() => {
+              if (device === 'tablet') {
+                this.handleMobileReservation();
+              }
+            }}
           >
             <ReserveForm
               handleMobileReservation={this.handleMobileReservation}

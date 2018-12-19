@@ -5,6 +5,7 @@ import './DateView.scss';
 import { DateRangePicker } from 'react-dates';
 import { withSearch } from '../contexts/SearchContext';
 import { withRouter } from 'react-router-dom';
+import { withUser } from '../contexts/UserContext';
 import { ReactComponent as Cross } from '../svg/cross.svg';
 var moment = require('moment');
 
@@ -116,6 +117,7 @@ class DateView extends Component {
       this.props.match.path === '/search-list/detail' ||
       this.props.match.path === '/date';
     const { startDate, endDate } = this.state;
+    const { device } = this.props;
     const { path } = this.props.match;
     return (
       <div style={{ position: 'relative' }}>
@@ -138,6 +140,7 @@ class DateView extends Component {
           isDayBlocked={this.handleBlock}
           small={bool}
           withPortal={bool}
+          numberOfMonths={device !== 'desktop' ? 1 : 2}
           block={!bool}
           endDatePlaceholderText="체크아웃"
           startDatePlaceholderText="체크인"
@@ -166,4 +169,4 @@ class DateView extends Component {
   }
 }
 
-export default withRouter(withSearch(DateView));
+export default withUser(withRouter(withSearch(DateView)));
