@@ -1,3 +1,5 @@
+@import '../css/module.scss';
+
 .RecommandedCity {
   position: relative;
   margin-top: 40px;
@@ -21,6 +23,10 @@
     overflow: hidden;
     margin-top: 20px;
 
+    @include mobile {
+      overflow: scroll;
+    }
+
     ul {
       transition: all 0.5s ease-in-out;
       margin-left: -7.5px;
@@ -35,6 +41,14 @@
         transition-delay: 0.5s;
         vertical-align: top;
         cursor: pointer;
+
+        @include tablet {
+          width: calc(33.333% - 15px);
+        }
+
+        @include mobile {
+          width: calc(45% - 15px);
+        }
 
         .img {
           // border-radius: 5px;

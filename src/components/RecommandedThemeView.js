@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 import { withRouter } from 'react-router-dom';
 import style from './RecommandedTheme.module.scss';
 import { ReactComponent as AllowRight } from '../svg/nextAllow.svg';
@@ -82,31 +83,72 @@ class RecommandedThemeView extends Component {
     });
   }
 
+  componentDidUpdate = prevProps => {
+    if (prevProps.device !== this.props.device) {
+      this.setState({
+        translateX: 0,
+      });
+    }
+  };
+
   handleSlideLeft() {
     const { order } = this.state;
-    if (!order <= 0)
-      this.setState(prev => {
-        return {
-          translateX: prev.translateX + 25,
-          order: prev.order - 1,
-        };
-      });
+    const { device } = this.props;
+    if (!order <= 0) {
+      if (device === 'desktop') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX + 25,
+            order: prev.order - 1,
+          };
+        });
+      } else if (device === 'tablet') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX + 33.333,
+            order: prev.order - 1,
+          };
+        });
+      } else if (device === 'mobile') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX + 50,
+            order: prev.order - 1,
+          };
+        });
+      }
+    }
   }
 
   handleSlideRight() {
     const { order } = this.state;
-    const { lists } = this.props;
-    if (order < lists.length - 4)
+    const { lists, device } = this.props;
+    if (order < lists.length - 4 && device === 'desktop') {
       this.setState(prev => {
         return {
           translateX: prev.translateX - 25,
           order: prev.order + 1,
         };
       });
+    } else if (order < lists.length - 3 && device === 'tablet') {
+      this.setState(prev => {
+        return {
+          translateX: prev.translateX - 33.33,
+          order: prev.order + 1,
+        };
+      });
+    } else if (order < lists.length - 2 && device === 'mobile') {
+      this.setState(prev => {
+        return {
+          translateX: prev.translateX - 50,
+          order: prev.order + 1,
+        };
+      });
+    }
   }
 
   render() {
-    const { title, lists, loading, location } = this.props;
+    const { title, lists, loading, location, device } = this.props;
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
     const adult = params.get('adult');
@@ -180,7 +222,13 @@ class RecommandedThemeView extends Component {
         </button>
         <button
           className={style.nextButton}
-          style={order === lists.length - 4 ? { display: 'none' } : null}
+          style={
+            order ===
+            lists.length -
+              (device === 'desktop' ? 4 : device === 'tablet' ? 3 : 2)
+              ? { display: 'none' }
+              : null
+          }
           onClick={() => this.handleSlideRight()}
         >
           <AllowRight className={style.nextButtonSvg} />
@@ -190,4 +238,4 @@ class RecommandedThemeView extends Component {
   }
 }
 
-export default withRouter(withSearch(RecommandedThemeView));
+export default withUser(withRouter(withSearch(RecommandedThemeView)));

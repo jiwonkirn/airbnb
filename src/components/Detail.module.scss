@@ -1,18 +1,42 @@
+@import '../css/module.scss';
+
 // 이미지
 .imgWrapper {
   display: flex;
   margin: -30px -80px 0;
   width: calc(100%+160px);
   position: relative;
+
+  @include tablet {
+    margin: -30px -50px 0;
+  }
+  @include mobile {
+    margin: -30px -30px 0;
+  }
 }
 
 .responsive1 {
   width: 50%;
+  @include tablet {
+    width: 66.666%;
+  }
+  @include mobile {
+    width: 0%;
+    display: none;
+  }
 }
 .subWrapper {
   display: flex;
   flex-wrap: wrap;
   width: 50%;
+
+  @include tablet {
+    width: 33.333%;
+  }
+  @include mobile {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .mainImg {
@@ -26,17 +50,40 @@
 }
 .city {
   color: #484848;
+  @include mobile {
+    margin: 25px 0;
+    font-weight: 300;
+    color: #555;
+  }
 }
 .subImg {
   width: 50%;
   height: 50%;
   background-color: #aaaaaa;
+
+  @include tablet {
+    width: 100%;
+    height: 50%;
+  }
+  @include mobile {
+    width: 100%;
+    height: 100%;
+  }
 }
 //기본 레이아웃
 
 .category {
   margin: 10px 0;
   font-weight: 700;
+  @include mobile {
+    margin: 25px 0 5px;
+  }
+}
+
+.calenderContiner .category {
+  @include mobile {
+    margin: 25px 0 15px;
+  }
 }
 .roomInfo2 {
   margin-top: 20px;
@@ -55,11 +102,25 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  @include tablet {
+    width: 100%;
+    padding: 50px 50px;
+  }
+  @include mobile {
+    width: calc(100% + 20px);
+    padding: 30px 0;
+    margin: 0 -10px;
+  }
 }
 
 .roomName {
   font-size: 2.5rem;
   width: 70%;
+
+  @include mobile {
+    width: 82%;
+    margin-top: 10px;
+  }
 }
 .host {
   position: absolute;
@@ -67,7 +128,15 @@
   right: 0;
   width: 10%;
   height: 10%;
+
+  @include mobile {
+    top: 40px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+  }
 }
+
 .hostImg {
   width: 100%;
   border-radius: 50%;
@@ -89,6 +158,13 @@
   width: 60%;
   display: inline-block;
   position: relative;
+  @include tablet {
+    width: 100%;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
 }
 .roomProperty {
   display: flex;
@@ -122,6 +198,10 @@
 .devider {
   margin: 20px 0;
   border: 1px solid #ebebeb;
+
+  @include mobile {
+    margin: 30px 0;
+  }
 }
 .transe {
   border: #101010 1px solid;
@@ -130,6 +210,65 @@
   width: 100%;
   height: 3rem;
   margin: 10px 0;
+
+  @include mobile {
+    border: 1px solid #aaa;
+    color: #666;
+    margin: 0;
+  }
+}
+
+// 태블릿 예약폼
+.preReservationContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 10;
+  width: 100%;
+  border-top: 1px solid #ddd;
+
+  .preReservationPrice {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Noto Sans KR';
+    letter-spacing: 0.025em;
+    line-height: 1.1em;
+
+    .preDay {
+      font-size: 16px;
+    }
+  }
+
+  @include tablet {
+    padding: 20px 100px;
+  }
+
+  @include mobile {
+    padding: 20px 20px;
+  }
+
+  .preReservationStar {
+    width: 10px;
+    height: 10px;
+    fill: $sub-color;
+  }
+
+  .preReservationButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 100px;
+    padding: 15px 60px;
+    border: none;
+    border-radius: 5px;
+    background-color: $main-color;
+    color: #fff;
+
+    @include mobile {
+      right: 20px;
+    }
+  }
 }
 
 // 예약폼
@@ -138,16 +277,76 @@
   vertical-align: top;
   margin-left: 5%;
   position: relative;
+
+  @include tablet {
+    position: fixed;
+    z-index: 100;
+    display: block;
+  }
+
+  @include mobile {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    margin: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transition: all 0.5s ease-in-out;
+    transform: translateY(100%);
+  }
+}
+
+.wrapper.reservationActive {
+  @include tablet {
+    width: 100%;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  @include mobile {
+    position: fixed;
+    z-index: 105;
+    transform: translateY(0);
+  }
 }
 .formWrapper {
   width: 100%;
   vertical-align: top;
+
+  @include tablet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+  }
 }
 .formWrapper.sticky {
   position: fixed;
   top: 100px;
   width: 350px;
   vertical-align: top;
+
+  @include tablet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+  }
+
+  @include mobile {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 .reservationFrom {
   width: 100%;
@@ -155,7 +354,18 @@
   border-radius: 5px;
   padding: 0 24px;
   background: #ffffff;
+
+  @include mobile {
+    height: 100vh;
+  }
 }
+
+.cross {
+  width: 15px;
+  height: 15px;
+  margin-top: 30px;
+}
+
 .price {
   font-size: 2rem;
   font-family: 700;
@@ -359,6 +569,9 @@
   height: 350px;
   background-color: gray;
 }
+.placeLocation {
+  margin-top: 10px;
+}
 .moreInfo {
   color: #008489;
   display: flex;
@@ -409,12 +622,21 @@
   padding: 0;
   color: #008489;
   background-color: #ffffff;
+  @include mobile {
+    margin: 15px 0 10px;
+  }
 }
 .subTitle {
   font-weight: 700;
   margin: 10px 0;
+  @include mobile {
+    margin: 15px 0;
+  }
 }
 .reserveRuleWrapper {
+  @include mobile {
+    margin-bottom: 60px;
+  }
 }
 .reserveRuleList {
   list-style-type: disc;
@@ -428,4 +650,7 @@
   display: flex;
   justify-content: space-between;
   width: 40%;
+  @include mobile {
+    width: 70%;
+  }
 }

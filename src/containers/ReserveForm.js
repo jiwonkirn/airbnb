@@ -3,6 +3,7 @@ import ReserveFormView from '../components/ReserveFormView';
 import { withRouter } from 'react-router-dom';
 import api from '../api';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 
 class ReserveForm extends Component {
   constructor(props) {
@@ -36,18 +37,35 @@ class ReserveForm extends Component {
   }
 
   render() {
-    const { roomId } = this.props;
-    return (
-      <ReserveFormView
-        price={this.props.price}
-        {...this.state}
-        onSelect={e => this.handleSelect(e)}
-        onBook={() => this.handleBook()}
-        roomId={roomId}
-        rate_average={this.props.rate_average}
-      />
-    );
+    const { roomId, device, mobileReservation } = this.props;
+    if (device === 'desktop') {
+      return (
+        <ReserveFormView
+          price={this.props.price}
+          {...this.state}
+          onSelect={e => this.handleSelect(e)}
+          onBook={() => this.handleBook()}
+          roomId={roomId}
+          handleMobileReservation={this.props.mobileReservation}
+        />
+      );
+    } else if (device !== 'desktop') {
+      {
+        return (
+          mobileReservation && (
+            <ReserveFormView
+              price={this.props.price}
+              {...this.state}
+              onSelect={e => this.handleSelect(e)}
+              onBook={() => this.handleBook()}
+              roomId={roomId}
+              handleMobileReservation={this.props.handleMobileReservation}
+            />
+          )
+        );
+      }
+    }
   }
 }
 
-export default withRouter(withSearch(ReserveForm));
+export default withUser(withRouter(withSearch(ReserveForm)));

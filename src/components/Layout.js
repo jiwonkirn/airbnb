@@ -7,6 +7,7 @@ import { ReactComponent as Twitter } from '../svg/twitter.svg';
 import { ReactComponent as Instagram } from '../svg/instagram.svg';
 import { ReactComponent as Blog } from '../svg/blog.svg';
 import { ReactComponent as Board } from '../svg/board.svg';
+import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { withUser } from '../contexts/UserContext';
 import { withSearch } from '../contexts/SearchContext';
 import Login from '../containers/Login';
@@ -15,7 +16,7 @@ import { GoogleLogout } from 'react-google-login';
 import classNames from 'classnames';
 import HelpdeskView from './HelpdeskView';
 import SavedRsvn from '../containers/SavedRsvn';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class Layout extends React.PureComponent {
   constructor(props) {
@@ -27,14 +28,24 @@ class Layout extends React.PureComponent {
       helpbtnclick: false,
       savedModal: false,
       savedRsvn: false,
+      navSelected: false,
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.setState({
+      await this.setState({
         savedModal: false,
+        navSelected: false,
       });
+      const body = document.querySelector('body');
+      if (this.state.navSelected) {
+        body.style.overflow = 'hidden';
+        body.style.position = 'fixed';
+      } else {
+        body.style.overflow = 'visible';
+        body.style.position = 'static';
+      }
     }
   }
 
@@ -92,7 +103,23 @@ class Layout extends React.PureComponent {
       loginbtnclick: false,
     });
   }
+
+  handleNavigation = async () => {
+    await this.setState(prev => {
+      return { navSelected: !prev.navSelected };
+    });
+    this.props.handleFixModal();
+  };
+
   render() {
+    const { selected, navSelected } = this.state;
+    const {
+      device,
+      location: { pathname },
+    } = this.props;
+    const nav = classNames(style.navbar, {
+      [style.activeNav]: this.state.navSelected,
+    });
     return (
       <div>
         {this.state.loginbtnclick ? (
@@ -101,14 +128,55 @@ class Layout extends React.PureComponent {
         {this.state.helpbtnclick ? (
           <HelpdeskView onModalRemove={e => this.handleHelpModalRemove(e)} />
         ) : null}
-        <header key={this.props.cityName} className={style.header}>
-          <Logo className={style.logo} onClick={this.props.handleLinkToHome} />
+        <header
+          style={
+            device === 'mobile' && pathname === '/'
+              ? { position: 'fixed' }
+              : null
+          }
+          key={this.props.cityName}
+          className={style.header}
+        >
+          <Logo
+            className={style.logo}
+            onClick={() => {
+              if (device === 'desktop') {
+                this.props.handleLinkToHome();
+              } else {
+                this.handleNavigation();
+              }
+            }}
+          />
+          <ArrowDown
+            style={
+              navSelected
+                ? { transform: 'rotate(90deg)' }
+                : { transform: 'rotate(0)' }
+            }
+            className={style.arrowDown}
+          />
           <div
             className={style.searchbar}
             onFocus={e => this.handleFocus(e)}
             onBlur={e => this.handleBlur(e)}
             style={
-              this.state.selected === true ? { width: '50%' } : { width: '35%' }
+              selected
+                ? {
+                    width:
+                      device === 'desktop'
+                        ? '650px'
+                        : device === 'tablet'
+                        ? '50%'
+                        : '70%',
+                  }
+                : {
+                    width:
+                      device === 'desktop'
+                        ? '460px'
+                        : device === 'tablet'
+                        ? '50%'
+                        : '70%',
+                  }
             }
           >
             <Magnifying
@@ -124,7 +192,12 @@ class Layout extends React.PureComponent {
               placeholder="제주도에 가보는건 어떠세요?"
             />
           </div>
-          <nav className={style.navbar}>
+          <nav className={nav}>
+            {device !== 'desktop' && (
+              <Link to="/" className={style.toHomeMobile}>
+                홈
+              </Link>
+            )}
             <p
               className={style.navbar_helpdesk}
               onClick={e => this.handleHelpdeskBtn(e)}
@@ -165,70 +238,72 @@ class Layout extends React.PureComponent {
           </nav>
         </header>
         {this.props.children}
-        <footer>
-          <div className={style.footer}>
-            <div className={style.footerSection}>
-              <label className={style.footerName} htmlFor={style.footerList}>
-                에어비앤비
-              </label>
-              <ul className={style.footerList}>
-                <li>채용정보</li>
-                <li>미디어</li>
-                <li>정책</li>
-                <li>도움말</li>
-                <li>다양성과 소속감</li>
-              </ul>
-            </div>
-            <div className={style.footerSection}>
-              <label className={style.footerName} htmlFor={style.footerList}>
-                여행하기
-              </label>
-              <ul className={style.footerList}>
-                <li>신뢰와 안전</li>
-                <li>친구 초대하기</li>
-                <li>Airbnb Citizen</li>
-                <li>비즈니스 프로그램</li>
-                <li>가이드북</li>
-                <li>AirbnbMag</li>
-                <li>에어비앤비 이벤트</li>
-                <li>한국의 변경된 환불정책</li>
-              </ul>
-            </div>
-            <div className={style.footerSection}>
-              <label className={style.footerName} htmlFor={style.footerList}>
-                호스팅하기
-              </label>
-              <ul className={style.footerList}>
-                <li>호스팅의 장점</li>
-                <li>호스트 추천하기</li>
-                <li>호스팅 기준</li>
-                <li>책임감 있는 호스트 되기</li>
-                <li>커뮤니티 센터</li>
-                <li>트립 호스팅NEW!</li>
-                <li>Open Homes 프로그램</li>
-              </ul>
-            </div>
-            <div className={style.footerSection}>
-              <div>
-                <Facebook className={style.icon} />
-                <Twitter className={style.icon} />
-                <Instagram className={style.icon} />
-                <Blog className={style.icon} />
-                <Board className={style.icon} />
+        {device === 'desktop' && (
+          <footer>
+            <div className={style.footer}>
+              <div className={style.footerSection}>
+                <label className={style.footerName} htmlFor={style.footerList}>
+                  에어비앤비
+                </label>
+                <ul className={style.footerList}>
+                  <li>채용정보</li>
+                  <li>미디어</li>
+                  <li>정책</li>
+                  <li>도움말</li>
+                  <li>다양성과 소속감</li>
+                </ul>
               </div>
-              <ul>
-                <li>이용약관</li>
-                <li>개인정보</li>
-                <li>처리방침</li>
-                <li>여행지 찾기</li>
-              </ul>
+              <div className={style.footerSection}>
+                <label className={style.footerName} htmlFor={style.footerList}>
+                  여행하기
+                </label>
+                <ul className={style.footerList}>
+                  <li>신뢰와 안전</li>
+                  <li>친구 초대하기</li>
+                  <li>Airbnb Citizen</li>
+                  <li>비즈니스 프로그램</li>
+                  <li>가이드북</li>
+                  <li>AirbnbMag</li>
+                  <li>에어비앤비 이벤트</li>
+                  <li>한국의 변경된 환불정책</li>
+                </ul>
+              </div>
+              <div className={style.footerSection}>
+                <label className={style.footerName} htmlFor={style.footerList}>
+                  호스팅하기
+                </label>
+                <ul className={style.footerList}>
+                  <li>호스팅의 장점</li>
+                  <li>호스트 추천하기</li>
+                  <li>호스팅 기준</li>
+                  <li>책임감 있는 호스트 되기</li>
+                  <li>커뮤니티 센터</li>
+                  <li>트립 호스팅NEW!</li>
+                  <li>Open Homes 프로그램</li>
+                </ul>
+              </div>
+              <div className={style.footerSection}>
+                <div>
+                  <Facebook className={style.icon} />
+                  <Twitter className={style.icon} />
+                  <Instagram className={style.icon} />
+                  <Blog className={style.icon} />
+                  <Board className={style.icon} />
+                </div>
+                <ul>
+                  <li>이용약관</li>
+                  <li>개인정보</li>
+                  <li>처리방침</li>
+                  <li>여행지 찾기</li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div className={style.footer2}>
-            <Logo className={style.logo2} />
-            <p className={style.copy}> © Airbnb, Inc.</p>
-          </div>
-        </footer>
+            <div className={style.footer2}>
+              <Logo className={style.logo2} />
+              <p className={style.copy}> © Airbnb, Inc.</p>
+            </div>
+          </footer>
+        )}
       </div>
     );
   }

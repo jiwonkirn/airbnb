@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
+import { ReactComponent as Cross } from '../svg/cross.svg';
 import { ReactComponent as HelfStar } from '../svg/helfStar.svg';
 import style from './Detail.module.scss';
 import PeopleControlView from './PeopleControlView';
@@ -9,6 +10,7 @@ import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Dates from '../containers/Dates';
+import { withUser } from '../contexts/UserContext';
 
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
@@ -60,6 +62,7 @@ class ReserveFormView extends React.PureComponent {
       children,
       adult,
       roomId,
+      device,
       rate_average,
     } = this.props;
     const { stars } = this.state;
@@ -74,6 +77,12 @@ class ReserveFormView extends React.PureComponent {
           onSubmit={e => this.handleSubmit(e)}
           className={style.reservationFrom}
         >
+          {device !== 'desktop' && (
+            <Cross
+              onClick={this.props.handleMobileReservation}
+              className={style.cross}
+            />
+          )}
           <p className={style.price}>
             ₩{price * (children + adult || 1)} /
             <span className={style.park}>박</span>
@@ -114,4 +123,4 @@ class ReserveFormView extends React.PureComponent {
   }
 }
 
-export default withSearch(ReserveFormView);
+export default withUser(withSearch(ReserveFormView));

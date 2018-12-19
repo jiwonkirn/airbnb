@@ -3,9 +3,10 @@ import style from './PeopleControl.module.scss';
 import classNames from 'classnames';
 import { ReactComponent as Minus } from '../svg/minus.svg';
 import { ReactComponent as Plus } from '../svg/plus.svg';
+import { withUser } from '../contexts/UserContext';
 // import { withSearch } from '../contexts/SearchContext';
 
-export default class PeopleControlForm extends Component {
+class PeopleControlForm extends Component {
   handleSelect(e) {
     this.setState({
       selected: this.state.selected === true ? false : true,
@@ -22,11 +23,7 @@ export default class PeopleControlForm extends Component {
   }
 
   handleSearchSelector = () => {
-    if (this.props.location.pathname === '/search-list/detail') {
-      this.props.onHandleSubSearch();
-    } else {
-      this.props.onHandlePeopleSearch();
-    }
+    this.props.onHandlePeopleSearch();
   };
 
   render() {
@@ -35,6 +32,7 @@ export default class PeopleControlForm extends Component {
     const buttonClass = classNames(style.optionBox, {
       [style.active]: this.props.selected,
       [style.list]: theme === 'list' ? true : false,
+      [style.mobile]: this.props.device === 'mobile',
     });
     return (
       <div className={buttonClass}>
@@ -116,3 +114,5 @@ export default class PeopleControlForm extends Component {
     );
   }
 }
+
+export default withUser(PeopleControlForm);

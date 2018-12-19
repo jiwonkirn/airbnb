@@ -74,9 +74,17 @@ li.priceControlContainer {
 
 .priceControl.view,
 .modal.view {
-  display: block;
+  display: inline-block;
 }
 
 .priceControlContainer.view {
   z-index: 100;
+}
+
+.priceControl.view.mobile {
+  width: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
