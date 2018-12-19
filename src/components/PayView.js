@@ -25,7 +25,8 @@ class PayView extends Component {
       expiredate: '만료일',
       cvv: 'CVV',
       post: null,
-      name: '',
+      first_name: '',
+      last_name:'',
       selected: false,
     };
   }
@@ -53,8 +54,9 @@ class PayView extends Component {
     const expiredate = this.state.expiredate
     const cvv = this.state.cvv
     const post = this.state.post
-    const name = this.state.name
-    this.props.onPost(checkin, checkout, adult, children, cardnumber, expiredate, cvv, post, name);
+    const first_name = this.state.first_name
+    const last_name = this.state.last_name
+    this.props.onPost(checkin, checkout, adult, children, cardnumber, expiredate, cvv, post, first_name, last_name);
   }
   handleFocus() {
     this.setState({
@@ -103,6 +105,18 @@ class PayView extends Component {
       });
     }
   }
+  handleFirstName(e){
+    const first_name = e.target.value
+    this.setState({
+      first_name,
+    })
+  }
+  handleLastName(e){
+    const last_name = e.target.value
+    this.setState({
+      last_name,
+    })
+  }
   async handleExpiredate(e) {
     const expiredate = e.target.value;
     const reg = new RegExp(/^[0-9]*$/);
@@ -149,7 +163,7 @@ class PayView extends Component {
     const checkoutYear = this.state.checkout.split('-')[0];
     const checkoutMounth = this.state.checkout.split('-')[1];
     const checkoutDate = this.state.checkout.split('-')[2];
-    const { cardnumber, expiredate, cvv, post, name } = this.state;
+    const { cardnumber, expiredate, cvv, post, first_name, last_name } = this.state;
     console.log(this.state.payselected);
     console.log(this.state.expiredate);
     console.log(this.state.name);
@@ -198,7 +212,7 @@ class PayView extends Component {
                 <label className={style.subTitle} htmlFor={style.nameInput}>
                   이름
                 </label>{' '}
-                <input value={name} className={style.nameInput} type="text" />{' '}
+                <input onChange={e=>this.handleFirstName(e)} value={first_name} className={style.nameInput} type="text" />{' '}
               </li>
               <li>
                 <label
@@ -207,7 +221,7 @@ class PayView extends Component {
                 >
                   성
                 </label>{' '}
-                <input className={style.familyNameInput} type="text" />{' '}
+                <input onChange={e=>this.handleLastName(e)} value={last_name} className={style.familyNameInput} type="text" />{' '}
               </li>
             </ul>
             <label className={style.subTitle} htmlFor={style.cardInfoWrapper}>
