@@ -24,7 +24,7 @@ export default class Receipt extends Component {
 
   async componentDidMount() {
     const { bookingId } = this.props;
-    const { data: receipt } = await api.get(`/api/home/receipt/8/`);
+    const { data: receipt } = await api.get(`/api/home/receipt/${bookingId}/`);
     console.log(receipt);
     this.setState({
       ...receipt,
@@ -35,6 +35,6 @@ export default class Receipt extends Component {
   }
 
   render() {
-    return <ReceiptView {...this.state} roomId={this.props.roomId} />;
+    return <ReceiptView {...this.state} bookingId={this.props.bookingId} />;
   }
 }
