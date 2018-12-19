@@ -9,8 +9,8 @@ import { ReactComponent as Card3 } from '../svg/card3.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
-import Receipt from '../containers/Receipt';
 import { withUser } from '../contexts/UserContext';
+import Receipt from '../containers/Receipt';
 
 class PayView extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class PayView extends Component {
       expiredate: '만료일',
       cvv: 'CVV',
       post: null,
+      name: this.props.last_name,
       selected: false,
     };
   }
@@ -62,9 +63,12 @@ class PayView extends Component {
   }
   handleCardNumber(e) {
     const cardnumber = e.target.value;
-    this.setState({
-      cardnumber,
-    });
+    const reg = new RegExp(/^[0-9]*$/);
+    if (cardnumber.match(reg)) {
+      this.setState({
+        cardnumber,
+      });
+    }
   }
   handleCardNumberFocus() {
     if (this.state.cardnumber === '카드정보') {
@@ -96,9 +100,12 @@ class PayView extends Component {
   }
   async handleExpiredate(e) {
     const expiredate = e.target.value;
-    this.setState({
-      expiredate,
-    });
+    const reg = new RegExp(/^[0-9]*$/);
+    if (expiredate.match(reg) && expiredate.length < 5) {
+      this.setState({
+        expiredate,
+      });
+    }
   }
   handleCvvFocus() {
     if (this.state.cvv === 'CVV') {
@@ -116,9 +123,12 @@ class PayView extends Component {
   }
   handleCvv(e) {
     const cvv = e.target.value;
-    this.setState({
-      cvv,
-    });
+    const reg = new RegExp(/^[0-9]*$/);
+    if (cvv.match(reg) && cvv.length < 4) {
+      this.setState({
+        cvv,
+      });
+    }
   }
   handlePost(e) {
     const post = e.target.value;
@@ -139,9 +149,11 @@ class PayView extends Component {
     const checkoutYear = this.state.checkout.split('-')[0];
     const checkoutMounth = this.state.checkout.split('-')[1];
     const checkoutDate = this.state.checkout.split('-')[2];
-    const { cardnumber, expiredate, cvv, post } = this.state;
+    const { cardnumber, expiredate, cvv, post, name } = this.state;
     console.log(this.state.payselected);
     console.log(this.state.expiredate);
+    console.log(this.state.name);
+    console.log(this.props.last_name);
     return (
       <div>
         <ReserveNav />
@@ -186,7 +198,7 @@ class PayView extends Component {
                 <label className={style.subTitle} htmlFor={style.nameInput}>
                   이름
                 </label>{' '}
-                <input className={style.nameInput} type="text" />{' '}
+                <input value={name} className={style.nameInput} type="text" />{' '}
               </li>
               <li>
                 <label

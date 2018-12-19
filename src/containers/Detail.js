@@ -28,6 +28,7 @@ class Detail extends Component {
       hostimages: {},
       loading: true,
       saved: false,
+      rate_average: null,
     };
   }
 

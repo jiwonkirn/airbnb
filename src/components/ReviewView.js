@@ -12,11 +12,6 @@ export default class ReviewView extends Component {
       pagenumber: 0,
     };
   }
-  handleGrade(e) {
-    this.setState({
-      grade: parseInt(e.target.value),
-    });
-  }
   handleComment(e) {
     this.setState({
       comment: e.target.value,
@@ -48,9 +43,15 @@ export default class ReviewView extends Component {
       pagenumber: pagenumber,
     });
   }
+  handleGrade(index) {
+    this.setState({
+      grade: index + 1,
+    });
+  }
   render() {
     const { grade, stars, comment, pagenumber } = this.state;
     const { reviews, reviewpage } = this.props;
+    console.log(this.state.grade);
     return (
       <div>
         <h3 className={style.category2}>후기 {reviews.length}개</h3>
@@ -59,17 +60,23 @@ export default class ReviewView extends Component {
             <label className={style.gradeText} htmlFor={style.gradeSelect}>
               별점
             </label>
-            <select
-              onChange={e => this.handleGrade(e)}
-              className={style.gradeSelect}
-              value={grade}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
+            <div className={style.starBox}>
+              {stars.map((star, index) =>
+                index + 1 <= grade ? (
+                  <Star
+                    key={index}
+                    onClick={() => this.handleGrade(index)}
+                    className={style.star1}
+                  />
+                ) : (
+                  <Star
+                    key={index}
+                    onClick={() => this.handleGrade(index)}
+                    className={style.star2}
+                  />
+                )
+              )}
+            </div>
           </div>
           <div>
             <label htmlFor={style.reviewText}>후기 작성란</label>
@@ -101,6 +108,7 @@ export default class ReviewView extends Component {
                       )
                     )}
                   </div>
+
                   <p>{review.created_at}</p>
                 </div>
               </div>
