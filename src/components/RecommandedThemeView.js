@@ -112,7 +112,7 @@ class RecommandedThemeView extends Component {
       } else if (device === 'mobile') {
         this.setState(prev => {
           return {
-            translateX: prev.translateX + 50,
+            translateX: prev.translateX + 66,
             order: prev.order - 1,
           };
         });
@@ -137,10 +137,10 @@ class RecommandedThemeView extends Component {
           order: prev.order + 1,
         };
       });
-    } else if (order < lists.length - 2 && device === 'mobile') {
+    } else if (order < lists.length - 1 && device === 'mobile') {
       this.setState(prev => {
         return {
-          translateX: prev.translateX - 50,
+          translateX: prev.translateX - 66,
           order: prev.order + 1,
         };
       });
@@ -225,7 +225,7 @@ class RecommandedThemeView extends Component {
           style={
             order ===
             lists.length -
-              (device === 'desktop' ? 4 : device === 'tablet' ? 3 : 2)
+              (device === 'desktop' ? 4 : device === 'tablet' ? 3 : 1)
               ? { display: 'none' }
               : null
           }
