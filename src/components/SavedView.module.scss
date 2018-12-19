@@ -1,6 +1,16 @@
+@import '../css/module.scss';
+
 .container {
   width: 1032px;
   margin: 25px auto;
+
+  @include tablet {
+    width: 100%;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
 
   .heading {
     font-size: 30px;
@@ -34,10 +44,20 @@
         margin: 10px 5px 0 5px;
         position: relative;
 
+        @include tablet {
+          width: calc(50% - 10px);
+        }
+
+        @include mobile {
+          width: calc(100% + 10px);
+          margin: 20px 5px 0;
+        }
+
         .itemContainer {
           padding-bottom: 60%;
           background-size: 100%;
           background-repeat: no-repeat;
+          background-color: #666;
         }
 
         .itemTitle {

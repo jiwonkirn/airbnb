@@ -49,10 +49,17 @@ class Layout extends React.PureComponent {
   }
 
   handleSavedModal = async () => {
-    await this.setState(prev => {
-      return { savedModal: !prev.savedModal };
-    });
-    console.log(this.state.savedModal);
+    const {
+      device,
+      history: { push },
+    } = this.props;
+    if (device === 'desktop') {
+      await this.setState(prev => {
+        return { savedModal: !prev.savedModal };
+      });
+    } else {
+      push('/saved');
+    }
   };
 
   handleSavedRsvn() {
@@ -188,7 +195,9 @@ class Layout extends React.PureComponent {
               className={style.search}
               required
               defaultValue={this.props.cityName}
-              placeholder="제주도에 가보는건 어떠세요?"
+              placeholder={
+                device === 'desktop' ? '제주도에 가보는건 어떠세요?' : '검색'
+              }
             />
           </div>
           <nav className={nav}>
@@ -209,9 +218,9 @@ class Layout extends React.PureComponent {
               <p className={style.saved}>
                 <span onClick={this.handleSavedModal}>저장목록</span>
                 <Hart className={style.hart} />
-                {this.state.savedModal && (
+                {this.state.savedModal && device === 'desktop' ? (
                   <Saved onSavedModal={this.handleSavedModal} theme="header" />
-                )}
+                ) : null}
               </p>
             )}
             {this.props.logined && (

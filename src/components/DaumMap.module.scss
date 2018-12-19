@@ -1,9 +1,26 @@
+@import '../css/module.scss';
+
 .map {
   margin: -30px -80px 0 0;
   width: calc(61% + 80px);
   height: calc(100vh - 80px);
   background-color: #ddd;
   float: right;
+
+  @include mobile {
+    position: fixed;
+    margin: -30px -30px 0;
+    width: 100vw;
+    height: 100vh;
+    transform: translateY(110%);
+    transition: all 0.3 ease-out;
+  }
+}
+
+.map.active {
+  @include mobile {
+    transform: translateY(0);
+  }
 }
 
 .infoMarker {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import loadjs from 'loadjs';
 import style from './DaumMap.module.scss';
+import classNames from 'classnames';
 import './DaumMap.scss';
+import { withUser } from '../contexts/UserContext';
 
-export default class DaumMap extends Component {
+class DaumMap extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -49,6 +51,12 @@ export default class DaumMap extends Component {
   };
 
   render() {
-    return <section id="map" className={style.map} />;
+    const { mobileMap, device } = this.props;
+    const mobileModal = classNames(style.map, {
+      [style.active]: mobileMap && device === 'mobile',
+    });
+    return <section id="map" className={mobileModal} />;
   }
 }
+
+export default withUser(DaumMap);
