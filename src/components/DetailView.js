@@ -486,6 +486,7 @@ class DetailView extends React.Component {
             }}
           >
             <ReserveForm
+              rate_average={rate_average}
               handleMobileReservation={this.handleMobileReservation}
               price={this.props.price}
               roomId={roomId}
