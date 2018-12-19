@@ -47,21 +47,64 @@ class Pay extends Component {
       loading: false,
     });
   }
-  async handlePost(checkin, checkout, adult, children) {
-    await api.post('/api/home/booking/', {
+  async handlePost(
+    checkin,
+    checkout,
+    adult,
+    children,
+    cardnumber,
+    expiredate,
+    cvv,
+    post,
+    name
+  ) {
+    const {
+      data: { id },
+    } = await api.post('/api/home/booking/', {
       check_in_date: checkin,
       check_out_date: checkout,
       num_guest: adult + children,
       room: this.props.roomId,
     });
-    this.props.history.push('/receipt');
+    if (
+      cardnumber === '카드정보' ||
+      expiredate === '만료일' ||
+      cvv === 'CVV' ||
+      post === null ||
+      name === ''
+    ) {
+      alert('필수입력값을 확인해주세요');
+    } else if (id) {
+      alert('예약이 완료되었습니다.');
+      this.props.history.push('/receipt/' + id);
+    }
   }
   render() {
     const { roomId } = this.props;
     return (
       <PayView
-        onPost={(checkin, checkout, adult, children) =>
-          this.handlePost(checkin, checkout, adult, children)
+        onPost={(
+          checkin,
+          checkout,
+          adult,
+          children,
+          cardnumber,
+          expiredate,
+          cvv,
+          post,
+          name
+        ) =>
+          this.handlePost(
+            checkin,
+            checkout,
+            adult,
+            children,
+            cardnumber,
+            expiredate,
+            cvv,
+            post,
+            name
+          )
         }
         {...this.state}
         roomId={roomId}

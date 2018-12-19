@@ -377,6 +377,22 @@
   width: 1em;
   fill: rgb(166, 29, 85);
 }
+.star2 {
+  display: inline;
+  height: 1em;
+  width: 1em;
+  fill: #aaaaaa;
+}
+.helfStarbox {
+  display: inline;
+  position: relative;
+}
+.helfStar {
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  fill: rgb(166, 29, 85);
+}
 .dateInputWrapper {
   display: flex;
 }

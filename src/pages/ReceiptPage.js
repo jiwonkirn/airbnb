@@ -13,8 +13,8 @@ class ReceiptPage extends Component {
 
   render() {
     const { match } = this.props;
-    const roomId = match.params.roomId;
-    return <Receipt key={this.props.logined} roomId={roomId} />;
+    const bookingId = match.params.receiptId;
+    return <Receipt key={this.props.logined} bookingId={bookingId} />;
   }
 }
 

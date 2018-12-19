@@ -13,9 +13,14 @@ class GuestInfoVIew extends Component {
     this.state = {
       checkin: '',
       checkout: '',
+      comment: '',
     };
   }
-
+  handleValue(e) {
+    this.setState({
+      comment: e.target.value,
+    });
+  }
   componentDidMount() {
     const location = this.props.location;
     const params = new URLSearchParams(location.search);
@@ -26,6 +31,16 @@ class GuestInfoVIew extends Component {
       checkout,
     });
   }
+  handleContinue() {
+    const { roomId, adult, children, infant, checkin, checkout } = this.props;
+    if (this.state.comment) {
+      this.props.history.push(
+        `/pay/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`
+      );
+    } else {
+      alert('호스트에게 간단히 자신을 소개하고 여행 목적에 대해 알려주세요.');
+    }
+  }
   render() {
     const { roomId, adult, children, infant, checkin, checkout } = this.props;
     const checkinYear = this.state.checkin.split('-')[0];
@@ -34,6 +49,7 @@ class GuestInfoVIew extends Component {
     const checkoutYear = this.state.checkout.split('-')[0];
     const checkoutMounth = this.state.checkout.split('-')[1];
     const checkoutDate = this.state.checkout.split('-')[2];
+    const { comment } = this.state.comment;
     return (
       <div>
         <div className={style.guestInfoContainer}>
@@ -48,17 +64,20 @@ class GuestInfoVIew extends Component {
             Kim님에게 간단히 자신을 소개하고 여행 목적에 대해 알려주세요.{' '}
           </p>
           <textarea
+            onChange={e => this.handleValue(e)}
             className={style.textArea}
             name=""
             id=""
             cols="30"
             rows="10"
+            value={comment}
           />
-          <Link
-            to={`/pay/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
+          <button
+            onClick={() => this.handleContinue()}
+            className={style.continueBtn}
           >
-            <button className={style.continueBtn}>계속하기</button>
-          </Link>
+            계속하기
+          </button>
         </div>
         <RoomInfoView
           checkinYear={checkinYear}

@@ -42,6 +42,7 @@ class DetailView extends React.Component {
       ruleMore: false,
       review: 0,
       mobileReservation: false,
+      category: ['숙소', '게스트와의 교류', '기타 사항'],
     };
   }
   handleModal() {
@@ -156,6 +157,7 @@ class DetailView extends React.Component {
       lat,
       lng,
       device,
+      rate_average,
       ...rest
     } = this.props;
     const devided = room_info_1
@@ -258,13 +260,17 @@ class DetailView extends React.Component {
               이 설명을 한국어로 번역하기
             </button>
             <div>
-              <h3 className={style.category}>숙소</h3>
               {devided2.map((item, index) => (
                 <p key={index}>{item}</p>
               ))}
               <div className={style.roomInfo2}>
                 {devided3.map((item, index) => (
-                  <p key={index}>{item}</p>
+                  <div>
+                    <h3 className={style.category}>
+                      {this.state.category[index]}
+                    </h3>
+                    <p key={index}>{item}</p>
+                  </div>
                 ))}
               </div>
             </div>

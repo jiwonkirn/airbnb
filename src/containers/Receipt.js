@@ -7,41 +7,27 @@ export default class Receipt extends Component {
     super(props);
 
     this.state = {
-      pk: '',
-      bathrooms: '',
-      bedrooms: '',
-      beds: '',
-      person_capacity: '',
-      room_name: '',
-      room_type: '',
-      room_and_property_type: '',
-      public_address: '',
-      city: '',
-      price: '',
-      lat: '',
-      lng: '',
-      created_at: '',
-      amenities: [],
-      roominfo: {},
-      hostimages: {},
       id: '',
       room: '',
       guest: '',
       num_guest: '',
       check_in_date: '',
       check_out_date: '',
-      loading: true,
-      saved: false,
+      room_city: '',
+      room_price: '',
+      room_public_address: '',
+      room_host: '',
+      room_name: '',
+      created_date: '',
     };
   }
 
   async componentDidMount() {
-    const { roomId } = this.props;
-    const { data: roomdetail } = await api.get(`api/home/listing/${roomId}/`);
-    const { data: booking } = await api.get(`api/home/booking/${roomId}`);
+    const { bookingId } = this.props;
+    const { data: receipt } = await api.get(`/api/home/receipt/${bookingId}/`);
+    console.log(receipt);
     this.setState({
-      ...roomdetail,
-      ...booking,
+      ...receipt,
     });
     this.setState({
       loading: false,
@@ -49,6 +35,6 @@ export default class Receipt extends Component {
   }
 
   render() {
-    return <ReceiptView {...this.state} roomId={this.props.roomId} />;
+    return <ReceiptView {...this.state} bookingId={this.props.bookingId} />;
   }
 }

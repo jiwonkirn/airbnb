@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
 import { ReactComponent as Cross } from '../svg/cross.svg';
+import { ReactComponent as HelfStar } from '../svg/helfStar.svg';
 import style from './Detail.module.scss';
 import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
@@ -18,6 +19,7 @@ class ReserveFormView extends React.PureComponent {
       startDate: '',
       endDate: '',
       sticky: false,
+      stars: [1, 2, 3, 4, 5],
     };
   }
 
@@ -61,9 +63,11 @@ class ReserveFormView extends React.PureComponent {
       adult,
       roomId,
       device,
+      rate_average,
     } = this.props;
-
-    console.log(check_out_date, check_in_date);
+    const { stars } = this.state;
+    console.log(parseInt(rate_average));
+    console.log(Number.isInteger(parseInt(rate_average)));
     const stickyClass = classNames(style.formWrapper, {
       [style.sticky]: this.state.sticky,
     });
@@ -84,11 +88,18 @@ class ReserveFormView extends React.PureComponent {
             <span className={style.park}>박</span>
           </p>
           <div className={style.starwrapper}>
-            <Star className={style.star} />
-            <Star className={style.star} />
-            <Star className={style.star} />
-            <Star className={style.star} />
-            <Star className={style.star} />
+            {stars.map((star, index) =>
+              star <= rate_average ? (
+                <Star className={style.star} />
+              ) : star < parseFloat(rate_average) + 1 ? (
+                <div className={style.helfStarbox}>
+                  <HelfStar className={style.helfStar} />
+                  <Star className={style.star2} />
+                </div>
+              ) : (
+                <Star className={style.star2} />
+              )
+            )}
           </div>
           <div className={style.devider} />
           <div>
