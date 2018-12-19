@@ -1,6 +1,12 @@
 $main-color: #fc5c63;
 $sub-color: #008489;
 
+@mixin desktop {
+  @media screen and (min-width: 1129px) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media screen and (min-width: 761px) and (max-width: 1128px) {
     @content;

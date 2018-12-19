@@ -8,6 +8,7 @@ import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Dates from '../containers/Dates';
+import { withUser } from '../contexts/UserContext';
 
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
@@ -58,6 +59,7 @@ class ReserveFormView extends React.PureComponent {
       children,
       adult,
       roomId,
+      device,
     } = this.props;
 
     console.log(check_out_date, check_in_date);
@@ -103,4 +105,4 @@ class ReserveFormView extends React.PureComponent {
   }
 }
 
-export default withSearch(ReserveFormView);
+export default withUser(withSearch(ReserveFormView));

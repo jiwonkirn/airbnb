@@ -5,6 +5,7 @@ import PeopleControlForm from './PeopleControlForm';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
+import { withUser } from '../contexts/UserContext';
 
 class PeopleControlView extends Component {
   constructor(props) {
@@ -152,4 +153,4 @@ class PeopleControlView extends Component {
   }
 }
 
-export default withSearch(withRouter(PeopleControlView));
+export default withUser(withSearch(withRouter(PeopleControlView)));
