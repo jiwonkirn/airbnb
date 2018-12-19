@@ -48,13 +48,18 @@ class Pay extends Component {
     });
   }
   async handlePost(checkin, checkout, adult, children) {
-    await api.post('/api/home/booking/', {
+    const {
+      data: { id },
+    } = await api.post('/api/home/booking/', {
       check_in_date: checkin,
       check_out_date: checkout,
       num_guest: adult + children,
       room: this.props.roomId,
     });
-    this.props.history.push('/receipt');
+    if (id) {
+      alert('예약이 완료되었습니다.');
+      this.props.history.push('/receipt/' + id);
+    }
   }
   render() {
     const { roomId } = this.props;
