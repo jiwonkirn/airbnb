@@ -102,6 +102,10 @@ class UserProviders extends Component {
     alert('로그인 되었습니다.');
     localStorage.setItem('token', res2.data.token);
     this.refreshUser();
+    this.setState({
+      first_name,
+      last_name,
+    });
   }
 
   removeGoogleProfile() {
@@ -110,6 +114,7 @@ class UserProviders extends Component {
     this.refreshUser();
   }
   render() {
+    console.log(this.state.last_name);
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }
 }
