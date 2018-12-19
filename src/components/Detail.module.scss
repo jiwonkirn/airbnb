@@ -245,7 +245,7 @@
   }
 
   @include mobile {
-    padding: 20px 80px;
+    padding: 20px 20px;
   }
 
   .preReservationStar {
@@ -260,9 +260,14 @@
     transform: translateY(-50%);
     right: 100px;
     padding: 15px 60px;
+    border: none;
     border-radius: 5px;
     background-color: $main-color;
     color: #fff;
+
+    @include mobile {
+      right: 20px;
+    }
   }
 }
 
@@ -272,22 +277,52 @@
   vertical-align: top;
   margin-left: 5%;
   position: relative;
-  @include tablet {
-    display: none;
-  }
+
   @include mobile {
-    display: none;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    margin: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transition: all 0.5s ease-in-out;
+    transform: translateY(100%);
+  }
+}
+
+.wrapper.reservationActive {
+  @include mobile {
+    position: fixed;
+    z-index: 100;
+    transform: translateY(0);
   }
 }
 .formWrapper {
   width: 100%;
   vertical-align: top;
+
+  @include mobile {
+    // position: absolute;
+    // width: 100%;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+  }
 }
 .formWrapper.sticky {
   position: fixed;
   top: 100px;
   width: 350px;
   vertical-align: top;
+
+  @include mobile {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 .reservationFrom {
   width: 100%;
@@ -295,7 +330,15 @@
   border-radius: 5px;
   padding: 0 24px;
   background: #ffffff;
+  height: 100vh;
 }
+
+.cross {
+  width: 15px;
+  height: 15px;
+  margin-top: 30px;
+}
+
 .price {
   font-size: 2rem;
   font-family: 700;
@@ -545,6 +588,9 @@
   }
 }
 .reserveRuleWrapper {
+  @include mobile {
+    margin-bottom: 60px;
+  }
 }
 .reserveRuleList {
   list-style-type: disc;

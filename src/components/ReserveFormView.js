@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
+import { ReactComponent as Cross } from '../svg/cross.svg';
 import style from './Detail.module.scss';
 import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
@@ -72,6 +73,12 @@ class ReserveFormView extends React.PureComponent {
           onSubmit={e => this.handleSubmit(e)}
           className={style.reservationFrom}
         >
+          {device !== 'desktop' && (
+            <Cross
+              onClick={this.props.handleMobileReservation}
+              className={style.cross}
+            />
+          )}
           <p className={style.price}>
             ₩{price * (children + adult || 1)} /
             <span className={style.park}>박</span>

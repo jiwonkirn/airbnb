@@ -23,6 +23,7 @@ import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import SaveButton from './SaveButton';
 import { withUser } from '../contexts/UserContext';
+import classNames from 'classnames';
 
 let lastScrollY = window.scrollY;
 
@@ -40,6 +41,7 @@ class DetailView extends React.Component {
       sticky: false,
       ruleMore: false,
       review: 0,
+      mobileReservation: false,
     };
   }
   handleModal() {
@@ -111,6 +113,15 @@ class DetailView extends React.Component {
     const RecallLocation = this.RecallRef.current.getBoundingClientRect();
     window.scroll(0, currentScroll + RecallLocation.y - 50);
   }
+
+  handleMobileReservation = () => {
+    this.setState(prev => {
+      return {
+        mobileReservation: !prev.mobileReservation,
+      };
+    });
+  };
+
   render() {
     console.log(this.props.device);
     const {
@@ -440,11 +451,25 @@ class DetailView extends React.Component {
               <Star className={style.preReservationStar} />
               <Star className={style.preReservationStar} />
               <Star className={style.preReservationStar} />
-              <button className={style.preReservationButton}>예약 요청</button>
+              <button
+                onClick={this.handleMobileReservation}
+                className={style.preReservationButton}
+              >
+                예약 요청
+              </button>
             </section>
           ) : null}
-          <div className={style.wrapper}>
-            <ReserveForm price={this.props.price} roomId={roomId} />
+          <div
+            className={classNames(style.wrapper, {
+              [style.reservationActive]: this.state.mobileReservation,
+            })}
+          >
+            <ReserveForm
+              handleMobileReservation={this.handleMobileReservation}
+              price={this.props.price}
+              roomId={roomId}
+              mobileReservation={this.state.mobileReservation}
+            />
           </div>
         </div>
       </div>

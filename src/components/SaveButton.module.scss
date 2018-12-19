@@ -1,3 +1,5 @@
+@import '../css/module.scss';
+
 .saveButton {
   position: absolute;
   top: 25px;
@@ -6,11 +8,23 @@
   border-radius: 5px;
   outline: 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: none;
+
+  @include mobile {
+    padding: 0;
+    background-color: transparent;
+  }
 }
 .saveIcon,
 .saveBody {
   display: inline-block;
   vertical-align: middle;
+}
+.saveBody {
+  @include mobile {
+    display: none;
+  }
 }
 
 .saveIcon {
@@ -19,11 +33,20 @@
   top: -1px;
   fill: #fff;
   stroke: #444;
+  @include mobile {
+    width: 25px;
+    stroke: #fff;
+    fill: transparent;
+  }
 }
 
 .saveIcon.savedIcon {
   fill: #ff5a5f;
   stroke: none;
+
+  @include mobile {
+    stroke: #fff;
+  }
 }
 .saveBody {
   margin-left: 10px;

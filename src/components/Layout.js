@@ -129,7 +129,7 @@ class Layout extends React.PureComponent {
                         ? '650px'
                         : device === 'tablet'
                         ? '50%'
-                        : '75%',
+                        : '70%',
                   }
                 : {
                     width:
@@ -137,7 +137,7 @@ class Layout extends React.PureComponent {
                         ? '460px'
                         : device === 'tablet'
                         ? '50%'
-                        : '75%',
+                        : '70%',
                   }
             }
           >
