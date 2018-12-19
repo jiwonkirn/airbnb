@@ -1,3 +1,4 @@
+@import '../css/module.scss';
 .logo {
   fill: rgb(255, 90, 95);
   position: absolute;
@@ -5,8 +6,11 @@
   left: 17px;
   width: 48px;
   height: 48px;
-  z-index: 100;
+  z-index: 200;
   cursor: pointer;
+  @include mobile {
+    z-index: 200;
+  }
 }
 .reserveNav {
   height: 88px;
@@ -27,6 +31,9 @@
 .navList li {
   margin-right: 20px;
   // border: 1px solid blue;
+  @include mobile {
+    display: none;
+  }
 }
 .arrow {
   height: 10px;
