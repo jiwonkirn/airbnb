@@ -44,6 +44,7 @@ class ReserveForm extends Component {
         onSelect={e => this.handleSelect(e)}
         onBook={() => this.handleBook()}
         roomId={roomId}
+        rate_average={this.props.rate_average}
       />
     );
   }

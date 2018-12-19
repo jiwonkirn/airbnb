@@ -134,6 +134,7 @@ class DetailView extends React.Component {
       room_host,
       lat,
       lng,
+      rate_average,
       ...rest
     } = this.props;
     const devided = room_info_1
@@ -423,7 +424,7 @@ class DetailView extends React.Component {
             </div>
           </div>
           <div className={style.wrapper}>
-            <ReserveForm price={this.props.price} roomId={roomId} />
+            <ReserveForm rate_average={rate_average} price={this.props.price} roomId={roomId} />
           </div>
         </div>
       </div>

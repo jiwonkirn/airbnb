@@ -108,6 +108,7 @@ export default class ReviewView extends Component {
                       )
                     )}
                   </div>
+
                   <p>{review.created_at}</p>
                 </div>
               </div>
