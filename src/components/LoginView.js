@@ -21,7 +21,7 @@ class LoginView extends Component {
   }
   render() {
     //페이스북 로그인
-    const { setProfile, onModalRemove } = this.props;
+    const { setProfile, onModalRemove, device } = this.props;
     document.getElementById('googleButton');
     return (
       <div className={style.container} onClick={e => onModalRemove(e)}>
@@ -38,7 +38,9 @@ class LoginView extends Component {
                 onClick={renderProps.onClick}
               >
                 <Facebook className={style.facebookLogo} />
-                <div className={style.a}>페이스북 계정으로 로그인</div>
+                <div className={style.a}>
+                  페이스북 계정{device !== 'mobile' && '으로'} 로그인
+                </div>
               </button>
             )}
           />
@@ -47,7 +49,9 @@ class LoginView extends Component {
             render={renderProps => (
               <button className={style.googleBtn} onClick={renderProps.onClick}>
                 <Google className={style.googleLogo} />
-                <div className={style.a}>구글 계정으로 로그인</div>
+                <div className={style.a}>
+                  구글 계정{device !== 'mobile' && '으로'} 로그인
+                </div>
               </button>
             )}
             buttonText="Login"

@@ -43,6 +43,7 @@ class ReserveForm extends Component {
         <ReserveFormView
           price={this.props.price}
           {...this.state}
+          rate_average={this.props.rate_average}
           onSelect={e => this.handleSelect(e)}
           onBook={() => this.handleBook()}
           roomId={roomId}
@@ -54,6 +55,7 @@ class ReserveForm extends Component {
         return (
           mobileReservation && (
             <ReserveFormView
+              rate_average={this.props.rate_average}
               price={this.props.price}
               {...this.state}
               onSelect={e => this.handleSelect(e)}

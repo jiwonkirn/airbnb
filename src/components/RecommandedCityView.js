@@ -65,7 +65,7 @@ class RecommandedCityView extends Component {
       } else if (device === 'mobile') {
         this.setState(prev => {
           return {
-            translateX: prev.translateX + 50,
+            translateX: prev.translateX + 66,
             order: prev.order - 1,
           };
         });
@@ -96,11 +96,11 @@ class RecommandedCityView extends Component {
         });
       }
     }
-    if (order < lists.length - 2) {
+    if (order < lists.length - 1) {
       if (device === 'mobile') {
         this.setState(prev => {
           return {
-            translateX: prev.translateX - 50,
+            translateX: prev.translateX - 66,
             order: prev.order + 1,
           };
         });
@@ -151,7 +151,7 @@ class RecommandedCityView extends Component {
           style={
             order ===
             lists.length -
-              (device === 'desktop' ? 5 : device === 'tablet' ? 3 : 2)
+              (device === 'desktop' ? 5 : device === 'tablet' ? 3 : 1)
               ? { display: 'none' }
               : null
           }

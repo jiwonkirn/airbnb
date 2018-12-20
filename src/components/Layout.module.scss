@@ -8,6 +8,11 @@
   width: 100%;
   position: relative;
 
+  @include tablet {
+    z-index: 103;
+    background-color: #fff;
+  }
+
   @include mobile {
     z-index: 103;
     background-color: #fff;
@@ -87,16 +92,17 @@
   right: 25px;
 
   @include tablet {
-    display: none;
+    display: block;
     position: fixed;
-    width: 100%;
     top: 80px;
     left: 0;
     bottom: 0;
     right: 0;
     background-color: #fff;
     z-index: 102;
-    padding: 20px 0;
+    padding: 10px 30px;
+    transform: translateX(-100%);
+    transition: all 0.5s ease-in-out;
   }
   @include mobile {
     display: block;
@@ -107,7 +113,7 @@
     right: 0;
     background-color: #fff;
     z-index: 102;
-    padding: 20px 0;
+    padding: 20px 10px;
     transform: translateX(-100%);
     transition: all 0.5s ease-in-out;
     // width: calc(100% - 100px);
@@ -121,6 +127,34 @@
     @include mobile {
       display: block;
       transform: translateX(0);
+    }
+  }
+
+  .home,
+  .conversation,
+  .hart,
+  .carrier,
+  .person {
+    display: none;
+
+    @include tablet {
+      display: inline-block;
+      width: 35px;
+      height: 30px;
+      float: right;
+      position: relative;
+      // top: 5px;
+      fill: #666;
+    }
+
+    @include mobile {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      float: right;
+      position: relative;
+      top: 5px;
+      fill: #666;
     }
   }
 }
@@ -141,14 +175,46 @@
   background-color: transparent;
 
   @include tablet {
+    display: block;
+    padding: 15px 0;
+    font-size: 20px;
+    color: #666;
+    margin: 0 20px;
   }
   @include mobile {
     display: block;
-    padding: 10px 0;
+    padding: 15px 0;
     font-size: 16px;
     color: #666;
     margin: 0 20px;
-    border-bottom: 1px solid #eee;
+  }
+}
+
+.toHomeMobile {
+  @include tablet {
+    padding: 30px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  @include mobile {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.navbar_login {
+  @include tablet {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 30px 0;
+  }
+  @include mobile {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 20px 0;
   }
 }
 

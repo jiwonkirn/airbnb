@@ -479,13 +479,17 @@ class DetailView extends React.Component {
             className={classNames(style.wrapper, {
               [style.reservationActive]: this.state.mobileReservation,
             })}
-            onClick={() => {
-              if (device === 'tablet') {
+            onClick={e => {
+              if (
+                device === 'tablet' &&
+                e.target.getAttribute('class').includes('Detail_wrapper')
+              ) {
                 this.handleMobileReservation();
               }
             }}
           >
             <ReserveForm
+              rate_average={rate_average}
               handleMobileReservation={this.handleMobileReservation}
               price={this.props.price}
               roomId={roomId}

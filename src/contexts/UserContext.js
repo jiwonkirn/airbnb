@@ -164,7 +164,7 @@ class UserProviders extends Component {
     const body = document.querySelector('body');
     if (boolean) {
       body.style.overflow = 'hidden';
-      body.style.position = 'fixed';
+      body.style.position = 'relative';
     } else {
       body.style.overflow = 'visible';
       body.style.position = 'static';
