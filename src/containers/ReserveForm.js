@@ -3,6 +3,7 @@ import ReserveFormView from '../components/ReserveFormView';
 import { withRouter } from 'react-router-dom';
 import api from '../api';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 
 class ReserveForm extends Component {
   constructor(props) {
@@ -36,17 +37,39 @@ class ReserveForm extends Component {
   }
 
   render() {
-    const { roomId } = this.props;
-    return (
-      <ReserveFormView
-        price={this.props.price}
-        {...this.state}
-        onSelect={e => this.handleSelect(e)}
-        onBook={() => this.handleBook()}
-        roomId={roomId}
-      />
-    );
+    const { roomId, device, mobileReservation, checkin, checkout } = this.props;
+    if (device === 'desktop') {
+      return (
+        <ReserveFormView
+          price={this.props.price}
+          {...this.state}
+          checkin={checkin}
+          checkout={checkout}
+          rate_average={this.props.rate_average}
+          onSelect={e => this.handleSelect(e)}
+          onBook={() => this.handleBook()}
+          roomId={roomId}
+          handleMobileReservation={this.props.mobileReservation}
+        />
+      );
+    } else if (device !== 'desktop') {
+      {
+        return (
+          mobileReservation && (
+            <ReserveFormView
+              rate_average={this.props.rate_average}
+              price={this.props.price}
+              {...this.state}
+              onSelect={e => this.handleSelect(e)}
+              onBook={() => this.handleBook()}
+              roomId={roomId}
+              handleMobileReservation={this.props.handleMobileReservation}
+            />
+          )
+        );
+      }
+    }
   }
 }
 
-export default withRouter(withSearch(ReserveForm));
+export default withUser(withRouter(withSearch(ReserveForm)));

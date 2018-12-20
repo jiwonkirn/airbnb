@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './Detail.module.scss';
 import ReserveForm from '../containers/ReserveForm';
 import Review from '../containers/Review';
+import { ReactComponent as Star } from '../svg/star.svg';
 import { ReactComponent as Tv } from '../svg/tv.svg';
 import { ReactComponent as Wireless } from '../svg/wireless.svg';
 import { ReactComponent as Kitchen } from '../svg/kitchen.svg';
@@ -21,6 +22,8 @@ import 'react-dates/initialize';
 import { DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import SaveButton from './SaveButton';
+import { withUser } from '../contexts/UserContext';
+import classNames from 'classnames';
 
 let lastScrollY = window.scrollY;
 
@@ -38,6 +41,8 @@ class DetailView extends React.Component {
       sticky: false,
       ruleMore: false,
       review: 0,
+      mobileReservation: false,
+      category: ['숙소', '게스트와의 교류', '기타 사항'],
     };
   }
   handleModal() {
@@ -63,10 +68,6 @@ class DetailView extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.state.sticky !== nextState.sticky || false;
-  // }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -109,6 +110,23 @@ class DetailView extends React.Component {
     const RecallLocation = this.RecallRef.current.getBoundingClientRect();
     window.scroll(0, currentScroll + RecallLocation.y - 50);
   }
+
+  handleMobileReservation = async () => {
+    await this.setState(prev => {
+      return {
+        mobileReservation: !prev.mobileReservation,
+      };
+    });
+    const body = document.querySelector('body');
+    if (this.state.mobileReservation) {
+      body.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+    } else {
+      body.style.overflow = 'visible';
+      body.style.position = 'static';
+    }
+  };
+
   render() {
     const {
       room_name,
@@ -133,6 +151,8 @@ class DetailView extends React.Component {
       room_host,
       lat,
       lng,
+      device,
+      rate_average,
       ...rest
     } = this.props;
     const devided = room_info_1
@@ -152,7 +172,6 @@ class DetailView extends React.Component {
       건물내무료주차: <Park />,
       엘리베이터: <Elevator />,
     };
-    console.log(lat, lng);
     return (
       <div className={style.outer}>
         {this.state.sticky ? (
@@ -178,7 +197,11 @@ class DetailView extends React.Component {
           <div className={style.subWrapper}>
             {room_photos.map(
               (item, index) =>
-                index > 0 && (
+                (device === 'desktop'
+                  ? index > 0
+                  : device === 'tablet'
+                  ? index > 0 && index < 3
+                  : index === 0) && (
                   <img
                     src={item.room_photo}
                     className={style.subImg}
@@ -203,10 +226,12 @@ class DetailView extends React.Component {
                   src={hostimages.host_thumbnail_url}
                   alt="host_thumbnail"
                 />
-                <label className={style.hostName} htmlFor={style.hostImg}>
-                  {room_host.last_name}
-                  {room_host.first_name}
-                </label>
+                {device === 'desktop' && (
+                  <label className={style.hostName} htmlFor={style.hostImg}>
+                    {room_host.last_name}
+                    {room_host.first_name}
+                  </label>
+                )}
               </div>
               <div>
                 <h3 className={style.category}>{room_and_property_type}</h3>
@@ -229,13 +254,17 @@ class DetailView extends React.Component {
               이 설명을 한국어로 번역하기
             </button>
             <div>
-              <h3 className={style.category}>숙소</h3>
               {devided2.map((item, index) => (
                 <p key={index}>{item}</p>
               ))}
               <div className={style.roomInfo2}>
                 {devided3.map((item, index) => (
-                  <p key={index}>{item}</p>
+                  <div>
+                    <h3 className={style.category}>
+                      {this.state.category[index]}
+                    </h3>
+                    <p key={index}>{item}</p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -277,7 +306,7 @@ class DetailView extends React.Component {
               </div>
             ) : null}
             <div className={style.devider} />
-            <div>
+            <div className={style.calenderContiner}>
               <h3 className={style.category}>예약 가능 여부</h3>
               <DayPickerRangeController />
             </div>
@@ -356,7 +385,9 @@ class DetailView extends React.Component {
             <div className={style.map}>
               <DaumMap1 {...this.props} />
             </div>
-            <p>정확한 위치 정보는 예약이 확정된 후 알려드립니다.</p>
+            <p className={style.placeLocation}>
+              정확한 위치 정보는 예약이 확정된 후 알려드립니다.
+            </p>
             <hr className={style.devider} />
             <h3 ref={this.RecallRef} className={style.category2}>
               환불 정책
@@ -419,8 +450,45 @@ class DetailView extends React.Component {
               </ul>
             </div>
           </div>
-          <div className={style.wrapper}>
-            <ReserveForm price={this.props.price} roomId={roomId} />
+          {device !== 'desktop' ? (
+            <section className={style.preReservationContainer}>
+              <p className={style.preReservationPrice}>
+                ₩{price}
+                <span className={style.preDay}>/박</span>
+              </p>
+              <Star className={style.preReservationStar} />
+              <Star className={style.preReservationStar} />
+              <Star className={style.preReservationStar} />
+              <Star className={style.preReservationStar} />
+              <Star className={style.preReservationStar} />
+              <button
+                onClick={this.handleMobileReservation}
+                className={style.preReservationButton}
+              >
+                예약 요청
+              </button>
+            </section>
+          ) : null}
+          <div
+            className={classNames(style.wrapper, {
+              [style.reservationActive]: this.state.mobileReservation,
+            })}
+            onClick={e => {
+              if (
+                device === 'tablet' &&
+                e.target.getAttribute('class').includes('Detail_wrapper')
+              ) {
+                this.handleMobileReservation();
+              }
+            }}
+          >
+            <ReserveForm
+              rate_average={rate_average}
+              handleMobileReservation={this.handleMobileReservation}
+              price={this.props.price}
+              roomId={roomId}
+              mobileReservation={this.state.mobileReservation}
+            />
           </div>
         </div>
       </div>
@@ -428,4 +496,4 @@ class DetailView extends React.Component {
   }
 }
 
-export default withCommonLoading(DetailView);
+export default withUser(withCommonLoading(DetailView));

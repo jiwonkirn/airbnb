@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
+import { ReactComponent as HelfStar } from '../svg/helfStar.svg';
 import style from './RoomList.module.scss';
 
 export default class RoomListItemView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      stars: [1, 2, 3, 4, 5],
+    };
+  }
+
   render() {
     const { room } = this.props;
     return (
@@ -15,11 +24,20 @@ export default class RoomListItemView extends Component {
         <p className={style.roomTitle}>{room.room_name}</p>
         <p className={style.roomPrice}>{room.price}원</p>
         <div className={style.starWrapper}>
-          <Star className={style.star} />
-          <Star className={style.star} />
-          <Star className={style.star} />
-          <Star className={style.star} />
-          <Star className={style.star} />
+          {room.rate_average === null ? (
+            <span>0</span>
+          ) : (
+            <span>{room.rate_average}</span>
+          )}
+          {this.state.stars.map((star, index) =>
+            star <= room.rate_average ? (
+              <Star className={style.star} key={index} />
+            ) : star < parseFloat(room.rate_average) + 1 ? (
+              <HelfStar className={style.star} key={index} />
+            ) : (
+              <Star className={style.star2} key={index} />
+            )
+          )}
         </div>
       </>
     );

@@ -4,6 +4,7 @@ import { ReactComponent as SelfCheckin } from '../svg/selfcheckin.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import withCommonLoading from '../hoc/CommonLoading';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 import RoomInfoView from './RoomInfoView';
 import ReserveNav from './ReserveNav';
 import { Link, withRouter } from 'react-router-dom';
@@ -28,6 +29,7 @@ class ReserveView extends Component {
         '금요일',
         '토요일',
       ],
+      modalclick: false,
     };
   }
   handleMore() {
@@ -41,13 +43,19 @@ class ReserveView extends Component {
   componentDidMount() {
     const location = this.props.location;
     const params = new URLSearchParams(location.search);
-    console.log(params)
+    console.log(params);
     const checkin = params.get('checkin');
     const checkout = params.get('checkout');
     this.setState({
       checkin,
       checkout,
     });
+  }
+  async handleModal() {
+    await this.setState({
+      modalclick: this.state.modalclick === true ? false : true,
+    });
+    this.props.handleFixModal(this.state.modalclick);
   }
   render() {
     const {
@@ -60,6 +68,8 @@ class ReserveView extends Component {
       infant,
       checkin,
       checkout,
+      device,
+      price,
     } = this.props;
     console.log(room_photos);
     const checkinYear = this.state.checkin.split('-')[0];
@@ -76,6 +86,7 @@ class ReserveView extends Component {
       파티나이벤트금지: <Party />,
       흡연금지: <Smoke />,
     };
+    console.log(this.state.modalclick);
     return (
       <div>
         <ReserveNav />
@@ -181,24 +192,63 @@ class ReserveView extends Component {
               </p>
             </li>
           </ul>
-          <Link
-            to={`/guest-info/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
-          >
-            <button className={style.continueBtn}>동의 및 계속하기</button>
-          </Link>
+          {device === 'desktop' ? (
+            <Link
+              to={`/guest-info/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
+            >
+              <button className={style.continueBtn}>동의 및 계속하기</button>
+            </Link>
+          ) : device === 'mobile' ? (
+            <div className={style.continueBtnWrapper}>
+              <div>
+                <ul>
+                  <li>₩{price}</li>
+                  <li>{parseInt(checkoutDate) - parseInt(checkinDate)}박</li>
+                </ul>
+                <button
+                  onClick={() => this.handleModal()}
+                  className={style.more2}
+                >
+                  자세히 보기
+                </button>
+              </div>
+              <Link
+                to={`/guest-info/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
+              >
+                <button className={style.continueBtn}>동의</button>
+              </Link>
+            </div>
+          ) : null}
+          {this.state.modalclick === true ? (
+            <div className={style.roomInfoViewWrapper}>
+              <RoomInfoView
+                checkinYear={checkinYear}
+                checkinMounth={checkinMounth}
+                checkinDate={checkinDate}
+                checkoutYear={checkoutYear}
+                checkoutMounth={checkoutMounth}
+                checkoutDate={checkoutDate}
+                {...this.props}
+                modalclick={this.state.modalclick}
+                onModal={() => this.handleModal()}
+              />
+            </div>
+          ) : null}
         </div>
-        <RoomInfoView
-          checkinYear={checkinYear}
-          checkinMounth={checkinMounth}
-          checkinDate={checkinDate}
-          checkoutYear={checkoutYear}
-          checkoutMounth={checkoutMounth}
-          checkoutDate={checkoutDate}
-          {...this.props}
-        />
+        {device === 'desktop' ? (
+          <RoomInfoView
+            checkinYear={checkinYear}
+            checkinMounth={checkinMounth}
+            checkinDate={checkinDate}
+            checkoutYear={checkoutYear}
+            checkoutMounth={checkoutMounth}
+            checkoutDate={checkoutDate}
+            {...this.props}
+          />
+        ) : device === 'mobile' ? null : null}
       </div>
     );
   }
 }
 
-export default withCommonLoading(withSearch(withRouter(ReserveView)));
+export default withCommonLoading(withSearch(withRouter(withUser(ReserveView))));

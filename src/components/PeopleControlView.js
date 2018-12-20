@@ -5,6 +5,7 @@ import PeopleControlForm from './PeopleControlForm';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
+import { withUser } from '../contexts/UserContext';
 
 class PeopleControlView extends Component {
   constructor(props) {
@@ -21,10 +22,7 @@ class PeopleControlView extends Component {
       this.setState({
         locationPath: 'home',
       });
-    } else if (
-      this.props.match.path === '/search-list' ||
-      this.props.match.path === '/search-list/detail'
-    ) {
+    } else if (this.props.match.path === '/search-list') {
       this.setState({
         locationPath: 'list',
       });
@@ -37,10 +35,13 @@ class PeopleControlView extends Component {
 
   refreshLocation() {}
 
-  handleSelect = () => {
-    this.setState({
+  handleSelect = async () => {
+    await this.setState({
       selected: this.state.selected ? false : true,
     });
+    if (this.props.locationPath === 'list') {
+      this.props.handleFixModal(this.state.selected);
+    }
   };
 
   render() {
@@ -94,12 +95,12 @@ class PeopleControlView extends Component {
               className={style.peopleItemButton}
               onClick={this.handleSelect}
               style={
-                !(adult === 0 && children === 0 && infant === 0)
+                !(adult <= 1 && children === 0 && infant === 0)
                   ? { backgroundColor: '#008489', color: '#fff' }
                   : null
               }
             >
-              {adult === 0 && children === 0 && infant === 0 ? (
+              {adult <= 1 && children === 0 && infant === 0 ? (
                 <span>인원</span>
               ) : (
                 <span>
@@ -135,15 +136,12 @@ class PeopleControlView extends Component {
                     backgroundColor: 'rgba(255, 255, 255, 0.5)',
                   }
             }
-            onClick={() => {
-              if (pathname === '/search-list/detail') {
-                this.props.handleSubSearch();
-              } else {
-                this.props.handlePersonCapacitySearch();
-              }
-              this.setState({
+            onClick={async () => {
+              this.props.handlePersonCapacitySearch();
+              await this.setState({
                 selected: false,
               });
+              this.props.handleFixModal(this.state.selected);
             }}
           />
         ) : null}
@@ -152,4 +150,4 @@ class PeopleControlView extends Component {
   }
 }
 
-export default withSearch(withRouter(PeopleControlView));
+export default withUser(withSearch(withRouter(PeopleControlView)));

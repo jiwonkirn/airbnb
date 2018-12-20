@@ -1,8 +1,22 @@
+@import '../css/module.scss';
+
 .header {
   display: flex;
   align-items: center;
   height: 80px;
   border-bottom: 1px solid #ddd;
+  width: 100%;
+  position: relative;
+
+  @include tablet {
+    z-index: 103;
+    background-color: #fff;
+  }
+
+  @include mobile {
+    z-index: 103;
+    background-color: #fff;
+  }
 }
 .logo {
   fill: rgb(255, 90, 95);
@@ -15,16 +29,44 @@
   cursor: pointer;
 }
 
+.arrowDown {
+  display: none;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 45%;
+  transform: translateY(-50%);
+  left: 65px;
+  z-index: 101;
+  fill: #999;
+  transition: all 0.2s ease-in-out;
+
+  @include tablet {
+    display: block;
+  }
+  @include mobile {
+    display: block;
+  }
+}
+
 .searchbar {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 80px;
   border-radius: 3px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   border: #ebebeb 1px solid;
   transition: all 0.3s ease-in;
   height: 48px;
+  margin-left: 80px;
+
+  @include tablet {
+    margin-left: 90px;
+  }
+
+  @include mobile {
+    margin-left: 90px;
+  }
 }
 
 .magnifying {
@@ -48,9 +90,76 @@
   position: absolute;
   top: 30px;
   right: 25px;
-  // z-index: 100;
+
+  @include tablet {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 102;
+    padding: 10px 30px;
+    transform: translateX(-100%);
+    transition: all 0.5s ease-in-out;
+  }
+  @include mobile {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 102;
+    padding: 20px 10px;
+    transform: translateX(-100%);
+    transition: all 0.5s ease-in-out;
+    // width: calc(100% - 100px);
+  }
+
+  &.activeNav {
+    @include tablet {
+      display: block;
+      transform: translateX(0);
+    }
+    @include mobile {
+      display: block;
+      transform: translateX(0);
+    }
+  }
+
+  .home,
+  .conversation,
+  .hart,
+  .carrier,
+  .person {
+    display: none;
+
+    @include tablet {
+      display: inline-block;
+      width: 35px;
+      height: 30px;
+      float: right;
+      position: relative;
+      // top: 5px;
+      fill: #666;
+    }
+
+    @include mobile {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      float: right;
+      position: relative;
+      top: 5px;
+      fill: #666;
+    }
+  }
 }
 
+.toHomeMobile,
 .navbar_login,
 .navbar_helpdesk,
 .saved,
@@ -58,12 +167,55 @@
   display: inline-block;
   font-size: 1.4rem;
   margin-left: 20px;
-  background-color: buttonface;
   padding: 2px 6px 3px;
   border-image: initial;
   border: 0;
   cursor: pointer;
   position: relative;
+  background-color: transparent;
+
+  @include tablet {
+    display: block;
+    padding: 15px 0;
+    font-size: 20px;
+    color: #666;
+    margin: 0 20px;
+  }
+  @include mobile {
+    display: block;
+    padding: 15px 0;
+    font-size: 16px;
+    color: #666;
+    margin: 0 20px;
+  }
+}
+
+.toHomeMobile {
+  @include tablet {
+    padding: 30px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  @include mobile {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.navbar_login {
+  @include tablet {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 30px 0;
+  }
+  @include mobile {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 20px 0;
+  }
 }
 
 .savedModal {

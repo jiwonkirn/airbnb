@@ -6,12 +6,27 @@
   height: calc(100vh - 80px);
   overflow: scroll;
   float: left;
+
+  @include tablet {
+    width: calc(39% + 50px);
+    margin: -30px -50px 0;
+  }
+
+  @include mobile {
+    width: calc(100% + 30px);
+    margin: -30px -15px 0;
+    overflow: visible;
+  }
 }
 
 .header,
 .body {
   padding: 25px 30px;
   border-bottom: 1px solid #eee;
+
+  @include mobile {
+    padding: 25px 10px;
+  }
 }
 
 .header {
@@ -37,6 +52,7 @@
     padding: 10px 15px;
     border-radius: 5px;
     font-size: 1.3rem;
+    background-color: #fff;
   }
 }
 
@@ -46,6 +62,25 @@
       padding: 30px 0;
       border-bottom: 1px solid #eee;
     }
+  }
+}
+
+.mobileMapButton {
+  padding: 10px 15px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.33);
+  background-color: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+
+  .mapIcon {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
   }
 }
 

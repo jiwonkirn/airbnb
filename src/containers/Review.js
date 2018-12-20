@@ -22,19 +22,16 @@ export default class Review extends Component {
   async handleGetReview() {
     const room_id = this.props.roomId;
     const { data: reviews } = await api.get(`/api/home/review/${room_id}/`);
-    console.log(reviews);
     this.setState({
       reviews,
     });
   }
   handleReviewPage() {
     const reviews = this.state.reviews;
-    console.log(reviews);
     const array = [];
     for (let i = 0; i < reviews.length; i += 10) {
       array.push(reviews.slice(i, i + 10));
     }
-    console.log(array);
     this.setState({
       reviewpage: array,
     });
@@ -44,13 +41,12 @@ export default class Review extends Component {
     this.handleReviewPage();
   }
   async componentDidUpdate(prevProps, prevState) {
-    if (prevState.reviews !== this.state.reviews) {
+    if (prevState.reviews.length !== this.state.reviews.length) {
       await this.handleGetReview();
       this.handleReviewPage();
     }
   }
   render() {
-    console.log(this.state.reviewpage);
     return (
       <ReviewView
         onPost={(grade, comment) => this.handlePost(grade, comment)}

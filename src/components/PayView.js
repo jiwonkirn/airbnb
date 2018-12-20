@@ -9,6 +9,9 @@ import { ReactComponent as Card3 } from '../svg/card3.svg';
 import { ReactComponent as ArrowDown } from '../svg/arrowDown.svg';
 import { withRouter } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
+import Receipt from '../containers/Receipt';
+import { withUser } from '../contexts/UserContext';
+
 class PayView extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +20,14 @@ class PayView extends Component {
       buttonclick: false,
       checkin: '',
       checkout: '',
+      payselected: false,
+      cardnumber: '카드정보',
+      expiredate: '만료일',
+      cvv: 'CVV',
+      post: null,
+      first_name: '',
+      last_name:'',
+      selected: false,
     };
   }
   handleButton() {
@@ -39,21 +50,145 @@ class PayView extends Component {
     const checkout = this.state.checkout;
     const adult = this.props.adult;
     const children = this.props.children;
-    this.props.onPost(checkin, checkout, adult, children);
+    const cardnumber = this.state.cardnumber
+    const expiredate = this.state.expiredate
+    const cvv = this.state.cvv
+    const post = this.state.post
+    const first_name = this.state.first_name
+    const last_name = this.state.last_name
+    this.props.onPost(checkin, checkout, adult, children, cardnumber, expiredate, cvv, post, first_name, last_name);
+  }
+  handleFocus() {
+    this.setState({
+      payselected: true,
+    });
+  }
+  handleBlur() {
+    this.setState({
+      payselected: false,
+    });
+  }
+  handleCardNumber(e) {
+    const cardnumber = e.target.value;
+    const reg = new RegExp(/^[0-9]*$/);
+    if (cardnumber.match(reg)) {
+      this.setState({
+        cardnumber,
+      });
+    }
+  }
+  handleCardNumberFocus() {
+    if (this.state.cardnumber === '카드정보') {
+      this.setState({
+        cardnumber: '',
+      });
+    }
+  }
+  handleCardNumberBlur() {
+    if (!this.state.cardnumber) {
+      this.setState({
+        cardnumber: '카드정보',
+      });
+    }
+  }
+  handleExpiredateFocus() {
+    if (this.state.expiredate === '만료일') {
+      this.setState({
+        expiredate: '',
+      });
+    }
+  }
+  handleExpiredateBlur() {
+    if (!this.state.expiredate) {
+      this.setState({
+        expiredate: '만료일',
+      });
+    }
+  }
+  handleFirstName(e){
+    const first_name = e.target.value
+    this.setState({
+      first_name,
+    })
+  }
+  handleLastName(e){
+    const last_name = e.target.value
+    this.setState({
+      last_name,
+    })
+  }
+  async handleExpiredate(e) {
+    const expiredate = e.target.value;
+    const reg = new RegExp(/^[0-9]*$/);
+    if (expiredate.match(reg) && expiredate.length < 5) {
+      this.setState({
+        expiredate,
+      });
+    }
+  }
+  handleCvvFocus() {
+    if (this.state.cvv === 'CVV') {
+      this.setState({
+        cvv: '',
+      });
+    }
+  }
+  handleCvvBlur() {
+    if (!this.state.cvv) {
+      this.setState({
+        cvv: 'CVV',
+      });
+    }
+  }
+  handleCvv(e) {
+    const cvv = e.target.value;
+    const reg = new RegExp(/^[0-9]*$/);
+    if (cvv.match(reg) && cvv.length < 4) {
+      this.setState({
+        cvv,
+      });
+    }
+  }
+  handlePost(e) {
+    const post = e.target.value;
+    this.setState({
+      post,
+    });
   }
   render() {
-    const { roomId } = this.props;
+    const { roomId, device } = this.props;
     const checkinYear = this.state.checkin.split('-')[0];
     const checkinMounth = this.state.checkin.split('-')[1];
     const checkinDate = this.state.checkin.split('-')[2];
     const checkoutYear = this.state.checkout.split('-')[0];
     const checkoutMounth = this.state.checkout.split('-')[1];
     const checkoutDate = this.state.checkout.split('-')[2];
+    const { cardnumber, expiredate, cvv, post, first_name, last_name } = this.state;
+    console.log(this.state.payselected);
+    console.log(this.state.expiredate);
+    console.log(this.state.name);
+    console.log(this.props.last_name);
     return (
       <div>
         <ReserveNav />
         <div className={style.PayInfoContainer}>
           <h1 className={style.payTitle}>확인 및 결제</h1>
+          {
+            device==='mobile'?(
+            <div className={style.roomInfoView}>
+            <RoomInfoView
+                checkinYear={checkinYear}
+                checkinMounth={checkinMounth}
+                checkinDate={checkinDate}
+                checkoutYear={checkoutYear}
+                checkoutMounth={checkoutMounth}
+                checkoutDate={checkoutDate}
+                {...this.props}
+                roomId={roomId}
+              />
+            </div>
+            ):null
+          }
           <div className={style.a}>
             <div className={style.pay}>
               <p className={style.subTitle}>결제 수단</p>
@@ -63,12 +198,29 @@ class PayView extends Component {
                 <Card3 className={style.card3} />
               </div>
             </div>
-            <button className={style.creditCardbtn}>
+            <button
+              onFocus={() => this.handleFocus()}
+              onBlur={() => this.handleBlur()}
+              style={
+                this.state.payselected === true
+                  ? {
+                      height: '100px',
+                    }
+                  : {
+                      height: '50px',
+                    }
+              }
+              className={style.creditCardbtn}
+            >
               <div>
                 <CreditCard className={style.cardIcon} />
                 <p className={style.cardText}>신용카드</p>
               </div>
               <ArrowDown className={style.arrowDown} />
+              <div className={style.div2}>
+                <CreditCard className={style.cardIcon} />
+                <p className={style.cardText}>신용카드</p>
+              </div>
             </button>
             <ul className={style.nameWrapper}>
               <li>
@@ -76,7 +228,7 @@ class PayView extends Component {
                 <label className={style.subTitle} htmlFor={style.nameInput}>
                   이름
                 </label>{' '}
-                <input className={style.nameInput} type="text" />{' '}
+                <input onChange={e=>this.handleFirstName(e)} value={first_name} className={style.nameInput} type="text" />{' '}
               </li>
               <li>
                 <label
@@ -85,7 +237,7 @@ class PayView extends Component {
                 >
                   성
                 </label>{' '}
-                <input className={style.familyNameInput} type="text" />{' '}
+                <input onChange={e=>this.handleLastName(e)} value={last_name} className={style.familyNameInput} type="text" />{' '}
               </li>
             </ul>
             <label className={style.subTitle} htmlFor={style.cardInfoWrapper}>
@@ -95,15 +247,36 @@ class PayView extends Component {
               <ul className={style.cardInfoInputList}>
                 <li className={style.cardNumber}>
                   {' '}
-                  <input type="text" />{' '}
+                  <input
+                    placeholder="0000 0000 0000 0000"
+                    onFocus={() => this.handleCardNumberFocus()}
+                    onBlur={() => this.handleCardNumberBlur()}
+                    onChange={e => this.handleCardNumber(e)}
+                    value={cardnumber}
+                    type="text"
+                  />{' '}
                 </li>
                 <li className={style.expireDate}>
                   {' '}
-                  <input type="text" />{' '}
+                  <input
+                    placeholder="MM/YY"
+                    onBlur={() => this.handleExpiredateBlur()}
+                    onFocus={() => this.handleExpiredateFocus()}
+                    onChange={e => this.handleExpiredate(e)}
+                    value={expiredate}
+                    type="text"
+                  />{' '}
                 </li>
                 <li className={style.cvv}>
                   {' '}
-                  <input type="text" />{' '}
+                  <input
+                    placeholder="3자리"
+                    onBlur={() => this.handleCvvBlur()}
+                    onFocus={() => this.handleCvvFocus()}
+                    onChange={e => this.handleCvv(e)}
+                    value={cvv}
+                    type="text"
+                  />{' '}
                 </li>
               </ul>
             </div>
@@ -113,7 +286,13 @@ class PayView extends Component {
                 <label className={style.subTitle} htmlFor={style.nameInput}>
                   청구지 정보
                 </label>{' '}
-                <input className={style.nameInput} type="text" />{' '}
+                <input
+                  value={post}
+                  onChange={e => this.handlePost(e)}
+                  className={style.nameInput}
+                  placeholder="우편번호"
+                  type="text"
+                />{' '}
               </li>
               <li>
                 <label
@@ -155,25 +334,33 @@ class PayView extends Component {
               서비스 수수료를 포함하여 명시된 총 금액을 결제하는 데 동의합니다.
             </p>
             <button
-              onClick={() => this.handleReserve()}
+              onClick={e => this.handleReserve(e)}
               className={style.finalReserveBtn}
             >
-              예약 요청하기
+              {this.props.logined && (
+                <p className={style.receipt}>
+                  <span>예약요청하기</span>
+                </p>
+              )}
             </button>
           </div>
         </div>
-        <RoomInfoView
-          checkinYear={checkinYear}
-          checkinMounth={checkinMounth}
-          checkinDate={checkinDate}
-          checkoutYear={checkoutYear}
-          checkoutMounth={checkoutMounth}
-          checkoutDate={checkoutDate}
-          {...this.props}
-          roomId={roomId}
-        />
+        {
+          device==='desktop'?(
+            <RoomInfoView
+              checkinYear={checkinYear}
+              checkinMounth={checkinMounth}
+              checkinDate={checkinDate}
+              checkoutYear={checkoutYear}
+              checkoutMounth={checkoutMounth}
+              checkoutDate={checkoutDate}
+              {...this.props}
+              roomId={roomId}
+            />
+          ):null
+        }
       </div>
     );
   }
 }
-export default withRouter(withSearch(PayView));
+export default withUser(withRouter(withSearch(PayView)));

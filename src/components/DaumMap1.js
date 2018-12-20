@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import loadjs from 'loadjs';
+import { withUser } from '../contexts/UserContext';
 import style from './DaumMap1.module.scss';
 import './DaumMap.scss';
 
-export default class DaumMap extends Component {
+class DaumMap extends Component {
   async componentDidMount() {
     await loadjs(
       '//dapi.kakao.com/v2/maps/sdk.js?appkey=da639cf155de5cfa487552ed41060ff3&autoload=false&libraries=services,clusterer,drawing',
@@ -13,6 +14,7 @@ export default class DaumMap extends Component {
 
   makeMap = () => {
     const { daum } = window;
+    const { device } = this.props;
     const lat = this.props.lat;
     const lng = this.props.lng;
     daum.maps.load(() => {
@@ -27,7 +29,7 @@ export default class DaumMap extends Component {
         map: map,
         clickable: true,
         content: `<div class="infoMarker"}><span>${
-          this.props.room_name
+          device === 'desktop' ? this.props.room_name : 'Here!'
         }</span></div>`,
         position: iwPosition,
         xAnchor: 0.5,
@@ -38,7 +40,8 @@ export default class DaumMap extends Component {
   };
 
   render() {
-    console.log('render');
     return <section id="map" className={style.map} />;
   }
 }
+
+export default withUser(DaumMap);

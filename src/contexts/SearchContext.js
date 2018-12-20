@@ -57,7 +57,7 @@ class SearchProvider extends Component {
     this.setState({
       cityName: cityName ? cityName : null,
       people: people ? parseInt(people) : 0,
-      adult: adult ? parseInt(adult) : 0,
+      adult: adult ? parseInt(adult) : 1,
       children: children ? parseInt(children) : 0,
       infant: infant ? parseInt(infant) : 0,
       checkin: checkin ? checkin : 0,
@@ -156,7 +156,7 @@ class SearchProvider extends Component {
   // 인원 초기화
   handleInitialize = () => {
     this.setState({
-      adult: 0,
+      adult: 1,
       children: 0,
       infant: 0,
     });

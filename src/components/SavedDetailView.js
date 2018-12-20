@@ -5,6 +5,8 @@ import RoomListItemView from './RoomListItemView';
 import DaumMap from './DaumMap';
 import withCommonLoading from '../hoc/CommonLoading';
 import { Helmet } from 'react-helmet';
+import { withUser } from '../contexts/UserContext';
+import { ReactComponent as Maps } from '../svg/map.svg';
 
 class SavedDetailView extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class SavedDetailView extends Component {
     this.state = {
       city: '',
       list: [],
+      mobileMap: false,
     };
   }
 
@@ -25,8 +28,15 @@ class SavedDetailView extends Component {
     });
   }
 
+  handleMobileMap = async () => {
+    await this.setState(prev => {
+      return { mobileMap: prev.mobileMap ? false : true };
+    });
+  };
+
   render() {
-    const { city, list } = this.state;
+    const { city, list, mobileMap } = this.state;
+    const { device } = this.props;
     return (
       <>
         <Helmet>
@@ -55,9 +65,18 @@ class SavedDetailView extends Component {
           </div>
         </section>
         <DaumMap {...this.state} />
+        {device === 'mobile' && (
+          <button
+            onClick={this.handleMobileMap}
+            className={style.mobileMapButton}
+          >
+            {mobileMap ? '리스트' : '지도'}
+            <Maps className={style.mapIcon} />
+          </button>
+        )}
       </>
     );
   }
 }
 
-export default withCommonLoading(withRouter(SavedDetailView));
+export default withUser(withCommonLoading(withRouter(SavedDetailView)));

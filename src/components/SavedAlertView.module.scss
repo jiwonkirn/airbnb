@@ -12,7 +12,16 @@
   width: 400px;
   transition: all 0.5s ease-in-out;
 
-  .body {
+  @include tablet {
+    left: 0;
+    z-index: 9;
+    width: 100%;
+  }
+
+  @include mobile {
+    left: 0;
+    z-index: 9;
+    width: 100%;
   }
 
   .linkToList {
@@ -34,4 +43,12 @@
 
 .savedAlert.alert {
   bottom: 30px;
+
+  @include tablet {
+    bottom: 80px;
+  }
+
+  @include mobile {
+    bottom: 80px;
+  }
 }

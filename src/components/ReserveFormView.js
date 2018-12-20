@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as Star } from '../svg/star.svg';
+import { ReactComponent as Cross } from '../svg/cross.svg';
+import { ReactComponent as HelfStar } from '../svg/helfStar.svg';
 import style from './Detail.module.scss';
 import PeopleControlView from './PeopleControlView';
 import 'react-dates/initialize';
@@ -8,6 +10,7 @@ import { withSearch } from '../contexts/SearchContext';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Dates from '../containers/Dates';
+import { withUser } from '../contexts/UserContext';
 
 class ReserveFormView extends React.PureComponent {
   constructor(props) {
@@ -16,6 +19,7 @@ class ReserveFormView extends React.PureComponent {
       startDate: '',
       endDate: '',
       sticky: false,
+      stars: [1, 2, 3, 4, 5],
     };
   }
 
@@ -53,14 +57,17 @@ class ReserveFormView extends React.PureComponent {
     const {
       check_out_date,
       check_in_date,
+      checkout,
+      checkin,
       onBook,
       price,
       children,
       adult,
       roomId,
+      device,
+      rate_average,
     } = this.props;
-
-    console.log(check_out_date, check_in_date);
+    const { stars } = this.state;
     const stickyClass = classNames(style.formWrapper, {
       [style.sticky]: this.state.sticky,
     });
@@ -70,16 +77,33 @@ class ReserveFormView extends React.PureComponent {
           onSubmit={e => this.handleSubmit(e)}
           className={style.reservationFrom}
         >
+          {device !== 'desktop' && (
+            <Cross
+              onClick={this.props.handleMobileReservation}
+              className={style.cross}
+            />
+          )}
           <p className={style.price}>
-            ₩{price * (children + adult || 1)} /
-            <span className={style.park}>박</span>
+            ₩
+            {price *
+              ((children + adult) *
+                ((new Date(checkout) - new Date(checkin)) / 86400000) ||
+                1)}{' '}
+            /<span className={style.park}>박</span>
           </p>
           <div className={style.starwrapper}>
-            <Star className={style.star} />
-            <Star className={style.star} />
-            <Star className={style.star} />
-            <Star className={style.star} />
-            <Star className={style.star} />
+            {stars.map((star, index) =>
+              star <= rate_average ? (
+                <Star className={style.star} />
+              ) : star < parseFloat(rate_average) + 1 ? (
+                <div className={style.helfStarbox}>
+                  <HelfStar className={style.helfStar} />
+                  <Star className={style.star2} />
+                </div>
+              ) : (
+                <Star className={style.star2} />
+              )
+            )}
           </div>
           <div className={style.devider} />
           <div>
@@ -103,4 +127,4 @@ class ReserveFormView extends React.PureComponent {
   }
 }
 
-export default withSearch(ReserveFormView);
+export default withUser(withSearch(ReserveFormView));

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 import style from './RecommandedCity.module.scss';
 import { ReactComponent as AllowRight } from '../svg/nextAllow.svg';
 import { ReactComponent as AllowLeft } from '../svg/prevAllow.svg';
@@ -35,32 +36,82 @@ class RecommandedCityView extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.device !== this.props.device) {
+      this.setState({
+        translateX: 0,
+      });
+    }
+  }
+
   handleSlideLeft() {
     const { order } = this.state;
-    if (!order <= 0)
-      this.setState(prev => {
-        return {
-          translateX: prev.translateX + 20,
-          order: prev.order - 1,
-        };
-      });
+    const { device } = this.props;
+    if (!order <= 0) {
+      if (device === 'desktop') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX + 20,
+            order: prev.order - 1,
+          };
+        });
+      } else if (device === 'tablet') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX + 33.333,
+            order: prev.order - 1,
+          };
+        });
+      } else if (device === 'mobile') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX + 66,
+            order: prev.order - 1,
+          };
+        });
+      }
+    }
   }
 
   handleSlideRight() {
     const { order } = this.state;
-    const { lists } = this.props;
-    if (order < lists.length - 5)
-      this.setState(prev => {
-        return {
-          translateX: prev.translateX - 20,
-          order: prev.order + 1,
-        };
-      });
+    const { lists, device } = this.props;
+    if (order < lists.length - 5) {
+      if (device === 'desktop') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX - 20,
+            order: prev.order + 1,
+          };
+        });
+      }
+    }
+    if (order < lists.length - 3) {
+      if (device === 'tablet') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX - 33.333,
+            order: prev.order + 1,
+          };
+        });
+      }
+    }
+    if (order < lists.length - 1) {
+      if (device === 'mobile') {
+        this.setState(prev => {
+          return {
+            translateX: prev.translateX - 66,
+            order: prev.order + 1,
+          };
+        });
+      }
+    }
   }
 
   render() {
-    const { title, lists, averagePrice, loading } = this.props;
+    const { title, lists, averagePrice, loading, device } = this.props;
     const { order, translateX } = this.state;
+    console.log(device);
     return (
       <div className={style.RecommandedCity}>
         <h2>{title}</h2>
@@ -97,7 +148,13 @@ class RecommandedCityView extends Component {
         </button>
         <button
           className={style.nextButton}
-          style={order === lists.length - 5 ? { display: 'none' } : null}
+          style={
+            order ===
+            lists.length -
+              (device === 'desktop' ? 5 : device === 'tablet' ? 3 : 1)
+              ? { display: 'none' }
+              : null
+          }
           onClick={() => this.handleSlideRight()}
         >
           <AllowRight className={style.nextButtonSvg} />
@@ -107,4 +164,4 @@ class RecommandedCityView extends Component {
   }
 }
 
-export default withSearch(RecommandedCityView);
+export default withUser(withSearch(RecommandedCityView));
