@@ -46,9 +46,13 @@ export default class Review extends Component {
       this.handleReviewPage();
     }
   }
+  componentWillUnmount() {
+    console.log('unmount');
+  }
   render() {
     return (
       <ReviewView
+        key={this.state.reviews.length}
         onPost={(grade, comment) => this.handlePost(grade, comment)}
         onGetReview={() => this.handleGetReview()}
         reviews={this.state.reviews}
