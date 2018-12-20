@@ -2,15 +2,19 @@
 
 // 이미지
 .imgWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: -30px -80px 0;
   width: calc(100%+160px);
   position: relative;
 
   @include tablet {
+    width: calc(100%+100px);
     margin: -30px -50px 0;
   }
   @include mobile {
+    width: calc(100%+60px);
     margin: -30px -30px 0;
   }
 }
@@ -26,7 +30,10 @@
   }
 }
 .subWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 50%;
 
@@ -115,7 +122,11 @@
   padding-top: 20px;
   width: 90%;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   @include tablet {
     width: 100%;
@@ -192,9 +203,14 @@
   }
 }
 .roomProperty {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 50%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   color: #484848;
 }
@@ -292,6 +308,8 @@
   .preReservationButton {
     position: absolute;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 100px;
     padding: 15px 60px;
@@ -327,7 +345,11 @@
     top: 0;
     left: 0;
     bottom: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
     transform: translateY(100%);
   }
 }
@@ -346,6 +368,8 @@
   @include mobile {
     position: fixed;
     z-index: 105;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
     transform: translateY(0);
   }
 }
@@ -357,6 +381,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 350px;
   }
@@ -371,6 +397,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 350px;
   }
@@ -380,6 +408,8 @@
     width: 100%;
     top: 50%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 }
@@ -429,6 +459,8 @@
   fill: rgb(166, 29, 85);
 }
 .dateInputWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .dateLabel {
@@ -505,7 +537,11 @@
 }
 .optionType {
   margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .reserveBtn {
@@ -553,6 +589,8 @@
   display: inline-block;
 }
 .number {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -609,10 +647,14 @@
 }
 .moreInfo {
   color: #008489;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .location li {
   margin: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .arrowDown {
@@ -620,9 +662,7 @@
   width: 20px;
   height: 20px;
 }
-// .subNav {
-//   display: none;
-// }
+
 .subNav {
   position: absolute;
   top: 0;
@@ -635,6 +675,8 @@
   z-index: 100;
 }
 .navList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 0 10%;
 }
@@ -696,7 +738,11 @@
   margin-left: 1.4em;
 }
 .mainInfoList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   width: 40%;
   @include mobile {

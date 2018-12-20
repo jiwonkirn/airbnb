@@ -1,7 +1,11 @@
 @import '../css/module.scss';
 
 .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 80px;
   border-bottom: 1px solid #ddd;
@@ -35,10 +39,14 @@
   width: 10px;
   height: 10px;
   top: 45%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   left: 65px;
   z-index: 101;
   fill: #999;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 
   @include tablet {
@@ -50,12 +58,21 @@
 }
 
 .searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   border-radius: 3px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   border: #ebebeb 1px solid;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   height: 48px;
   margin-left: 80px;
@@ -74,6 +91,7 @@
 }
 
 .search {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border: 0;
   padding-left: 15px;
@@ -101,7 +119,11 @@
     background-color: #fff;
     z-index: 102;
     padding: 10px 30px;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
     transform: translateX(-100%);
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
   }
   @include mobile {
@@ -114,7 +136,11 @@
     background-color: #fff;
     z-index: 102;
     padding: 20px 10px;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
     transform: translateX(-100%);
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
     // width: calc(100% - 100px);
   }
@@ -122,10 +148,14 @@
   &.activeNav {
     @include tablet {
       display: block;
+      -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
       transform: translateX(0);
     }
     @include mobile {
       display: block;
+      -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
       transform: translateX(0);
     }
   }
@@ -168,6 +198,8 @@
   font-size: 1.4rem;
   margin-left: 20px;
   padding: 2px 6px 3px;
+  -webkit-border-image: initial;
+  -o-border-image: initial;
   border-image: initial;
   border: 0;
   cursor: pointer;
@@ -234,7 +266,11 @@ footer {
   border-top: 1px solid #f2f2f2;
 }
 .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   // margin-top: 40px;
   width: 90%;
@@ -243,6 +279,8 @@ footer {
   border-bottom: #f2f2f2 1px solid;
 }
 .footer2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 40px;
   width: 90%;
