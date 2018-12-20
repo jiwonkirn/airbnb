@@ -85,8 +85,8 @@ class GuestInfoVIew extends Component {
             className={style.textArea}
             name=""
             id=""
-            cols="30"
-            rows="10"
+            cols="117"
+            rows="20"
             value={comment}
           />
           {device === 'desktop' ? (
