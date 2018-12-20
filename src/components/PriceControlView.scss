@@ -3,6 +3,8 @@
 .rc-slider {
   width: 95%;
   margin: 30px auto 45px;
+  -webkit-transform: translateX(-2px);
+  -ms-transform: translateX(-2px);
   transform: translateX(-2px);
 }
 
@@ -11,8 +13,11 @@
 }
 
 .rc-slider-dot {
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   border: 2px solid #ddd;
+  -webkit-transform: translateY(3px);
+  -ms-transform: translateY(3px);
   transform: translateY(3px);
 }
 
@@ -24,6 +29,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   border: 0;
@@ -31,9 +37,11 @@
 }
 
 .rc-slider-handle:active {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .rc-slider-handle-click-focused:focus {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }

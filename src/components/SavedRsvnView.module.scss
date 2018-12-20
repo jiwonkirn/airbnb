@@ -1,5 +1,8 @@
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -46,7 +49,11 @@
   height: 200px;
   background-size: contain;
   background-position: bottom;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   position: absolute;
   top: 150px;
@@ -63,7 +70,10 @@
 }
 
 .pastTrip {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: 20px 8%;
   width: 100%;
@@ -71,6 +81,7 @@
 }
 
 .pastTripList {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   text-align: center;
   border: 1px #dce0e0 solid;
@@ -99,6 +110,8 @@
   position: absolute;
   top: 17rem;
   left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   width: 60px;
   height: 60px;
@@ -108,6 +121,7 @@
 }
 
 .cityName {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-top: 30px;
   margin-bottom: 18px;
@@ -116,6 +130,7 @@
 }
 
 .infoWrapper {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 16px;
   padding: 0 15px;
