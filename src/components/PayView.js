@@ -371,18 +371,20 @@ class PayView extends Component {
             </button>
           </div>
         </div>
-        {device === 'desktop' ? (
-          <RoomInfoView
-            checkinYear={checkinYear}
-            checkinMounth={checkinMounth}
-            checkinDate={checkinDate}
-            checkoutYear={checkoutYear}
-            checkoutMounth={checkoutMounth}
-            checkoutDate={checkoutDate}
-            {...this.props}
-            roomId={roomId}
-          />
-        ) : null}
+        {
+          device==='desktop' || device==='tablet'?(
+            <RoomInfoView
+              checkinYear={checkinYear}
+              checkinMounth={checkinMounth}
+              checkinDate={checkinDate}
+              checkoutYear={checkoutYear}
+              checkoutMounth={checkoutMounth}
+              checkoutDate={checkoutDate}
+              {...this.props}
+              roomId={roomId}
+            />
+          ):null
+        }
       </div>
     );
   }

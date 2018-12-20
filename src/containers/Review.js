@@ -50,6 +50,7 @@ export default class Review extends Component {
     console.log('unmount');
   }
   render() {
+    console.log(this.state.reviews);
     return (
       <ReviewView
         key={this.state.reviews.length}

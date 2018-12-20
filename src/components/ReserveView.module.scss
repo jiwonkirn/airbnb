@@ -13,6 +13,9 @@
     bottom: 0;
     width: 100%;
   }
+  @include tablet {
+    width: 50%;
+  }
 }
 .roomInfoViewWrapper {
   position: fixed;
@@ -30,6 +33,10 @@
     z-index: 300;
     width: 100%;
     background-color: #554444;
+  }
+  @include tablet {
+    width: 50%;
+    position: relative;
   }
 }
 .infoBox {
@@ -220,11 +227,17 @@
   display: -ms-flexbox;
   display: flex;
   // border: 1px solid blue;
+  @include tablet {
+    display: block;
+  }
 }
 .textInfo {
   width: 70%;
   @include mobile {
     width: 50%;
+  }
+  @include tablet {
+    margin-top: 25%;
   }
 }
 .mainImgWrapper {
@@ -232,6 +245,11 @@
   // border: 1px solid blue;
   @include mobile {
     width: 50%;
+  }
+  @include tablet {
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
 }
 .mainImg {
