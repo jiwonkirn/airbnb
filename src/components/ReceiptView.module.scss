@@ -30,6 +30,8 @@
 }
 
 .overview {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   @include mobile {
     display: block;
@@ -60,7 +62,11 @@
 }
 
 .schedulebox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 40px 30px;
   @include mobile {
@@ -70,8 +76,11 @@
 
 .devider {
   display: block;
+  unicode-bidi: -webkit-isolate;
   unicode-bidi: isolate;
+  -webkit-margin-before: 0.5em;
   margin-block-start: 0.5em;
+  -webkit-margin-after: 0.5em;
   margin-block-end: 0.5em;
   height: 0;
   border: 0;
@@ -161,11 +170,17 @@
   padding: 0 10px;
   font-size: 16px;
   margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 .serviceWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -175,6 +190,179 @@
   background-color: #edefed;
   padding: 25px 10px;
   margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.container {
+  color: #484848;
+}
+
+.receiptOverview {
+  margin-top: 40px;
+}
+
+.partTitle {
+  font-size: 32px;
+  font-weight: bold;
+  color: #484848;
+}
+
+.date {
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  margin: 15px 0;
+}
+
+.overview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.reserveWrapper {
+  width: 35%;
+  border: 1px solid #dce0e0;
+  padding: 0 50px;
+}
+
+.paymentWrapper {
+  margin-left: 30px;
+  width: 55%;
+  padding: 0 50px;
+  border: 1px solid #dce0e0;
+}
+
+.schedulebox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 40px 30px;
+}
+
+.devider {
+  display: block;
+  unicode-bidi: -webkit-isolate;
+  unicode-bidi: isolate;
+  -webkit-margin-before: 0.5em;
+  margin-block-start: 0.5em;
+  -webkit-margin-after: 0.5em;
+  margin-block-end: 0.5em;
+  height: 0;
+  border: 0;
+  width: 100%;
+  border-top: 1px solid #dce0e0;
+}
+
+.checkin {
+  font-weight: bold;
+  color: #767676;
+}
+
+.checkinDate {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.questionMark {
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: rgb(72, 72, 72);
+}
+
+.arrow {
+  margin-top: 20px;
+  width: 11px;
+  height: 11px;
+  fill: #767676;
+}
+
+.checkout {
+  font-weight: bold;
+  color: #767676;
+  text-align: right;
+}
+
+.checkoutDate {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.houseInfo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.roomInfo {
+  margin-top: 15px;
+}
+
+.roomhost {
+  margin: 20px 0 15px 0;
+}
+
+.guestNum {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.refundPolicyWrapper {
+  margin: 20px 0 80px 0;
+}
+
+.refundTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.refundbody {
+  margin-top: 10px;
+}
+
+.paymentTitle {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.paymentDetail {
+  padding: 0 10px;
+  font-size: 16px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.serviceWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.totalPrice {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #edefed;
+  padding: 25px 10px;
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }

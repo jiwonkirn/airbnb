@@ -38,6 +38,7 @@
   width: 80%;
   margin: 20px 0;
   display: block;
+  outline: 0;
   @include mobile {
     width: 100%;
   }
@@ -52,6 +53,7 @@
   color: #ffffff;
   font-size: 1.6rem;
   margin-top: 20px;
+  outline: 0;
   @include mobile {
     width: 80px;
     margin-top: 0;
@@ -63,11 +65,19 @@
   right: 0;
   left: 0;
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .continueBtnWrapper ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .continueBtnWrapper ul li {
@@ -78,6 +88,7 @@
   padding: 0;
   background: transparent;
   color: #008489;
+  outline: 0;
 }
 .roomInfoViewWrapper {
   position: fixed;

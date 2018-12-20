@@ -14,7 +14,10 @@
 .roomInfoWrapper {
   margin: 10px -7.5px 20px -7.5px;
   width: calc(100% + 15px);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 .roomInfo {

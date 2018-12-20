@@ -16,16 +16,7 @@
 }
 
 .DateRangePickerInput_arrow {
-  // width: 20px;
   text-align: center;
-}
-
-.DateRangePickerInput__withBorder {
-  // border-radius: 5px;
-}
-
-.DateRangePickerInput__showClearDates {
-  // background-color: teal;
 }
 
 .DateInput_input {
@@ -35,11 +26,10 @@
 }
 
 .DateInput_input__small {
-  background-color: transparent; // text-align: center;
+  background-color: transparent;
   padding: 6px 5px 4px 10px;
   font-size: 15px;
   font-weight: 400;
-  // color: #fff;
 }
 
 .DateRangePickerInput_clearDates {
@@ -52,6 +42,8 @@
   font-size: 12px;
   position: absolute;
   top: 45%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   background-color: transparent;
   right: 20px;

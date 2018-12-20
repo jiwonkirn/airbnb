@@ -49,6 +49,7 @@
         .itemTitle {
           color: $sub-color;
           width: 180px;
+          -o-text-overflow: ellipsis;
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;

@@ -1,4 +1,6 @@
 .grade {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .gradeText {
@@ -26,6 +28,8 @@
   border: 1px solid #ebebeb;
 }
 .userInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .userImg {
@@ -42,6 +46,8 @@
   margin-bottom: 20px;
 }
 .starBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 25px;
   padding: 5px 5px 5px 0;

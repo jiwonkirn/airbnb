@@ -23,8 +23,12 @@
   font-weight: 700;
 }
 .pay {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .creditCardbtn {
@@ -34,6 +38,8 @@
   background-color: #ffffff;
   text-align: left;
   padding: 10px;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   overflow: hidden;
   position: relative;
@@ -78,7 +84,11 @@
 }
 //이름 입력란
 .nameWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   width: 70%;
   @include mobile {
@@ -100,6 +110,8 @@
   border-radius: 5px;
   background-color: #ffffff;
   height: 50px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 10px;
   &:focus {
@@ -107,7 +119,10 @@
   }
 }
 .cardInfoInputList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 70%;
   @include mobile {
@@ -129,6 +144,8 @@
   border-radius: 5px;
   background-color: #ffffff;
   height: 50px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 10px;
   &:focus {
@@ -161,11 +178,14 @@
   border-radius: 5px;
   background-color: #ffffff;
   height: 50px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 10px;
   margin-right: 10px;
 }
 .finalReserveBtn {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 200px;
   border: none;
@@ -175,6 +195,7 @@
   color: #ffffff;
   margin-top: 50px;
   cursor: pointer;
+  outline: 0;
 }
 .subTitle {
   font-size: 1.6rem;
