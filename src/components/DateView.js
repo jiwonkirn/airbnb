@@ -139,12 +139,7 @@ class DateView extends Component {
           readOnly={true}
           isDayBlocked={this.handleBlock}
           small={bool}
-          withPortal={
-            device === 'mobile' &&
-            this.props.match.path !== '/room-detail/:roomId'
-              ? true
-              : bool
-          }
+          withPortal={device === 'mobile' ? true : bool}
           numberOfMonths={device !== 'desktop' ? 1 : 2}
           block={!bool}
           endDatePlaceholderText="체크아웃"
