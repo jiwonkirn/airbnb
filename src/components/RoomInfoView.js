@@ -5,11 +5,15 @@ import { ReactComponent as Guest } from '../svg/guest.svg';
 import { ReactComponent as Calender } from '../svg/calender.svg';
 import { ReactComponent as Arrow } from '../svg/arrow.svg';
 import { ReactComponent as QuestionMark } from '../svg/questionMark.svg';
-
+import { ReactComponent as Cross } from '../svg/cross.svg';
 import { withSearch } from '../contexts/SearchContext';
+import { withUser } from '../contexts/UserContext';
 import withCommonLoading from '../hoc/CommonLoading';
 
 class RoomInfoView extends Component {
+  // handleModal() {
+  //   this.props.onModal();
+  // }
   render() {
     const {
       room_name,
@@ -26,11 +30,18 @@ class RoomInfoView extends Component {
       checkoutYear,
       checkoutMounth,
       checkoutDate,
+      device,
+      modalclick,
     } = this.props;
 
     return (
       <div className={style.infoContainer}>
         <div className={style.infoBox}>
+          {modalclick=== true ? (
+            <button onClick={this.props.onModal} className={style.crossBtn}>
+              <Cross className={style.cross} />
+            </button>
+          ) : null}
           <div className={style.mainInfo}>
             <div className={style.textInfo}>
               <h2 className={style.roomType}>{room_name}</h2>
@@ -124,4 +135,4 @@ class RoomInfoView extends Component {
     );
   }
 }
-export default withCommonLoading(withSearch(RoomInfoView));
+export default withCommonLoading(withSearch(withUser(RoomInfoView)));

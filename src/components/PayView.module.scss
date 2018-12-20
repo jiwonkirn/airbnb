@@ -1,8 +1,18 @@
+@import '../css/module.scss';
 .PayInfoContainer {
   width: 66%;
-  //   border: 1px solid red;
   display: inline-block;
   padding-right: 5%;
+  @include mobile {
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+  }
 }
 .payTitle {
   //   border: 1px solid red;
@@ -11,7 +21,7 @@
 }
 .pay {
   display: flex;
-  width: 70%;
+  width: 100%;
   justify-content: space-between;
 }
 .creditCardbtn {
@@ -26,6 +36,9 @@
   position: relative;
   &:focus {
     border: 1px solid #008489;
+  }
+  @include mobile {
+    width: 100%;
   }
 }
 .creditCardbtn div {
@@ -65,10 +78,17 @@
   display: flex;
   justify-content: space-between;
   width: 70%;
+  @include mobile {
+    width: 100%;
+    // border: 1px solid red;
+  }
 }
 .nameWrapper li {
   width: 48%;
-  //   border: 1px solid red;
+  @include mobile {
+    width: 100%;
+    // border: 1px solid red;
+  }
 }
 .nameInput,
 .familyNameInput {
@@ -87,7 +107,9 @@
   display: flex;
   flex-wrap: wrap;
   width: 70%;
-  //   border: solid 1px red;
+  @include mobile {
+    width: 100%;
+  }
 }
 .cardNumber {
   width: 100%;
@@ -161,4 +183,7 @@
 }
 .notice {
   margin-top: 50px;
+}
+.roomInfoView {
+  display: block;
 }

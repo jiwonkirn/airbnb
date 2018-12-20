@@ -1,19 +1,48 @@
+@import '../css/module.scss';
+
 //전체 컨테이너 레이아웃
 .ruleContainer {
   width: 66%;
   display: inline-block;
   padding: 20px;
+  @include mobile {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
+}
+.roomInfoViewWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
 }
 .infoContainer {
   width: 34%;
   display: inline-block;
   vertical-align: top;
+  @include mobile {
+    z-index: 300;
+    width: 100%;
+    background-color: #554444;
+  }
 }
 .infoBox {
   height: 100%;
   width: 100%;
   border: 1px solid #f2f2f2;
   padding: 20px;
+  @include mobile {
+    height: 100vh;
+    border: none;
+    overflow: scroll;
+    background-color: #ffffff;
+  }
 }
 //숙소규칙 컨텐츠
 .ruleTitle {
@@ -27,6 +56,11 @@
 .date {
   width: 50%;
   display: inline-block;
+  @include mobile {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 .checkDate {
   font-size: 1.5rem;
@@ -97,6 +131,9 @@
 }
 .more {
   color: #008489;
+  @include mobile {
+    margin-bottom: 30px;
+  }
 }
 .arrowDown {
   width: 1.5rem;
@@ -107,10 +144,16 @@
 //옵션
 .optionTitle {
   margin-top: 60px;
+  @include mobile {
+    display: none;
+  }
 }
 .optionItem {
   padding-top: 20px;
   display: flex;
+  @include mobile {
+    display: none;
+  }
 }
 .optionText {
   width: 70%;
@@ -131,6 +174,32 @@
   color: #ffffff;
   font-size: 1.6rem;
   margin-top: 80px;
+  @include mobile {
+    width: 80px;
+    margin-top: 0;
+  }
+}
+.continueBtnWrapper {
+  border: 1px solid #f2f2f2;
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.continueBtnWrapper ul {
+  display: flex;
+  justify-content: space-between;
+}
+.continueBtnWrapper ul li {
+  padding-right: 10px;
+}
+.more2 {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #008489;
 }
 // 숙소 정보
 .mainInfo {
@@ -139,10 +208,16 @@
 }
 .textInfo {
   width: 70%;
+  @include mobile {
+    width: 50%;
+  }
 }
 .mainImgWrapper {
   width: 30%;
   // border: 1px solid blue;
+  @include mobile {
+    width: 50%;
+  }
 }
 .mainImg {
   width: 100%;
@@ -229,4 +304,16 @@
 }
 .noticeItem {
   margin: 10px;
+}
+.crossBtn {
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  border: #f2f2f2 1px solid;
+  border-radius: 50%;
+}
+.cross {
+  width: 100%;
+  height: 100%;
+  fill: #aaaaaa;
 }

@@ -56,7 +56,8 @@ class Pay extends Component {
     expiredate,
     cvv,
     post,
-    name
+    first_name,
+    last_name
   ) {
     const {
       data: { id },
@@ -71,7 +72,8 @@ class Pay extends Component {
       expiredate === '만료일' ||
       cvv === 'CVV' ||
       post === null ||
-      name === ''
+      first_name === '' ||
+      last_name === ''
     ) {
       alert('필수입력값을 확인해주세요');
     } else if (id) {
@@ -92,7 +94,9 @@ class Pay extends Component {
           expiredate,
           cvv,
           post,
-          name
+          name,
+          first_name,
+          last_name
         ) =>
           this.handlePost(
             checkin,
@@ -103,7 +107,9 @@ class Pay extends Component {
             expiredate,
             cvv,
             post,
-            name
+            name,
+            first_name,
+            last_name
           )
         }
         {...this.state}
