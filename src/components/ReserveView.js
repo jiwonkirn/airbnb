@@ -86,6 +86,7 @@ class ReserveView extends Component {
       파티나이벤트금지: <Party />,
       흡연금지: <Smoke />,
     };
+    console.log(this.state.modalclick);
     return (
       <div>
         <ReserveNav />
@@ -219,17 +220,19 @@ class ReserveView extends Component {
             </div>
           ) : null}
           {this.state.modalclick === true ? (
-            <RoomInfoView
-              checkinYear={checkinYear}
-              checkinMounth={checkinMounth}
-              checkinDate={checkinDate}
-              checkoutYear={checkoutYear}
-              checkoutMounth={checkoutMounth}
-              checkoutDate={checkoutDate}
-              {...this.props}
-              modalclick={this.state.modalclick}
-              onModal={() => this.handleModal()}
-            />
+            <div className={style.roomInfoViewWrapper}>
+              <RoomInfoView
+                checkinYear={checkinYear}
+                checkinMounth={checkinMounth}
+                checkinDate={checkinDate}
+                checkoutYear={checkoutYear}
+                checkoutMounth={checkoutMounth}
+                checkoutDate={checkoutDate}
+                {...this.props}
+                modalclick={this.state.modalclick}
+                onModal={() => this.handleModal()}
+              />
+            </div>
           ) : null}
         </div>
         {device === 'desktop' ? (

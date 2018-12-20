@@ -1,7 +1,17 @@
+@import '../css/module.scss';
 //전체 레이아웃
 .guestInfoContainer {
   display: inline-block;
   width: 66%;
+  @include mobile {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+  }
 }
 .guestTitle {
   font-weight: 700;
@@ -13,6 +23,9 @@
 }
 .guestOption {
   width: 50%;
+  @include mobile {
+    width: 100%;
+  }
 }
 .greeting {
   margin: 10px 0;
@@ -22,7 +35,11 @@
   width: 80%;
   margin: 20px 0;
   display: block;
+  @include mobile {
+    width: 100%;
+  }
 }
+//버튼
 .continueBtn {
   width: 120px;
   height: 50px;
@@ -32,4 +49,38 @@
   color: #ffffff;
   font-size: 1.6rem;
   margin-top: 20px;
+  @include mobile {
+    width: 80px;
+    margin-top: 0;
+  }
+}
+.continueBtnWrapper {
+  border: 1px solid #f2f2f2;
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.continueBtnWrapper ul {
+  display: flex;
+  justify-content: space-between;
+}
+.continueBtnWrapper ul li {
+  padding-right: 10px;
+}
+.more2 {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #008489;
+}
+.roomInfoViewWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
 }

@@ -14,19 +14,22 @@
     width: 100%;
   }
 }
+.roomInfoViewWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+}
 .infoContainer {
   width: 34%;
   display: inline-block;
   vertical-align: top;
   @include mobile {
     z-index: 300;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #554444;
   }
 }
 .infoBox {

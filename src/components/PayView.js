@@ -156,7 +156,7 @@ class PayView extends Component {
     });
   }
   render() {
-    const { roomId } = this.props;
+    const { roomId, device } = this.props;
     const checkinYear = this.state.checkin.split('-')[0];
     const checkinMounth = this.state.checkin.split('-')[1];
     const checkinDate = this.state.checkin.split('-')[2];
@@ -173,6 +173,22 @@ class PayView extends Component {
         <ReserveNav />
         <div className={style.PayInfoContainer}>
           <h1 className={style.payTitle}>확인 및 결제</h1>
+          {
+            device==='mobile'?(
+            <div className={style.roomInfoView}>
+            <RoomInfoView
+                checkinYear={checkinYear}
+                checkinMounth={checkinMounth}
+                checkinDate={checkinDate}
+                checkoutYear={checkoutYear}
+                checkoutMounth={checkoutMounth}
+                checkoutDate={checkoutDate}
+                {...this.props}
+                roomId={roomId}
+              />
+            </div>
+            ):null
+          }
           <div className={style.a}>
             <div className={style.pay}>
               <p className={style.subTitle}>결제 수단</p>
@@ -329,16 +345,20 @@ class PayView extends Component {
             </button>
           </div>
         </div>
-        <RoomInfoView
-          checkinYear={checkinYear}
-          checkinMounth={checkinMounth}
-          checkinDate={checkinDate}
-          checkoutYear={checkoutYear}
-          checkoutMounth={checkoutMounth}
-          checkoutDate={checkoutDate}
-          {...this.props}
-          roomId={roomId}
-        />
+        {
+          device==='desktop'?(
+            <RoomInfoView
+              checkinYear={checkinYear}
+              checkinMounth={checkinMounth}
+              checkinDate={checkinDate}
+              checkoutYear={checkoutYear}
+              checkoutMounth={checkoutMounth}
+              checkoutDate={checkoutDate}
+              {...this.props}
+              roomId={roomId}
+            />
+          ):null
+        }
       </div>
     );
   }
