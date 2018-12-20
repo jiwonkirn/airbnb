@@ -346,7 +346,7 @@ class PayView extends Component {
           </div>
         </div>
         {
-          device==='desktop'?(
+          device==='desktop' || device==='tablet'?(
             <RoomInfoView
               checkinYear={checkinYear}
               checkinMounth={checkinMounth}
