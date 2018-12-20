@@ -13,6 +13,9 @@
     bottom: 0;
     width: 100%;
   }
+  @include tablet {
+    width: 50%;
+  }
 }
 .roomInfoViewWrapper {
   position: fixed;
@@ -30,6 +33,9 @@
     z-index: 300;
     width: 100%;
     background-color: #554444;
+  }
+  @include tablet {
+    width: 50%;
   }
 }
 .infoBox {

@@ -192,7 +192,7 @@ class ReserveView extends Component {
               </p>
             </li>
           </ul>
-          {device === 'desktop' ? (
+          {device === 'desktop' || 'tablet' ? (
             <Link
               to={`/guest-info/${roomId}?&adult=${adult}&children=${children}&infant=${infant}&checkin=${checkin}&checkout=${checkout}`}
             >
@@ -235,7 +235,7 @@ class ReserveView extends Component {
             </div>
           ) : null}
         </div>
-        {device === 'desktop' ? (
+        {device === 'desktop' || device === 'tablet' ? (
           <RoomInfoView
             checkinYear={checkinYear}
             checkinMounth={checkinMounth}
