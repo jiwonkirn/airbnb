@@ -254,7 +254,7 @@ class Layout extends React.PureComponent {
           </nav>
         </header>
         {this.props.children}
-        {device === 'desktop' && (
+        {device === 'desktop' && this.props.match.path !== '/' && (
           <footer>
             <div className={style.footer}>
               <div className={style.footerSection}>
