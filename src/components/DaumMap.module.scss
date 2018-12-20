@@ -10,16 +10,21 @@
   @include mobile {
     position: fixed;
     margin: -110px -30px 0;
-    // z-index: 100;
     width: 100vw;
     height: calc(110vh + 80px);
+    -webkit-transform: translateY(110%);
+    -ms-transform: translateY(110%);
     transform: translateY(110%);
+    -webkit-transition: all 0.3 ease-out;
+    -o-transition: all 0.3 ease-out;
     transition: all 0.3 ease-out;
   }
 }
 
 .map.active {
   @include mobile {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
     transform: translateY(0);
   }
 }

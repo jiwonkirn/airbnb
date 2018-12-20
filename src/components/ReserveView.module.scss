@@ -126,6 +126,8 @@
   border: none;
   background: transparent;
   font-size: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 0;
 }
@@ -150,6 +152,8 @@
 }
 .optionItem {
   padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   @include mobile {
     display: none;
@@ -185,11 +189,19 @@
   right: 0;
   left: 0;
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .continueBtnWrapper ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .continueBtnWrapper ul li {
@@ -203,6 +215,8 @@
 }
 // 숙소 정보
 .mainInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   // border: 1px solid blue;
 }
@@ -223,6 +237,8 @@
   width: 100%;
 }
 .starBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   // border: 1px solid blue;
 }
@@ -233,6 +249,8 @@
   margin-right: 5px;
 }
 .guestInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-bottom: 10px;
 }
@@ -254,6 +272,8 @@
   fill: currentColor;
 }
 .dateInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .checkIn,
@@ -263,7 +283,11 @@
   margin-right: 10px;
 }
 .priceInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 10px;
 }
@@ -280,10 +304,16 @@
   line-height: 16px;
 }
 .serviceWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .totalPrice {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .subWrapper {

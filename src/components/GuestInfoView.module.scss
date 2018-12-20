@@ -35,6 +35,7 @@
   width: 80%;
   margin: 20px 0;
   display: block;
+  outline: 0;
   @include mobile {
     width: 100%;
   }
@@ -60,11 +61,19 @@
   right: 0;
   left: 0;
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .continueBtnWrapper ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 .continueBtnWrapper ul li {

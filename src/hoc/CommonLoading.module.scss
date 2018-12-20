@@ -1,5 +1,14 @@
 @import '../css/module.scss';
 
+@-webkit-keyframes Loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes Loading {
   0% {
     opacity: 0;
@@ -16,7 +25,11 @@
   .loadingItemContainer {
     width: 200px;
     margin: 25px auto 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 
     .loadingItem {
@@ -28,14 +41,17 @@
     }
 
     .loadingItem:first-child {
+      -webkit-animation: Loading 0.4s alternate infinite ease-in-out;
       animation: Loading 0.4s alternate infinite ease-in-out;
     }
 
     .loadingItem:nth-child(2) {
+      -webkit-animation: Loading 0.4s alternate 0.15s infinite ease-in-out;
       animation: Loading 0.4s alternate 0.15s infinite ease-in-out;
     }
 
     .loadingItem:nth-child(3) {
+      -webkit-animation: Loading 0.4s alternate 0.3s infinite ease-in-out;
       animation: Loading 0.4s alternate 0.3s infinite ease-in-out;
     }
   }

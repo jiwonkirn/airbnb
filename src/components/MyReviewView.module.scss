@@ -24,16 +24,22 @@
 }
 
 .commentWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   border: 1px solid #dce0e0;
   padding: 30px;
 }
 
 .starBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 25px;
   padding: 5px 5px 5px 0;

@@ -1,5 +1,14 @@
 @import '../css/module.scss';
 
+@-webkit-keyframes FadeInOut {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
 @keyframes FadeInOut {
   0% {
     opacity: 0.2;
@@ -30,8 +39,12 @@
   .roomInfoWrapper {
     margin: 10px -7.5px 20px -7.5px;
     width: calc(100% + 15px);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-animation: FadeInOut 1s ease-in-out alternate infinite;
     animation: FadeInOut 1s ease-in-out alternate infinite;
 
     .roomInfo {
