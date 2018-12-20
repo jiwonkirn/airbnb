@@ -160,7 +160,7 @@ class RecommandedThemeView extends Component {
     const max_price = params.get('price__lte');
     const cityName = params.get('public_address__contains');
     const bool =
-      adult == '0' &&
+      adult <= '1' &&
       children == '0' &&
       infant == '0' &&
       checkin == '0' &&

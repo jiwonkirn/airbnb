@@ -37,12 +37,14 @@ class ReserveForm extends Component {
   }
 
   render() {
-    const { roomId, device, mobileReservation } = this.props;
+    const { roomId, device, mobileReservation, checkin, checkout } = this.props;
     if (device === 'desktop') {
       return (
         <ReserveFormView
           price={this.props.price}
           {...this.state}
+          checkin={checkin}
+          checkout={checkout}
           rate_average={this.props.rate_average}
           onSelect={e => this.handleSelect(e)}
           onBook={() => this.handleBook()}

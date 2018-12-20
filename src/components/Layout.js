@@ -23,6 +23,8 @@ import HelpdeskView from './HelpdeskView';
 import SavedRsvn from '../containers/SavedRsvn';
 import { Link, withRouter } from 'react-router-dom';
 
+let count = 1;
+
 class Layout extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -111,10 +113,10 @@ class Layout extends React.PureComponent {
   }
 
   handleNavigation = async () => {
-    await this.setState(prev => {
+    this.setState(prev => {
+      this.props.handleFixModal(!prev.navSelected);
       return { navSelected: !prev.navSelected };
     });
-    this.props.handleFixModal(this.state.navSelected);
   };
 
   render() {
@@ -252,7 +254,7 @@ class Layout extends React.PureComponent {
           </nav>
         </header>
         {this.props.children}
-        {device === 'desktop' && (
+        {device === 'desktop' && this.props.match.path !== '/' && (
           <footer>
             <div className={style.footer}>
               <div className={style.footerSection}>

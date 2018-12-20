@@ -14,8 +14,6 @@ export default class RoomListItemView extends Component {
 
   render() {
     const { room } = this.props;
-    console.log(room.rate_average);
-    console.log(this.props.room);
     return (
       <>
         <div
