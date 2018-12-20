@@ -174,17 +174,21 @@ class DetailView extends React.Component {
     };
     return (
       <div className={style.outer}>
-        {this.state.sticky ? (
-          <div className={style.subNav}>
-            <ul className={style.navList}>
-              <button onClick={() => this.handleBrief()}>개요</button>
-              <button onClick={() => this.handleReview()}>후기</button>
-              <button onClick={() => this.handleHost()}>호스트</button>
-              <button onClick={() => this.handleLocation()}>위치</button>
-              <button onClick={() => this.handleRecall()}>환불정책</button>
-            </ul>
-          </div>
-        ) : null}
+        {
+          device==='desktop'?(
+            this.state.sticky ? (
+            <div className={style.subNav}>
+              <ul className={style.navList}>
+                <button onClick={() => this.handleBrief()}>개요</button>
+                <button onClick={() => this.handleReview()}>후기</button>
+                <button onClick={() => this.handleHost()}>호스트</button>
+                <button onClick={() => this.handleLocation()}>위치</button>
+                <button onClick={() => this.handleRecall()}>환불정책</button>
+              </ul>
+            </div>
+            ) : null
+          ):null
+          }
 
         <div className={style.imgWrapper}>
           <div className={style.responsive1}>
@@ -308,7 +312,9 @@ class DetailView extends React.Component {
             <div className={style.devider} />
             <div className={style.calenderContiner}>
               <h3 className={style.category}>예약 가능 여부</h3>
+              <div className={style.posable}>
               <DayPickerRangeController />
+              </div>
             </div>
             <div ref={this.ReviewRef} className={style.devider} />
             <Review roomId={roomId} />

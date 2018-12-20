@@ -47,6 +47,7 @@ export default class Review extends Component {
     }
   }
   render() {
+    console.log(this.state.reviews);
     return (
       <ReviewView
         onPost={(grade, comment) => this.handlePost(grade, comment)}
