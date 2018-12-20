@@ -95,12 +95,12 @@ class PeopleControlView extends Component {
               className={style.peopleItemButton}
               onClick={this.handleSelect}
               style={
-                !(adult === 0 && children === 0 && infant === 0)
+                !(adult <= 1 && children === 0 && infant === 0)
                   ? { backgroundColor: '#008489', color: '#fff' }
                   : null
               }
             >
-              {adult === 0 && children === 0 && infant === 0 ? (
+              {adult <= 1 && children === 0 && infant === 0 ? (
                 <span>인원</span>
               ) : (
                 <span>

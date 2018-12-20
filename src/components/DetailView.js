@@ -69,10 +69,6 @@ class DetailView extends React.Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.state.sticky !== nextState.sticky || false;
-  // }
-
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
@@ -132,7 +128,6 @@ class DetailView extends React.Component {
   };
 
   render() {
-    console.log(this.props.device);
     const {
       room_name,
       room_type,
@@ -177,7 +172,6 @@ class DetailView extends React.Component {
       건물내무료주차: <Park />,
       엘리베이터: <Elevator />,
     };
-    console.log(lat, lng);
     return (
       <div className={style.outer}>
         {this.state.sticky ? (

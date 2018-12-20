@@ -57,6 +57,8 @@ class ReserveFormView extends React.PureComponent {
     const {
       check_out_date,
       check_in_date,
+      checkout,
+      checkin,
       onBook,
       price,
       children,
@@ -66,8 +68,6 @@ class ReserveFormView extends React.PureComponent {
       rate_average,
     } = this.props;
     const { stars } = this.state;
-    console.log(parseInt(rate_average));
-    console.log(Number.isInteger(parseInt(rate_average)));
     const stickyClass = classNames(style.formWrapper, {
       [style.sticky]: this.state.sticky,
     });
@@ -84,8 +84,12 @@ class ReserveFormView extends React.PureComponent {
             />
           )}
           <p className={style.price}>
-            ₩{price * (children + adult || 1)} /
-            <span className={style.park}>박</span>
+            ₩
+            {price *
+              ((children + adult) *
+                ((new Date(checkout) - new Date(checkin)) / 86400000) ||
+                1)}{' '}
+            /<span className={style.park}>박</span>
           </p>
           <div className={style.starwrapper}>
             {stars.map((star, index) =>

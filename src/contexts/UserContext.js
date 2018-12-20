@@ -89,19 +89,18 @@ class UserProviders extends Component {
   // 페이스북 에서 응답받은 콜백을 통해 로그인, 회원가입 요청을 하는 메소드
   async setProfile(res) {
     if (!localStorage.getItem('token')) {
-      const {
-        email,
-        id,
-        name,
-        picture: {
-          data: { url },
-        },
-      } = res;
-      const first_name = name.split(' ')[0];
-      const last_name = name.split(' ')[1] == null ? ' ' : name.split(' ')[1];
-      const user_id = id;
-      console.log(first_name, last_name, user_id);
       try {
+        const {
+          email,
+          id,
+          name,
+          picture: {
+            data: { url },
+          },
+        } = res;
+        const first_name = name.split(' ')[0];
+        const last_name = name.split(' ')[1] == null ? ' ' : name.split(' ')[1];
+        const user_id = id;
         const {
           data: { token },
         } = await api.post('/api/user/auth-token/', {
@@ -123,7 +122,7 @@ class UserProviders extends Component {
           await this.refreshUser();
         }
       } catch (e) {
-        console.lof(e.message);
+        console.log(e.message);
         alert('로그인에 실패하셨습니다.');
       }
     }
@@ -172,7 +171,6 @@ class UserProviders extends Component {
   };
 
   render() {
-    console.log(this.state.last_name);
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }
 }
