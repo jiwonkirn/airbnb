@@ -12,6 +12,9 @@
     bottom: 0;
     padding: 10px;
   }
+  @include tablet {
+    width: 50%;
+  }
 }
 .guestTitle {
   font-weight: 700;

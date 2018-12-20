@@ -89,7 +89,7 @@ class GuestInfoVIew extends Component {
             rows="10"
             value={comment}
           />
-          {device === 'desktop' ? (
+          {device === 'desktop' || device === 'tablet' ? (
             <button
               onClick={() => this.handleContinue()}
               className={style.continueBtn}
@@ -134,7 +134,7 @@ class GuestInfoVIew extends Component {
             </div>
           ) : null}
         </div>
-        {device === 'desktop' ? (
+        {device === 'desktop' || device === 'tablet' ? (
           <RoomInfoView
             checkinYear={checkinYear}
             checkinMounth={checkinMounth}
